@@ -1,4 +1,13 @@
 Web::Application.routes.draw do
+
+  devise_for :users, :controllers => { sessions:'users/sessions', registration:'users/registrations' }, :skip => [:sessions, :registrations] do
+    get 'login' => 'users/sessions#new', :as => :new_user_session
+    post 'login' => 'users/sessions#create', :as => :user_session
+    get 'logout' => 'users/sessions#destroy', :as => :destroy_user_session
+    get 'signup' => 'users/registrations#new', :as => :new_user_registration
+    post 'signup' => 'users/registrations#create', :as => :user_registration
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -22,17 +22,15 @@ gem 'jquery-rails'
 gem 'modernizr-rails'
 
 
-# Stylesheet libs
-# gem 'blueprint-rails'
-
 # Ajax request CoffeeScript support
 # gem 'coffeebeans'
 
 # Heroku deployment requirements
-# group :production do
+group :production do
 #   gem 'therubyracer-heroku'
 #   gem 'pg'
-# end
+  gem 'therubyracer'
+end
 
 
 # Use unicorn as the web server
