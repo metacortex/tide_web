@@ -1,0 +1,62 @@
+<div class="content_title">
+  <div class="title">PEOPLE</div>
+  <div class="more"><%= link_to "Show All >>" %></div>
+</div>
+
+<div class="people_search">
+  <div class="search_form">
+    <%= form_tag search_users_path, :method => :get do %>
+      <div class="sp-label">
+        <input type="text" name="q" id="sp-peoplesearch" accesskey="s" autocomplete="off">
+    	</div>
+    <% end %>
+    <div class="sp-magnify">
+      <div class="magnify-searchmode"></div>
+      <div class="magnify"></div>
+    </div>
+  </div>
+  <ul class="search_history">
+    <% ["iOS", "Bio Tech", "Interaction"].each do |keyword| %>
+      <li>
+        <div class="block">
+          <%= link_to_function keyword, "alert('#{keyword}')" %>
+          <%= link_to_function "x", "alert('remove^^')", :class => "remove" %>
+        </span>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+
+<div class="people">
+  <h3>Recently Joined Members</h3>
+  <ul>
+    <% 10.times do %>
+      <% user = User.first %>
+      <li>
+        <div class="profile">Profile</div>
+        <div class="username"><%= user.name %></div>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="people">
+  <h3>Active Members of the Week</h3>
+  <ul>
+    <% 10.times do %>
+      <% user = User.first %>
+      <li>
+        <div class="profile">Profile</div>
+        <div class="username"><%= user.name %></div>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+
+<div class="sidebar">
+  
+  <div>AD/APP</div>
+  
+</div>

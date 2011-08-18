@@ -62,7 +62,7 @@
       <%= navigation_tag :class => "top_nav" do |m| %>
         <%= m.item "TIDE", "/tide", :current => current_controller?(["main"]) %>
         <%= m.item "NEWS", posts_path, :current => current_controller?(["posts"]) %>
-        <%= m.item "PEOPLE", "/people", :current => current_controller?(["users"]) %>
+        <%= m.item "PEOPLE", users_path, :current => current_controller?(["users"]) %>
       <% end %>
     </div>
   </div>

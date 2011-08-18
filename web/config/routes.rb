@@ -29,6 +29,12 @@ Web::Application.routes.draw do
     resources :comments
   end
   
+  resources :users do
+    collection do
+      get 'search'
+    end
+  end
+  
   
   match '/tide' => "main#index"
 
