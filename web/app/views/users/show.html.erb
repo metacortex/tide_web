@@ -1,2 +1,64 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="content_title">
+  <div class="title">PEOPLE</div>
+</div>
+
+<div class="user">
+  <div class="portrait">
+    Profile
+  </div>
+  <div class="profile">
+    <div class="username"><%= @user.name %></div>
+    <div class="location">Seoul, Korea</div>
+    <div class="job">TECHNOLOGY</div>
+    
+    <dl class="information">
+      <dt>TAG</dt>
+      <dd>BIO TECH, MANAGEMENT</dd>
+      <dt>EMAIL</dt>
+      <dd><%= @user.email %></dd>
+      <dt>WEBSITE</dt>
+      <dd>http://www.google.com<br/>http://www.apple.com</dd>
+      <dt>WORK</dt>
+      <dd>SOMEWHRE CORPORATION</dd>
+      <dt>INTEREST</dt>
+      <dd>GAMBLING</dd>
+    </dl>
+    
+    <ul class="stats">
+      <li>
+        <div class="value">17</div>
+        <div class="caption">CONNECTION</div>
+      </li>
+      <li>
+        <div class="value">35</div>
+        <div class="caption">POSTED</div>
+      </li>
+      <li>
+        <div class="value">88</div>
+        <div class="caption">COMMENTED</div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="connection">
+  <h3><%= @user.name %>'s Connection</h3>
+  <ul>
+    <% 17.times do %>
+      <% user = User.first %>
+      <li>
+        <div class="profile">Profile</div>
+        <div class="username"><%= link_to user.name, user %></div>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+
+
+
+<div class="sidebar">
+  
+  <div>AD/APP</div>
+  
+</div>

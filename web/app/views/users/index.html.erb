@@ -35,7 +35,7 @@
       <% user = User.first %>
       <li>
         <div class="profile">Profile</div>
-        <div class="username"><%= user.name %></div>
+        <div class="username"><%= link_to user.name, user %></div>
       </li>
     <% end %>
   </ul>
@@ -48,7 +48,7 @@
       <% user = User.first %>
       <li>
         <div class="profile">Profile</div>
-        <div class="username"><%= user.name %></div>
+        <div class="username"><%= link_to user.name, user %></div>
       </li>
     <% end %>
   </ul>

@@ -212,7 +212,7 @@ div.post {
       @include box-shadow(rgba(255, 255, 255, 0.2) 0 1px 0, rgba(0,0,0,0.6) 0 2px 1px inset);
     }
     #sp-peoplesearch { 
-      width:100%; height:19px; padding:2px 18px 1px 5px; background-image:none;
+      width:100%; height:19px; padding:2px 18px 1px 3px; background-image:none;
       @include box-sizing(border-box);
       -webkit-tap-highlight-color:rgba(0,0,0,0);
     }
@@ -251,6 +251,59 @@ div.post {
     }
   }
 }
+
+.user {
+  @include float(left);
+  padding-top: 10px;
+  .portrait {
+    @include float(left);
+    width: 120px;
+    padding: 50px 0;
+    text-align: center;
+    border: 1px solid #ccc;
+    margin-right: 15px;
+  }
+  .profile {
+    @include float(left);
+    .username { font-size:1.2em; font-weight:bold;}
+    .location { font-weight:bold;}
+    .job {}
+    dl.information {
+      @include clearfix;
+      padding: 10px 0;
+      font-size: 0.8em;
+      dt { @include float(left); clear:left; color:#777; padding:5px 0; }
+      dd { @include float(left); padding:5px 0; margin-left:15px;}
+    }
+    ul.stats {
+      @include horizontal-list;
+      li {
+        background-color: #999;
+        @include border-radius(5px);
+        margin-right: 10px;
+        padding: 0;
+        .value { color:#fff; font-weight:bold; font-size:1.5em; text-align:center; padding-top:4px;}
+        .caption { font-size:0.75em; padding:0 3px; text-align:center; padding:0 8px 4px;}
+      }
+    }
+  }
+}
+
+.connection {
+  @include float(left);
+  @include content-section;
+  padding-top: 15px;
+  ul {
+    @include horizontal-list;
+    li {
+      margin: 15px 30px 15px 0;
+      .profile { width:100px; padding:40px 0; border:1px solid #ccc; text-align:center; margin-bottom:5px;}
+      .username {}
+    }
+  }
+}
+
+
 
 
 
