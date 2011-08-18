@@ -17,7 +17,23 @@ group :assets do
   gem 'compass', :git => 'git://github.com/chriseppstein/compass.git', :branch => 'rails31'
 end
 
+# JavasScript libs
 gem 'jquery-rails'
+gem 'modernizr-rails'
+
+
+# Stylesheet libs
+# gem 'blueprint-rails'
+
+# Ajax request CoffeeScript support
+# gem 'coffeebeans'
+
+# Heroku deployment requirements
+# group :production do
+#   gem 'therubyracer-heroku'
+#   gem 'pg'
+# end
+
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -27,6 +43,36 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+
+# Authentication
+gem 'devise'
+
+
+# File Attachment
+gem 'carrierwave'
+gem 'remotipart'
+
+
+# helper: Model
+gem 'decent_exposure'
+
+
+# helper: View
+gem "meta_search", '>= 1.1.0.pre'
+gem 'activeadmin', git: "git://github.com/gregbell/active_admin.git", branch: "rails-3-1"
+
+
+# data processing
+gem 'image_science', git: "git://github.com/asynchrony/image_science.git"
+# gem 'mini_magick'
+# gem 'nokogiri'
+
+
+group :development do
+  gem "annotate"
+  gem "mongrel", ">= 1.2.0.pre2"
+end
 
 group :test do
   # Pretty printed test output
