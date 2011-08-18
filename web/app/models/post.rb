@@ -29,6 +29,8 @@ class Post < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
   
+  has_many :comments, :dependent => :destroy, :order => "id DESC"
+  
   validates_presence_of :title
   validates_length_of :body, :minimum => 4
 

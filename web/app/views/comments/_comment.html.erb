@@ -1,0 +1,16 @@
+<%= content_tag_for :li, comment do %>
+  <div class="user">
+    <div class="profile">
+      Profile
+    </div>
+    <div class="username"><%= comment.user.name %></div>
+  </div>
+  <div class="body"><%= comment.body.gsub("\n", "<br/>").html_safe %></div>
+  <div class="status">
+    <div class="timestamp"><%= l(comment.created_at) %></div>
+    <div class="agreement">
+      <div class="positive">+<%= comment.positive_agreements_count %></div>
+      <div class="negative">-<%= comment.negative_agreements_count %></div>
+    </div>
+  </div>
+<% end %>

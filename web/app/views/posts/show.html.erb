@@ -21,8 +21,37 @@
   <div class="vote">
     <div>VOTE APP</div>
   </div>
-</div>
 
+  <div class="related_posts">
+    <h3>Related News</h3>
+    <ul>
+      <% 4.times do %>
+      <li>
+        <div class="thumb">Picture</div>
+        <div class="abbr">Relative News Here! News text abbr here.</div>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+  
+  <div class="new_comment">
+    <h3>New Comment</h3>
+    <%= form_for [@post, Comment.new], :remote => true do |f| %>
+      <%= f.hidden_field :post_id, :value => @post.id %>
+      <%= f.hidden_field :user_id, :value => current_user.try(:id) %>
+      <%= f.text_area :body %>
+      <div class="buttons"><%= f.submit "POST" %></div>
+    <% end %>
+  </div>
+  <div class="comments">
+    <h3>Comments</h3>
+    <ul id="comments">
+      <% @post.comments.each do |comment| %>
+        <%= render "comments/comment", :comment => comment %>
+      <% end %>
+    </ul>
+  </div>
+</div>
 
 <div class="sidebar">
   <div>AD/APP</div>
