@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(:version => 20110818150852) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "name"
     t.string   "role"
     t.datetime "created_at"
     t.datetime "updated_at"

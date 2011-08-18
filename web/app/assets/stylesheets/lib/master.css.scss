@@ -57,8 +57,8 @@ body {}
 
 
 
-
-
+$content_width: 750px;
+$sidebar_width: 300px;
 
 
 /* POSTS */
@@ -72,7 +72,7 @@ body {}
 
 ul.posts {
   @include float(left);
-  width:750px;
+  width:$content_width;
   padding:0;
   margin:0;
   li.post {
@@ -99,11 +99,25 @@ ul.posts {
 }
 
 .sidebar {
-  width:300px; position:absolute; right:0; border:1px solid #ddd;
+  width:$sidebar_width; position:absolute; right:0; border:1px solid #ddd;
   margin:1em 0;
   div { margin: 30px; }
 }
 
+div.post {
+  @include float(left);
+  width:$content_width;
+  .picture {
+    div { margin:10px auto 30px; width:450px; border:1px solid #ccc; background:#eee; text-align:center; padding:150px 0;}
+  }
+  .content {
+    
+  }
+  .author { text-align:right;}
+  .source { margin:1em 0;}
+  .tags { margin:1em 0;}
+  .vote { margin:1em 0; width:550px; border:1px solid #ccc; padding:40px 0; text-align:center;}
+}
 
 
 

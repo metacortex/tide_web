@@ -13,6 +13,7 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
+#  name                   :string(255)
 #  role                   :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
@@ -26,4 +27,8 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   # attr_accessible :email, :password, :password_confirmation, :remember_me
+  
+  validates_presence_of :name
+  
+
 end

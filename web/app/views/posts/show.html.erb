@@ -1,0 +1,29 @@
+<div class="section_title">NEWS</div>
+
+<div class="post">
+  <h2><%= @post.title %></h2>
+  <div class="picture">
+    <div>Picture 1</div>
+  </div>
+  <div class="content">
+    <%= @post.body.gsub("\n","<br/>").html_safe %>
+  </div>
+  <div class="author">
+    posted by <%= link_to @post.user.name %>
+  </div>
+  <div class="source">
+    Source: <%= link_to @post.source_url, @post.source_url, :target => "_blank" %>
+  </div>
+  <div class="tags">
+    Tag: something, something, something, something, something
+  </div>
+  
+  <div class="vote">
+    <div>VOTE APP</div>
+  </div>
+</div>
+
+
+<div class="sidebar">
+  <div>AD/APP</div>
+</div>
