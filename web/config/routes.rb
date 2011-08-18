@@ -1,5 +1,9 @@
 Web::Application.routes.draw do
 
+  ActiveAdmin.routes(self)
+  devise_for :admin_users, ActiveAdmin::Devise.config
+
+
   devise_for :users, :controllers => { sessions:'users/sessions', registration:'users/registrations' }, :skip => [:sessions, :registrations] do
     get 'login' => 'users/sessions#new', :as => :new_user_session
     post 'login' => 'users/sessions#create', :as => :user_session
@@ -21,6 +25,10 @@ Web::Application.routes.draw do
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
+  resources :posts
+  
+  
+  match '/tide' => "main#index"
 
   # Sample resource route with options:
   #   resources :products do
@@ -57,7 +65,7 @@ Web::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'main#index'
 
   # See how all your routes lay out with "rake routes"
 

@@ -16,8 +16,7 @@ GIT
 
 GIT
   remote: git://github.com/gregbell/active_admin.git
-  revision: 4a6a8fe7f683db4c458ba0d0edc162aee5b46855
-  branch: rails-3-1
+  revision: 124f54c6756907fdd69c22d56fde5840f384befb
   specs:
     activeadmin (0.2.2)
       devise (>= 1.1.2)
@@ -185,6 +184,7 @@ DEPENDENCIES
   compass!
   decent_exposure
   devise
+  formtastic
   image_science!
   jquery-rails
   meta_search (>= 1.1.0.pre)

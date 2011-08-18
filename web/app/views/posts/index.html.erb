@@ -1,0 +1,27 @@
+<div class="featured_posts">
+  Main Features / Data Visualization
+</div>
+
+<ul class="posts">
+  <% @posts.each do |post| %>
+    <%= content_tag_for :li, post do %>
+      <div class="category">Category</div>
+      <div class="picture">
+        <div>Picture</div>
+      </div>
+      <div class="content">
+        <h3><%= link_to post.title, post %></h3>
+        <div class="abbr">post description... post description... post description... post description... post description... post description...</div>
+        <div class="timestamp">posted 2011/08/01</div>
+        <div class="stats">comments 23</div>
+      </div>
+    <% end %>
+  <% end %>
+</ul>
+
+<div class="sidebar">
+  
+  <div><%= link_to "+Post A News", new_post_path %></div>
+  <div>AD/APP</div>
+  
+</div>
