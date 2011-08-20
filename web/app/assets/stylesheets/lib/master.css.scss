@@ -107,9 +107,9 @@ $sidebar_width: 300px;
 }
 
 @mixin content-section {
-  h3 { color:#666;}
+  h3 { color:#666; padding-top:20px;}
   width: $content_width;
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 
@@ -263,6 +263,14 @@ div.post {
       a { font-size:11px; padding:0 5px;text-decoration:none;}
       a.remove { margin-left:2px;}
     }
+  }
+}
+
+.people_nav {
+  margin-top: 20px;
+  ul {
+    @include inline-list;
+    a { @include hover-link; padding:0 3px;}
   }
 }
 
