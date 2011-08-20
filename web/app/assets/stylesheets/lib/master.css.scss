@@ -259,7 +259,7 @@ ul.posts {
       width:350px;
       h3 { line-height:150%;}
       .abbr { color:#666; margin-bottom:10px; line-height:150%;}
-      .timestamp { @include float(left); line-height:150%;}
+      .timestamp { @include float(left); line-height:150%; font-style:italic; font-size:0.9em;}
       .stats { @include float(right); line-height:150%;}
     }
   }

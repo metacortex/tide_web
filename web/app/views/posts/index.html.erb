@@ -13,7 +13,7 @@
         <h3><%= link_to post.title, post %></h3>
         <div class="abbr"><%= truncate(post.body, :length => 150) %></div>
         <div class="timestamp">posted <%= post.created_at.to_date.to_s %></div>
-        <div class="stats">comments 23</div>
+        <div class="stats">comments <%= post.comments_count %></div>
       </div>
     <% end %>
   <% end %>
