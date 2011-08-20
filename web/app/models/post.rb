@@ -30,11 +30,15 @@ class Post < ActiveRecord::Base
   belongs_to :category, :counter_cache => true
   
   has_many :comments, :dependent => :destroy, :order => "id DESC"
+
+  has_many :taggings, :dependent => :destroy
+  has_many :tags, :through => :taggings, :uniq => true, :foreign_key => :tag_id
   
   validates_presence_of :title
   validates_length_of :body, :minimum => 4
 
 
+  accepts_nested_attributes_for :taggings, :allow_destroy => true, :reject_if => lambda {|a| a[:name].blank? }
 
 
 

@@ -26,6 +26,11 @@
 #
 
 class User < ActiveRecord::Base
+  
+  has_many :taggings, :dependent => :destroy
+  has_many :tags, :through => :taggings, :foreign_key => :tag_id
+
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -35,7 +40,7 @@ class User < ActiveRecord::Base
   # attr_accessible :email, :password, :password_confirmation, :remember_me
   
   validates_presence_of :name
-  
+
 
   def self.categories
     ["technology","design","entrepreneur"]

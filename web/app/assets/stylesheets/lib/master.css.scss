@@ -523,6 +523,18 @@ $label_width:100px;
       input {}
     }
   }
+  fieldset.right_buttons {
+    text-align:right;
+    margin-right:150px;
+    input { 
+      border: none;
+      padding:15px 20px;
+      background: #393;
+      color: #fff;
+      font-size: 1.2em;
+    }
+  }
+  .input_group { margin-left:$label_width + 10px;}
 }
 
 input.button {
@@ -537,6 +549,42 @@ input.button {
     display:inline;
   }
 }
+
+.edit_form {
+  margin: 10px 0;
+}
+
+
+
+
+/* TAGS */
+
+.tag_insert_form {
+  @include clearfix;
+  .formtastic fieldset.inputs ol li & label { margin:0 5px 0 10px; width:auto;}
+  .exist_tag {
+    @include float(left);
+  }
+  .new_tag {
+    @include float(left);
+  }
+}
+
+ul.tags_form {
+  @include clearfix;
+  margin-top: 10px;
+  li.tag {
+    @include float(left);
+    margin-right: 10px;
+    div { @include border-radius(4px); border:1px solid #999; padding:0 5px 0 10px; line-height:150%;}
+    a { text-decoration:none; margin-left: 15px;}
+  }
+}
+
+.tags {
+  a { margin-left:5px; @include hover-link;}
+}
+
 
 
 

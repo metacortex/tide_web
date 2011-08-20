@@ -14,11 +14,14 @@
     <span class="label">posted by</span>
     <%= link_to "<em>#{@post.user.name_e}</em><br/>#{@post.user.name}".html_safe %>
   </div>
-  <div class="source">
-    <em>Source:</em> <%= link_to @post.source_url, @post.source_url, :target => "_blank" %>
-  </div>
+  <% unless @post.source_url.blank? %>
+    <div class="source">
+      <em>Source:</em> <%= link_to @post.source_url, @post.source_url, :target => "_blank" %>
+    </div>
+  <% end %>
   <div class="tags">
-    <em>Tag:</em> something, something, something, something, something
+    <em>Tag:</em>
+    <%= @post.tags.map{|t| link_to_function(t.name, "alert('not yet')") }.join(", ").html_safe %>
   </div>
   
   <div class="like_this_post">
