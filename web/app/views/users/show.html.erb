@@ -23,7 +23,7 @@
       <dd><%= @user.email %></dd>
       <% unless @user.website.blank? %>
         <dt>WEBSITE</dt>
-        <dd><%= @user.website.split("\n").map{|t| link_to(t,t,target:"_blank")}.join("<br/>").html_safe %></dd>
+        <dd><%= @user.website.split("\n").select{|t| !t.blank? }.map{|t| link_to(t,t,target:"_blank")}.join("<br/>").html_safe %></dd>
       <% end %>
       <% unless @user.work.blank? %>
         <dt>WORK</dt>

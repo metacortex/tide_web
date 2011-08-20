@@ -340,6 +340,50 @@ div.post {
 
 
 
+/* FORM - SEMANTIC */
+
+$label_width:100px;
+
+.formtastic {
+  fieldset { padding:5px 15px 15px;}
+  fieldset.inputs {
+    ol li {
+      padding:7px 0;
+      label {
+        @include float(left);
+        width:$label_width;
+        margin-right:10px;
+        text-align:right;
+        padding:2px 0;
+      }
+    }
+    input, textarea { padding:2px; }
+    p.inline-hints { margin-left:$label_width + 10px; margin-top:3px; color:#666; font-size:0.9em; }
+    p.inline-errors { margin-left:$label_width + 10px; margin-top:3px; font-size:0.9em; }
+  }
+  fieldset.buttons {
+    padding-left:$label_width + 10px + 15px;
+    input {
+      padding:5px 10px;
+    }
+    li.commit {
+      input {}
+    }
+  }
+  
+}
+
+.notice {
+  margin-top: 10px;
+  div {
+    padding:8px 8px;
+    color:green;
+    display:inline;
+  }
+}
+
+
+
 
 
 

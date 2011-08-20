@@ -32,6 +32,8 @@ Web::Application.routes.draw do
   resources :users do
     collection do
       get 'search'
+      get 'edit_profile'
+      put 'update_profile'
     end
   end
   

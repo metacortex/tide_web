@@ -1,0 +1,27 @@
+<div class="content_title">
+  <div class="title">EDIT PROFILE</div>
+</div>
+
+
+<div class="edit_form">
+  <%= render_notice_message %>
+  
+  <%= semantic_form_for @user, :url => update_profile_users_path, :method => :put do |f| %>
+    
+    <%= f.inputs do %>
+      <%= f.input :email %>
+      <%= f.input :name %>
+      <%= f.input :name_e, :label => "Name(En)", :hint => "영문 닉네임을 입력해주세요." %>
+      <%= f.input :location, :hint => "ex) Seoul, Korea" %>
+      <%= f.input :category, :as => :select, :collection => User.categories.map(&:upcase), :include_blank => false %>
+      <%= f.input :website, :input_html => { :size => "70x5" }, :hint => "1줄에 1개의 주소를 입력해주세요." %>
+      <%= f.input :work %>
+      <%= f.input :interest %>
+    <% end %>
+
+    <%= f.buttons do %>
+      <%= f.commit_button "Update Profile" %>
+    <% end %>
+    
+  <% end %>
+</div>

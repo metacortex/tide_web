@@ -101,7 +101,7 @@ module ApplicationHelper
   
   def render_notice_message
     if flash[:notice]
-      "<div class='notice'>#{flash[:notice]}</div>".html_safe
+      "<div class='notice'><div class=''>#{flash[:notice]}</div></div>".html_safe
     end
   end
   

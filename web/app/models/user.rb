@@ -37,4 +37,10 @@ class User < ActiveRecord::Base
   validates_presence_of :name
   
 
+  def self.categories
+    ["technology","design","entrepreneur"]
+  end
+
+
+
 end
