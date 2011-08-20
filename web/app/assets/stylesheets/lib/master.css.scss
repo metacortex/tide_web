@@ -98,9 +98,12 @@ $sidebar_width: 300px;
 }
 
 .sidebar {
-  width:$sidebar_width; position:absolute; right:0; border:1px solid #ddd;
-  margin:1em 0;
-  div { margin: 30px; }
+  width:$sidebar_width; position:absolute; right:0;
+  .sb_element {
+    border:1px solid #ddd;
+    margin:1em 0;
+    div { margin: 30px;}
+  }
 }
 
 @mixin content-section {
@@ -285,37 +288,44 @@ div.post {
 
 .user {
   @include float(left);
-  padding-top: 10px;
+  padding-top: 20px;
   .portrait {
     @include float(left);
     width: 120px;
-    padding: 50px 0;
+    padding: 60px 0;
     text-align: center;
     border: 1px solid #ccc;
-    margin-right: 15px;
+    margin-right: 20px;
   }
   .profile {
     @include float(left);
-    .username { font-size:1.2em; font-weight:bold;}
-    .location { font-weight:bold;}
-    .job {}
+    .username { 
+      font-size:1.2em;
+      line-height:150%;
+      span { font-weight:bold; padding-right:6px;}
+    }
+    .location { font-weight:bold; line-height:150%;}
+    .category { font-size:0.9em; font-weight:bold; line-height:150%;}
     dl.information {
       @include clearfix;
-      padding: 10px 0;
+      padding: 15px 0;
       font-size: 0.8em;
-      dt { @include float(left); clear:left; color:#777; padding:5px 0; }
-      dd { @include float(left); padding:5px 0; margin-left:15px;}
+      line-height: 150%;
+      dt { @include float(left); clear:left; color:#777; padding:2px 0; }
+      dd { @include float(left); padding:2px 0; margin-left:15px;}
     }
     ul.stats {
       @include horizontal-list;
       li {
-        background-color: #999;
+        background-color: #aaa;
         @include border-radius(5px);
         margin-right: 10px;
         padding: 0;
-        .value { color:#fff; font-weight:bold; font-size:1.5em; text-align:center; padding-top:4px;}
-        .caption { font-size:0.75em; padding:0 3px; text-align:center; padding:0 8px 4px;}
+        div { cursor:pointer;}
+        .value { color:#fff; font-family:Arial; font-weight:bold; font-size:1.75em; text-align:center; padding-top:8px;}
+        .caption { font-size:0.75em; text-align:center; padding:5px 10px 8px;}
       }
+      li:hover { background-color:#888;}
     }
   }
 }
@@ -323,8 +333,8 @@ div.post {
 .connection {
   @include float(left);
   @include content-section;
-  padding-top: 15px;
   @include has_people_grid;
+  padding-top: 15px;
 }
 
 

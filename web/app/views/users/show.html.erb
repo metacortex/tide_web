@@ -7,21 +7,32 @@
     Profile
   </div>
   <div class="profile">
-    <div class="username"><%= @user.name %></div>
-    <div class="location">Seoul, Korea</div>
-    <div class="job">TECHNOLOGY</div>
+    <div class="username">
+      <% unless @user.name_e.blank? %>
+        <span class="name_e"><%= @user.name_e %></span>
+      <% end %>
+      <%= @user.name %>
+    </div>
+    <div class="location"><%= @user.location %></div>
+    <div class="category"><%= display_user_category(@user) %></div>
     
     <dl class="information">
       <dt>TAG</dt>
       <dd>BIO TECH, MANAGEMENT</dd>
       <dt>EMAIL</dt>
       <dd><%= @user.email %></dd>
-      <dt>WEBSITE</dt>
-      <dd>http://www.google.com<br/>http://www.apple.com</dd>
-      <dt>WORK</dt>
-      <dd>SOMEWHRE CORPORATION</dd>
-      <dt>INTEREST</dt>
-      <dd>GAMBLING</dd>
+      <% unless @user.website.blank? %>
+        <dt>WEBSITE</dt>
+        <dd><%= @user.website.split("\n").map{|t| link_to(t,t,target:"_blank")}.join("<br/>").html_safe %></dd>
+      <% end %>
+      <% unless @user.work.blank? %>
+        <dt>WORK</dt>
+        <dd><%= @user.work %></dd>
+      <% end %>
+      <% unless @user.interest.blank? %>
+        <dt>INTEREST</dt>
+        <dd><%= @user.interest %></dd>
+      <% end %>
     </dl>
     
     <ul class="stats">
@@ -48,6 +59,9 @@
       <% user = User.first %>
       <li>
         <div class="profile">Profile</div>
+        <% unless user.name_e.blank? %>
+          <div class="username_e"><%= link_to user.name_e, user %></div>
+        <% end %>
         <div class="username"><%= link_to user.name, user %></div>
       </li>
     <% end %>
@@ -58,7 +72,5 @@
 
 
 <div class="sidebar">
-  
-  <div>AD/APP</div>
-  
+  <%= render "shared/side_app" %>
 </div>

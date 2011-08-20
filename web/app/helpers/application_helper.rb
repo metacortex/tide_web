@@ -112,5 +112,10 @@ module ApplicationHelper
       nil
     end
   end
+  
+  def text_with_linebreak(txt)
+    txt.to_s.gsub("\n","<br/>").html_safe
+  end
+  
 
 end

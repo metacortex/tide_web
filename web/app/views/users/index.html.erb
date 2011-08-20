@@ -29,6 +29,9 @@
       <% user = User.first %>
       <li>
         <div class="profile">Profile</div>
+        <% unless user.name_e.blank? %>
+          <div class="username_e"><%= link_to user.name_e, user %></div>
+        <% end %>
         <div class="username"><%= link_to user.name, user %></div>
       </li>
     <% end %>
@@ -37,7 +40,5 @@
 
 
 <div class="sidebar">
-  
-  <div>AD/APP</div>
-  
+  <%= render "shared/side_app" %>
 </div>
