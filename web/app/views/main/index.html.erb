@@ -1,2 +1,73 @@
-<p>Find me in app/views/main/index.html.erb</p>
-<p>About</p>
+<div class="content_title">
+  <div class="title">TIDE</div>
+</div>
+
+<div class="about_us">
+  <div class="splash">
+    <div>Main Picture</div>
+  </div>
+  
+  <ul class="nav">
+    <li id="nav_1" class="current"><%= link_to_function "What is TIDE", "setTabNav(1)" %></li>
+    <li id="nav_2"><%= link_to_function "TIDE Staff", "setTabNav(2)" %></li>
+    <li id="nav_3"><%= link_to_function "Contact TIDE", "setTabNav(3)" %></li>
+  </ul>
+  
+  <div class="nav_content_container">
+    <div id="about_1" class="nav_content">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+  
+    <div id="about_2" class="nav_content" style="display:none">
+      <ul class="staffs">
+        <% 4.times do %>
+          <li>
+            <div class="profile">
+              <div class="portrait">Profile</div>
+              <div class="name_en">An Soo Kim</div>
+              <div class="name">김안수</div>
+            </div>
+            <div class="desc">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div id="about_3" class="nav_content" style="display:none">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <div class="map">
+        MAP
+      </div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+  </div>
+</div>
+
+
+<div class="events">
+  <h3>TIDE Events & Activities</h3>
+  <ul>
+    
+  </ul>
+</div>
+
+
+
+
+
+<script>
+
+function setTabNav(num) {
+  $("#nav_" + num).siblings().removeClass("current");
+  $("#nav_" + num).addClass("current");
+  $("#about_" + num).show();
+  $("#about_" + num).siblings().hide();
+}
+
+</script>

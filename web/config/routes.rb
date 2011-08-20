@@ -40,6 +40,8 @@ Web::Application.routes.draw do
   
   
   match '/tide' => "main#index"
+  resources :events
+  
 
   # Sample resource route with options:
   #   resources :products do

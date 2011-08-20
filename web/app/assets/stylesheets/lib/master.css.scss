@@ -114,6 +114,84 @@ $sidebar_width: 300px;
 
 
 
+
+/* ABOUT */
+
+.about_us {
+  margin-top: 10px;
+  .splash {
+    div { text-align:center; padding:100px 0; border:1px solid #999; @include border-radius(10px);}
+  }
+  ul.nav {
+    margin-top: 10px;
+    height: 27px;
+    border-bottom: 1px solid #999;
+    li {
+      @include float(left);
+      margin-right: 5px;
+      a {
+        display: block;
+        border: 1px solid #999;
+        border-bottom:none;
+        padding: 8px 15px 5px;
+        text-decoration:none;
+        background: #fff;
+      }
+    }
+    li.current {
+      a { padding-bottom: 6px;}
+    }
+  }
+  ul.staffs {
+    padding: 10px 0;
+    li {
+      @include clearfix;
+      padding: 10px 0;
+      .profile { @include float(left); margin-right:10px;}
+      .desc { @include float(left); width:750px; line-height:150%;}
+      .portrait { width:100px; padding:50px 0; border:1px solid #ccc; text-align:center; margin-bottom:3px;}
+      .name_en { font-size:0.9em; font-weight:bold; padding:3px;}
+      .name { font-size:0.9em; padding:3px;}
+    }
+  }
+  div.map {
+    border: 1px solid #999;
+    text-align: center;
+    padding: 150px 0;
+    width: 700px;
+  }
+  .nav_content_container {
+    clear:both;
+    border: 1px solid #999;
+    border-top:none;
+    @include transition-property(height);
+    @include transition-duration(2s);
+
+    .nav_content {
+      padding: 5px 15px;
+      p { padding:10px 0;}
+    }
+  }
+}
+
+
+
+
+/* EVENTS */
+
+.events {
+  @include content-section;
+  ul {
+    li {
+      @include clearfix;
+    }
+  }
+}
+
+
+
+
+
 /* POSTS */
 
 .featured_posts {
