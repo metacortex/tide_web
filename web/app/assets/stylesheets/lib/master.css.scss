@@ -1,22 +1,35 @@
 @import "compass";
+@import "compass/reset";
+
+
+/* TYPOGRAPHY */
+
+body { font-family:"Lucida Grande", Arial, sans-serif; font-size:13px;}
+
+@mixin heading { font-family:NanumGothic,Verdana;}
+
+h2 { @include heading; font-size:26px; }
+h3 { @include heading; font-size:20px; }
+h4 { @include heading; font-size:16px; }
+
+
 
 
 /* GLOBAL LAYOUT */
 
-body {}
-
-.wrapper { width:1080px; position:relative; margin:0 auto;}
+.wrapper { width:960px; position:relative; margin:5px auto 25px;}
 
 #h {
   @include clearfix;
   h1 {
     @include float(left);
+    @include replace-text-with-dimensions("logo.png", 115, 130);
   }
   ul.account_nav {
     position:absolute; top:10px; right:0;
-    @include inline-block-list;
+    @include inline-list;
     font-size: 0.9em;
-    li { margin-left:10px;}
+    li { margin-left:15px;}
   }
   #globalsearch { 
     position:absolute; top:35px; right:0; width:120px;
@@ -35,13 +48,18 @@ body {}
   }
   #gnb {
     @include float(left);
-    margin-top: 30px;
-    margin-left: 50px;
+    margin-top: 85px;
+    margin-left: 30px;
     ul {
       @include horizontal-list;
       li {
-        a { display:block; padding:5px; }
-        &.current { background:#ccc; }
+        padding: 0 15px;
+        font-size: 1.2em;
+        a { display:block; text-decoration:none; padding:2px;}
+        a:hover { border-bottom:5px solid #ddd;}
+        &.current { 
+          a { border-bottom:5px solid #999;}
+        }
       }
     }
   }
