@@ -6,12 +6,14 @@
 
 body { font-family:"Lucida Grande", Arial, sans-serif; font-size:13px;}
 
-@mixin heading { font-family:NanumGothic,Verdana;}
+@mixin heading { font-family:Arial; font-weight:bold;}
 
-h2 { @include heading; font-size:26px; }
-h3 { @include heading; font-size:20px; }
-h4 { @include heading; font-size:16px; }
+h2 { @include heading; font-size:2em; }
+h3 { @include heading; font-size:1.4em; }
+h4 { @include heading; font-size:1.2em; }
 
+a { color:#359;}
+a:hover, a:visited, a:active { color:#359;}
 
 
 
@@ -30,6 +32,7 @@ h4 { @include heading; font-size:16px; }
     @include inline-list;
     font-size: 0.9em;
     li { margin-left:15px;}
+    a { @include hover-link;}
   }
   #globalsearch { 
     position:absolute; top:35px; right:0; width:120px;
@@ -68,7 +71,9 @@ h4 { @include heading; font-size:16px; }
 
 
 #c {
-  
+  @include clearfix;
+  margin-top: 30px;
+  padding-bottom: 30px;
 }
 
 #f {
@@ -78,15 +83,18 @@ h4 { @include heading; font-size:16px; }
 
 /* COMMON */
 
-$content_width: 750px;
+$content_width: 640px;
 $sidebar_width: 300px;
 
 
 .content_title {
-  position:relative;
-  width:$content_width;
-  .title { font-weight:bold; font-size:1.5em;}
-  .more { position:absolute; right:0; top:6px; font-size:0.75em;}
+  position: relative;
+  width: $content_width;
+  .title { font-weight:bold; font-size:1.75em; color:#555;}
+  .more { 
+    position:absolute; right:0; top:6px; font-size:0.75em;
+    a { @include hover-link;}
+  }
 }
 
 .sidebar {
@@ -96,8 +104,9 @@ $sidebar_width: 300px;
 }
 
 @mixin content-section {
-  h3 { color:#444;}
-  width:$content_width;
+  h3 { color:#666;}
+  width: $content_width;
+  margin-top: 30px;
 }
 
 
@@ -230,7 +239,7 @@ div.post {
       @include box-shadow(rgba(255, 255, 255, 0.2) 0 1px 0, rgba(0,0,0,0.6) 0 2px 1px inset);
     }
     #sp-peoplesearch { 
-      width:100%; height:19px; padding:2px 18px 1px 3px; background-image:none;
+      width:100%; height:19px; padding:2px 18px 1px 2px; background-image:none;
       @include box-sizing(border-box);
       -webkit-tap-highlight-color:rgba(0,0,0,0);
     }
@@ -248,11 +257,22 @@ div.post {
         line-height: 80%;
         padding: 2px 2px 3px;
       }
-      a {
-        font-size: 11px;
-        padding: 0 5px;
-      }
+      a { font-size:11px; padding:0 5px;text-decoration:none;}
       a.remove { margin-left:2px;}
+    }
+  }
+}
+
+@mixin has_people_grid {
+  ul {
+    @include horizontal-list;
+    li {
+      margin: 15px 15px 15px 0;
+      .profile { width:100px; padding:50px 0; border:1px solid #ccc; text-align:center; margin-bottom:3px;}
+      div { padding: 3px; font-size: 0.9em;}
+      a { @include hover-link;}
+      .username { }
+      .username_e { font-weight:bold;}
     }
   }
 }
@@ -260,14 +280,7 @@ div.post {
 .people {
   @include float(left);
   @include content-section;
-  ul {
-    @include horizontal-list;
-    li {
-      margin: 15px 30px 15px 0;
-      .profile { width:100px; padding:40px 0; border:1px solid #ccc; text-align:center; margin-bottom:5px;}
-      .username {}
-    }
-  }
+  @include has_people_grid;
 }
 
 .user {
@@ -311,14 +324,7 @@ div.post {
   @include float(left);
   @include content-section;
   padding-top: 15px;
-  ul {
-    @include horizontal-list;
-    li {
-      margin: 15px 30px 15px 0;
-      .profile { width:100px; padding:40px 0; border:1px solid #ccc; text-align:center; margin-bottom:5px;}
-      .username {}
-    }
-  }
+  @include has_people_grid;
 }
 
 

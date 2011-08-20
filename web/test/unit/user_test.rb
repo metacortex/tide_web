@@ -17,6 +17,12 @@
 #  role                   :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
+#  name_e                 :string(255)
+#  location               :string(255)
+#  category               :string(255)
+#  website                :text
+#  work                   :string(255)
+#  interest               :string(255)
 #
 
 require 'test_helper'
