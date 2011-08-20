@@ -270,7 +270,8 @@ div.post {
   margin-top: 20px;
   ul {
     @include inline-list;
-    a { @include hover-link; padding:0 3px;}
+    a { text-decoration:none; padding:0 3px;}
+    a:hover { background:#359; color:#fff;}
   }
 }
 

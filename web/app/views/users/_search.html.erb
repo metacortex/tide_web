@@ -2,7 +2,7 @@
   <div class="search_form">
     <%= form_tag search_users_path, :method => :get, :id => "people-search" do %>
       <div class="sp-label">
-        <input type="text" name="q" id="sp-peoplesearch" accesskey="s" autocomplete="off">
+        <%= text_field_tag :q, params[:q], :id => "sp-peoplesearch", :autocomplete => "off" %>
     	</div>
     <% end %>
     <div class="sp-magnify">

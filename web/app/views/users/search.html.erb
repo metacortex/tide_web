@@ -1,0 +1,26 @@
+<div class="content_title">
+  <div class="title">PEOPLE</div>
+</div>
+
+<%= render "users/search" %>
+
+<div class="people">
+  <h3>Search Results</h3>
+  <ul>
+    <% 25.times do %>
+      <% user = User.first %>
+      <li>
+        <div class="profile">Profile</div>
+        <% unless user.name_e.blank? %>
+          <div class="username_e"><%= link_to user.name_e, user %></div>
+        <% end %>
+        <div class="username"><%= link_to user.name, user %></div>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+
+<div class="sidebar">
+  <%= render "shared/side_app" %>
+</div>
