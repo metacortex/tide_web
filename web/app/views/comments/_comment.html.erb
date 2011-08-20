@@ -3,14 +3,14 @@
     <div class="profile">
       Profile
     </div>
-    <div class="username"><%= comment.user.name %></div>
+    <div class="username"><%= link_to comment.user.name, comment.user %></div>
   </div>
   <div class="body"><%= comment.body.gsub("\n", "<br/>").html_safe %></div>
   <div class="status">
-    <div class="timestamp"><%= l(comment.created_at) %></div>
+    <div class="timestamp"><%= l(comment.created_at, :format => :long) %></div>
     <div class="agreement">
-      <div class="positive">+<%= comment.positive_agreements_count %></div>
-      <div class="negative">-<%= comment.negative_agreements_count %></div>
+      <div class="positive"><%= link_to_function "+ #{comment.positive_agreements_count}", "" %></div>
+      <div class="negative"><%= link_to_function "- #{comment.negative_agreements_count}", "" %></div>
     </div>
   </div>
 <% end %>

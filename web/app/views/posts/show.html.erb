@@ -11,17 +11,23 @@
     <%= @post.body.gsub("\n","<br/>").html_safe %>
   </div>
   <div class="author">
-    posted by <%= link_to @post.user.name %>
+    <span class="label">posted by</span>
+    <%= link_to "<em>#{@post.user.name_e}</em><br/>#{@post.user.name}".html_safe %>
   </div>
   <div class="source">
-    Source: <%= link_to @post.source_url, @post.source_url, :target => "_blank" %>
+    <em>Source:</em> <%= link_to @post.source_url, @post.source_url, :target => "_blank" %>
   </div>
   <div class="tags">
-    Tag: something, something, something, something, something
+    <em>Tag:</em> something, something, something, something, something
   </div>
   
-  <div class="vote">
-    <div>VOTE APP</div>
+  <div class="like_this_post">
+    <div class="vote">
+      <div>VOTE APP</div>
+    </div>
+    <div class="share">
+      <div>FB LIKE</div>
+    </div>
   </div>
 
   <div class="related_posts">
@@ -30,7 +36,7 @@
       <% 4.times do %>
       <li>
         <div class="thumb">Picture</div>
-        <div class="abbr">Relative News Here! News text abbr here.</div>
+        <div class="abbr"><%= link_to "Relative News Here! News text abbr here." %></div>
       </li>
       <% end %>
     </ul>
@@ -42,7 +48,7 @@
       <%= f.hidden_field :post_id, :value => @post.id %>
       <%= f.hidden_field :user_id, :value => current_user.try(:id) %>
       <%= f.text_area :body %>
-      <div class="buttons"><%= f.submit "POST" %></div>
+      <div class="buttons"><%= f.submit "POST", :class => "button" %></div>
     <% end %>
   </div>
   <div class="comments">
@@ -56,5 +62,11 @@
 </div>
 
 <div class="sidebar">
-  <div>AD/APP</div>
+
+  <%= render "shared/side_app" %>
+
+  <div class="sb_action">
+    <div><%= link_to "POST NEW ARTICLE", new_post_path %></div>
+  </div>
+
 </div>

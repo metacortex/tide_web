@@ -11,8 +11,8 @@
       </div>
       <div class="content">
         <h3><%= link_to post.title, post %></h3>
-        <div class="abbr"><%= post.body %></div>
-        <div class="timestamp">posted 2011/08/01</div>
+        <div class="abbr"><%= truncate(post.body, :length => 150) %></div>
+        <div class="timestamp">posted <%= post.created_at.to_date.to_s %></div>
         <div class="stats">comments 23</div>
       </div>
     <% end %>
@@ -21,7 +21,10 @@
 
 <div class="sidebar">
   
-  <div><%= link_to "+Post A News", new_post_path %></div>
-  <div>AD/APP</div>
+  <%= render "shared/side_app" %>
+
+  <div class="sb_action">
+    <div><%= link_to "POST NEW ARTICLE", new_post_path %></div>
+  </div>
   
 </div>

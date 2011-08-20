@@ -11,6 +11,7 @@
 #  negative_agreements_count :integer(4)      default(0)
 #  created_at                :datetime
 #  updated_at                :datetime
+#  event_id                  :integer(4)
 #
 
 require 'test_helper'

@@ -52,11 +52,13 @@
 
 <div class="events">
   <h3>TIDE Events & Activities</h3>
-  <ul>
-    
-  </ul>
+  <%= render "events/events" %>
 </div>
 
+
+<div class="pagenav">
+  <div class="next"><%= link_to "SHOW MORE", events_path %></div>
+</div>
 
 
 
