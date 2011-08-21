@@ -20,6 +20,9 @@ class Comment < ActiveRecord::Base
   belongs_to :post, :counter_cache => true
   belongs_to :event, :counter_cache => true
   
+  has_many :agreements, :dependent => :destroy
+  
+  
   validates_presence_of :body
   
   

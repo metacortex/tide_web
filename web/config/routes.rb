@@ -28,6 +28,8 @@ Web::Application.routes.draw do
   resources :posts do
     resources :comments
   end
+
+  resources :agreements
   
   resources :users do
     collection do
