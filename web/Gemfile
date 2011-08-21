@@ -63,8 +63,8 @@ gem 'activeadmin', git: "git://github.com/gregbell/active_admin.git"
 
 
 # data processing
-gem 'image_science', git: "git://github.com/asynchrony/image_science.git"
-# gem 'mini_magick'
+# gem 'image_science', git: "git://github.com/asynchrony/image_science.git"
+gem 'mini_magick'
 # gem 'nokogiri'
 
 

@@ -23,6 +23,7 @@
 #  website                :text
 #  work                   :string(255)
 #  interest               :string(255)
+#  profile_image          :string(255)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html

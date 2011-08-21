@@ -23,6 +23,7 @@
 #  website                :text
 #  work                   :string(255)
 #  interest               :string(255)
+#  profile_image          :string(255)
 #
 
 require 'test_helper'

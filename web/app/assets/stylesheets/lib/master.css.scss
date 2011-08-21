@@ -444,11 +444,9 @@ div.post {
   padding-top: 20px;
   .portrait {
     @include float(left);
-    width: 120px;
-    padding: 60px 0;
+    img { width:120px;}
     text-align: center;
-    border: 1px solid #ccc;
-    margin-right: 20px;
+    margin-right: 25px;
   }
   .profile {
     @include float(left);
@@ -462,7 +460,7 @@ div.post {
     dl.information {
       @include clearfix;
       padding: 15px 0;
-      font-size: 0.8em;
+      font-size: 0.9em;
       line-height: 150%;
       dt { @include float(left); clear:left; color:#777; padding:2px 0; }
       dd { @include float(left); padding:2px 0; margin-left:15px;}
@@ -535,6 +533,17 @@ $label_width:100px;
     }
   }
   .input_group { margin-left:$label_width + 10px;}
+  .image_uploader {
+    padding-bottom:5px;
+    .preview_image {
+      margin-bottom:5px;
+      img { width:100px; height:100px;}
+    }
+    label.remove { 
+      float:none; display:block; width:300px; font-size:0.9em; text-align:left;
+      input { margin-right:5px;}
+    }
+  }
 }
 
 input.button {

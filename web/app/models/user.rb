@@ -23,12 +23,16 @@
 #  website                :text
 #  work                   :string(255)
 #  interest               :string(255)
+#  profile_image          :string(255)
 #
 
 class User < ActiveRecord::Base
   
   has_many :taggings, :dependent => :destroy
   has_many :tags, :through => :taggings, :foreign_key => :tag_id
+
+
+  mount_uploader :profile_image, ProfileUploader
 
 
   # Include default devise modules. Others available are:
@@ -45,7 +49,6 @@ class User < ActiveRecord::Base
   def self.categories
     ["technology","design","entrepreneur"]
   end
-
 
 
 end

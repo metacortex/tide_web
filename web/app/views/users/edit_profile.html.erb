@@ -9,6 +9,19 @@
   <%= semantic_form_for @user, :url => update_profile_users_path, :method => :put do |f| %>
     
     <%= f.inputs do %>
+      <li>
+        <label for="">Profile</label>
+        <div class="input_group">
+          <div class="image_uploader">
+            <div class="preview_image"><%= image_tag @user.profile_image.url %></div>
+            <%= f.file_field :profile_image %>
+            <%= f.hidden_field :profile_image_cache %>
+            <% if @user.profile_image? %>
+              <label class="remove" for="user_remove_profile_image"><%= f.check_box :remove_profile_image %>Remove current profile image</label>
+            <% end %>
+          </div>
+        </div>
+      </li>
       <%= f.input :email %>
       <%= f.input :name %>
       <%= f.input :name_e, :label => "Name(En)", :hint => "영문 닉네임을 입력해주세요." %>
