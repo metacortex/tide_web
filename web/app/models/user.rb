@@ -29,7 +29,9 @@
 class User < ActiveRecord::Base
   
   has_many :taggings, :dependent => :destroy
-  has_many :tags, :through => :taggings, :foreign_key => :tag_id
+  has_many :tags, :through => :taggings, :uniq => true, :foreign_key => :tag_id
+
+  accepts_nested_attributes_for :taggings, :allow_destroy => true, :reject_if => lambda {|a| a[:name].blank? }
 
 
   mount_uploader :profile_image, ProfileUploader
@@ -43,6 +45,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   # attr_accessible :email, :password, :password_confirmation, :remember_me
   
+
   validates_presence_of :name
 
 

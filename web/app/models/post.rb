@@ -33,12 +33,14 @@ class Post < ActiveRecord::Base
 
   has_many :taggings, :dependent => :destroy
   has_many :tags, :through => :taggings, :uniq => true, :foreign_key => :tag_id
+
+  accepts_nested_attributes_for :taggings, :allow_destroy => true, :reject_if => lambda {|a| a[:name].blank? }
+
   
   validates_presence_of :title
   validates_length_of :body, :minimum => 4
 
 
-  accepts_nested_attributes_for :taggings, :allow_destroy => true, :reject_if => lambda {|a| a[:name].blank? }
 
 
 

@@ -18,7 +18,7 @@
     
     <dl class="information">
       <dt>TAG</dt>
-      <dd>BIO TECH, MANAGEMENT</dd>
+      <dd class="tags"><%= @user.tags.map{|t| link_to_function(t.name, "alert('not yet')") }.join(", ").html_safe %></dd>
       <dt>EMAIL</dt>
       <dd><%= @user.email %></dd>
       <% unless @user.website.blank? %>

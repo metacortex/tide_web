@@ -26,10 +26,17 @@
       <%= f.input :name %>
       <%= f.input :name_e, :label => "Name(En)", :hint => "영문 닉네임을 입력해주세요." %>
       <%= f.input :location, :hint => "ex) Seoul, Korea" %>
-      <%= f.input :category, :as => :select, :collection => User.categories.map(&:upcase), :include_blank => false %>
       <%= f.input :website, :input_html => { :size => "70x5" }, :hint => "1줄에 1개의 주소를 입력해주세요." %>
       <%= f.input :work %>
       <%= f.input :interest %>
+
+      <%= f.input :category, :as => :select, :collection => User.categories.map(&:upcase), :include_blank => false %>
+      <li>
+        <label>TAG</label>
+        <div class="input_group">
+          <%= render "shared/tags_form", :form => f %>
+        </div>
+      </li>
     <% end %>
 
     <%= f.buttons do %>

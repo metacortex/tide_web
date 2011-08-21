@@ -1,0 +1,51 @@
+<% scope_name = form.object.class.to_s.downcase %>
+
+<div class="tag_insert_form">
+  <div class="exist_tag">
+    <%= select_tag :exist_tag, options_from_collection_for_select(Tag.order("name"), :name, :name) %>
+    <%= link_to_function "+add", "addNewTag($('#exist_tag').val())" %>
+  </div>
+  <div class="new_tag">
+    <label for="new_tag">or Type:</label>
+    <%= text_field_tag :new_tag, nil, :autocomplete => "off" %>
+    <%= link_to_function "+add", "addNewTag()" %>
+  </div>
+</div>
+<ul id="tags" class="tags_form">
+  <%= form.fields_for :taggings, :id => false do |tag_form| %>
+    <li class="tag">
+      <div><%= tag_form.object.name %><%= link_to_function "x", "removeTag(this)" %></div>
+      <%= tag_form.hidden_field :_destroy, :class => "remove" %>
+      <%= tag_form.hidden_field :name %>
+    </li>
+  <% end %>
+</ul>
+
+
+<script>
+
+function removeTag(e) {
+  var c = $(e).parent();
+  c.next().val("1");
+  c.parent().hide();
+}
+
+function addNewTag(val) {
+  var tag = val;
+  if (!tag) tag = $("#new_tag").val();
+  if (tag.length <= 1) {
+    alert("내용이 없습니다.");
+    return;
+  }
+  var random_id = new Date().getTime();
+  var html = "\
+  <li class='tag'> \
+  <div>" + tag + "<a href='#' onclick='removeTag(this);return false;'>x</a></div> \
+  <input class='remove' name='<%= scope_name %>[taggings_attributes][new" + random_id + "][_destroy]' type='hidden' value='' /> \
+  <input name='<%= scope_name %>[taggings_attributes][new" + random_id + "][name]' type='hidden' value='" + tag + "' /> \
+  </li>";
+  $("#tags").append(html);
+  $("#new_tag").val("");
+}
+
+</script>
