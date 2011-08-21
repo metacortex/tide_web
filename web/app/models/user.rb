@@ -33,6 +33,8 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :taggings, :allow_destroy => true, :reject_if => lambda {|a| a[:name].blank? }
 
+  has_many :agreements, :dependent => :destroy
+
 
   mount_uploader :profile_image, ProfileUploader
 

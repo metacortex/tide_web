@@ -9,6 +9,7 @@
   <div class="status">
     <div class="timestamp"><%= l(comment.created_at, :format => :long) %></div>
     <div class="agreement">
+      <% agreement = @agreements.detect {|t| t.comment_id == comment.id } %>
       <div class="positive">
         <%= link_to "+ #{comment.positive_agreements_count}", 
           agreements_path(:post_id => @post.try(:id), :event_id => @event.try(:id), :comment_id => comment.id, :direction => 1), 
