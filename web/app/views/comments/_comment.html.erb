@@ -3,7 +3,9 @@
     <div class="profile">
       Profile
     </div>
-    <div class="username"><%= link_to comment.user.name, comment.user %></div>
+    <% if comment.user %>
+      <div class="username"><%= link_to comment.user.name, comment.user %></div>
+    <% end %>
   </div>
   <div class="body"><%= comment.body.gsub("\n", "<br/>").html_safe %></div>
   <div class="status">
