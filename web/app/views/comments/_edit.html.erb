@@ -1,0 +1,9 @@
+<div class="edit_comment">
+  <%= form_for [@post, @comment], :remote => true do |f| %>
+    <%= f.text_area :body %>
+    <div class="buttons">
+      <%= f.submit "SAVE", :class => "button" %>
+      <%= link_to "Cancel", post_comment_path(@post,@comment), :remote => true %>
+    </div>
+  <% end %>
+</div>

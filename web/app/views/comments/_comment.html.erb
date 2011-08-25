@@ -8,6 +8,16 @@
     <% end %>
   </div>
   <div class="body"><%= comment.body.gsub("\n", "<br/>").html_safe %></div>
+
+  <% if comment.editable_to_user?(current_user) %>
+    <div class="comment_action">
+      <ul class="actions">
+        <li><%= link_to "MODIFY", edit_post_comment_path(@post,comment), :remote => true %></li>
+        <li><%= link_to "DELETE", post_comment_path(@post,comment), :method => :delete, :confirm => "Are you sure?", :remote => true %></li>
+      </ul>
+    </div>
+  <% end %>
+
   <div class="status">
     <div class="timestamp"><%= l(comment.created_at, :format => :long) %></div>
     <div class="agreement">

@@ -24,6 +24,15 @@
     <%= @post.tags.map{|t| link_to_function(t.name, "alert('not yet')") }.join(", ").html_safe %>
   </div>
   
+  <% if @post.editable_to_user?(current_user) %>
+    <div class="edit_post">
+      <ul class="actions">
+        <li><%= link_to "MODIFY", edit_post_path(@post) %></li>
+        <li><%= link_to "DELETE", post_path(@post), :method => :delete, :confirm => "Are you sure?" %></li>
+      </ul>
+    </div>
+  <% end %>
+  
   <div class="like_this_post">
     <div class="vote">
       <div>VOTE APP</div>
@@ -44,16 +53,8 @@
       <% end %>
     </ul>
   </div>
-  
-  <div class="new_comment">
-    <h3>New Comment</h3>
-    <%= form_for [@post, Comment.new], :remote => true do |f| %>
-      <%= f.hidden_field :post_id, :value => @post.id %>
-      <%= f.hidden_field :user_id, :value => current_user.try(:id) %>
-      <%= f.text_area :body %>
-      <div class="buttons"><%= f.submit "POST", :class => "button" %></div>
-    <% end %>
-  </div>
+
+  <%= render "comments/new" %>
   <div class="comments">
     <h3>Comments</h3>
     <ul id="comments">

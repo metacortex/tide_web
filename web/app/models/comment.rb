@@ -14,6 +14,7 @@
 #  event_id                  :integer(4)
 #
 
+require 'author_editable'
 class Comment < ActiveRecord::Base
   
   belongs_to :user
@@ -22,6 +23,8 @@ class Comment < ActiveRecord::Base
   
   has_many :agreements, :dependent => :destroy
   
+  include AuthorEditable
+
   
   validates_presence_of :body
   

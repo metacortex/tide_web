@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
   
-  before_filter :authenticate_user!, :only => [:new, :create]
+  before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
   
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page])
   end
   
   def show
@@ -27,6 +27,19 @@ class PostsController < ApplicationController
     else
       render :action => "new"
     end
+  end
+  
+  def edit
+    @post = Post.find(params[:id])
+    has_permission?(@post, current_user)
+  end
+  
+  def update
+    
+  end
+  
+  def destroy
+    
   end
 
 end

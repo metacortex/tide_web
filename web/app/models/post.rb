@@ -24,6 +24,7 @@
 #  updated_at     :datetime
 #
 
+require 'author_editable'
 class Post < ActiveRecord::Base
   
   belongs_to :user
@@ -36,6 +37,7 @@ class Post < ActiveRecord::Base
 
   accepts_nested_attributes_for :taggings, :allow_destroy => true, :reject_if => lambda {|a| a[:name].blank? }
 
+  include AuthorEditable
   
   validates_presence_of :title
   validates_length_of :body, :minimum => 4
