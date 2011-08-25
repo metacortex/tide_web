@@ -12,11 +12,15 @@
     <% 10.times do %>
       <% user = User.first %>
       <li>
+        <%= display_user_category_icon(user) %>
         <div class="profile">Profile</div>
         <% unless user.name_e.blank? %>
           <div class="username_e"><%= link_to user.name_e, user %></div>
         <% end %>
         <div class="username"><%= link_to user.name, user %></div>
+        <div class="connect">
+          
+        </div>
       </li>
     <% end %>
   </ul>
@@ -28,6 +32,7 @@
     <% 10.times do %>
       <% user = User.first %>
       <li>
+        <%= display_user_category_icon(user) %>
         <div class="profile">Profile</div>
         <% unless user.name_e.blank? %>
           <div class="username_e"><%= link_to user.name_e, user %></div>
@@ -41,4 +46,8 @@
 
 <div class="sidebar">
   <%= render "shared/side_app" %>
+
+  <div class="sb_action">
+    <div><%= link_to "INVITE FRIENDS TO TIDE", invite_users_path %></div>
+  </div>
 </div>

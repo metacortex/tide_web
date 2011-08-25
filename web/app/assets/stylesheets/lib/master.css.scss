@@ -456,6 +456,11 @@ div.post {
     @include horizontal-list;
     li {
       margin: 15px 15px 15px 0;
+      position: relative;
+      .category { 
+        position:absolute; top:90px;
+        img { width:18px;}
+      }
       .profile { width:100px; padding:50px 0; border:1px solid #ccc; text-align:center; margin-bottom:3px;}
       div { padding: 3px; font-size: 0.9em;}
       a { @include hover-link;}

@@ -37,6 +37,7 @@ Web::Application.routes.draw do
       get 'all'
       get 'edit_profile'
       put 'update_profile'
+      get 'invite'
     end
   end
   
