@@ -4,6 +4,7 @@
 
 <div class="people_profile">
   <div class="portrait">
+    <%= display_user_category_icon(@user) %>
     <%= image_tag @user.profile_image.url %>
   </div>
   <div class="profile">
@@ -20,7 +21,19 @@
       <dt>TAG</dt>
       <dd class="tags"><%= @user.tags.map{|t| link_to_function(t.name, "alert('not yet')") }.join(", ").html_safe %></dd>
       <dt>EMAIL</dt>
-      <dd><%= @user.email %></dd>
+      <dd>
+        <div class="connect_wrapper">
+          <% if user_signed_in? %>
+            <% if current_user == @user || current_user.connected_to?(@user) %>
+              <%= @user.email %>
+            <% else %>
+              <%= render "connections/button", :user => @user %> <span class="caption">TO SEE EMAIL INFO</span>
+            <% end %>
+          <% else %>
+            <%= render "connections/button", :user => @user %> <span class="caption">TO SEE EMAIL INFO</span>
+          <% end %>
+        </div>
+      </dd>
       <% unless @user.website.blank? %>
         <dt>WEBSITE</dt>
         <dd><%= @user.website.split("\n").select{|t| !t.blank? }.map{|t| link_to(t,t,target:"_blank")}.join("<br/>").html_safe %></dd>
@@ -52,10 +65,57 @@
   </div>
 </div>
 
-<div class="connection">
-  <h3><%= @user.name %>'s Connection</h3>
+
+<div class="user_recommendations">
+  <h3>
+    <div class="title">Recommendation on <%= @user.name_e %></div>
+    <div class="more"><%= link_to "More >>" %></div>
+  </h3>
   <ul>
-    <% 17.times do %>
+    <% 3.times do %>
+      <li>
+        <div class="saying">술고래</div>
+        <div class="recommender">from <%= link_to "<em>Young Cho</em> 조영상".html_safe %></div>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+
+<div class="user_recommended">
+  <h3>
+    <div class="title"><%= @user.name_e %> recommended</div>
+    <div class="more"><%= link_to "More >>" %></div>
+  </h3>
+  <ul>
+    <% 3.times do %>
+      <li>
+        <div class="recommended"><%= link_to "<em>Young Cho</em> 조영상".html_safe %></div>
+        <div class="saying">술 마시는데는 국가대표!</div>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+
+<div class="user_connections">
+  <h3>
+    <div class="title"><%= @user.name_e %>'s Connection</div>
+    <div class="more"><%= link_to "More >>" %></div>
+  </h3>
+  <ul class="connection_type">
+    <li class="current"><%= link_to "ALL" %></li>
+    <li class="spacer">/</li>
+    <li><%= link_to "CO-WORKER" %></li>
+    <li class="spacer">/</li>
+    <li><%= link_to "CLASSMATE" %></li>
+    <li class="spacer">/</li>
+    <li><%= link_to "FRIEND" %></li>
+    <li class="spacer">/</li>
+    <li><%= link_to "ETC" %></li>
+  </ul>
+  <ul class="people">
+    <% 5.times do %>
       <% user = User.first %>
       <li>
         <div class="profile">Profile</div>
@@ -69,8 +129,65 @@
 </div>
 
 
+<div class="user_commons">
+  <h3>
+    <div class="title">People Who You and <%= @user.name_e %> Know In Common</div>
+    <div class="more"><%= link_to "More >>" %></div>
+  </h3>
+  <ul class="people">
+    <% 5.times do %>
+      <% user = User.first %>
+      <li>
+        <div class="profile">Profile</div>
+        <% unless user.name_e.blank? %>
+          <div class="username_e"><%= link_to user.name_e, user %></div>
+        <% end %>
+        <div class="username"><%= link_to user.name, user %></div>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+
+<div class="user_posts">
+  <h3>
+    <div class="title"><%= @user.name_e %>'s Posts</div>
+    <div class="more"><%= link_to "More >>" %></div>
+  </h3>
+  <ul>
+    <% 4.times do %>
+    <li>
+      <div class="thumb">Picture</div>
+      <div class="abbr"><%= link_to "Loren upsum dolor sit amet, con-sectetur adipisicing elit, sed do eiusmod" %></div>
+    </li>
+    <% end %>
+  </ul>
+</div>
+
+
+<div class="user_comments">
+  <h3>
+    <div class="title"><%= @user.name_e %>'s Comments</div>
+    <div class="more"><%= link_to "More >>" %></div>
+  </h3>
+  <ul>
+    <% 3.times do %>
+      <li>
+        <div class="content">정말 좋은 기사네요. 공유해주셔서 감사!</div>
+        <div class="comment_post"><%= link_to "\"Lorem ipsum dolor sit amet, consectetur adipisicing...\"" %></div>
+        <div class="timestamp">August 23, 2011 00:40</div>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+
 
 
 <div class="sidebar">
   <%= render "shared/side_app" %>
+
+  <div class="sb_action">
+    <div><%= link_to "INVITE FRIENDS TO TIDE", invite_users_path %></div>
+  </div>
 </div>

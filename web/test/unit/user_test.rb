@@ -24,6 +24,8 @@
 #  work                   :string(255)
 #  interest               :string(255)
 #  profile_image          :string(255)
+#  connections_count      :integer(4)      default(0)
+#  connected_count        :integer(4)      default(0)
 #
 
 require 'test_helper'

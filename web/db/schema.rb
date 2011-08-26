@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110821130607) do
+ActiveRecord::Schema.define(:version => 20110825142824) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -87,6 +87,20 @@ ActiveRecord::Schema.define(:version => 20110821130607) do
   add_index "comments", ["event_id"], :name => "index_comments_on_event_id"
   add_index "comments", ["post_id"], :name => "index_comments_on_post_id"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
+  create_table "connections", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "target_id"
+    t.string   "connection_type"
+    t.string   "remark"
+    t.datetime "accepted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "connections", ["connection_type"], :name => "index_connections_on_connection_type"
+  add_index "connections", ["target_id"], :name => "index_connections_on_target_id"
+  add_index "connections", ["user_id"], :name => "index_connections_on_user_id"
 
   create_table "events", :force => true do |t|
     t.string   "name"
@@ -168,6 +182,8 @@ ActiveRecord::Schema.define(:version => 20110821130607) do
     t.string   "work"
     t.string   "interest"
     t.string   "profile_image"
+    t.integer  "connections_count",                     :default => 0
+    t.integer  "connected_count",                       :default => 0
   end
 
   add_index "users", ["category"], :name => "index_users_on_category"

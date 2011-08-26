@@ -1,0 +1,21 @@
+<%= content_tag :div, :id => dom_id(user, :connect), :class => "connect" do %>
+
+
+  <% if user_signed_in? %>
+    
+    <% if current_user == user %>
+      
+    <% elsif current_user.connected_to?(user) %>
+      <span class="connected">CONNECTED</span>
+    <% elsif current_user.connection_requested_to?(user) %>
+      <span class="requested">REQUESTED</span>
+    <% else %>
+      <%= link_to "CONNECT", user_connections_path(current_user, :target_id => user.id), :method => :post, :remote => true %>
+    <% end %>
+    
+  <% else %>
+    <%= link_to_function "CONNECT", "alert('Log-in required')" %>
+  <% end %>
+
+
+<% end %>

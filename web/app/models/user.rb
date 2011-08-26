@@ -24,6 +24,8 @@
 #  work                   :string(255)
 #  interest               :string(255)
 #  profile_image          :string(255)
+#  connections_count      :integer(4)      default(0)
+#  connected_count        :integer(4)      default(0)
 #
 
 class User < ActiveRecord::Base
@@ -35,8 +37,12 @@ class User < ActiveRecord::Base
 
   has_many :agreements, :dependent => :destroy
 
+  has_many :connections, :dependent => :destroy, :conditions => "connections.accepted_at != null"
+  has_many :connection_requests, :dependent => :destroy, :class_name => "Connection", :foreign_key => :user_id, :conditions => "isNull(connections.accepted_at)"
+  has_many :connection_requested, :dependent => :destroy, :class_name => "Connection", :foreign_key => :target_id, :conditions => "isNull(connections.accepted_at)"
 
   mount_uploader :profile_image, ProfileUploader
+
 
 
   # Include default devise modules. Others available are:
@@ -54,6 +60,18 @@ class User < ActiveRecord::Base
   def self.categories
     ["technology","design","entrepreneur"]
   end
+  
+  
+  def connected_to?(u)
+    connections.detect {|c| c.user_id == u.id }
+  end
+  
+  def connection_requested_to?(u)
+    connection_requests.detect {|c| c.user_id == u.id }
+  end
+
+
+
 
 
 end

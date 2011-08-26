@@ -8,7 +8,7 @@
 
 <div class="people">
   <h3>Recently Joined Members</h3>
-  <ul>
+  <ul class="people">
     <% 10.times do %>
       <% user = User.first %>
       <li>
@@ -18,9 +18,7 @@
           <div class="username_e"><%= link_to user.name_e, user %></div>
         <% end %>
         <div class="username"><%= link_to user.name, user %></div>
-        <div class="connect">
-          
-        </div>
+        <%= render "connections/button", :user => user %>
       </li>
     <% end %>
   </ul>
@@ -28,7 +26,7 @@
 
 <div class="people">
   <h3>Active Members of the Week</h3>
-  <ul>
+  <ul class="people">
     <% 10.times do %>
       <% user = User.first %>
       <li>
@@ -38,6 +36,7 @@
           <div class="username_e"><%= link_to user.name_e, user %></div>
         <% end %>
         <div class="username"><%= link_to user.name, user %></div>
+        <%= render "connections/button", :user => user %>
       </li>
     <% end %>
   </ul>

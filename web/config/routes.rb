@@ -39,6 +39,7 @@ Web::Application.routes.draw do
       put 'update_profile'
       get 'invite'
     end
+    resources :connections
   end
   
   
