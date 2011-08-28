@@ -21,4 +21,29 @@ class Connection < ActiveRecord::Base
   validates_uniqueness_of :target_id, :scope => :user_id
 
 
+  def self.connection_types
+    ["co-worker","classmate","friend","etc"]
+  end
+
+
+  def accept!
+    a = Time.now
+    self.accepted_at = a
+    self.save
+    
+    User.increment_counter(:connections_count, user_id)
+    User.increment_counter(:connections_count, taget_id)
+  end
+  
+  def deny!
+    self.destroy
+  end
+  
+  def clear!
+    self.destroy
+
+    User.decrement_counter(:connections_count, user_id)
+    User.decrement_counter(:connections_count, taget_id)
+  end
+
 end

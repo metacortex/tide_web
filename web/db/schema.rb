@@ -183,11 +183,11 @@ ActiveRecord::Schema.define(:version => 20110825142824) do
     t.string   "interest"
     t.string   "profile_image"
     t.integer  "connections_count",                     :default => 0
-    t.integer  "connected_count",                       :default => 0
   end
 
   add_index "users", ["category"], :name => "index_users_on_category"
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["name"], :name => "index_users_on_name"
   add_index "users", ["name_e"], :name => "index_users_on_name_e"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
