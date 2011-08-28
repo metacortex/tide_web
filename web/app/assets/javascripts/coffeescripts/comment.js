@@ -8,15 +8,12 @@ if (window._CommentApp) {
     defaults: {
       body: "",
       user_id: "",
-      post_id: ""
+      post_id: "",
+      positive_agreements_count: 0,
+      negative_agreements_count: 0
     },
 
     initialize: function() {
-    },
-
-    clear: function() {
-      this.destroy();
-      this.view.remove();
     }
 
   });
@@ -44,11 +41,6 @@ if (window._CommentApp) {
     },
 
     initialize: function() {
-    },
-
-    clear: function() {
-      this.destroy();
-      this.view.remove();
     }
 
   });
@@ -78,7 +70,9 @@ if (window._CommentApp) {
       "click .edit_button"    : "edit",
       "click .cancel_button"  : "cancel",
       "click .destroy_button" : "destroy",
-      "submit form.edit_comment" : "save"
+      "submit form.edit_comment" : "save",
+      "click a.agree_positive" : "agree_positive",
+      "click a.agree_negative" : "agree_negative"
     },
     
     initialize: function() {
@@ -120,15 +114,66 @@ if (window._CommentApp) {
     
     destroy: function() {
       if (confirm("Are you sure?")) {
-        this.model.clear();
+        this.model.destroy();
+        $(this.el).remove();
       }
       return false;
     },
     
-    remove: function() {
+    agree_positive: function() {
+      if (!window._userID) {
+        alert("로그인이 필요합니다.");
+        return false;
+      }
+
+      var a = this.current_comment_agreement();
+      console.log(a);
       
-    }
+      if (a) {
+        if (a.get("direction") < 0) {
+          a.save({ direction:1 });
+          this.model.set({ 
+            positive_agreements_count:(this.model.get("positive_agreements_count") + 1),
+            negative_agreements_count:(this.model.get("negative_agreements_count") - 1)
+          });
+        }
+      } else {
+        var ag = Agreements.create({ post_id:window._postID, event_id:window._eventID, comment_id:this.model.id, user_id:window._userID, direction:1 });
+        this.model.set({ positive_agreements_count:(this.model.get("positive_agreements_count") + 1) });
+      }
+      
+      return false;
+    },
     
+    agree_negative: function() {
+      if (!window._userID) {
+        alert("로그인이 필요합니다.");
+        return false;
+      }
+
+      var a = this.current_comment_agreement();
+      
+      if (a) {
+        if (a.get("direction") > 0) {
+          a.save({ direction:-1 });
+          this.model.set({ 
+            positive_agreements_count:(this.model.get("positive_agreements_count") - 1),
+            negative_agreements_count:(this.model.get("negative_agreements_count") + 1)
+          });
+        }
+      } else {
+        var ag = Agreements.create({ post_id:window._postID, event_id:window._eventID, comment_id:this.model.id, user_id:window._userID, direction:-1 });
+        this.model.set({ negative_agreements_count:(this.model.get("negative_agreements_count") + 1) });
+      }
+
+      return false;
+    },
+    
+    current_comment_agreement: function() {
+      return Agreements.find(function(ag){ 
+        return (ag.get("user_id") == window._userID) && (ag.get("comment_id") == this.model.id);
+      }, this);
+    }
     
   });
 
@@ -159,15 +204,15 @@ if (window._CommentApp) {
         return false;
       }
 
-      Comments.create({ body: text, user_id: window._userID, post_id: window._postID });
+      var c = Comments.create({ body: text, user_id: window._userID, post_id: window._postID, user:{name: window._userName} });
 
       input.val('');
       return false;
     },
     
     addOne: function(comment) {
-      var view = new CommentView({ model: comment, id: "comment_" + comment.id });
-      this.$("#comments").append(view.render().el);
+      var view = new CommentView({ model: comment, id: "comment_" + (comment.id || comment.cid) });
+      this.$("#comments").prepend(view.render().el);
     },
     
     addAll: function() {

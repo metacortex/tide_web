@@ -30,7 +30,7 @@ class Post < ActiveRecord::Base
   belongs_to :user
   belongs_to :category, :counter_cache => true
   
-  has_many :comments, :dependent => :destroy, :order => "id DESC"
+  has_many :comments, :dependent => :destroy
 
   has_many :taggings, :dependent => :destroy
   has_many :tags, :through => :taggings, :uniq => true, :foreign_key => :tag_id

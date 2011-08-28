@@ -78,6 +78,7 @@
     var _CommentApp = true;
     var _postID = <%= @post.id.to_json.html_safe %>;
     var _userID = <%= current_user.try(:id).to_json.html_safe %>;
+    var _userName = <%= current_user.try(:name).to_json.html_safe %>;
     var _commentsData = <%= @post.comments.to_json(:include => :user).html_safe %>;
     var _agreementsData = <%= @agreements.to_json.html_safe %>;
     </script>

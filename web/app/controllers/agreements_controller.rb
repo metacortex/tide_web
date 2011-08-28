@@ -14,19 +14,22 @@ class AgreementsController < ApplicationController
   end
 
   def create
-    unless @agreement = Agreement.where(:user_id => current_user.id, :comment_id => params[:comment_id]).first
-      @agreement = Agreement.new(
-        :user_id => current_user.id,
-        :comment_id => params[:comment_id],
-        :post_id => params[:post_id],
-        :event_id => params[:event_id]
-      )
+    @agreement = Agreement.new(params[:agreement])
+    
+    if @agreement.save
+      render :json => @agreement
+    else
     end
-    @agreement.direction = params[:direction]
-    @agreement.save
-    @comment.reload
   end
 
+  def update
+    @agreement = Agreement.find(params[:id])
+    
+    if @agreement.update_attributes(params[:agreement])
+      render :json => @agreement
+    else
+    end
+  end
 
 
   protected

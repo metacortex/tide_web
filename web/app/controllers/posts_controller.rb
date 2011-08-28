@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.includes(:comments).find(params[:id])
     @agreements = if user_signed_in?
-      current_user.agreements.where(:post_id => params[:post_id])
+      current_user.agreements.where(:post_id => params[:id])
     else
       []
     end

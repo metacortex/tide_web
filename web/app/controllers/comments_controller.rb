@@ -18,7 +18,9 @@ class CommentsController < ApplicationController
     @comment = Comment.new(params[:comment])
     
     if @comment.save
+      render :json => @comment.to_json(:include => [:user])
     else
+      render :json => @comment.errors.to_json
     end
   end
   
