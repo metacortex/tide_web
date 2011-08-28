@@ -129,7 +129,6 @@ if (window._CommentApp) {
       }
 
       var a = this.current_comment_agreement();
-      console.log(a);
       
       if (a) {
         if (a.get("direction") < 0) {
