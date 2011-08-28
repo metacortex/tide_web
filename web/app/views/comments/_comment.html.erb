@@ -1,39 +1,29 @@
-<%= content_tag_for :li, comment do %>
-  <div class="user">
-    <div class="profile">
-      Profile
-    </div>
-    <% if comment.user %>
-      <div class="username"><%= link_to comment.user.name, comment.user %></div>
-    <% end %>
+<div class="user">
+  <div class="profile">
+    Profile
   </div>
-  <div class="body"><%= comment.body.gsub("\n", "<br/>").html_safe %></div>
+  <div class="username"><%= link_to "${user.name}", "/users/${user_id}" %></div>
+</div>
 
-  <% if comment.editable_to_user?(current_user) %>
-    <div class="comment_action">
-      <ul class="actions">
-        <li><%= link_to "MODIFY", edit_post_comment_path(@post,comment), :remote => true %></li>
-        <li><%= link_to "DELETE", post_comment_path(@post,comment), :method => :delete, :confirm => "Are you sure?", :remote => true %></li>
-      </ul>
+<div class="body">{{html body.replace(new RegExp("\n","g"), "<br/>") }}</div>
+
+{{if user_id == window._userID }}
+  <div class="comment_action">
+    <ul class="actions">
+      <li><%= link_to "MODIFY", "#edit", :class => "edit_button" %></li>
+      <li><%= link_to "DELETE", "#destroy", :class => "destroy_button" %></li>
+    </ul>
+  </div>
+{{/if}}
+
+<div class="status">
+  <div class="timestamp">${ created_at }</div>
+  <div class="agreement">
+    <div class="positive">
+      <%= link_to "+ ${ positive_agreements_count }", "#agree_positive" %>
     </div>
-  <% end %>
-
-  <div class="status">
-    <div class="timestamp"><%= l(comment.created_at, :format => :long) %></div>
-    <div class="agreement">
-      <% agreement = @agreements.detect {|t| t.comment_id == comment.id } %>
-      <div class="positive">
-        <%= link_to "+ #{comment.positive_agreements_count}", 
-          agreements_path(:post_id => @post.try(:id), :event_id => @event.try(:id), :comment_id => comment.id, :direction => 1), 
-          :id => dom_id(comment, :positive), 
-          :method => :post, :remote => true %>
-      </div>
-      <div class="negative">
-        <%= link_to "- #{comment.negative_agreements_count}", 
-          agreements_path(:post_id => @post.try(:id), :event_id => @event.try(:id), :comment_id => comment.id, :direction => -1), 
-          :id => dom_id(comment, :negative), 
-          :method => :post, :remote => true %>
-      </div>
+    <div class="negative">
+      <%= link_to "- ${ negative_agreements_count }", "#agree_negative" %>
     </div>
   </div>
-<% end %>
+</div>

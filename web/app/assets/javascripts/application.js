@@ -6,6 +6,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require ./lib/underscore-min.js
 //= require_tree ./lib
 //= require_tree ./coffeescripts
-

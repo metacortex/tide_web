@@ -54,23 +54,48 @@
     </ul>
   </div>
 
-  <%= render "comments/new" %>
-  <div class="comments">
-    <h3>Comments</h3>
-    <ul id="comments">
-      <% @post.comments.each do |comment| %>
-        <%= render "comments/comment", :comment => comment %>
+  <div id="comments_app">
+
+    <div class="new_comment">
+      <h3>New Comment</h3>
+      <%= form_for [@post,Comment.new] do |f| %>
+        <% if user_signed_in? %>
+          <%= f.text_area :body %>
+          <div class="buttons"><%= f.submit "POST", :class => "button" %></div>
+        <% else %>
+          <%= f.text_area :body, :value => "Log-in required", :disabled => true %>
+          <div class="buttons"><%= f.submit "POST", :class => "button", :disabled => true %></div>
+        <% end %>
       <% end %>
-    </ul>
+    </div>
+
+    <div class="comments">
+      <h3>Comments</h3>
+      <ul id="comments"></ul>
+    </div>
+    
+    <script>
+    var _CommentApp = true;
+    var _postID = <%= @post.id.to_json.html_safe %>;
+    var _userID = <%= current_user.try(:id).to_json.html_safe %>;
+    var _commentsData = <%= @post.comments.to_json(:include => :user).html_safe %>;
+    var _agreementsData = <%= @agreements.to_json.html_safe %>;
+    </script>
+
+    <script type="text/x-jquery-tmpl" id="comment_template">
+      <%= render "comments/comment" %>
+    </script>
+    <script type="text/x-jquery-tmpl" id="comment_edit_template">
+      <%= render "comments/edit" %>
+    </script>
   </div>
+  
 </div>
 
 <div class="sidebar">
-
   <%= render "shared/side_app" %>
 
   <div class="sb_action">
     <div><%= link_to "POST NEW ARTICLE", new_post_path %></div>
   </div>
-
 </div>

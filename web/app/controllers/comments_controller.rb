@@ -1,8 +1,13 @@
 class CommentsController < ApplicationController
   
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:index]
   before_filter :find_post
 
+
+  def index
+    @comments = @post.comments.page(params[:page])
+    render :json => @comments.to_json(:include => [:user])
+  end
 
   def show
     @comment = Comment.find(params[:id])
