@@ -120,6 +120,8 @@ if (window._CommentApp) {
       return false;
     },
     
+    should_create_agreement_model: true,
+    
     agree_positive: function() {
       if (!window._userID) {
         alert("로그인이 필요합니다.");
@@ -137,7 +139,8 @@ if (window._CommentApp) {
             negative_agreements_count:(this.model.get("negative_agreements_count") - 1)
           });
         }
-      } else {
+      } else if (this.should_create_agreement_model) {
+        this.should_create_agreement_model = false;
         var ag = Agreements.create({ post_id:window._postID, event_id:window._eventID, comment_id:this.model.id, user_id:window._userID, direction:1 });
         this.model.set({ positive_agreements_count:(this.model.get("positive_agreements_count") + 1) });
       }
@@ -161,7 +164,8 @@ if (window._CommentApp) {
             negative_agreements_count:(this.model.get("negative_agreements_count") + 1)
           });
         }
-      } else {
+      } else if (this.should_create_agreement_model) {
+        this.should_create_agreement_model = false;
         var ag = Agreements.create({ post_id:window._postID, event_id:window._eventID, comment_id:this.model.id, user_id:window._userID, direction:-1 });
         this.model.set({ negative_agreements_count:(this.model.get("negative_agreements_count") + 1) });
       }
