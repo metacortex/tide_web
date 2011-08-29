@@ -103,30 +103,52 @@
     <div class="title"><%= @user.name_e %>'s Connection</div>
     <div class="more"><%= link_to "More >>" %></div>
   </h3>
+
   <ul class="connection_type">
-    <li class="current"><%= link_to "ALL" %></li>
+    <li class="current"><%= link_to_function "ALL", "simpleTab(this, 0)" %></li>
     <li class="spacer">/</li>
-    <li><%= link_to "CO-WORKER" %></li>
+    <li><%= link_to_function "CO-WORKER", "simpleTab(this, 1)" %></li>
     <li class="spacer">/</li>
-    <li><%= link_to "CLASSMATE" %></li>
+    <li><%= link_to_function "CLASSMATE", "simpleTab(this, 2)" %></li>
     <li class="spacer">/</li>
-    <li><%= link_to "FRIEND" %></li>
+    <li><%= link_to_function "FRIEND", "simpleTab(this, 3)" %></li>
     <li class="spacer">/</li>
-    <li><%= link_to "ETC" %></li>
+    <li><%= link_to_function "ETC", "simpleTab(this, 4)" %></li>
   </ul>
-  <ul class="people">
-    <% @user.connections.limit(5).each do |c| %>
-      <% user = c.target %>
-      <li>
-        <%= display_user_category_icon(user) %>
-        <div class="profile"><%= image_tag user.profile_image.url %></div>
-        <% unless user.name_e.blank? %>
-          <div class="username_e"><%= link_to user.name_e, user %></div>
+  
+  <script>
+  function simpleTab(element, num) {
+    $(element.parentNode).siblings().removeClass("current");
+    $(element.parentNode).addClass("current");
+    $("#connections_" + num).siblings().hide();
+    $("#connections_" + num).show();
+  }
+  </script>
+  
+  <div class="tab_content">
+    <% [
+      @user.connections.limit(5),
+      @user.connections.as_co_worker.limit(5),
+      @user.connections.as_classmate.limit(5),
+      @user.connections.as_friend.limit(5),
+      @user.connections.as_etc.limit(5),
+      ].each_with_index do |cons,idx|
+    %>
+      <%= content_tag :ul, :class => "people", :id => "connections_#{idx}", :style => (idx == 0) ? nil : "display:none" do %>
+        <% cons.each do |c| %>
+          <% user = c.target %>
+          <li>
+            <%= display_user_category_icon(user) %>
+            <div class="profile"><%= image_tag user.profile_image.url %></div>
+            <% unless user.name_e.blank? %>
+              <div class="username_e"><%= link_to user.name_e, user %></div>
+            <% end %>
+            <div class="username"><%= link_to user.name, user %></div>
+          </li>
         <% end %>
-        <div class="username"><%= link_to user.name, user %></div>
-      </li>
+      <% end %>
     <% end %>
-  </ul>
+  </div>
 </div>
 
 

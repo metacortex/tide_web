@@ -65,6 +65,7 @@ module ApplicationHelper
       @items = []
       @container_id = options.delete(:id)
       @container_class = options.delete(:class)
+      @spacer = options.delete(:spacer) || "\n"
     end
     
     def empty?
@@ -88,7 +89,7 @@ module ApplicationHelper
     end
     
     def build
-      content_tag :ul, @items.collect{|t| item_wrapper(*t)}.join("\n").html_safe, :id => @container_id, :class => @container_class
+      content_tag :ul, @items.collect{|t| item_wrapper(*t)}.join(@spacer).html_safe, :id => @container_id, :class => @container_class
     end
     
     alias :to_html :build

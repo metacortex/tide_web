@@ -26,6 +26,10 @@ class Connection < ActiveRecord::Base
   end
   
   scope :has_remark, where("Length(connections.remark) > 0")
+  scope :as_co_worker, where(:connection_type => "co-worker")
+  scope :as_classmate, where(:connection_type => "classmate")
+  scope :as_friend, where(:connection_type => "friend")
+  scope :as_etc, where(:connection_type => "etc")
 
 
   def accept!
