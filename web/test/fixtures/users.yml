@@ -25,7 +25,17 @@
 #  interest               :string(255)
 #  profile_image          :string(255)
 #  connections_count      :integer(4)      default(0)
-#  connected_count        :integer(4)      default(0)
+#  posts_count            :integer(4)      default(0)
+#  comments_count         :integer(4)      default(0)
+#  agreements_count       :integer(4)      default(0)
+#  votes_count            :integer(4)      default(0)
+#  score_all              :integer(4)      default(0)
+#  score_total            :integer(4)      default(0)
+#  score_week             :integer(4)      default(0)
+#  score                  :text
+#  ranking_all            :integer(4)      default(0)
+#  ranking_total          :integer(4)      default(0)
+#  ranking_week           :integer(4)      default(0)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html

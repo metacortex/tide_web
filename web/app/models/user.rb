@@ -25,7 +25,17 @@
 #  interest               :string(255)
 #  profile_image          :string(255)
 #  connections_count      :integer(4)      default(0)
-#  connected_count        :integer(4)      default(0)
+#  posts_count            :integer(4)      default(0)
+#  comments_count         :integer(4)      default(0)
+#  agreements_count       :integer(4)      default(0)
+#  votes_count            :integer(4)      default(0)
+#  score_all              :integer(4)      default(0)
+#  score_total            :integer(4)      default(0)
+#  score_week             :integer(4)      default(0)
+#  score                  :text
+#  ranking_all            :integer(4)      default(0)
+#  ranking_total          :integer(4)      default(0)
+#  ranking_week           :integer(4)      default(0)
 #
 
 class User < ActiveRecord::Base
@@ -35,12 +45,21 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :taggings, :allow_destroy => true, :reject_if => lambda {|a| a[:name].blank? }
 
+  has_many :posts
+  has_many :comments
   has_many :agreements, :dependent => :destroy
 
-  has_many :connections, :dependent => :destroy, :conditions => "connections.accepted_at != null"
+  has_many :connections, :dependent => :destroy, :conditions => '!isNull(connections.accepted_at)'
   has_many :connection_requests, :dependent => :destroy, :class_name => "Connection", :foreign_key => :user_id, :conditions => "isNull(connections.accepted_at)"
   has_many :connection_requested, :dependent => :destroy, :class_name => "Connection", :foreign_key => :target_id, :conditions => "isNull(connections.accepted_at)"
+  
+  has_many :recommendations, :conditions => '!isNull(connections.accepted_at)', :class_name => "Connection", :foreign_key => :target_id
+  
 
+  # def connections
+  #   Connection.where("connections.target_id = ? OR connections.user_id = ?", id, id).where("!isNull(connections.accepted_at)")
+  # end
+  
   mount_uploader :profile_image, ProfileUploader
 
 
@@ -61,13 +80,25 @@ class User < ActiveRecord::Base
     ["technology","design","entrepreneur"]
   end
   
+  def self.recently_joined(num = 10)
+    User.order("id DESC").limit(num)
+  end
+
+  def self.weekly_active(num = 10)
+    User.order("score_week DESC").limit(num)
+  end
+  
   
   def connected_to?(u)
     connections.detect {|c| c.user_id == u.id }
   end
   
   def connection_requested_to?(u)
-    connection_requests.detect {|c| c.user_id == u.id }
+    connection_requests.detect {|c| c.target_id == u.id }
+  end
+
+  def connection_request_received_from?(u)
+    connection_requested.detect {|c| c.user_id == u.id }
   end
 
 

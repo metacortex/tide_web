@@ -24,6 +24,8 @@ class Connection < ActiveRecord::Base
   def self.connection_types
     ["co-worker","classmate","friend","etc"]
   end
+  
+  scope :has_remark, where("Length(connections.remark) > 0")
 
 
   def accept!
@@ -31,8 +33,10 @@ class Connection < ActiveRecord::Base
     self.accepted_at = a
     self.save
     
+    Connection.create(user_id:target_id, target_id:user_id, connection_type:connection_type, accepted_at:a)
+    
     User.increment_counter(:connections_count, user_id)
-    User.increment_counter(:connections_count, taget_id)
+    User.increment_counter(:connections_count, target_id)
   end
   
   def deny!
@@ -42,8 +46,11 @@ class Connection < ActiveRecord::Base
   def clear!
     self.destroy
 
+    Connection.where(user_id:target_id, target_id:user_id).each(&:destroy)
+
     User.decrement_counter(:connections_count, user_id)
-    User.decrement_counter(:connections_count, taget_id)
+    User.decrement_counter(:connections_count, target_id)
   end
+  
 
 end

@@ -7,13 +7,15 @@
 
 
 <div class="people">
-  <h3>Recently Joined Members</h3>
+  <h3>
+    <div class="title">Recently Joined Members</div>
+    <div class="more"><%= link_to "more >>", all_users_path %></div>
+  </h3>
   <ul class="people">
-    <% 10.times do %>
-      <% user = User.first %>
+    <% @recent_users.each do |user| %>
       <li>
         <%= display_user_category_icon(user) %>
-        <div class="profile">Profile</div>
+        <div class="profile"><%= image_tag user.profile_image.url %></div>
         <% unless user.name_e.blank? %>
           <div class="username_e"><%= link_to user.name_e, user %></div>
         <% end %>
@@ -25,13 +27,15 @@
 </div>
 
 <div class="people">
-  <h3>Active Members of the Week</h3>
+  <h3>
+    <div class="title">Active Members of the Week</div>
+    <div class="more"><%= link_to "more >>", all_users_path %></div>
+  </h3>
   <ul class="people">
-    <% 10.times do %>
-      <% user = User.first %>
+    <% @weekly_users.each do |user| %>
       <li>
         <%= display_user_category_icon(user) %>
-        <div class="profile">Profile</div>
+        <div class="profile"><%= image_tag user.profile_image.url %></div>
         <% unless user.name_e.blank? %>
           <div class="username_e"><%= link_to user.name_e, user %></div>
         <% end %>

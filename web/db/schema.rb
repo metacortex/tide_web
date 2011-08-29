@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110825142824) do
+ActiveRecord::Schema.define(:version => 20110828122036) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -183,12 +183,29 @@ ActiveRecord::Schema.define(:version => 20110825142824) do
     t.string   "interest"
     t.string   "profile_image"
     t.integer  "connections_count",                     :default => 0
+    t.integer  "posts_count",                           :default => 0
+    t.integer  "comments_count",                        :default => 0
+    t.integer  "agreements_count",                      :default => 0
+    t.integer  "votes_count",                           :default => 0
+    t.integer  "score_all",                             :default => 0
+    t.integer  "score_total",                           :default => 0
+    t.integer  "score_week",                            :default => 0
+    t.text     "score"
+    t.integer  "ranking_all",                           :default => 0
+    t.integer  "ranking_total",                         :default => 0
+    t.integer  "ranking_week",                          :default => 0
   end
 
   add_index "users", ["category"], :name => "index_users_on_category"
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["name"], :name => "index_users_on_name"
   add_index "users", ["name_e"], :name => "index_users_on_name_e"
+  add_index "users", ["ranking_all"], :name => "index_users_on_ranking_all"
+  add_index "users", ["ranking_total"], :name => "index_users_on_ranking_total"
+  add_index "users", ["ranking_week"], :name => "index_users_on_ranking_week"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["score_all"], :name => "index_users_on_score_all"
+  add_index "users", ["score_total"], :name => "index_users_on_score_total"
+  add_index "users", ["score_week"], :name => "index_users_on_score_week"
 
 end

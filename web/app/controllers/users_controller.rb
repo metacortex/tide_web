@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   
   def index
     @users = User.all
+    @recent_users = User.recently_joined(10)
+    @weekly_users = User.weekly_active(10)
   end
   
   def all

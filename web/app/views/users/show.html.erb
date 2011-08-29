@@ -50,15 +50,15 @@
     
     <ul class="stats">
       <li>
-        <div class="value">17</div>
+        <div class="value"><%= @user.connections_count %></div>
         <div class="caption">CONNECTION</div>
       </li>
       <li>
-        <div class="value">35</div>
+        <div class="value"><%= @user.posts_count %></div>
         <div class="caption">POSTED</div>
       </li>
       <li>
-        <div class="value">88</div>
+        <div class="value"><%= @user.comments_count %></div>
         <div class="caption">COMMENTED</div>
       </li>
     </ul>
@@ -72,10 +72,10 @@
     <div class="more"><%= link_to "More >>" %></div>
   </h3>
   <ul>
-    <% 3.times do %>
+    <% @user.recommendations.has_remark.limit(3).each do |c| %>
       <li>
-        <div class="saying">술고래</div>
-        <div class="recommender">from <%= link_to "<em>Young Cho</em> 조영상".html_safe %></div>
+        <div class="saying"><%= c.remark %></div>
+        <div class="recommender">from <%= link_to "<em>#{c.user.name_e}</em> #{c.user.name}".html_safe %></div>
       </li>
     <% end %>
   </ul>
@@ -88,10 +88,10 @@
     <div class="more"><%= link_to "More >>" %></div>
   </h3>
   <ul>
-    <% 3.times do %>
+    <% @user.connections.has_remark.limit(3).each do |c| %>
       <li>
-        <div class="recommended"><%= link_to "<em>Young Cho</em> 조영상".html_safe %></div>
-        <div class="saying">술 마시는데는 국가대표!</div>
+        <div class="recommended"><%= link_to "<em>#{c.target.name_e}</em> #{c.target.name}".html_safe %></div>
+        <div class="saying"><%= c.remark %></div>
       </li>
     <% end %>
   </ul>
@@ -115,10 +115,11 @@
     <li><%= link_to "ETC" %></li>
   </ul>
   <ul class="people">
-    <% 5.times do %>
-      <% user = User.first %>
+    <% @user.connections.limit(5).each do |c| %>
+      <% user = c.target %>
       <li>
-        <div class="profile">Profile</div>
+        <%= display_user_category_icon(user) %>
+        <div class="profile"><%= image_tag user.profile_image.url %></div>
         <% unless user.name_e.blank? %>
           <div class="username_e"><%= link_to user.name_e, user %></div>
         <% end %>
@@ -128,25 +129,42 @@
   </ul>
 </div>
 
+
+<% unless user_signed_in? && (current_user == @user) %>
 
 <div class="user_commons">
   <h3>
     <div class="title">People Who You and <%= @user.name_e %> Know In Common</div>
     <div class="more"><%= link_to "More >>" %></div>
   </h3>
-  <ul class="people">
-    <% 5.times do %>
-      <% user = User.first %>
-      <li>
-        <div class="profile">Profile</div>
-        <% unless user.name_e.blank? %>
-          <div class="username_e"><%= link_to user.name_e, user %></div>
+  <% if user_signed_in? %>
+    
+    <% common_ids = @user.connections.map(&:target_id) & current_user.connections.map(&:target_id) %>
+    <% common_users = User.where(:id => common_ids).limit(5) %>
+    
+    <% if common_users.empty? %>
+      <p class="message">No User Found.</p>
+    <% else %>
+      <ul class="people">
+        <% common_users.each do |user| %>
+          <li>
+            <%= display_user_category_icon(user) %>
+            <div class="profile"><%= image_tag user.profile_image.url %></div>
+            <% unless user.name_e.blank? %>
+              <div class="username_e"><%= link_to user.name_e, user %></div>
+            <% end %>
+            <div class="username"><%= link_to user.name, user %></div>
+          </li>
         <% end %>
-        <div class="username"><%= link_to user.name, user %></div>
-      </li>
+      </ul>
     <% end %>
-  </ul>
+    
+  <% else %>
+    <p class="message">Log-In이 필요합니다.</p>
+  <% end %>
 </div>
+
+<% end %>
 
 
 <div class="user_posts">
@@ -155,10 +173,10 @@
     <div class="more"><%= link_to "More >>" %></div>
   </h3>
   <ul>
-    <% 4.times do %>
+    <% @user.posts.limit(4).each do |post| %>
     <li>
       <div class="thumb">Picture</div>
-      <div class="abbr"><%= link_to "Loren upsum dolor sit amet, con-sectetur adipisicing elit, sed do eiusmod" %></div>
+      <div class="abbr"><%= link_to post.title, post %></div>
     </li>
     <% end %>
   </ul>
@@ -171,11 +189,11 @@
     <div class="more"><%= link_to "More >>" %></div>
   </h3>
   <ul>
-    <% 3.times do %>
+    <% @user.comments.limit(5).each do |c| %>
       <li>
-        <div class="content">정말 좋은 기사네요. 공유해주셔서 감사!</div>
-        <div class="comment_post"><%= link_to "\"Lorem ipsum dolor sit amet, consectetur adipisicing...\"" %></div>
-        <div class="timestamp">August 23, 2011 00:40</div>
+        <div class="content"><%= c.body %></div>
+        <div class="comment_post"><%= link_to "\"#{c.post.title}\"", c.post %></div>
+        <div class="timestamp"><%= l(c.created_at, :format => :long) %></div>
       </li>
     <% end %>
   </ul>

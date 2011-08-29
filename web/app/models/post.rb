@@ -27,7 +27,7 @@
 require 'author_editable'
 class Post < ActiveRecord::Base
   
-  belongs_to :user
+  belongs_to :user, :counter_cache => true
   belongs_to :category, :counter_cache => true
   
   has_many :comments, :dependent => :destroy

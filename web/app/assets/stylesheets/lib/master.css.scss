@@ -91,7 +91,7 @@ $sidebar_width: 300px;
   position:relative;
   .title { position:absolute; top:0; line-height:150%;}
   .more {
-    position:absolute; right:0; top:6px; font-size:11px; font-weight:normal;
+    position:absolute; right:0; top:6px; font-size:11px; font-weight:normal; font-family:Arial;
     a { @include hover-link;}
   }
 }
@@ -148,6 +148,7 @@ $sidebar_width: 300px;
   h3 { color:#666; padding-top:20px;}
   width: $content_width;
   margin-top: 10px;
+  .message { padding:20px 0; color:#666; line-height:150%;}
 }
 
 @mixin toolbox {
@@ -429,6 +430,7 @@ div.post {
 .people_search {
   @include clearfix;
   margin-top: 10px;
+  margin-bottom: 10px;
   .search_form {
     @include float(left);
     position: relative;
@@ -480,20 +482,25 @@ div.post {
 
 @mixin has_people_grid {
   ul.people {
-    @include horizontal-list;
+    @include clearfix;
     li {
-      margin: 15px 15px 15px 0;
+      @include float(left);
+      margin: 10px 25px 20px 0;
       position: relative;
       .category { 
-        position:absolute; top:90px;
+        position:absolute; top:78px; left:4px;
         img { width:18px;}
       }
-      .profile { width:100px; padding:50px 0; border:1px solid #ccc; text-align:center; margin-bottom:3px;}
-      div { padding: 3px; font-size: 0.9em;}
+      .profile {
+        text-align:center; margin-bottom:3px;
+        img { width:100px; height:100px;}
+      }
+      div { font-size:0.9em;}
       a { @include hover-link;}
-      .username { }
-      .username_e { font-weight:bold;}
+      .username { padding:3px;}
+      .username_e { padding:3px; font-weight:bold;}
       .connect {
+        padding: 3px; 
         text-align: right;
         @include connect-button;
       }
@@ -505,6 +512,7 @@ div.post {
   @include float(left);
   @include content-section;
   @include has_people_grid;
+  h3 { @include has_more_link;}
 }
 
 .people_profile {
@@ -515,9 +523,9 @@ div.post {
     position: relative;
     .category {
       position:absolute; bottom:5px; left:5px;
-      img { width:18px;}
+      img { width:18px;height:18px;}
     }
-    img { width:120px;}
+    img { width:125px;height:125px;}
     text-align: center;
     margin-right: 25px;
   }
