@@ -9,6 +9,7 @@ class CreatePosts < ActiveRecord::Migration
       t.text :body
       t.text :body_en
       t.string :source_url
+      t.string :kind
 
       t.integer :assets_count, :default => 0
       t.integer :taggings_count, :default => 0

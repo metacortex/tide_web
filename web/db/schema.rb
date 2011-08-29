@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110828122036) do
+ActiveRecord::Schema.define(:version => 20110829102627) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(:version => 20110828122036) do
     t.text     "body"
     t.text     "body_en"
     t.string   "source_url"
+    t.string   "kind"
     t.integer  "assets_count",   :default => 0
     t.integer  "taggings_count", :default => 0
     t.integer  "comments_count", :default => 0
@@ -132,6 +133,7 @@ ActiveRecord::Schema.define(:version => 20110828122036) do
     t.datetime "published_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "picture"
   end
 
   add_index "posts", ["category_id"], :name => "index_posts_on_category_id"

@@ -42,6 +42,8 @@ class Post < ActiveRecord::Base
   validates_presence_of :title
   validates_length_of :body, :minimum => 4
 
+  mount_uploader :picture_image, PictureUploader
+
 
 
 

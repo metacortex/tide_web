@@ -286,6 +286,21 @@ $sidebar_width: 300px;
   }
 }
 
+.set_post_type {
+  .type {
+    margin:10px 10px 30px 70px;
+    a {
+      text-decoration:none; color:#fff; display:block; width:500px;
+      font-family:serif;
+      padding:5px; background:#666;
+      div { padding:0 10px; line-height:150%;}
+    }
+    a:hover, a:active {
+      background:#333;
+    }
+  }
+}
+
 ul.posts {
   @include float(left);
   width:$content_width;
@@ -662,6 +677,15 @@ $label_width:100px;
     input, textarea { padding:2px; }
     p.inline-hints { margin-left:$label_width + 10px; margin-top:3px; color:#666; font-size:0.9em; }
     p.inline-errors { margin-left:$label_width + 10px; margin-top:3px; font-size:0.9em; }
+    fieldset {
+      padding: 7px 0;
+      margin: 0;
+      legend { @include float(left); width:$label_width; margin-right:10px; text-align:right; padding:2px 0;}
+      ol li {
+        padding:0; margin:0;
+        label { width:160px; text-align:left; padding:2px 0;}
+      }
+    }
   }
   fieldset.buttons {
     padding-left:$label_width + 10px + 15px;
@@ -712,6 +736,20 @@ input.button {
 
 .edit_form {
   margin: 10px 0;
+}
+
+#remote_image_selector {
+  p.message { line-height:120%; color:#555;}
+  ul {
+    @include horizontal-list;
+    li {
+      margin: 10px 0;
+      border: 5px solid #fff;
+    }
+    li.selected { border:5px solid #c93;}
+    li.message { padding:20px; color:#777;}
+    img { width:100px;}
+  }
 }
 
 

@@ -2,16 +2,106 @@
   <div class="title">POST NEW ARTICLE</div>
 </div>
 
-<div class="edit_form">
+<div class="set_post_type">
+  
+  <div class="type">
+    <a href="#compose" onclick="$('.set_post_type').hide();$('.edit_form').show();return setPostFormAs('compose');">
+      <div>I am writing this article. I have copyright of the article.</div>
+      <div>직접 작성한 글로, 저작권이 회원에게 있는 문서</div>
+    </a>
+  </div>
+
+  <div class="type">
+    <a href="#link" onclick="$('.set_post_type').hide();$('.edit_form').show();return setPostFormAs('link');">
+      <div>Someone else wrote this article. I do not have copyright of the article.</div>
+      <div>타인 혹은 타 매체가 작성한 글로, 저작권이 회원에게 있지 않은 문서</div>
+    </a>
+  </div>
+  
+</div>
+
+<script>
+
+function setPostFormAs(mode) {
+  $("#post_kind_" + mode).attr("checked", true);
+  
+  if (mode == 'compose') {
+    $("#post_source_url").parent("li").hide();
+    $("#remote_image_selector").hide();
+  } else {
+    $("#post_source_url").parent("li").show();
+    $("#remote_image_selector").show();
+  }
+  
+  return false;
+}
+
+function updateRemotePictureList(element) {
+  var url = $(element).val();
+  $.ajax({
+    url: url,
+    type: 'GET',
+    success: function(data, textStatus, jqXHR) {
+      var doc = data.responseText;
+      var re = new RegExp('<img [^>]*src=".*?[^\]"[^>]*/>', 'g');
+      var rs = new RegExp('<img [^>]*src=".*?[^\]"[^>]*/>', 'g');
+      var ms = doc.match(re);
+      var images = [];
+      for (var i=0; i<ms.length; i++) {
+        var src = $(ms[i]).attr("src");
+        if (src) {
+          var img = new Image();
+          img.src = src;
+          images.push(img);
+        }
+      }
+      var html = "";
+      for (var i=0; i<images.length; i++) {
+        var img = images[i];
+        if (img.width * img.height > 50000) {
+          var src = img.src;
+          html += "<li><a href=\"#\" onclick=\"return setRemotePicture('" + src + "',this);\"><img src='" + src + "' /></a></li>";
+        }
+      }
+      if (html.length < 1) html = "<li class=\"message\">(no data)</li>";
+      $("#remote_picture_images").html(html);
+    }
+  });
+}
+
+function setRemotePicture(url,element) {
+  $("#post_remote_picture_image_url").val(url);
+  $("#post_picture_image").val("");
+  
+  $(element).parent("li").addClass("selected");
+  $(element).parent("li").siblings().removeClass("selected");
+  
+  return false;
+}
+
+</script>
+
+<div class="edit_form" style="display:none">
   <%= semantic_form_for @post do |f| %>
 
     <%= f.inputs do %>
+      <%= f.input :kind, :as => :radio, :collection => [["Copyright resolved","compose"],["Copyright unresolved","link"]], 
+        :onclick => "setPostFormAs(this.value)" %>
       <%= f.input :category, :include_blank => false, :label => "카테고리" %>
-      <%= f.input :source_url %>
 
-      <%= f.input :title %>
-      <%= f.input :body %>
+      <%= f.input :source_url, :size => 80, :input_html => { :onchange => "updateRemotePictureList(this)" } %>
+      <%= f.input :title, :size => 80 %>
+      <%= f.input :picture_image, :as => :file, :label => "Main Image" %>
+      <li id="remote_image_selector">
+        <label>&nbsp;</label>
+        <div class="input_group">
+          <%= f.hidden_field :remote_picture_image_url %>
+          <p class="message">or<br/>Select from images in source page</p>
+          <ul id="remote_picture_images"><li class="message">(no data)</li></ul>
+        </div>
+      </li>
       
+      <%= f.input :body, :label => "Content" %>
       <li>
         <label>TAG</label>
         <div class="input_group">

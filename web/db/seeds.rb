@@ -62,16 +62,16 @@ Tagging.create([
 
 
 Post.create([
-  { user_id: 1, category_id: 2, title:"첫번째 포스트", title_en:"", 
+  { user_id: 1, category_id: 2, title:"첫번째 포스트", title_en:"", kind:"compose",
     body:"I can't quite figure out how to pull off @include transition(box-shadow) and have compass compile that into -webkit-transition: -webkit-box-shadow, -moz-transition: -moz-box-shadow, etc. Is this currently possible?",
     source_url:"http://www.naver.com", published_at: 1.week.ago },
-  { user_id: 1, category_id: 2, title:"두번째 포스트", title_en:"", 
+  { user_id: 1, category_id: 2, title:"두번째 포스트", title_en:"", kind:"link", 
     body:"I can't quite figure out how to pull off @include transition(box-shadow) and have compass compile that into -webkit-transition: -webkit-box-shadow, -moz-transition: -moz-box-shadow, etc. Is this currently possible?",
     source_url:"http://www.naver.com", published_at: 1.week.ago },
-  { user_id: 1, category_id: 3, title:"세번째 포스트", title_en:"", 
+  { user_id: 1, category_id: 3, title:"세번째 포스트", title_en:"", kind:"link",
     body:"I can't quite figure out how to pull off @include transition(box-shadow) and have compass compile that into -webkit-transition: -webkit-box-shadow, -moz-transition: -moz-box-shadow, etc. Is this currently possible?",
     source_url:"http://www.naver.com", published_at: 4.day.ago },
-  { user_id: 1, category_id: 4, title:"네번째 포스트", title_en:"", 
+  { user_id: 1, category_id: 4, title:"네번째 포스트", title_en:"", kind:"link",
     body:"I can't quite figure out how to pull off @include transition(box-shadow) and have compass compile that into -webkit-transition: -webkit-box-shadow, -moz-transition: -moz-box-shadow, etc. Is this currently possible?",
     source_url:"http://www.naver.com", published_at: 3.day.ago },
 ])
