@@ -133,7 +133,7 @@ ActiveRecord::Schema.define(:version => 20110829102627) do
     t.datetime "published_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "picture"
+    t.string   "picture_image"
   end
 
   add_index "posts", ["category_id"], :name => "index_posts_on_category_id"

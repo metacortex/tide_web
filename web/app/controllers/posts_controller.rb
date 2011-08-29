@@ -20,6 +20,9 @@ class PostsController < ApplicationController
   end
   
   def create
+    if params[:post][:picture_image]
+      params[:post][:remote_picture_image_url] = nil
+    end
     @post = Post.new(params[:post])
     
     if @post.save
