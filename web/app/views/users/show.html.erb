@@ -136,15 +136,7 @@
     %>
       <%= content_tag :ul, :class => "people", :id => "connections_#{idx}", :style => (idx == 0) ? nil : "display:none" do %>
         <% cons.each do |c| %>
-          <% user = c.target %>
-          <li>
-            <%= display_user_category_icon(user) %>
-            <div class="profile"><%= image_tag user.profile_image.url %></div>
-            <% unless user.name_e.blank? %>
-              <div class="username_e"><%= link_to user.name_e, user %></div>
-            <% end %>
-            <div class="username"><%= link_to user.name, user %></div>
-          </li>
+          <li><%= render "users/thumb", :user => c.target, :connect_button => true %></li>
         <% end %>
       <% end %>
     <% end %>
@@ -169,14 +161,7 @@
     <% else %>
       <ul class="people">
         <% common_users.each do |user| %>
-          <li>
-            <%= display_user_category_icon(user) %>
-            <div class="profile"><%= image_tag user.profile_image.url %></div>
-            <% unless user.name_e.blank? %>
-              <div class="username_e"><%= link_to user.name_e, user %></div>
-            <% end %>
-            <div class="username"><%= link_to user.name, user %></div>
-          </li>
+          <li><%= render "users/thumb", :user => user %></li>
         <% end %>
       </ul>
     <% end %>

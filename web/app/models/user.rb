@@ -90,7 +90,7 @@ class User < ActiveRecord::Base
   
   
   def connected_to?(u)
-    connections.detect {|c| c.user_id == u.id }
+    connections.detect {|c| c.target_id == u.id }
   end
   
   def connection_requested_to?(u)

@@ -16,13 +16,7 @@
   <ul>
     <% 25.times do %>
       <% user = User.first %>
-      <li>
-        <div class="profile">Profile</div>
-        <% unless user.name_e.blank? %>
-          <div class="username_e"><%= link_to user.name_e, user %></div>
-        <% end %>
-        <div class="username"><%= link_to user.name, user %></div>
-      </li>
+      <li><%= render "users/thumb", :user => user, :connect_button => true %></li>
     <% end %>
   </ul>
 </div>

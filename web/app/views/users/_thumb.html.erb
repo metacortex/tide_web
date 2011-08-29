@@ -1,0 +1,12 @@
+<% connect_button ||= false %>
+
+<%= display_user_category_icon(user) %>
+<div class="profile"><%= image_tag user.profile_image.url %></div>
+<% unless user.name_e.blank? %>
+  <div class="username_e"><%= link_to user.name_e, user %></div>
+<% end %>
+<div class="username"><%= link_to user.name, user %></div>
+
+<% if connect_button %>
+  <%= render "connections/button", :user => user %>
+<% end %>
