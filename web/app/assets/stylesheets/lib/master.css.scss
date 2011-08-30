@@ -656,6 +656,46 @@ div.post {
 
 
 
+/* INVITATION */
+
+.invitations {
+  @include content-section;
+  form {
+    .invite {
+      border-bottom: 1px dotted #ccc;
+      .input {
+        padding:10px 0;
+        label { @include float(left); width:100px; text-align:right; margin-right:10px;}
+        textarea { width:520px;}
+        .input_groups {
+          @include clearfix;
+          padding:1px 0;
+          label { text-align:left; margin-left:5px;}
+          input { @include float(left); margin-left:2px;}
+        }
+      }
+    }
+    .buttons {
+      @include clearfix;
+      padding-top:20px;
+      a {
+        @include float(left);
+        @include hover-link;
+        margin-left:80px;
+      }
+      input { @include float(right); padding:6px 18px;}
+    }
+  }
+}
+
+#invitations {
+  
+}
+
+
+
+
+
 
 
 /* FORM - SEMANTIC */

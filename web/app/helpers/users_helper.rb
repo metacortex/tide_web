@@ -6,7 +6,9 @@ module UsersHelper
   end
   
   def display_user_category_icon(u)
-    content_tag :div, (image_tag "type_#{u.category.to_s[0].downcase}.png"), :class => "category"
+    if u.category
+      content_tag :div, (image_tag "type_#{u.category.to_s[0].downcase}.png"), :class => "category"
+    end
   end
   
 end

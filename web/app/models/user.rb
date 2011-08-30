@@ -105,4 +105,17 @@ class User < ActiveRecord::Base
 
 
 
+  private
+  
+    after_create :connect_invited_users
+    
+    def connect_invited_users
+      Invitation.where(:email => self.email).each do |iv|
+        iv.accept!
+        Connection.make_pair(self, iv.user, iv.kind) if iv.user
+      end
+    end
+
+
+
 end

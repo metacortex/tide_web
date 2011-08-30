@@ -10,6 +10,7 @@
 #  body           :text
 #  body_en        :text
 #  source_url     :string(255)
+#  kind           :string(255)
 #  assets_count   :integer(4)      default(0)
 #  taggings_count :integer(4)      default(0)
 #  comments_count :integer(4)      default(0)
@@ -22,6 +23,7 @@
 #  published_at   :datetime
 #  created_at     :datetime
 #  updated_at     :datetime
+#  picture_image  :string(255)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html

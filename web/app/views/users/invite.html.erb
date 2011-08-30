@@ -1,0 +1,58 @@
+<div class="content_title">
+  <div class="title">INVITE FRIENDS TO TIDE</div>
+</div>
+
+<%= flash[:notice] %>
+
+<div class="invitations">
+  <%= form_tag invitations_path, :method => :post do %>
+    
+    <div id="invitations">
+    </div>
+    
+    <div class="buttons">
+      <%= link_to_function "+ADD MORE FRIENDS", "moreFriendForm()" %>
+      <%= submit_tag "SEND INVITATION" %>
+    </div>
+    
+  <% end %>
+</div>
+
+
+<script>
+
+function moreFriendForm() {
+  var f = $("#invitations");
+  var template = $("#invitation_template");
+  f.append(template.tmpl({ id: new Date().getTime() }));
+  return false;
+}
+
+</script>
+
+
+<script type="text/x-jquery-tmpl" id="invitation_template">
+<div class="invite">
+  <div class="input">
+    <label for="invitation_${ id }_email">Email</label>
+    <input id="invitation_${ id }_email" name="invitation[${ id }][email]" size="30" type="text">
+  </div>
+  <div class="input">
+    <label>Kind</label>
+    <div class="input_groups">
+      <input id="invitation_${ id }_kind_co-worker" name="invitation[${ id }][kind]" type="radio" value="co-worker">
+      <label for="invitation_${ id }_kind_co-worker">CO-WORKER</label>
+      <input id="invitation_${ id }_kind_classmate" name="invitation[${ id }][kind]" type="radio" value="classmate">
+      <label for="invitation_${ id }_kind_classmate">CLASSMATE</label>
+      <input id="invitation_${ id }_kind_friend" name="invitation[${ id }][kind]" type="radio" value="friend">
+      <label for="invitation_${ id }_kind_friend">FRIEND</label>
+      <input id="invitation_${ id }_kind_etc" name="invitation[${ id }][kind]" type="radio" value="etc">
+      <label for="invitation_${ id }_kind_etc">ETC</label>
+    </div>
+  </div>
+  <div class="input">
+    <label for="invitation_${ id }_message">Message</label>
+    <textarea rows="5" id="invitation_${ id }_message" name="invitation[${ id }][message]"></textarea>
+  </div>
+</div>
+</script>

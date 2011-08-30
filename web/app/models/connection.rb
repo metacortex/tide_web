@@ -32,6 +32,18 @@ class Connection < ActiveRecord::Base
   scope :as_etc, where(:connection_type => "etc")
 
 
+
+  def self.make_pair(u1, u2, kind)
+    a = Time.now
+
+    Connection.create(user_id:u1.id, target_id:u2.id, connection_type:kind, accepted_at:a)
+    Connection.create(user_id:u2.id, target_id:u1.id, connection_type:kind, accepted_at:a)
+    
+    User.increment_counter(:connections_count, u1.id)
+    User.increment_counter(:connections_count, u2.id)
+  end
+
+
   def accept!
     a = Time.now
     self.accepted_at = a

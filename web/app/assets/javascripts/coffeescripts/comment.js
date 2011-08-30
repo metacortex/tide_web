@@ -1,5 +1,5 @@
 $(function(){
-  
+
 if (window._CommentApp) {
 
   // model: Comment

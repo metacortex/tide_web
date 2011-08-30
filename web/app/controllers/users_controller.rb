@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  before_filter :authenticate_user!, :only => [:edit_profile, :update_profile]
+  before_filter :authenticate_user!, :only => [:edit_profile, :update_profile, :invite]
 
   
   def index
@@ -15,6 +15,9 @@ class UsersController < ApplicationController
   
   def search
     @users = User.all
+  end
+  
+  def invite
   end
 
   def show
