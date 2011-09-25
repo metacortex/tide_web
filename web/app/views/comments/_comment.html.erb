@@ -1,29 +1,30 @@
 <div class="user">
-  <div class="profile">
-    Profile
-  </div>
-  <div class="username"><%= link_to "${user.name}", "/users/${user_id}" %></div>
+  <img src="${user.profile_image.thumb.url}" />
 </div>
 
-<div class="body">{{html body.replace(new RegExp("\n","g"), "<br/>") }}</div>
-
-{{if user_id == window._userID }}
-  <div class="comment_action">
-    <ul class="actions">
-      <li><%= link_to "MODIFY", "#edit", :class => "edit_button" %></li>
-      <li><%= link_to "DELETE", "#destroy", :class => "destroy_button" %></li>
-    </ul>
-  </div>
-{{/if}}
-
-<div class="status">
+<div class="body">
+  <div class="username"><%= link_to "<em>${user.name_e}</em> ${user.name}".html_safe, "/users/${user_id}" %></div>
   <div class="timestamp">${ created_at }</div>
-  <div class="agreement">
-    <div class="positive">
-      <%= link_to "+ ${ positive_agreements_count }", "#agree_positive", :class => "agree_positive" %>
+  <div class="comment_body">{{html body.replace(new RegExp("\n","g"), "<br/>") }}</div>
+
+  {{if user_id == window._userID }}
+    <div class="comment_action">
+      <ul class="actions">
+        <li><%= link_to "MODIFY", "#edit", :class => "edit_button" %></li>
+        <li><%= link_to "DELETE", "#destroy", :class => "destroy_button" %></li>
+      </ul>
     </div>
-    <div class="negative">
-      <%= link_to "- ${ negative_agreements_count }", "#agree_negative", :class => "agree_negative" %>
+  {{/if}}
+
+  <div class="status">
+    <div class="agreement">
+      <div class="positive">
+        <%= link_to "+ ${ positive_agreements_count }", "#agree_positive", :class => "agree_positive" %>
+      </div>
+      <div class="negative">
+        <%= link_to "- ${ negative_agreements_count }", "#agree_negative", :class => "agree_negative" %>
+      </div>
     </div>
   </div>
+
 </div>

@@ -29,4 +29,8 @@ class Comment < ActiveRecord::Base
   validates_presence_of :body
   
   
+  def user_profile_image
+    user.profile_image.url(:thumb)
+  end
+  
 end

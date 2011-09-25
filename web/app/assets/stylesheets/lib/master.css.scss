@@ -176,14 +176,14 @@ $sidebar_width: 290px;
 }
 
 @mixin content-section {
-  h3 { color:#666; padding-top:20px;}
+  h3 { color:#4d4d4d;}
   width: $content_width;
   margin-top: 10px;
   .message { padding:20px 0; color:#666; line-height:150%;}
 }
 
 @mixin toolbox {
-  li { 
+  li {
     @include float(left);
     margin-left: 7px;
     a { display:block; border:1px solid #888; color:#888; font-size:0.8em; padding:2px 5px; text-decoration:none; text-align:center;}
@@ -275,7 +275,7 @@ $sidebar_width: 290px;
       .category { margin-bottom:5px;}
       .picture {
         @include float(left); margin-right:15px;
-        img { width:250px;}
+        img { width:250px; height:150px;}
       }
       .content {
         @include float(left); width:365px;
@@ -386,16 +386,15 @@ div.post {
     text-align:center; margin:10px;
     img { max-width:450px;}
   }
-  .content {
-    line-height:150%;
-  }
+  .content { line-height:150%;}
   .author { 
     line-height:150%;
-    text-align:right;
-    em { text-align:left;}
-    span { font-style:italic; color:#444; font-size:0.9em;}
+    text-align:right; padding-right:10px;
+    em { text-align:left; color:#4d4d4d;}
+    span { color:#bfbfbf; font-size:0.9em; font-weight:bold;}
     a { text-align:left; display:block; @include hover-link; @include float(right); margin-left:6px;}
   }
+  .posted_at { line-height:150%; text-align:right; padding-right:10px; color:#bfbfbf; font-size:0.9em; font-weight:bold;}
   .source { 
     margin:1em 0;
     a { @include hover-link;}
@@ -425,10 +424,16 @@ div.post {
   }
   div.new_comment {
     @include content-section;
+    h3 { @include replace-text-with-dimensions("t/News_NewComment.gif", 123, 18);}
     form {
-      margin-top: 6px;
+      margin-top:6px;
       textarea { padding:5px; width:630px; height:100px;}
       .buttons { text-align:right; margin-top:5px;}
+      input.button { 
+        background:url("t/News_PostComment.gif") no-repeat; width:62px; height:30px; border:none; padding:0; margin:0;
+        color:transparent; text-index:-9999em; text-transform:capitalize; 
+        cursor:pointer;
+      }
     }
   }
   div.edit_comment {
@@ -441,7 +446,8 @@ div.post {
   }
   .comments {
     @include content-section;
-    padding-bottom: 50px;
+    padding-bottom:50px;
+    h3 { @include replace-text-with-dimensions("t/News_Comments.gif", 97, 18);}
     ul {
       margin-top: 6px;
       li.comment {
@@ -452,14 +458,23 @@ div.post {
         .user {
           @include float(left);
           margin-right: 15px;
-          .profile { width:80px; border:1px solid #ccc; padding:40px 0; text-align:center; margin-bottom:5px;}
-          .username { padding:3px; font-size:0.9em;}
-          a { @include hover-link;}
+          img { width:100px; height:100px;}
         }
         .body {
           @include float(left);
-          line-height: 150%;
-          width: 540px;
+          width: 520px;
+          .username {
+            @include float(left);
+            em { color:#4d4d4d; font-size:14px;}
+            a { color:#4d4d4d; @include hover-link;}
+          }
+          .timestamp { @include float(right); color:#bfbfbf; font-weight:bold;}
+          .comment_body {
+            clear: both;
+            padding-top: 10px;
+            line-height: 150%;
+            color: #4d4d4d;
+          }
         }
         .comment_action { 
           @include float(right);
@@ -472,7 +487,6 @@ div.post {
         .status {
           clear: both;
           padding-top:5px;
-          .timestamp { @include float(left); color:#666; font-size:0.9em; padding:3px;}
           .agreement { 
             @include float(right);
             .positive { @include float(left); margin-left:6px;}

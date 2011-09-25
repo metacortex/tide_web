@@ -169,6 +169,14 @@ Event.create([
   { name:"Test Event 4", abbr:"This is a test event. Hello~ :)", body:"This is a test event. Hello~ :)", event_type:"event", opened_at: 32.day.since, closed_at: 33.day.since },
 ])
 
+Comment.create([
+  { event_id:4, user_id:2, body:"안녕하세요.\n 정말 좋은 글이에요." },
+  { event_id:4, user_id:3, body:"안녕하세요.\n 정말 좋은 글이에요." },
+  { event_id:4, user_id:4, body:"안녕하세요.\n 정말 좋은 글이에요." },
+  { event_id:3, user_id:2, body:"안녕하세요.\n 정말 좋은 글이에요." },
+  { event_id:2, user_id:2, body:"안녕하세요.\n 정말 좋은 글이에요." },
+])
+
 
 
 

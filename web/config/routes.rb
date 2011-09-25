@@ -45,7 +45,9 @@ Web::Application.routes.draw do
   resources :invitations
   
   match '/tide' => "main#index"
-  resources :events
+  resources :events do
+    resources :comments
+  end
   
 
   # Sample resource route with options:
