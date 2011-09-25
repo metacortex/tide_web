@@ -1,25 +1,30 @@
 <div class="content_title">
-  <div class="title">TIDE</div>
+  <div class="title_tide">TIDE</div>
+</div>
+
+<div class="splash">
+  <div><%= image_tag "Main_AppPlaceholder.jpg" %></div>
 </div>
 
 <div class="about_us">
-  <div class="splash">
-    <div>Main Picture</div>
-  </div>
-  
   <ul class="nav">
-    <li id="nav_1" class="current"><%= link_to_function "What is TIDE", "setTabNav(1)" %></li>
-    <li id="nav_2"><%= link_to_function "TIDE Staff", "setTabNav(2)" %></li>
-    <li id="nav_3"><%= link_to_function "Contact TIDE", "setTabNav(3)" %></li>
+    <li id="nav_1" class="go_about current"><%= link_to_function "What is TIDE", "setTabNav(1)" %></li>
+    <li class="spacer"></li>
+    <li id="nav_2" class="go_staff"><%= link_to_function "TIDE Staff", "setTabNav(2)" %></li>
+    <li class="spacer"></li>
+    <li id="nav_3" class="go_contact"><%= link_to_function "Contact TIDE", "setTabNav(3)" %></li>
   </ul>
   
   <div class="nav_content_container">
     <div id="about_1" class="nav_content">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p>청년들의 패기와 도전정신이 국가와 세계사회의 미래를 결정합니다.</p>
+      <p>TIDE Institute는 창업을 통해 자신의 뜨거운 열정과 창조적인 정신을 발현시키고 더 나아가 국가와 세계 사회에 새로운 가치를 더하고자 하는 청년들을 지원합니다.</p>
+      <p>TIDE Institute는 첨단 과학기술의 트렌드에 대한 조사, 연구, 공유를 통해 청년들의 상상력을 자극하고 가까운 미래를 전망할 수 있는 안목을 키워주며 융복합 과학기술과 디자인에 대한 접근성을 높여 보다 경쟁력 있는 창업이 가능하도록 지원합니다.</p>
+      <p>TIDE Institute는 글로벌한 창업을 지향하며 이를 위해 필요한 자원과 국제적 네트워크를 지원합니다.</p>
+      <p>TIDE Institute는 대한민국에 보다 역동적인 창업정신이 뿌리내리는데 기여하고자 합니다.</p>
+      <br />
+      <p>TIDE란?</p>
+      <p>Technology Imagination Design Entrepreneurship.</p>
     </div>
   
     <div id="about_2" class="nav_content" style="display:none">
@@ -52,12 +57,15 @@
 
 <div class="events">
   <h3>TIDE Events & Activities</h3>
+  <div class="more"><%= link_to "SHOW MORE >>", events_path %></div>
+
   <%= render "events/events" %>
 </div>
 
 
-<div class="pagenav">
-  <div class="next"><%= link_to "SHOW MORE", events_path %></div>
+
+<div class="sidebar">
+  <%= render "shared/side_app" %>
 </div>
 
 

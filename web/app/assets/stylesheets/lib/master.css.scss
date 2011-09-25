@@ -4,7 +4,10 @@
 
 /* TYPOGRAPHY */
 
-body { font-family:"Lucida Grande", Arial, sans-serif; font-size:13px;}
+body {
+  font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:13px;
+  background: url("b/background_tile.png");
+}
 
 @mixin heading { font-family:Arial; font-weight:bold;}
 
@@ -20,23 +23,24 @@ em { font-weight:bold;}
 
 /* GLOBAL LAYOUT */
 
-.wrapper { width:960px; position:relative; margin:5px auto 25px;}
+.wrapper { width:946px; position:relative; margin:25px auto 25px; border:2px solid #597F94; padding:10px 25px; background:white;}
 
 #h {
   @include clearfix;
+  background: url("b/Main_SlashLine.gif") no-repeat left bottom; padding-bottom:20px;
   h1 a {
     @include float(left);
-    @include replace-text-with-dimensions("logo.png", 115, 130);
+    @include replace-text-with-dimensions("logo.gif", 110, 35);
   }
   ul.account_nav {
-    position:absolute; top:10px; right:0;
+    position:absolute; top:18px; right:250px;
     @include inline-list;
     font-size: 0.9em;
-    li { margin-left:15px;}
-    a { @include hover-link;}
+    li { margin-left:25px;}
+    a { @include hover-link; color:#444;}
   }
   #globalsearch { 
-    position:absolute; top:35px; right:0; width:120px;
+    position:absolute; top:15px; right:25px; width:200px;
     #g-search {
       position:relative; padding:0; width:100%; height:auto; background-image:none; background-color:rgba(255,255,255,.1);
       @include box-shadow(rgba(255, 255, 255, 0.2) 0 1px 0, rgba(0,0,0,0.6) 0 2px 1px inset);
@@ -50,19 +54,34 @@ em { font-weight:bold;}
     .sp-magnify * { position:absolute; opacity:0; width:15px; height:14px; background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAOCAQAAABedl5ZAAAAzklEQVQYlWNgAIP%2F9v%2FrwVCfARn85%2F%2B%2F%2Fz8CzEeS%2BnMQJPL0%2Ba37796DJfsZ4EYBwar9DBkMCQwFR86DJeXBUo%2F6QToYHCAKtaO%2Bf%2F%2F%2F%2F3kmmHNm%2Fv%2F%2FD27CTee4c%2Ff%2F%2F2vT4VKfXiM5CQg2t4M5lckQd%2F3nB0n8vQji5HhCFEpArP73AeGF35dACkEgYPtxmODXnxueg2igbqikh3l%2F1%2FpV%2B7vWyzUwxHatB%2BvcBLNfgMEA6AEDBg4g26Br%2FffvqeUMWIEBULcEdikGkG4AzGOfgUQC7TUAAAAASUVORK5CYII%3D') no-repeat 0 0; }
     .sp-magnify .magnify { opacity:1; background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAYAAABy6%2BR8AAAAlElEQVR42oWQQRHEIAxF10ElVAISVgo3bCABCUhYCZWAhEpAQpoD6bzJhNnDO0DyyA8fEXkppXyVCpLViDUfyqVIQN9JFMY637hrlCySFauL21E7KVWbAIGx56rnSLqc5KPXSLo3kySalPhTygFhRDtFC09EIsMeZJSGBj7Qveh3OJW89syImiH%2BIO2BOJX0XwA2%2BQEL4pAhSX4aBQAAAABJRU5ErkJggg%3D%3D') no-repeat 0 0; }
   }
+  #ssn {
+    position:absolute; top:90px; right:25px; padding-left:60px;
+    background:url('t/Main_SSN_Title.gif') no-repeat left;
+    @include clearfix;
+    a { @include float(left); text-decoration:none; margin-left:5px;}
+    li { @include float(left);}
+    .tw a { @include replace-text-with-dimensions("t/Main_SSN_TW.gif", 25, 25);}
+    .fb a { @include replace-text-with-dimensions("t/Main_SSN_FB.gif", 25, 25);}
+  }
   #gnb {
     @include float(left);
-    margin-top: 85px;
-    margin-left: 30px;
+    margin-top: 30px;
     ul {
-      @include horizontal-list;
       li {
-        padding: 0 15px;
-        font-size: 1.2em;
-        a { display:block; text-decoration:none; padding:2px;}
-        a:hover { border-bottom:5px solid #ddd;}
-        &.current { 
-          a { border-bottom:5px solid #999;}
+        @include clearfix;
+        margin: 5px 0; font-size: 1.2em;
+        a { @include float(left); text-decoration:none;}
+        &.go_tide {
+          a { @include replace-text-with-dimensions("t/MenuButton_Tide.gif", 51, 20);}
+          a:hover, &.current a { @include replace-text-with-dimensions("t/MenuButton_Tide_HL.gif", 51, 20);}
+        }
+        &.go_news {
+          a { @include replace-text-with-dimensions("t/MenuButton_News.gif", 63, 20);}
+          a:hover, &.current a { @include replace-text-with-dimensions("t/MenuButton_News_HL.gif", 63, 20);}
+        }
+        &.go_people {
+          a { @include replace-text-with-dimensions("t/MenuButton_People.gif", 81, 20);}
+          a:hover, &.current a { @include replace-text-with-dimensions("t/MenuButton_People_HL.gif", 81, 20);}
         }
       }
     }
@@ -73,7 +92,7 @@ em { font-weight:bold;}
 
 #c {
   @include clearfix;
-  margin-top: 30px;
+  margin-top: 10px;
   padding-bottom: 30px;
 }
 
@@ -85,7 +104,7 @@ em { font-weight:bold;}
 /* COMMON */
 
 $content_width: 640px;
-$sidebar_width: 300px;
+$sidebar_width: 290px;
 
 @mixin has_more_link {
   position:relative;
@@ -107,18 +126,24 @@ $sidebar_width: 300px;
   }
 }
 
+@mixin content_title { 
+  position:relative;
+  font-weight:bold; font-size:1.75em; color:#555;
+}
+
 .content_title {
   @include has_more_link;
   width: $content_width;
-  .title { position:relative; font-weight:bold; font-size:1.75em; color:#555;}
+  .title_tide   { @include content_title; @include replace-text-with-dimensions("t/PageCategory_Tide.gif", 82, 30);}
+  .title_people { @include content_title; @include replace-text-with-dimensions("t/PageCategory_People.gif", 134, 30);}
+  .title_news   { @include content_title; @include replace-text-with-dimensions("t/PageCategory_News.gif", 103, 30);}
 }
 
 .sidebar {
-  width:$sidebar_width; position:absolute; right:0;
+  width:$sidebar_width; position:absolute; right:25px;
+  margin-top:15px;
   .sb_element {
-    border:1px solid #ddd;
-    margin:1em 0;
-    div { margin: 100px 30px;}
+    div { margin:0;}
   }
   .sb_action {
     a { background:#666; color:#fff; display:block; padding:10px 15px; text-decoration:none;}
@@ -165,30 +190,32 @@ $sidebar_width: 300px;
 
 /* ABOUT */
 
+.splash {
+}
+
 .about_us {
-  margin-top: 10px;
-  .splash {
-    div { text-align:center; padding:100px 0; border:1px solid #999; @include border-radius(10px);}
-  }
+  margin-top:10px;
+  @include content-section;
+  @include float(left);
   ul.nav {
-    margin-top: 10px;
-    height: 27px;
-    border-bottom: 1px solid #999;
+    margin-top:15px;
     li {
-      @include float(left);
-      margin-right: 5px;
-      a {
-        display: block;
-        border: 1px solid #999;
-        border-bottom:none;
-        padding: 8px 15px 5px;
-        text-decoration:none;
-        background: #fff;
+      @include float(left); margin-right:0px; margin-top:3px;
+      a { display:block; text-decoration:none;}
+      &.go_about {
+        a { @include replace-text-with-dimensions("t/AboutButton_About.gif", 217, 25);}
+        a:hover, &.current a { @include replace-text-with-dimensions("t/AboutButton_About_HL.gif", 217, 25);}
+      }
+      &.go_staff {
+        a { @include replace-text-with-dimensions("t/AboutButton_Staff.gif", 153, 25);}
+        a:hover, &.current a { @include replace-text-with-dimensions("t/AboutButton_Staff_HL.gif", 153, 25);}
+      }
+      &.go_contact {
+        a { @include replace-text-with-dimensions("t/AboutButton_Contact.gif", 115, 25);}
+        a:hover, &.current a { @include replace-text-with-dimensions("t/AboutButton_Contact_HL.gif", 115, 25);}
       }
     }
-    li.current {
-      a { padding-bottom: 6px;}
-    }
+    li.spacer { @include replace-text-with-dimensions("b/AboutButton_Slash.gif", 30, 30); margin-top:0;}
   }
   ul.staffs {
     padding: 10px 0;
@@ -210,14 +237,9 @@ $sidebar_width: 300px;
   }
   .nav_content_container {
     clear:both;
-    border: 1px solid #999;
-    border-top:none;
-    @include transition-property(height);
-    @include transition-duration(2s);
-
     .nav_content {
-      padding: 5px 15px;
-      p { padding:10px 0;}
+      padding: 15px 0 30px;
+      p { padding:10px 0; line-height:120%; color:medium-gray; }
     }
   }
 }
@@ -229,12 +251,17 @@ $sidebar_width: 300px;
 
 .events {
   @include content-section;
-  width: 100%;
+  @include float(left);
+  position:relative;
+  h3 { @include replace-text-with-dimensions("t/AboutTitle_EventActivities.gif", 376, 25);}
+  .more { position:absolute; right:0; top:11px;
+    a { display:block; @include replace-text-with-dimensions("t/Button_ShowMore.gif", 122, 13);}
+  }
   ul {
-    margin-top: 10px;
+    margin-top:10px;
     li {
       @include clearfix;
-      padding: 5px 0;
+      padding:5px 0;
       .thumb { @include float(left); margin-right:15px; border:1px solid #999; width:250px; padding:60px 0; text-align:center;}
       .info { @include float(left); width:680px;}
       .time { font-size:1.2em; font-weight:bold; line-height:150%;}

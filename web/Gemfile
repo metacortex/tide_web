@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0.rc6'
+gem 'rails', '3.1.0'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -11,10 +11,10 @@ gem 'mysql2'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails', "  ~> 3.1.0.rc"
-  gem 'coffee-rails', "~> 3.1.0.rc"
+  gem 'sass-rails', "  ~> 3.1.0"
+  gem 'coffee-rails', "~> 3.1.0"
   gem 'uglifier'
-  gem 'compass', :git => 'git://github.com/chriseppstein/compass.git', :branch => 'rails31'
+  gem 'compass', '~> 0.12.alpha.0'
 end
 
 # JavasScript libs
@@ -53,13 +53,14 @@ gem 'remotipart'
 
 
 # helper: Model
-gem 'decent_exposure'
+# gem 'decent_exposure'
 
 
 # helper: View
-gem "meta_search", '>= 1.1.0.pre'
-gem 'formtastic'
-gem 'activeadmin', git: "git://github.com/gregbell/active_admin.git"
+# gem "meta_search", '>= 1.1.1'
+# gem "inherited_resources", "1.2.2"
+# gem 'formtastic'
+gem 'activeadmin'
 
 
 # data processing
@@ -70,7 +71,6 @@ gem 'mini_magick'
 
 group :development do
   gem "annotate"
-  gem "mongrel", ">= 1.2.0.pre2"
 end
 
 group :test do
