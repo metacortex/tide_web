@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110830051432) do
+ActiveRecord::Schema.define(:version => 20110925115132) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -105,12 +105,17 @@ ActiveRecord::Schema.define(:version => 20110830051432) do
   create_table "events", :force => true do |t|
     t.string   "name"
     t.text     "body"
+    t.string   "event_type"
     t.integer  "comments_count", :default => 0
     t.datetime "opened_at"
     t.datetime "closed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "picture_image"
+    t.text     "abbr"
   end
+
+  add_index "events", ["event_type"], :name => "index_events_on_event_type"
 
   create_table "invitations", :force => true do |t|
     t.integer  "user_id"
@@ -155,6 +160,22 @@ ActiveRecord::Schema.define(:version => 20110830051432) do
   add_index "posts", ["published_at"], :name => "index_posts_on_published_at"
   add_index "posts", ["score"], :name => "index_posts_on_score"
   add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
+
+  create_table "registrations", :force => true do |t|
+    t.integer  "event_id"
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "address"
+    t.text     "desc"
+    t.string   "status"
+    t.string   "reg_type"
+    t.string   "attachment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "registrations", ["event_id"], :name => "index_registrations_on_event_id"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"

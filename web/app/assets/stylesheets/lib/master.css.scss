@@ -8,15 +8,15 @@ body {
   font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:13px;
   background: url("b/background_tile.png");
 }
+p { font-family:"Times New Roman", serif;}
 
 @mixin heading { font-family:Arial; font-weight:bold;}
-
 h2 { @include heading; font-size:2em; }
 h3 { @include heading; font-size:1.4em; }
 h4 { @include heading; font-size:1.2em; }
 
-a { color:#359;}
-a:hover, a:visited, a:active { color:#359;}
+a { color:#597f94;}
+a:hover, a:visited, a:active { color:#597f94;}
 
 em { font-weight:bold;}
 
@@ -97,6 +97,11 @@ em { font-weight:bold;}
 }
 
 #f {
+  font-size:11px;
+  color:#4d4d4d;
+  margin-top:40px;
+  margin-bottom:20px;
+  a { color:#4d4d4d; @include hover-link;}
 }
 
 
@@ -134,6 +139,7 @@ $sidebar_width: 290px;
 .content_title {
   @include has_more_link;
   width: $content_width;
+  margin-bottom:15px;
   .title_tide   { @include content_title; @include replace-text-with-dimensions("t/PageCategory_Tide.gif", 82, 30);}
   .title_people { @include content_title; @include replace-text-with-dimensions("t/PageCategory_People.gif", 134, 30);}
   .title_news   { @include content_title; @include replace-text-with-dimensions("t/PageCategory_News.gif", 103, 30);}
@@ -185,6 +191,9 @@ $sidebar_width: 290px;
   }
 }
 
+.category {
+  .event { @include replace-text-with-dimensions("c/NewsCategory_TideEvents.gif", 137, 30);}
+}
 
 
 
@@ -239,7 +248,7 @@ $sidebar_width: 290px;
     clear:both;
     .nav_content {
       padding: 15px 0 30px;
-      p { padding:10px 0; line-height:120%; color:medium-gray; }
+      p { padding:10px 0; line-height:120%; color:#4d4d4d;}
     }
   }
 }
@@ -254,7 +263,8 @@ $sidebar_width: 290px;
   @include float(left);
   position:relative;
   h3 { @include replace-text-with-dimensions("t/AboutTitle_EventActivities.gif", 376, 25);}
-  .more { position:absolute; right:0; top:11px;
+  .more {
+    position:absolute; right:0; top:11px;
     a { display:block; @include replace-text-with-dimensions("t/Button_ShowMore.gif", 122, 13);}
   }
   ul {
@@ -262,15 +272,26 @@ $sidebar_width: 290px;
     li {
       @include clearfix;
       padding:5px 0;
-      .thumb { @include float(left); margin-right:15px; border:1px solid #999; width:250px; padding:60px 0; text-align:center;}
-      .info { @include float(left); width:680px;}
-      .time { font-size:1.2em; font-weight:bold; line-height:150%;}
-      .title { font-size:1.5em; font-weight:bold; line-height:150%;}
-      .desc { line-height:150%; margin:10px 0;}
-      .stats {
-        position:relative;
-        .posted_at { font-style:italic; font-size:0.9em; color:#555;}
-        .comments { position:absolute; top:0; right:0; }
+      .category { margin-bottom:5px;}
+      .picture {
+        @include float(left); margin-right:15px;
+        img { width:250px;}
+      }
+      .content {
+        @include float(left); width:365px;
+        h4 {
+          a { @include hover-link; color:#333; font-size:20pt; line-height:150%;}
+        }
+        .abbr { line-height:150%; margin:10px 0; color:#4d4d4d;}
+        .stats {
+          position:relative; padding-bottom:5px;
+          .posted_at { color:#4d4d4d;}
+          .comments {
+            position:absolute; top:0; right:0; color:#597f94; font-weight:bold; font-size:16px;
+            background:url("i/Icon_Comment.gif") no-repeat left 2px;
+            padding-left:22px;
+          }
+        }
       }
     }
   }

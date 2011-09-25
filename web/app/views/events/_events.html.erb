@@ -1,14 +1,16 @@
 <ul>
   <% @events.each do |ev| %>
     <%= content_tag_for :li, ev do %>
-      <div class="thumb">Main Picture</div>
-      <div class="info">
-        <div class="time"><%= l(ev.opened_at.to_date, :format => :long) %></div>
-        <div class="title"><%= link_to ev.name, ev %></div>
-        <div class="desc"><%= truncate(ev.body, :length => 150) %></div>
+      <div class="category"><%= content_tag :div, ev.event_type, :class => ev.event_type %></div>
+      <div class="picture">
+        <%= image_tag ev.picture_image.url(:thumb) %>
+      </div>
+      <div class="content">
+        <h4><%= link_to ev.name, ev %></h4>
+        <div class="abbr"><%= truncate(ev.abbr, :length => 150) %></div>
         <div class="stats">
-          <div class="posted_at">posted <%= ev.created_at.to_date %></div>
-          <div class="comments">Comments <%= ev.comments_count %></div>
+          <div class="posted_at">posted <%= ev.created_at.to_date.to_s %></div>
+          <div class="comments"><%= ev.comments_count %></div>
         </div>
       </div>
     <% end %>
