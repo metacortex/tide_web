@@ -5,7 +5,8 @@
 #  id             :integer(4)      not null, primary key
 #  name           :string(255)
 #  body           :text
-#  event_type     :string(255)
+#  category       :string(255)
+#  status         :string(255)
 #  comments_count :integer(4)      default(0)
 #  opened_at      :datetime
 #  closed_at      :datetime

@@ -163,10 +163,10 @@ Connection.where(target_id:5, user_id:1).first.update_attributes(remark:"귀요�
 
 
 Event.create([
-  { name:"Test Event 1", abbr:"This is a test event. Hello~ :)", body:"This is a test event. Hello~ :)", event_type:"event", opened_at:  2.day.since, closed_at:  3.day.since },
-  { name:"Test Event 2", abbr:"This is a test event. Hello~ :)", body:"This is a test event. Hello~ :)", event_type:"event", opened_at: 12.day.since, closed_at: 15.day.since },
-  { name:"Test Event 3", abbr:"This is a test event. Hello~ :)", body:"This is a test event. Hello~ :)", event_type:"event", opened_at: 22.day.since, closed_at: 23.day.since },
-  { name:"Test Event 4", abbr:"This is a test event. Hello~ :)", body:"This is a test event. Hello~ :)", event_type:"event", opened_at: 32.day.since, closed_at: 33.day.since },
+  { name:"Test Event 1", abbr:"This is a test event. Hello~ :)", body:"This is a test event. Hello~ :)", category:"event", status:"register", opened_at:  2.day.since, closed_at:  3.day.since },
+  { name:"Test Event 2", abbr:"This is a test event. Hello~ :)", body:"This is a test event. Hello~ :)", category:"event", status:"close", opened_at: 12.day.since, closed_at: 15.day.since },
+  { name:"Test Event 3", abbr:"This is a test event. Hello~ :)", body:"This is a test event. Hello~ :)", category:"event", status:"register", opened_at: 22.day.since, closed_at: 23.day.since },
+  { name:"Test Event 4", abbr:"This is a test event. Hello~ :)", body:"This is a test event. Hello~ :)", category:"event", status:"register", opened_at: 32.day.since, closed_at: 33.day.since },
 ])
 
 Comment.create([

@@ -1,0 +1,9 @@
+<div class="new_registration">
+  <h3>New Registration</h3>
+  <%= form_for [@event, Registration.new], :remote => true do |f| %>
+    <%= f.hidden_field :event_id, :value => @event.id %>
+
+
+    <div class="buttons"><%= f.submit "POST", :class => "button" %></div>
+  <% end %>
+</div>

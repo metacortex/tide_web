@@ -1,7 +1,7 @@
 <ul>
   <% @events.each do |ev| %>
     <%= content_tag_for :li, ev do %>
-      <div class="category"><%= content_tag :div, ev.event_type, :class => ev.event_type %></div>
+      <div class="category"><%= content_tag :div, ev.category, :class => ev.category %></div>
       <div class="picture">
         <%= image_tag ev.picture_image.url(:thumb) %>
       </div>

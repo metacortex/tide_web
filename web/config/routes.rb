@@ -47,6 +47,7 @@ Web::Application.routes.draw do
   match '/tide' => "main#index"
   resources :events do
     resources :comments
+    resources :registrations
   end
   
 

@@ -387,6 +387,10 @@ div.post {
     img { max-width:450px;}
   }
   .content { line-height:150%;}
+  .register_event {
+    margin:10px 0;
+    a { display:block; @include replace-text-with-dimensions("t/registerEvent.gif", 236, 45);}
+  }
   .author { 
     line-height:150%;
     text-align:right; padding-right:10px;

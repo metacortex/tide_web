@@ -4,7 +4,8 @@ class CreateEvents < ActiveRecord::Migration
       t.string :name
       t.text :body
       
-      t.string :event_type
+      t.string :category
+      t.string :status
       
       t.integer :comments_count, :default => 0
       
@@ -13,7 +14,7 @@ class CreateEvents < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :events, :event_type
+    add_index :events, :category
 
     # table: comments
     add_column :comments, :event_id, :integer

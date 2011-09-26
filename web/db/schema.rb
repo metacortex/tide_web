@@ -105,7 +105,8 @@ ActiveRecord::Schema.define(:version => 20110925115132) do
   create_table "events", :force => true do |t|
     t.string   "name"
     t.text     "body"
-    t.string   "event_type"
+    t.string   "category"
+    t.string   "status"
     t.integer  "comments_count", :default => 0
     t.datetime "opened_at"
     t.datetime "closed_at"
@@ -115,7 +116,7 @@ ActiveRecord::Schema.define(:version => 20110925115132) do
     t.text     "abbr"
   end
 
-  add_index "events", ["event_type"], :name => "index_events_on_event_type"
+  add_index "events", ["category"], :name => "index_events_on_category"
 
   create_table "invitations", :force => true do |t|
     t.integer  "user_id"

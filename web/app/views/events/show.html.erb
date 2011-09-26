@@ -4,7 +4,7 @@
 
 <div class="post">
   <div class="category">
-    <%= @event.event_type %>
+    <%= @event.category %>
   </div>
   <h2><%= @event.name %></h2>
   <div class="picture">
@@ -13,6 +13,10 @@
 
   <div class="content">
     <%= @event.body.gsub("\n","<br/>").html_safe %>
+  </div>
+  
+  <div class="register_event">
+    <%= link_to "Register", "#new_registration_popup", :class => "modal" %>
   </div>
 
   <div class="author">
@@ -62,4 +66,8 @@
 
 <div class="sidebar">
   <%= render "shared/side_app" %>
+</div>
+
+<div id="new_registration_popup" style="display:none">
+  <%= render "registration/form" %>
 </div>
