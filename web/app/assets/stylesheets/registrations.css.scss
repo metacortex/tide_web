@@ -1,3 +1,94 @@
 // Place all the styles related to the registrations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@mixin indent($indent: 5px) {
+	margin-left: $indent;
+}
+
+#new_registration_wrapper {
+	background-color: #fff;
+	width: 438px;
+	padding: 15px 10px;
+
+ .title {
+		float: left;
+	}
+	
+	h3 {
+		@include indent;
+	}
+	
+	.desc {
+		@include indent(10px);
+	}
+	
+	.close {
+		float: right;
+		a {
+			text-decoration: none;
+		}
+	}
+}
+
+#new_registration {
+	clear: both;
+	width: 438px;
+	margin-top: 20px;
+	background: url("f/register_line.gif") no-repeat 0 top;
+	
+	label {
+		padding-top: 20px;
+		display: block;
+		@include indent;
+	}
+	
+	input[type="text"], input[type="file"] {
+		@include indent;
+		width: 300px;
+		height: 20px;
+		border-width: 0 0 2px;
+		border-style: solid;
+		border-radius: 0;
+		border-color: #C9D0D6;
+		padding: 3px 5px;
+	}
+	
+	input#registration_address {
+		width: 417px;
+	}
+	
+	textarea {
+		@include indent;
+		margin-top: 10px;
+		border-width: 2px;
+		padding: 3px 5px;
+		width: 418px;
+		height: 50px;
+	}
+	
+	.buttons {
+		padding: 0;
+		margin: 10px 0 0;
+		width: 100%;
+		text-align: right;
+	}
+	
+	input[type="image"] {
+		text-align: right;
+	}
+
+	.field_with_errors {
+		padding: 0px;
+		background-color: transparent;
+		
+		label {
+			background: url("f/register_error.gif") no-repeat right 13px;
+			padding-right: 20px;
+		}
+
+		input, textarea {
+			border-color: #aa2929;
+		}
+	}
+}

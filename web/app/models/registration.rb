@@ -18,9 +18,12 @@
 
 class Registration < ActiveRecord::Base
   
-  belongs_to :event_id
+  belongs_to :event
   
   validates_presence_of :name, :email, :phone, :address, :desc
-  
+  validates_uniqueness_of :email, :scope => :event_id
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
 
+  mount_uploader :asset, AssetUploader
+  
 end

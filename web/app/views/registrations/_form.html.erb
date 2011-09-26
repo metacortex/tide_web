@@ -1,9 +1,35 @@
-<div class="new_registration">
-  <h3>New Registration</h3>
-  <%= form_for [@event, Registration.new], :remote => true do |f| %>
+<div id="new_registration_wrapper">
+	<div class="clearfix">
+		<div class="title">
+		  <h3><%= image_tag("f/register_register.gif") %></h3>
+			<div class="desc">IDEA CONTENT IN SEOUL</div>
+		</div>
+		<div class="close">
+			<a href="#" onclick="close_modal('#new_registration_popup');return false"><%= image_tag("f/register_close.gif") %></a>
+		</div>
+	</div>
+
+  <%= form_for [@event, @registration], :html => {:multipart => true}, :remote => true do |f| %>
     <%= f.hidden_field :event_id, :value => @event.id %>
 
+		<%= f.label :name, image_tag("f/register_name.gif") %>
+    <%= f.text_field :name %>
 
-    <div class="buttons"><%= f.submit "POST", :class => "button" %></div>
+		<%= f.label :email, image_tag("f/register_email.gif") %>
+    <%= f.text_field :email %>
+
+		<%= f.label :phone, image_tag("f/register_phone.gif") %>
+    <%= f.text_field :phone %>
+
+		<%= f.label :address, image_tag("f/register_address.gif") %>
+    <%= f.text_field :address %>
+
+		<%= f.label :desc, image_tag("f/register_introduction.gif") %>
+    <%= f.text_area :desc %>
+
+		<%= f.label :asset, image_tag("f/register_attach.gif") %>
+    <%= f.file_field :asset %>  
+
+    <div class="buttons"><%= image_submit_tag "f/register_submit.gif" %></div>
   <% end %>
 </div>

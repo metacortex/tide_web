@@ -16,7 +16,7 @@
   </div>
   
   <div class="register_event">
-    <%= link_to "Register", "#new_registration_popup", :class => "modal" %>
+    <%= link_to "Register", "#new_registration_popup", :class => "ajax-link modal", :data => { :url => new_event_registration_path(@event), :dom => "#new_registration_popup" } %>
   </div>
 
   <div class="author">
@@ -69,5 +69,5 @@
 </div>
 
 <div id="new_registration_popup" style="display:none">
-  <%= render "registration/form" %>
+  <%= render "registrations/form" %>
 </div>

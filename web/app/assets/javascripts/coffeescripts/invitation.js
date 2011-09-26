@@ -15,6 +15,6 @@ $("a.comming_soon, .comming_soon a").bind("click", function(){ alert("Under Cons
 
 
 // LeanModal
-$(".modal").leanModal();		
+$(".modal").leanModal();
 
 });

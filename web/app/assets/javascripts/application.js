@@ -9,3 +9,20 @@
 //= require ./lib/underscore-min.js
 //= require_tree ./lib
 //= require_tree ./coffeescripts
+
+$("#new_registration").live("ajax:complete", function(e, data, textStatus, jqXHR) {
+	$("#new_registration_popup").html(data.responseText);
+});
+
+$(".ajax-link").live("click", function() {
+	var url = $(this).attr("data-url");
+	var dom = $(this).attr("data-dom");
+	$.get(url, function(data) {
+		$(dom).html(data);
+	})
+})
+
+var close_modal = function(id) {
+	$("#lean_overlay").fadeOut(200);
+	$(id).css({"display":"none"});
+}
