@@ -92,7 +92,7 @@ em { font-weight:bold;}
 
 #c {
   @include clearfix;
-  margin-top: 6px;
+  margin-top: 8px;
   padding-bottom: 30px;
 }
 
@@ -381,7 +381,7 @@ div.post {
   @include float(left);
   margin-top: 10px;
   width:$content_width;
-  h2 { line-height:150%;}
+  h2 { line-height:120%;}
   .picture {
     text-align:center; margin:10px;
     img { max-width:450px;}

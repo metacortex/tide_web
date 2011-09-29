@@ -6,7 +6,7 @@
   <div class="category">
     <%= @event.category %>
   </div>
-  <h2><%= @event.name %></h2>
+  <h2><%= @event.name.html_safe %></h2>
   <div class="picture">
     <%= image_tag @event.picture_image.url %>
   </div>
@@ -31,6 +31,8 @@
       <h3>New Comment</h3>
       <%= form_for [@event,Comment.new] do |f| %>
         <% if user_signed_in? %>
+        <% end %>
+        <% if false %>
           <%= f.text_area :body %>
           <div class="buttons"><%= f.submit "POST", :class => "button" %></div>
         <% else %>

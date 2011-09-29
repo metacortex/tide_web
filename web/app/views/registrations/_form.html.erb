@@ -2,7 +2,7 @@
 	<div class="clearfix">
 		<div class="title">
 		  <h3><%= image_tag("f/register_register.gif") %></h3>
-			<div class="desc">IDEA CONTENT IN SEOUL</div>
+			<div class="desc"><%= @event.name.html_safe %></div>
 		</div>
 		<div class="close">
 			<a href="#" onclick="close_modal('#new_registration_popup');return false"><%= image_tag("f/register_close.gif") %></a>

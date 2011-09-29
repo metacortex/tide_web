@@ -20,7 +20,11 @@
 	}
 	
 	.desc {
-		@include indent(10px);
+		@include indent(8px);
+		padding-top:5px;
+		color: #587e93;
+		line-height: 120%;
+		font-size: 14px;
 	}
 	
 	.close {
@@ -65,6 +69,7 @@
 		padding: 3px 5px;
 		width: 418px;
 		height: 50px;
+		border-color: #C9D0D6;
 	}
 	
 	.buttons {

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110926110535) do
+ActiveRecord::Schema.define(:version => 20110929041107) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -60,6 +60,16 @@ ActiveRecord::Schema.define(:version => 20110926110535) do
   add_index "agreements", ["event_id"], :name => "index_agreements_on_event_id"
   add_index "agreements", ["post_id"], :name => "index_agreements_on_post_id"
   add_index "agreements", ["user_id"], :name => "index_agreements_on_user_id"
+
+  create_table "banners", :force => true do |t|
+    t.string   "category"
+    t.integer  "event_id"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "banners", ["category"], :name => "index_banners_on_category"
 
   create_table "categories", :force => true do |t|
     t.string   "name"

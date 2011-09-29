@@ -1,3 +1,10 @@
+<% @banners = Banner.where(:category => "side").includes(:event) %>
+
+<% if banner = @banners.first %>
+
 <div class="sb_element">
-  <div><%= link_to_function image_tag("sample_poster.png", :height => 450, :width => 290), "alert('under construction ^^;')" %></div>
+  <div><%= link_to image_tag(banner.event.poster_image.url), banner.event %></div>
 </div>
+
+<% end %>
+
