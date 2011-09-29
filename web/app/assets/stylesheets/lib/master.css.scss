@@ -212,8 +212,8 @@ $sidebar_width: 290px;
       @include float(left); margin-right:0px; margin-top:3px;
       a { display:block; text-decoration:none;}
       &.go_about {
-        a { @include replace-text-with-dimensions("t/AboutButton_About.gif", 217, 25);}
-        a:hover, &.current a { @include replace-text-with-dimensions("t/AboutButton_About_HL.gif", 217, 25);}
+        a { @include replace-text-with-dimensions("t/AboutButton_About.gif", 174, 25);}
+        a:hover, &.current a { @include replace-text-with-dimensions("t/AboutButton_About_HL.gif", 174, 25);}
       }
       &.go_staff {
         a { @include replace-text-with-dimensions("t/AboutButton_Staff.gif", 153, 25);}
