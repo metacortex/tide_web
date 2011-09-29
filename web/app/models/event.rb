@@ -12,6 +12,7 @@
 #  closed_at      :datetime
 #  created_at     :datetime
 #  updated_at     :datetime
+#  poster_image   :string(255)
 #  picture_image  :string(255)
 #  abbr           :text
 #
@@ -24,6 +25,7 @@ class Event < ActiveRecord::Base
   validates_presence_of :name, :body
 
   mount_uploader :picture_image, PictureUploader
+  mount_uploader :poster_image, PictureUploader
 
 
 end

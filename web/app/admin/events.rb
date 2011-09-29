@@ -15,6 +15,9 @@ ActiveAdmin.register Event do
   form do |f|
     f.inputs do
       f.input :name, :as => :string
+      f.input :poster_image, :as => :file
+      f.input :picture_image, :as => :file
+      f.input :abbr, :as => :text
       f.input :body, :as => :text
       f.input :opened_at
       f.input :closed_at

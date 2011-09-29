@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110926131829) do
+ActiveRecord::Schema.define(:version => 20110926110535) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(:version => 20110926131829) do
     t.datetime "closed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "poster_image"
     t.string   "picture_image"
     t.text     "abbr"
   end
@@ -132,12 +133,6 @@ ActiveRecord::Schema.define(:version => 20110926131829) do
   add_index "invitations", ["code"], :name => "index_invitations_on_code"
   add_index "invitations", ["email"], :name => "index_invitations_on_email"
   add_index "invitations", ["user_id"], :name => "index_invitations_on_user_id"
-
-  create_table "pens", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "posts", :force => true do |t|
     t.integer  "user_id"

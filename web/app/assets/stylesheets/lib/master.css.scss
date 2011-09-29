@@ -27,7 +27,7 @@ em { font-weight:bold;}
 
 #h {
   @include clearfix;
-  background: url("b/Main_SlashLine.gif") no-repeat left bottom; padding-bottom:20px;
+  background: url("b/Main_SlashLine.gif") no-repeat left bottom; padding-bottom:18px;
   h1 a {
     @include float(left);
     @include replace-text-with-dimensions("logo.gif", 110, 35);
@@ -92,7 +92,7 @@ em { font-weight:bold;}
 
 #c {
   @include clearfix;
-  margin-top: 10px;
+  margin-top: 6px;
   padding-bottom: 30px;
 }
 
@@ -139,7 +139,7 @@ $sidebar_width: 290px;
 .content_title {
   @include has_more_link;
   width: $content_width;
-  margin-bottom:15px;
+  margin-bottom:10px;
   .title_tide   { @include content_title; @include replace-text-with-dimensions("t/PageCategory_Tide.gif", 82, 30);}
   .title_people { @include content_title; @include replace-text-with-dimensions("t/PageCategory_People.gif", 134, 30);}
   .title_news   { @include content_title; @include replace-text-with-dimensions("t/PageCategory_News.gif", 103, 30);}
@@ -280,7 +280,7 @@ $sidebar_width: 290px;
       .content {
         @include float(left); width:365px;
         h4 {
-          a { @include hover-link; color:#333; font-size:20pt; line-height:150%;}
+          a { @include hover-link; color:#333; font-size:20px; line-height:110%;}
         }
         .abbr { line-height:150%; margin:10px 0; color:#4d4d4d;}
         .stats {
