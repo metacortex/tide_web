@@ -11,11 +11,11 @@ gem 'mysql2'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails', "  ~> 3.1.0"
   gem 'coffee-rails', "~> 3.1.0"
   gem 'uglifier'
   gem 'compass', '~> 0.12.alpha.0'
 end
+gem 'sass-rails', "  ~> 3.1.0"
 
 # JavasScript libs
 gem 'jquery-rails'
