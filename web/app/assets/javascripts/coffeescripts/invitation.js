@@ -17,4 +17,15 @@ $("a.comming_soon, .comming_soon a").bind("click", function(){ alert("Under Cons
 // LeanModal
 $(".modal").leanModal();
 
+
+// bxSlider
+$('#banner_slider').bxSlider({
+  // ticker: true,
+  // tickerSpeed: 800,
+  auto: true,
+  speed: 400,
+  controls: false
+});
+
+
 });

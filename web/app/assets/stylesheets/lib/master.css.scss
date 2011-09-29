@@ -228,16 +228,17 @@ $sidebar_width: 290px;
     }
     li.spacer { @include replace-text-with-dimensions("b/AboutButton_Slash.gif", 30, 30); margin-top:0;}
   }
+  h4 { margin-top:20px;}
   ul.staffs {
-    padding: 10px 0;
+    padding: 5px 0;
     li {
       @include clearfix;
       padding: 10px 0;
       .profile { @include float(left); margin-right:10px;}
-      .desc { @include float(left); width:750px; line-height:150%;}
+      .desc { @include float(left); width:750px; line-height:120%; margin-top:5px;}
       .portrait { width:100px; padding:50px 0; border:1px solid #ccc; text-align:center; margin-bottom:3px;}
-      .name_en { font-size:0.9em; font-weight:bold; padding:3px;}
-      .name { font-size:0.9em; padding:3px;}
+      .name_en { font-size:0.9em; padding-right:3px; display:inline;}
+      .name { font-size:0.9em; font-weight:bold; padding-right:3px; display:inline;}
     }
   }
   div.map {
@@ -386,6 +387,10 @@ div.post {
   h2 { line-height:120%;}
   .picture {
     text-align:center; margin:10px;
+    img { max-width:600px;}
+  }
+  .picture_left {
+    margin:10px 0;
     img { max-width:600px;}
   }
   .content { line-height:150%;}

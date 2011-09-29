@@ -3,8 +3,11 @@
 <% if banner = @banners.first %>
 
 <div class="sb_element">
-  <div><%= link_to image_tag(banner.event.poster_image.url), banner.event %></div>
+  <ul id="banner_slider">
+    <% @banners.each do |b| %>
+      <li><%= link_to image_tag(b.event.poster_image.url), b.event %></li>
+    <% end %>
+  </ul>
 </div>
 
 <% end %>
-
