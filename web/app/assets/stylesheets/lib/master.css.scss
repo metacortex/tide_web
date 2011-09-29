@@ -88,8 +88,6 @@ em { font-weight:bold;}
   }
 }
 
-
-
 #c {
   @include clearfix;
   margin-top: 8px;
@@ -148,7 +146,7 @@ $sidebar_width: 290px;
 
 .sidebar {
   width:$sidebar_width; position:absolute; right:25px;
-  margin-top:15px;
+  margin-top:6px;
   .sb_element {
     div { margin:0;}
   }
@@ -205,11 +203,10 @@ $sidebar_width: 290px;
 }
 
 .about_us {
-  margin-top:10px;
   @include content-section;
   @include float(left);
   ul.nav {
-    margin-top:15px;
+    margin-top:6px;
     li {
       @include float(left); margin-right:0px; margin-top:3px;
       a { display:block; text-decoration:none;}
@@ -285,7 +282,7 @@ $sidebar_width: 290px;
         h4 {
           a { @include hover-link; color:#333; font-size:20px; line-height:110%;}
         }
-        .abbr { line-height:150%; margin:10px 0; color:#4d4d4d;}
+        .abbr { line-height:150%; margin:0; color:#4d4d4d;}
         .stats {
           position:relative; padding-bottom:5px;
           .posted_at { color:#4d4d4d;}

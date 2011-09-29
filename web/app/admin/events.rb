@@ -23,7 +23,7 @@ ActiveAdmin.register Event do
       f.input :body, :as => :text
       f.input :opened_at
       f.input :closed_at
-      f.input :status, :as => :select, :collection => ["closed"]
+      f.input :status, :as => :select, :collection => ["closed", "ended"]
     end
     f.buttons
   end

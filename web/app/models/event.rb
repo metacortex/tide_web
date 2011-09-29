@@ -34,6 +34,9 @@ class Event < ActiveRecord::Base
     status != "closed"
   end
   
+  def upcoming?
+    status != "ended"
+  end
   
   
 
