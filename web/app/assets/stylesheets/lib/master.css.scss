@@ -218,8 +218,8 @@ $sidebar_width: 290px;
         a:hover, &.current a { @include replace-text-with-dimensions("t/AboutButton_About_HL.gif", 174, 25);}
       }
       &.go_staff {
-        a { @include replace-text-with-dimensions("t/AboutButton_Staff.gif", 153, 25);}
-        a:hover, &.current a { @include replace-text-with-dimensions("t/AboutButton_Staff_HL.gif", 153, 25);}
+        a { @include replace-text-with-dimensions("t/AboutButton_Crew.gif", 159, 25);}
+        a:hover, &.current a { @include replace-text-with-dimensions("t/AboutButton_Crew_HL.gif", 159, 25);}
       }
       &.go_contact {
         a { @include replace-text-with-dimensions("t/AboutButton_Contact.gif", 115, 25);}
@@ -401,6 +401,7 @@ div.post {
     a { text-align:left; display:block; @include hover-link; @include float(right); margin-left:6px;}
   }
   .posted_at { line-height:150%; text-align:right; padding-right:10px; color:#bfbfbf; font-size:0.9em; font-weight:bold;}
+  .sharebox { padding:5px 0 15px;}
   .source { 
     margin:1em 0;
     a { @include hover-link;}

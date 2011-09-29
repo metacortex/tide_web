@@ -27,6 +27,19 @@
   </div>
   <div class="posted_at"><%= l(@event.created_at, :format => :long) %></div>
 
+  <div class="sharebox">
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="true"></div>
+  </div>
+
   <div id="comments_app">
 
     <div class="new_comment">
