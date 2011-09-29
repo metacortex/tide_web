@@ -11,7 +11,7 @@ body {
 p { font-family:"Times New Roman", serif;}
 
 @mixin heading { font-family:Arial; font-weight:bold;}
-h2 { @include heading; font-size:2em; }
+h2 { @include heading; font-size:1.8em; }
 h3 { @include heading; font-size:1.4em; }
 h4 { @include heading; font-size:1.2em; }
 
@@ -143,6 +143,7 @@ $sidebar_width: 290px;
   .title_tide   { @include content_title; @include replace-text-with-dimensions("t/PageCategory_Tide.gif", 82, 30);}
   .title_people { @include content_title; @include replace-text-with-dimensions("t/PageCategory_People.gif", 134, 30);}
   .title_news   { @include content_title; @include replace-text-with-dimensions("t/PageCategory_News.gif", 103, 30);}
+  .title_events { @include content_title; @include replace-text-with-dimensions("t/PageCategory_TideEvents.gif", 219, 30);}
 }
 
 .sidebar {
@@ -193,6 +194,7 @@ $sidebar_width: 290px;
 
 .category {
   .event { @include replace-text-with-dimensions("c/NewsCategory_TideEvents.gif", 137, 30);}
+  .event_text { color: RGB(189,75,72);font-weight:bold;font-size:14px;padding-bottom:5px;}
 }
 
 
@@ -248,7 +250,7 @@ $sidebar_width: 290px;
     clear:both;
     .nav_content {
       padding: 15px 0 45px;
-      p { padding:10px 0; line-height:120%; color:#4d4d4d;}
+      p { padding:10px 0; line-height:120%; color:#333; font-family: Dotum, "돋움", arial, sans-serif;}
     }
   }
 }
@@ -384,7 +386,7 @@ div.post {
   h2 { line-height:120%;}
   .picture {
     text-align:center; margin:10px;
-    img { max-width:450px;}
+    img { max-width:600px;}
   }
   .content { line-height:150%;}
   .register_event {

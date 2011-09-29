@@ -10,7 +10,7 @@ if (f.length > 0) {
 
 
 // Under Construction!
-$("a.comming_soon, .comming_soon a").bind("click", function(){ alert("Under Construction ^^;");return false;});
+$("a.comming_soon, .comming_soon a").bind("click", function(){ alert("Under Construction");return false;});
 
 
 

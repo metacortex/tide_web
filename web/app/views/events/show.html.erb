@@ -1,14 +1,14 @@
 <div class="content_title">
-  <div class="title_news">NEWS</div>
+  <div class="title_events">TIDE EVENTS</div>
 </div>
 
 <div class="post">
   <div class="category">
-    <%= @event.category %>
+    <div class="event_text">TIDE EVENTS</div>
   </div>
   <h2><%= @event.name.html_safe %></h2>
   <div class="picture">
-    <%= image_tag @event.picture_image.url %>
+    <%= link_to image_tag(@event.picture_image.url), @event.picture_image.url, :target => "_blank" %>
   </div>
 
   <div class="content">
