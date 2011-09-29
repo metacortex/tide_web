@@ -39,7 +39,7 @@ em { font-weight:bold;}
     li { margin-left:25px;}
     a { @include hover-link; color:#444;}
   }
-  #globalsearch { 
+  #globalsearch {
     position:absolute; top:15px; right:25px; width:200px;
     #g-search {
       position:relative; padding:0; width:100%; height:auto; background-image:none; background-color:rgba(255,255,255,.1);
@@ -247,7 +247,7 @@ $sidebar_width: 290px;
   .nav_content_container {
     clear:both;
     .nav_content {
-      padding: 15px 0 30px;
+      padding: 15px 0 45px;
       p { padding:10px 0; line-height:120%; color:#4d4d4d;}
     }
   }
