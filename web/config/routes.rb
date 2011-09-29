@@ -4,7 +4,9 @@ Web::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
 
 
-  devise_for :users, :controllers => { sessions:'users/sessions', registration:'users/registrations' }, :skip => [:sessions, :registrations] do
+  devise_for :users, 
+  :controllers => { sessions:'users/sessions', registrations:'users/registrations', passwords:'users/passwords' }, 
+  :skip => [:sessions, :registrations] do
     get 'login' => 'users/sessions#new', :as => :new_user_session
     post 'login' => 'users/sessions#create', :as => :user_session
     get 'logout' => 'users/sessions#destroy', :as => :destroy_user_session

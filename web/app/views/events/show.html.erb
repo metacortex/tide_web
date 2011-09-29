@@ -15,9 +15,11 @@
     <%= @event.body.gsub("\n","<br/>").html_safe %>
   </div>
   
-  <div class="register_event">
-    <%= link_to "Register", "#new_registration_popup", :class => "ajax-link modal", :data => { :url => new_event_registration_path(@event), :dom => "#new_registration_popup" } %>
-  </div>
+  <% if @event.accept_registration? %>
+    <div class="register_event">
+      <%= link_to "Register", "#new_registration_popup", :class => "ajax-link modal", :data => { :url => new_event_registration_path(@event), :dom => "#new_registration_popup" } %>
+    </div>
+  <% end %>
 
   <div class="author">
     <span class="label">posted by</span>
@@ -34,10 +36,10 @@
         <% end %>
         <% if false %>
           <%= f.text_area :body %>
-          <div class="buttons"><%= f.submit "POST", :class => "button" %></div>
+          <div class="buttons"><%= image_submit_tag "t/News_PostComment.gif" %></div>
         <% else %>
           <%= f.text_area :body, :value => "Log-in required", :disabled => true %>
-          <div class="buttons"><%= f.submit "POST", :class => "button", :disabled => true %></div>
+          <div class="buttons"><%= image_submit_tag "t/News_PostComment.gif", :disabled => true %></div>
         <% end %>
       <% end %>
     </div>

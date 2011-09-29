@@ -1,0 +1,9 @@
+<% unless @registration.errors.empty? %>
+
+$("#new_registration_wrapper").replaceWith('<%= escape_javascript(render :partial => "form") %>');
+
+<% else %>
+
+$("#new_registration").html('<%= escape_javascript(render :partial => "create") %>');
+
+<% end %>

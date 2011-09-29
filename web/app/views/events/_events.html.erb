@@ -3,7 +3,7 @@
     <%= content_tag_for :li, ev do %>
       <div class="category"><%= content_tag :div, ev.category, :class => ev.category %></div>
       <div class="picture">
-        <%= image_tag ev.poster_image.url %>
+        <%= image_tag ev.thumb_image.url %>
       </div>
       <div class="content">
         <h4><%= link_to ev.name.html_safe, ev %></h4>

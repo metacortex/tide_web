@@ -6,7 +6,7 @@
 	margin-left: $indent;
 }
 
-#new_registration_wrapper {
+.popup_wrapper {
 	background-color: #fff;
 	width: 438px;
 	padding: 15px 10px;
@@ -35,7 +35,7 @@
 	}
 }
 
-#new_registration {
+.popup_wrapper form {
 	clear: both;
 	width: 438px;
 	margin-top: 20px;
@@ -47,7 +47,13 @@
 		@include indent;
 	}
 	
-	input[type="text"], input[type="file"] {
+	.cb {
+	  @include indent;
+	  padding-top:10px;
+	  label { display: inline;}
+	}
+	
+	input[type="text"], input[type="file"], input[type="password"] {
 		@include indent;
 		width: 300px;
 		height: 20px;
@@ -97,3 +103,26 @@
 		}
 	}
 }
+
+.popup_wrapper {
+  
+  .form_message {
+    padding:60px 15px 45px;
+    text-align:center;
+    color:#587e93;
+  	line-height:120%;
+  	font-size:16px;
+  	font-weight:bold;
+  }
+
+  .forgot_password {
+  }
+
+}
+
+
+
+
+
+
+

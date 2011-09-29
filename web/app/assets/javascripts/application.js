@@ -10,9 +10,6 @@
 //= require_tree ./lib
 //= require_tree ./coffeescripts
 
-$("#new_registration").live("ajax:complete", function(e, data, textStatus, jqXHR) {
-	$("#new_registration_popup").html(data.responseText);
-});
 
 $(".ajax-link").live("click", function() {
 	var url = $(this).attr("data-url");

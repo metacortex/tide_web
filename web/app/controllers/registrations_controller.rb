@@ -18,12 +18,7 @@ class RegistrationsController < ApplicationController
 
   def create
     @registration = @event.registrations.new(params[:registration])
-    if @registration.save
-      render :text => "ok"
-    else
-      
-      render :partial => "form"
-    end
+    @registration.save
   end
   
   

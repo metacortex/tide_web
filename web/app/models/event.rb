@@ -13,6 +13,7 @@
 #  created_at     :datetime
 #  updated_at     :datetime
 #  poster_image   :string(255)
+#  thumb_image    :string(255)
 #  picture_image  :string(255)
 #  abbr           :text
 #
@@ -26,6 +27,14 @@ class Event < ActiveRecord::Base
 
   mount_uploader :picture_image, PictureUploader
   mount_uploader :poster_image, PictureUploader
+  mount_uploader :thumb_image, PictureUploader
 
+
+  def accept_registration?
+    status != "closed"
+  end
+  
+  
+  
 
 end

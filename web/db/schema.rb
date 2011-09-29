@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(:version => 20110929041107) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "poster_image"
+    t.string   "thumb_image"
     t.string   "picture_image"
     t.text     "abbr"
   end

@@ -41,8 +41,8 @@
         <li><span class="current_user"><%= link_to current_user.email, edit_profile_users_path %></span></li>
         <li><%= link_to "Log Out", destroy_user_session_path %></li>
       <% else %>
-        <li><%= link_to "Log In", new_user_session_path %></li>
-        <li><%= link_to "Sign Up", new_user_registration_path %></li>
+        <li><%= link_to "Log In", "#login_popup", :class => "ajax-link modal", :data => { :url => new_user_session_path, :dom => "#login_popup" } %></li>
+        <li><%= link_to "Sign Up", "#signup_popup", :class => "ajax-link modal", :data => { :url => new_user_registration_path, :dom => "#signup_popup" } %></li>
 			<% end %>
     </ul>
     
@@ -84,6 +84,15 @@
      | 
     <%= link_to "Terms of Use", "", :class => "comming_soon" %>
   </div>
+</div>
+
+
+<div id="login_popup" style="display:none">
+  <%= render "users/sessions/form" %>
+</div>
+
+<div id="signup_popup" style="display:none">
+  <%= render "users/registrations/form" %>
 </div>
 
 

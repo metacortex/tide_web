@@ -13,6 +13,7 @@
 #  created_at     :datetime
 #  updated_at     :datetime
 #  poster_image   :string(255)
+#  thumb_image    :string(255)
 #  picture_image  :string(255)
 #  abbr           :text
 #

@@ -23,7 +23,7 @@ em { font-weight:bold;}
 
 /* GLOBAL LAYOUT */
 
-.wrapper { width:946px; position:relative; margin:25px auto 25px; border:2px solid #597F94; padding:10px 25px; background:white;}
+.wrapper { width:946px; position:relative; margin:25px auto 25px; border:1px solid #597F94; padding:10px 25px; background:white;}
 
 #h {
   @include clearfix;
