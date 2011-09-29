@@ -15,7 +15,7 @@
     <%= @event.body.gsub("\n","<br/>").html_safe %>
   </div>
   
-  <% if @event.accept_registration? %>
+  <% if 1 == @event.accept_registration? %>
     <div class="register_event">
       <%= link_to "Register", "#new_registration_popup", :class => "ajax-link modal", :data => { :url => new_event_registration_path(@event), :dom => "#new_registration_popup" } %>
     </div>
