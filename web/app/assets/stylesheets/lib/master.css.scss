@@ -23,24 +23,24 @@ em { font-weight:bold;}
 
 /* GLOBAL LAYOUT */
 
-.wrapper { width:946px; position:relative; margin:25px auto 25px; border:1px solid #597F94; padding:10px 25px; background:white;}
+.wrapper { width:946px; position:relative; margin:25px auto 25px; border:1px solid #597F94; padding:20px 25px; background:white;}
 
 #h {
   @include clearfix;
-  background: url("b/Main_SlashLine.gif") no-repeat left bottom; padding-bottom:18px;
+  background: url("b/DottedLine_long.gif") no-repeat left bottom; padding-bottom:10px;
   h1 a {
     @include float(left);
-    @include replace-text-with-dimensions("logo.gif", 110, 35);
+    @include replace-text-with-dimensions("main_logo.gif", 132, 50);
   }
   ul.account_nav {
-    position:absolute; top:18px; right:250px;
+    position:absolute; top:28px; right:250px;
     @include inline-list;
     font-size: 0.9em;
     li { margin-left:25px;}
     a { @include hover-link; color:#444;}
   }
   #globalsearch {
-    position:absolute; top:15px; right:25px; width:200px;
+    position:absolute; top:25px; right:25px; width:200px;
     #g-search {
       position:relative; padding:0; width:100%; height:auto; background-image:none; background-color:rgba(255,255,255,.1);
       @include box-shadow(rgba(255, 255, 255, 0.2) 0 1px 0, rgba(0,0,0,0.6) 0 2px 1px inset);
@@ -54,43 +54,48 @@ em { font-weight:bold;}
     .sp-magnify * { position:absolute; opacity:0; width:15px; height:14px; background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAOCAQAAABedl5ZAAAAzklEQVQYlWNgAIP%2F9v%2FrwVCfARn85%2F%2B%2F%2Fz8CzEeS%2BnMQJPL0%2Ba37796DJfsZ4EYBwar9DBkMCQwFR86DJeXBUo%2F6QToYHCAKtaO%2Bf%2F%2F%2F%2F3kmmHNm%2Fv%2F%2FD27CTee4c%2Ff%2F%2F2vT4VKfXiM5CQg2t4M5lckQd%2F3nB0n8vQji5HhCFEpArP73AeGF35dACkEgYPtxmODXnxueg2igbqikh3l%2F1%2FpV%2B7vWyzUwxHatB%2BvcBLNfgMEA6AEDBg4g26Br%2FffvqeUMWIEBULcEdikGkG4AzGOfgUQC7TUAAAAASUVORK5CYII%3D') no-repeat 0 0; }
     .sp-magnify .magnify { opacity:1; background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAYAAABy6%2BR8AAAAlElEQVR42oWQQRHEIAxF10ElVAISVgo3bCABCUhYCZWAhEpAQpoD6bzJhNnDO0DyyA8fEXkppXyVCpLViDUfyqVIQN9JFMY637hrlCySFauL21E7KVWbAIGx56rnSLqc5KPXSLo3kySalPhTygFhRDtFC09EIsMeZJSGBj7Qveh3OJW89syImiH%2BIO2BOJX0XwA2%2BQEL4pAhSX4aBQAAAABJRU5ErkJggg%3D%3D') no-repeat 0 0; }
   }
-  #ssn {
-    position:absolute; top:90px; right:25px; padding-left:60px;
-    background:url('t/Main_SSN_Title.gif') no-repeat left;
-    @include clearfix;
-    a { @include float(left); text-decoration:none; margin-left:5px;}
-    li { @include float(left);}
-    .tw a { @include replace-text-with-dimensions("t/Main_SSN_TW.gif", 25, 25);}
-    .fb a { @include replace-text-with-dimensions("t/Main_SSN_FB.gif", 25, 25);}
-  }
   #gnb {
-    @include float(left);
-    margin-top: 30px;
-    ul {
+    @include clearfix;
+    margin-top: 70px;
+    ul.top_nav {
+      @include float(left);
       li {
-        @include clearfix;
-        margin: 5px 0; font-size: 1.2em;
+        @include float(left);
+        margin-right: 20px; font-size: 1.2em;
         a { @include float(left); text-decoration:none;}
         &.go_tide {
-          a { @include replace-text-with-dimensions("t/MenuButton_Tide.gif", 51, 20);}
-          a:hover, &.current a { @include replace-text-with-dimensions("t/MenuButton_Tide_HL.gif", 51, 20);}
+          a { @include replace-text-with-dimensions("t/MenuButton_Tide.gif", 33, 20);}
+          a:hover, &.current a { @include replace-text-with-dimensions("t/MenuButton_Tide_HL.gif", 33, 20);}
         }
         &.go_news {
-          a { @include replace-text-with-dimensions("t/MenuButton_News.gif", 63, 20);}
-          a:hover, &.current a { @include replace-text-with-dimensions("t/MenuButton_News_HL.gif", 63, 20);}
+          a { @include replace-text-with-dimensions("t/MenuButton_News.gif", 42, 20);}
+          a:hover, &.current a { @include replace-text-with-dimensions("t/MenuButton_News_HL.gif", 42, 20);}
         }
         &.go_people {
-          a { @include replace-text-with-dimensions("t/MenuButton_People.gif", 81, 20);}
-          a:hover, &.current a { @include replace-text-with-dimensions("t/MenuButton_People_HL.gif", 81, 20);}
+          a { @include replace-text-with-dimensions("t/MenuButton_People.gif", 55, 20);}
+          a:hover, &.current a { @include replace-text-with-dimensions("t/MenuButton_People_HL.gif", 55, 20);}
+        }
+        &.go_brownbagtalk {
+          a { @include replace-text-with-dimensions("t/MenuButton_BrownBagTalk.gif", 125, 20);}
+          a:hover, &.current a { @include replace-text-with-dimensions("t/MenuButton_BrownBagTalk_HL.gif", 125, 20);}
         }
       }
     }
+  }
+  #ssn {
+    @include float(right);
+    padding-left:120px;
+    background:url('t/Main_SSN_follow.gif') no-repeat left;
+    a { @include float(left); text-decoration:none; margin-left:5px;}
+    li { @include float(left);}
+    .tw a { @include replace-text-with-dimensions("t/Main_SSN_TW.gif", 20, 20);}
+    .fb a { @include replace-text-with-dimensions("t/Main_SSN_FB.gif", 20, 20);}
   }
 }
 
 #c {
   @include clearfix;
-  margin-top: 8px;
+  margin-top: 5px;
   padding-bottom: 30px;
 }
 
@@ -136,12 +141,12 @@ $sidebar_width: 290px;
 
 .content_title {
   @include has_more_link;
-  width: $content_width;
   margin-bottom:10px;
-  .title_tide   { @include content_title; @include replace-text-with-dimensions("t/PageCategory_Tide.gif", 82, 30);}
+  background: url("b/DottedLine_long.gif") no-repeat left bottom; padding-bottom:12px;
+  .title_tide   { @include content_title; @include replace-text-with-dimensions("t/PageCategory_Tide.gif", 65, 20);}
   .title_people { @include content_title; @include replace-text-with-dimensions("t/PageCategory_People.gif", 134, 30);}
-  .title_news   { @include content_title; @include replace-text-with-dimensions("t/PageCategory_News.gif", 103, 30);}
-  .title_events { @include content_title; @include replace-text-with-dimensions("t/PageCategory_TideEvents.gif", 219, 30);}
+  .title_news   { @include content_title; @include replace-text-with-dimensions("t/PageCategory_News.gif", 81, 20);}
+  .title_events { @include content_title; @include replace-text-with-dimensions("t/PageCategory_TideEvents.gif", 282, 20);}
 }
 
 .sidebar {
@@ -177,7 +182,6 @@ $sidebar_width: 290px;
 @mixin content-section {
   h3 { color:#4d4d4d;}
   width: $content_width;
-  margin-top: 10px;
   .message { padding:20px 0; color:#666; line-height:150%;}
 }
 
@@ -191,7 +195,7 @@ $sidebar_width: 290px;
 }
 
 .category {
-  .event { @include replace-text-with-dimensions("c/NewsCategory_TideEvents.gif", 137, 30);}
+  .event { @include replace-text-with-dimensions("c/NewsCategory_TideEvents.gif", 110, 26);}
   .event_text { color: RGB(189,75,72);font-weight:bold;font-size:14px;padding-bottom:5px;}
 }
 
@@ -205,27 +209,35 @@ $sidebar_width: 290px;
 .about_us {
   @include content-section;
   @include float(left);
+  margin-top: 5px;
+  background: url("b/DottedLine_short.gif") no-repeat left top; padding-top:10px;
   ul.nav {
-    margin-top:6px;
+    @include clearfix;
+    margin-top: 5px;
+    background: url("t/AboutButton_Dots.gif") no-repeat left; padding-left:18px;
     li {
-      @include float(left); margin-right:0px; margin-top:3px;
+      @include float(left); margin-right:0px;
       a { display:block; text-decoration:none;}
+      &.go_events {
+        a { @include replace-text-with-dimensions("t/AboutButton_Events.gif", 198, 19);}
+        a:hover, &.current a { @include replace-text-with-dimensions("t/AboutButton_Events_HL.gif", 198, 19);}
+      }
       &.go_about {
-        a { @include replace-text-with-dimensions("t/AboutButton_About.gif", 174, 25);}
-        a:hover, &.current a { @include replace-text-with-dimensions("t/AboutButton_About_HL.gif", 174, 25);}
+        a { @include replace-text-with-dimensions("t/AboutButton_About.gif", 114, 19);}
+        a:hover, &.current a { @include replace-text-with-dimensions("t/AboutButton_About_HL.gif", 114, 19);}
       }
       &.go_staff {
-        a { @include replace-text-with-dimensions("t/AboutButton_Crew.gif", 159, 25);}
-        a:hover, &.current a { @include replace-text-with-dimensions("t/AboutButton_Crew_HL.gif", 159, 25);}
+        a { @include replace-text-with-dimensions("t/AboutButton_Crew.gif", 105, 19);}
+        a:hover, &.current a { @include replace-text-with-dimensions("t/AboutButton_Crew_HL.gif", 105, 19);}
       }
       &.go_contact {
-        a { @include replace-text-with-dimensions("t/AboutButton_Contact.gif", 115, 25);}
-        a:hover, &.current a { @include replace-text-with-dimensions("t/AboutButton_Contact_HL.gif", 115, 25);}
+        a { @include replace-text-with-dimensions("t/AboutButton_Contact.gif", 85, 19);}
+        a:hover, &.current a { @include replace-text-with-dimensions("t/AboutButton_Contact_HL.gif", 85, 19);}
       }
     }
-    li.spacer { @include replace-text-with-dimensions("b/AboutButton_Slash.gif", 30, 30); margin-top:0;}
+    li.spacer { @include replace-text-with-dimensions("b/AboutButton_Slash.gif", 12, 19); margin:0 3px;}
   }
-  h4 { margin-top:20px;}
+  h4 {}
   ul.staffs {
     padding: 5px 0;
     li {
@@ -247,8 +259,13 @@ $sidebar_width: 290px;
   .nav_content_container {
     clear:both;
     .nav_content {
-      padding: 15px 0 45px;
+      padding: 5px 0 45px;
       p { padding:10px 0; line-height:120%; color:#333; font-family: Dotum, "돋움", arial, sans-serif;}
+    }
+    .with_top_border {
+      padding-top:15px;
+      margin-top:5px;
+      background: url("b/DottedLine_short.gif") no-repeat left top;
     }
   }
 }
@@ -264,14 +281,14 @@ $sidebar_width: 290px;
   position:relative;
   h3 { @include replace-text-with-dimensions("t/AboutTitle_EventActivities.gif", 376, 25);}
   .more {
-    position:absolute; right:0; top:11px;
-    a { display:block; @include replace-text-with-dimensions("t/Button_ShowMore.gif", 122, 13);}
+    @include clearfix;
+    padding-top:10px; padding-right:5px;
+    a { @include float(right); display:block; @include replace-text-with-dimensions("t/Button_ShowMore.gif", 95, 13);}
   }
   ul {
-    margin-top:10px;
     li {
       @include clearfix;
-      padding:5px 0;
+      background: url("b/DottedLine_short.gif") no-repeat left top; padding-bottom:10px; padding-top:10px;
       .category { margin-bottom:5px;}
       .picture {
         @include float(left); margin-right:15px;

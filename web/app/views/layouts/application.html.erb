@@ -58,17 +58,18 @@
       </div>
     </div>
     
-    <ul id="ssn">
-      <li class="tw"><%= link_to "Twitter", "http://twitter.com/#!/tideinst", :target => "_blank" %></li>
-      <li class="fb"><%= link_to "Facebook", "https://www.facebook.com/pages/TIDE-Institute/248518498519314", :target => "_blank" %></li>
-    </ul>
-
     <div id="gnb">
       <%= navigation_tag :class => "top_nav" do |m| %>
         <%= m.item "NEWS", posts_path, :current => current_controller?(["posts"]), :html => { :class => "go_news comming_soon" } %>
         <%= m.item "PEOPLE", users_path, :current => current_controller?(["users"]), :html => { :class => "go_people comming_soon" } %>
         <%= m.item "TIDE", "/tide", :current => current_controller?(["main","events"]), :html => { :class => "go_tide" } %>
+        <%= m.item "BROWN BAG TALK", "/brownbagtalk", :current => current_controller?(["brown"]), :html => { :class => "go_brownbagtalk comming_soon" } %>
       <% end %>
+
+      <ul id="ssn">
+        <li class="fb"><%= link_to "Facebook", "https://www.facebook.com/pages/TIDE-Institute/248518498519314", :target => "_blank" %></li>
+        <li class="tw"><%= link_to "Twitter", "http://twitter.com/#!/tideinst", :target => "_blank" %></li>
+      </ul>
     </div>
   </div>
 

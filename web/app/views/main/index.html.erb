@@ -8,7 +8,9 @@
 
 <div class="about_us">
   <ul class="nav">
-    <li id="nav_1" class="go_about current"><%= link_to_function "What is TIDE", "setTabNav(1)" %></li>
+    <li id="nav_0" class="go_events current"><%= link_to_function "TIDE EVENTS", "setTabNav(0)" %></li>
+    <li class="spacer"></li>
+    <li id="nav_1" class="go_about"><%= link_to_function "What is TIDE", "setTabNav(1)" %></li>
     <li class="spacer"></li>
     <li id="nav_2" class="go_staff"><%= link_to_function "TIDE Staff", "setTabNav(2)" %></li>
     <li class="spacer"></li>
@@ -16,9 +18,16 @@
   </ul>
   
   <div class="nav_content_container">
-    <div id="about_1" class="nav_content">
+    <div id="about_0" class="nav_content">
+      <div class="events">
+        <%= render "events/events" %>
+        <div class="more"><%= link_to "SHOW MORE >>", events_path %></div>
+      </div>
+    </div>
+
+    <div id="about_1" class="nav_content with_top_border" style="display:none">
       
-      <p style="padding:10px 0 10px;text-align:left;font-size:16px;font-weight:bold;">청년들의 상상력과 기업가정신이 국가와 세계사회의 미래를 결정합니다.</p>
+      <p style="padding:10px 0 10px;">청년들의 상상력과 기업가정신이 국가와 세계사회의 미래를 결정합니다.</p>
       
       <p><em>TIDE</em> 는<br/>
       창업을 통해 창조적 도전정신을 발현시키고<br/>
@@ -35,13 +44,12 @@
       <p><em>TIDE</em> 는<br/>
       대한민국에 역동적인 창업정신이 뿌리내리는데 기여하고자 합니다.</p>
 
-      <p style="padding:10px 0 10px;text-align:left;font-size:18px;font-weight:bold;">"The best way to predict the future is to create one yourself."</p>
-
-      <p>* <em>TIDE</em> Technology Imagination Design Entrepreneurship</p>
+      <p style="padding-top:10px;">"The best way to predict the future is to create one yourself."<br />
+      * <em>TIDE</em> Technology Imagination Design Entrepreneurship</p>
     </div>
 
-    <div id="about_2" class="nav_content" style="display:none">
-      <h4>Korea</h4>
+    <div id="about_2" class="nav_content with_top_border" style="display:none">
+      <h4 style="margin-top:20px">Korea</h4>
       <ul class="staffs">
         <li>
           <div class="profile">
@@ -108,7 +116,7 @@
         </li>
       </ul>
       
-      <h4>US</h4>
+      <h4 style="margin-top:20px">US</h4>
       <ul class="staffs">
         <li>
           <div class="profile">
@@ -128,7 +136,7 @@
     </div>
 
 
-    <div id="about_3" class="nav_content" style="display:none">
+    <div id="about_3" class="nav_content with_top_border" style="display:none">
       <p><em>Email:</em><br/><%= link_to "info@tideinstitute.org", "mailto:info@tideinstitute.org" %></p>
       <p><em>Address:</em>
         <br/>서울시 금천구 가산동 550-1 IT캐슬 2-807
@@ -136,14 +144,6 @@
         <br/>Kueum-Cheon-Gu, Seoul, Korea</p>
     </div>
   </div>
-</div>
-
-
-<div class="events">
-  <h3>TIDE Events & Activities</h3>
-  <div class="more"><%= link_to "SHOW MORE >>", events_path %></div>
-
-  <%= render "events/events" %>
 </div>
 
 
