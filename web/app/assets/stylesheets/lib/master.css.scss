@@ -465,6 +465,7 @@ div.post {
   }
   div.new_comment {
     @include content-section;
+    margin-top:10px;
     h3 { @include replace-text-with-dimensions("t/News_NewComment.gif", 123, 18);}
     form {
       margin-top:6px;
@@ -487,10 +488,11 @@ div.post {
   }
   .comments {
     @include content-section;
+    margin-top:10px;
     padding-bottom:50px;
     h3 { @include replace-text-with-dimensions("t/News_Comments.gif", 97, 18);}
     ul {
-      margin-top: 6px;
+      margin-top: 8px;
       li.comment {
         @include clearfix;
         padding: 5px 0;
@@ -499,11 +501,11 @@ div.post {
         .user {
           @include float(left);
           margin-right: 15px;
-          img { width:100px; height:100px;}
+          img { width:64px; height:64px;}
         }
         .body {
           @include float(left);
-          width: 520px;
+          width: 556px;
           .username {
             @include float(left);
             em { color:#4d4d4d; font-size:14px;}
@@ -530,10 +532,19 @@ div.post {
           padding-top:5px;
           .agreement { 
             @include float(right);
-            .positive { @include float(left); margin-left:6px;}
-            .negative { @include float(left); margin-left:6px;}
-            a { display:block; padding:2px 6px; border:1px solid #ccc; text-decoration:none;}
-            a:hover { background:#ddd; border-color:#48b;}
+            .positive {
+              @include float(left);
+              margin-left:6px;
+              background: #597f94 url("/assets/i/Comment_Up.gif") no-repeat 5px 5px;
+              a { color:white; font-weight:bold;}
+            }
+            .negative { 
+              @include float(left);
+              margin-left:6px;
+              background: #bfbfbf url("/assets/i/Comment_Down.gif") no-repeat 5px 5px;
+              a { color:white; font-weight:bold;}
+            }
+            a { display:block; padding:3px 7px 3px 20px; text-decoration:none;}
           }
         }
       }

@@ -56,18 +56,7 @@
 
   <div id="comments_app">
 
-    <div class="new_comment">
-      <h3>New Comment</h3>
-      <%= form_for [@post,Comment.new] do |f| %>
-        <% if user_signed_in? %>
-          <%= f.text_area :body %>
-          <div class="buttons"><%= f.submit "POST", :class => "button" %></div>
-        <% else %>
-          <%= f.text_area :body, :value => "Log-in required", :disabled => true %>
-          <div class="buttons"><%= f.submit "POST", :class => "button", :disabled => true %></div>
-        <% end %>
-      <% end %>
-    </div>
+    <%= render "comments/new", :parent => @post %>
 
     <div class="comments">
       <h3>Comments</h3>
@@ -76,7 +65,8 @@
     
     <script>
     var _CommentApp = true;
-    var _postID = <%= @post.id.to_json.html_safe %>;
+    var _parentType = "posts";
+    var _parentID = <%= @post.id.to_json.html_safe %>;
     var _userID = <%= current_user.try(:id).to_json.html_safe %>;
     var _userName = <%= current_user.try(:name).to_json.html_safe %>;
     var _commentsData = <%= @post.comments.to_json(:include => :user).html_safe %>;

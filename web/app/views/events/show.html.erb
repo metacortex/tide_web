@@ -15,7 +15,7 @@
     <%= @event.body.gsub("\n","<br/>").html_safe %>
   </div>
   
-  <% if 1 == @event.accept_registration? %>
+  <% if "NEVER TRUE" == @event.accept_registration? %>
     <div class="register_event">
       <%= link_to "Register", "#new_registration_popup", :class => "ajax-link modal", :data => { :url => new_event_registration_path(@event), :dom => "#new_registration_popup" } %>
     </div>
@@ -42,20 +42,7 @@
 
   <div id="comments_app">
 
-    <div class="new_comment">
-      <h3>New Comment</h3>
-      <%= form_for [@event,Comment.new] do |f| %>
-        <% if user_signed_in? %>
-        <% end %>
-        <% if false %>
-          <%= f.text_area :body %>
-          <div class="buttons"><%= image_submit_tag "t/News_PostComment.gif" %></div>
-        <% else %>
-          <%= f.text_area :body, :value => "Log-in required", :disabled => true %>
-          <div class="buttons"><%= image_submit_tag "t/News_PostComment.gif", :disabled => true %></div>
-        <% end %>
-      <% end %>
-    </div>
+    <%= render "comments/new", :parent => @event %>
 
     <div class="comments">
       <h3>Comments</h3>
@@ -64,7 +51,8 @@
     
     <script>
     var _CommentApp = true;
-    var _postID = <%= @event.id.to_json.html_safe %>;
+    var _parentType = "events";
+    var _parentID = <%= @event.id.to_json.html_safe %>;
     var _userID = <%= current_user.try(:id).to_json.html_safe %>;
     var _userName = <%= current_user.try(:name).to_json.html_safe %>;
     var _commentsData = <%= @event.comments.to_json(:include => :user).html_safe %>;

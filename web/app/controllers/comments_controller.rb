@@ -1,16 +1,17 @@
 class CommentsController < ApplicationController
   
   before_filter :authenticate_user!, :except => [:index]
-  before_filter :find_post
+  before_filter :find_parent
 
 
   def index
-    @comments = @post.comments.page(params[:page])
+    @comments = @parent.comments.page(params[:page])
     render :json => @comments.to_json(:include => [:user])
   end
 
   def create
     @comment = Comment.new(params[:comment])
+    @comment.send(:"#{@parent.class.to_s.downcase}_id=", params[:"#{@parent.class.to_s.downcase}_id"])
     
     if @comment.save
       render :json => @comment.to_json(:include => [:user])
@@ -44,8 +45,12 @@ class CommentsController < ApplicationController
 
   protected
   
-    def find_post
-      @post = Post.find(params[:post_id])
+    def find_parent
+      if params[:post_id]
+        @parent = Post.find(params[:post_id])
+      elsif params[:event_id]
+        @parent = Event.find(params[:event_id])
+      end
     end
   
 end

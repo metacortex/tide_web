@@ -8,7 +8,8 @@ if (window._CommentApp) {
     defaults: {
       body: "",
       user_id: "",
-      post_id: "",
+      parent_type: "",
+      parent_id: "",
       positive_agreements_count: 0,
       negative_agreements_count: 0
     },
@@ -22,7 +23,7 @@ if (window._CommentApp) {
   window.CommentList = Backbone.Collection.extend({
 
     model: Comment,
-    url :'/posts/' + window._postID + '/comments'
+    url :'/' + window._parentType + '/' + window._parentID + '/comments'
 
   });
 
@@ -140,7 +141,9 @@ if (window._CommentApp) {
         }
       } else if (this.should_create_agreement_model) {
         this.should_create_agreement_model = false;
-        var ag = Agreements.create({ post_id:window._postID, event_id:window._eventID, comment_id:this.model.id, user_id:window._userID, direction:1 });
+        var event_id = (window._parentType == "events") ? window._parentID : null;
+        var post_id = (window._parentType == "posts") ? window._parentID : null;
+        var ag = Agreements.create({ event_id: event_id, post_id: post_id, comment_id: this.model.id, user_id: window._userID, direction: 1 });
         this.model.set({ positive_agreements_count:(this.model.get("positive_agreements_count") + 1) });
       }
       
@@ -165,7 +168,9 @@ if (window._CommentApp) {
         }
       } else if (this.should_create_agreement_model) {
         this.should_create_agreement_model = false;
-        var ag = Agreements.create({ post_id:window._postID, event_id:window._eventID, comment_id:this.model.id, user_id:window._userID, direction:-1 });
+        var event_id = (window._parentType == "events") ? window._parentID : null;
+        var post_id = (window._parentType == "posts") ? window._parentID : null;
+        var ag = Agreements.create({ event_id: event_id, post_id: post_id, comment_id: this.model.id, user_id: window._userID, direction: -1 });
         this.model.set({ negative_agreements_count:(this.model.get("negative_agreements_count") + 1) });
       }
 
@@ -207,7 +212,7 @@ if (window._CommentApp) {
         return false;
       }
 
-      var c = Comments.create({ body: text, user_id: window._userID, post_id: window._postID, user:{name: window._userName} });
+      var c = Comments.create({ body: text, user_id: window._userID, parent_id: window._parentID, parent_type: window._parentType, user:{name: window._userName} });
 
       input.val('');
       return false;

@@ -1,10 +1,12 @@
+<% parent = parent %>
+
 <div class="new_comment">
   <h3>New Comment</h3>
-  <%= form_for [@post, Comment.new], :remote => true do |f| %>
-    <%= f.hidden_field :post_id, :value => @post.id %>
-    <%= f.hidden_field :user_id, :value => current_user.try(:id) %>
+  <%= form_for [parent, Comment.new], :remote => true do |f| %>
+    <%= f.hidden_field :"#{parent.class.to_s.downcase}_id", :value => parent.id %>
 
     <% if user_signed_in? %>
+      <%= f.hidden_field :user_id, :value => current_user.try(:id) %>
       <%= f.text_area :body %>
     <% else %>
       <%= f.text_area :body, :value => "log-in required", :disabled => true %>
