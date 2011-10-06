@@ -23,7 +23,15 @@ em { font-weight:bold;}
 
 /* GLOBAL LAYOUT */
 
-.wrapper { width:946px; position:relative; margin:25px auto 25px; border:1px solid #597F94; padding:20px 25px; background:white;}
+.wrapper { 
+  width:946px; 
+  position:relative; 
+  margin:25px auto 25px; 
+  border:1px solid #597F94; 
+  padding:20px 25px; 
+  background:white;
+  @include opacity(0.85);
+}
 
 #h {
   @include clearfix;
