@@ -320,6 +320,13 @@ $sidebar_width: 290px;
       }
     }
   }
+  &.no_first_border {
+    ul {
+      li:first-child, li.first_child {
+        background-image:none; padding-top:5px;
+      }
+    }
+  }
 }
 
 

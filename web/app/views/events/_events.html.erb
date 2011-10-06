@@ -1,6 +1,6 @@
 <ul>
   <% @events.each do |ev| %>
-    <%= content_tag_for :li, ev do %>
+    <%= content_tag_for :li, ev, :class => (@events.first == ev) ? "first_child" : "" do %>
       <div class="category">
         <% if ev.upcoming? %>
           <%= content_tag :div, "event", :class => "event" %>
