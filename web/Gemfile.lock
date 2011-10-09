@@ -95,7 +95,6 @@ GEM
     mime-types (1.16)
     mini_magick (3.3)
       subexec (~> 0.1.0)
-    modernizr-rails (2.0.6)
     multi_json (1.0.3)
     mysql2 (0.3.7)
     orm_adapter (0.0.5)
@@ -173,7 +172,6 @@ DEPENDENCIES
   devise
   jquery-rails
   mini_magick
-  modernizr-rails
   mysql2
   rails (= 3.1.1)
   rails-dev-tweaks (~> 0.5.0)

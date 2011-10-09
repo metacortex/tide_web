@@ -19,7 +19,7 @@ gem 'sass-rails', "  ~> 3.1.4"
 
 # JavasScript libs
 gem 'jquery-rails'
-gem 'modernizr-rails'
+# gem 'modernizr-rails'
 
 
 # Ajax request CoffeeScript support
