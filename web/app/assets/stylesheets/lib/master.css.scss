@@ -475,95 +475,89 @@ div.post {
     @include content-section;
     @include has_posts_grid;
   }
-}
-
-
-
-
-/* POSTS */
-
-div.new_comment {
-  @include content-section;
-  margin-top:10px;
-  h3 { @include replace-text-with-dimensions("t/News_NewComment.gif", 123, 18);}
-  form {
-    margin-top:6px;
-    textarea { padding:5px; width:668px; height:100px;}
-    .buttons { text-align:right; margin-top:5px;}
-    input.button { 
-      background:url("t/News_PostComment.gif") no-repeat; width:62px; height:30px; border:none; padding:0; margin:0;
-      color:transparent; text-index:-9999em; text-transform:capitalize; 
-      cursor:pointer;
+  div.new_comment {
+    @include content-section;
+    margin-top:10px;
+    h3 { @include replace-text-with-dimensions("t/News_NewComment.gif", 123, 18);}
+    form {
+      margin-top:6px;
+      textarea { padding:5px; width:668px; height:100px;}
+      .buttons { text-align:right; margin-top:5px;}
+      input.button { 
+        background:url("t/News_PostComment.gif") no-repeat; width:62px; height:30px; border:none; padding:0; margin:0;
+        color:transparent; text-index:-9999em; text-transform:capitalize; 
+        cursor:pointer;
+      }
     }
   }
-}
-div.edit_comment {
-  form {
-    margin-top:6px;
-    text-align:right;
-    textarea { padding:5px; width:660px; height:100px;}
-    .buttons { text-align:right; margin-top:5px;}
+  div.edit_comment {
+    form {
+      margin-top:6px;
+      text-align:right;
+      textarea { padding:5px; width:660px; height:100px;}
+      .buttons { text-align:right; margin-top:5px;}
+    }
   }
-}
-.comments {
-  @include content-section;
-  margin-top:10px;
-  padding-bottom:50px;
-  h3 { @include replace-text-with-dimensions("t/News_Comments.gif", 97, 18);}
-  ul {
-    margin-top:8px;
-    li.comment {
-      @include clearfix;
-      padding:5px 0;
-      border-bottom:1px solid #aaa;
-      margin-bottom:10px;
-      .user {
-        @include float(left);
-        margin-right:15px;
-        img { width:64px; height:64px;}
-      }
-      .body {
-        @include float(left);
-        width:596px;
-        .username {
+  .comments {
+    @include content-section;
+    margin-top:10px;
+    padding-bottom:50px;
+    h3 { @include replace-text-with-dimensions("t/News_Comments.gif", 97, 18);}
+    ul {
+      margin-top:8px;
+      li.comment {
+        @include clearfix;
+        padding:5px 0;
+        border-bottom:1px solid #aaa;
+        margin-bottom:10px;
+        .user {
           @include float(left);
-          em { color:$gray_base; font-size:14px;}
-          a { color:$gray_base; @include hover-link;}
+          margin-right:15px;
+          img { width:64px; height:64px;}
         }
-        .timestamp { @include float(right); color:$gray_light; font-weight:bold;}
-        .comment_body {
+        .body {
+          @include float(left);
+          width:596px;
+          .username {
+            @include float(left);
+            em { color:$gray_base; font-size:14px;}
+            a { color:$gray_base; @include hover-link;}
+          }
+          .timestamp { @include float(right); color:$gray_light; font-weight:bold;}
+          .comment_body {
+            clear:both;
+            padding-top:10px;
+            line-height:150%;
+            color:$gray_base;
+          }
+        }
+        .comment_action { 
+          @include float(right);
+          margin-top:10px;
+          ul {
+            @include float(right);
+            @include toolbox;
+          }
+        }
+        .status {
           clear:both;
-          padding-top:10px;
-          line-height:150%;
-          color:$gray_base;
-        }
-      }
-      .comment_action { 
-        @include float(right);
-        margin-top:10px;
-        ul {
-          @include float(right);
-          @include toolbox;
-        }
-      }
-      .status {
-        clear:both;
-        padding-top:5px;
-        .agreement { 
-          @include float(right);
-          .positive {
-            @include float(left);
-            margin-left:6px;
-            background:#597f94 url("/assets/i/Comment_Up.gif") no-repeat 5px 5px;
-            a { color:white; font-weight:bold;}
+          padding-top:5px;
+          .agreement { 
+            @include float(right);
+            .positive {
+              @include float(left);
+              margin-left:6px;
+              background:#597f94 url("/assets/i/Comment_Up.gif") no-repeat 5px 5px;
+              a { color:white; font-weight:bold;}
+            }
+            .negative { 
+              @include float(left);
+              margin-left:6px;
+              background:#bfbfbf url("/assets/i/Comment_Down.gif") no-repeat 5px 5px;
+              a { color:white; font-weight:bold;}
+            }
+            a { display:block; padding:3px 7px 3px 20px; text-decoration:none;}
           }
-          .negative { 
-            @include float(left);
-            margin-left:6px;
-            background:#bfbfbf url("/assets/i/Comment_Down.gif") no-repeat 5px 5px;
-            a { color:white; font-weight:bold;}
-          }
-          a { display:block; padding:3px 7px 3px 20px; text-decoration:none;}
         }
       }
     }
