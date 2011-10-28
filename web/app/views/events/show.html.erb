@@ -4,8 +4,13 @@
 
 <div class="post">
   <div class="category">
-    <div class="event_text">TIDE EVENTS</div>
+    <% if @event.upcoming? %>
+      <div class="upcoming_event banner_text">UPCOMING EVENT</div>
+    <% else %>
+      <div class="event banner_text">TIDE EVENT</div>
+    <% end %>
   </div>
+  
   <h2><%= @event.name.html_safe %></h2>
   <div class="picture_left">
     <%= link_to image_tag(@event.picture_image.url), @event.picture_image.url, :target => "_blank" %>

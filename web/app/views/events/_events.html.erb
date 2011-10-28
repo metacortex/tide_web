@@ -3,8 +3,9 @@
     <%= content_tag_for :li, ev, :class => (@events.first == ev) ? "first_child" : "" do %>
       <div class="category">
         <% if ev.upcoming? %>
-          <%= content_tag :div, "event", :class => "event" %>
+          <%= content_tag :div, "event upcoming", :class => "event_upcoming" %>
         <% else %>
+          <%= content_tag :div, "event", :class => "event" %>
         <% end %>
       </div>
       <div class="picture">

@@ -6,7 +6,7 @@
 
 body {
   font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:13px;
-  background: url("b/background_tile.png");
+  background: url("b/background_tile.gif");
 }
 p { font-family:"Times New Roman", serif;}
 
@@ -20,31 +20,34 @@ a:hover, a:visited, a:active { color:#597f94;}
 
 em { font-weight:bold;}
 
+$gray_base:#4d4d4d;
+$gray_light:#bbb;
+
+
 
 /* GLOBAL LAYOUT */
 
 .wrapper { 
   width:946px; 
   position:relative; 
-  margin:25px auto 25px; 
-  border:1px solid #597F94; 
+  margin:25px auto 25px;
   padding:20px 25px; 
   background:white;
 }
 
 #h {
   @include clearfix;
-  background: url("b/DottedLine_long.gif") no-repeat left bottom; padding-bottom:10px;
+  padding-bottom:5px; border-bottom:1px solid #ddd;
   h1 a {
-    @include float(left);
-    @include replace-text-with-dimensions("main_logo.gif", 132, 50);
+    display:block;
+    @include replace-text-with-dimensions("main_logo.gif", 90, 32);
   }
   ul.account_nav {
     position:absolute; top:28px; right:250px;
     @include inline-list;
     font-size: 0.9em;
     li { margin-left:25px;}
-    a { @include hover-link; color:#444;}
+    a { @include hover-link; color:$gray_light;}
   }
   #globalsearch {
     position:absolute; top:25px; right:25px; width:200px;
@@ -63,7 +66,7 @@ em { font-weight:bold;}
   }
   #gnb {
     @include clearfix;
-    margin-top: 70px;
+    margin-top:20px;
     ul.top_nav {
       @include float(left);
       li {
@@ -118,8 +121,8 @@ em { font-weight:bold;}
 
 /* COMMON */
 
-$content_width: 640px;
-$sidebar_width: 290px;
+$content_width: 680px;
+$sidebar_width: 250px;
 
 @mixin has_more_link {
   position:relative;
@@ -148,8 +151,7 @@ $sidebar_width: 290px;
 
 .content_title {
   @include has_more_link;
-  margin-bottom:10px;
-  background: url("b/DottedLine_long.gif") no-repeat left bottom; padding-bottom:12px;
+  padding:5px 0 10px;
   .title_tide   { @include content_title; @include replace-text-with-dimensions("t/PageCategory_Tide.gif", 65, 20);}
   .title_people { @include content_title; @include replace-text-with-dimensions("t/PageCategory_People.gif", 134, 30);}
   .title_news   { @include content_title; @include replace-text-with-dimensions("t/PageCategory_News.gif", 81, 20);}
@@ -202,8 +204,11 @@ $sidebar_width: 290px;
 }
 
 .category {
-  .event { @include replace-text-with-dimensions("c/NewsCategory_TideEvents.gif", 110, 26);}
-  .event_text { color: RGB(189,75,72);font-weight:bold;font-size:14px;padding-bottom:5px;}
+  .event { @include replace-text-with-dimensions("c/NewsCategory_PastEvent.gif",15,150);}
+  .event_upcoming { @include replace-text-with-dimensions("c/NewsCategory_UpcomingEvent.gif",15,150);}
+  .banner_text { font-size:10px; padding:2px 4px;}
+  .event { color:#fff; background-color:RGB(204,81,78);}
+  .upcoming_event { color:#fff; background-color:RGB(204,81,78);}
 }
 
 
@@ -216,12 +221,14 @@ $sidebar_width: 290px;
 .about_us {
   @include content-section;
   @include float(left);
-  margin-top: 5px;
-  background: url("b/DottedLine_short.gif") no-repeat left top; padding-top:10px;
+  margin-top:10px;
   ul.nav {
     @include clearfix;
-    margin-top: 5px;
-    background: url("t/AboutButton_Dots.gif") no-repeat left; padding-left:18px;
+    margin-top:5px;
+    background:url("t/AboutButton_Dots.gif") no-repeat left top;
+    padding-left:20px;
+    padding-bottom:8px;
+    border-bottom:1px solid #ddd;
     li {
       @include float(left); margin-right:0px;
       a { display:block; text-decoration:none;}
@@ -295,21 +302,23 @@ $sidebar_width: 290px;
   ul {
     li {
       @include clearfix;
-      background: url("b/DottedLine_short.gif") no-repeat left top; padding-bottom:10px; padding-top:10px;
-      .category { margin-bottom:5px;}
+      padding-bottom:10px; padding-top:10px;
+      .category {
+        @include float(left); margin-right:1px;
+      }
       .picture {
-        @include float(left); margin-right:15px;
+        @include float(left); margin-right:5px;
         img { width:250px; height:150px;}
       }
       .content {
-        @include float(left); width:365px;
+        @include float(right); width:400px;
         h4 {
-          a { @include hover-link; color:#333; font-size:20px; line-height:110%;}
+          a { @include hover-link; color:#333; font-size:18px; line-height:120%;}
         }
-        .abbr { line-height:150%; margin:0; color:#4d4d4d;}
+        .abbr { line-height:130%; margin:5px 0 0 0; color:$gray_base;}
         .stats {
           position:relative; padding-bottom:5px;
-          .posted_at { color:#4d4d4d;}
+          .posted_at { color:$gray_base;}
           .comments {
             position:absolute; top:0; right:0; color:#597f94; font-weight:bold; font-size:16px;
             background:url("i/Icon_Comment.gif") no-repeat left 2px;
@@ -410,9 +419,13 @@ ul.posts {
 
 div.post {
   @include float(left);
-  margin-top: 10px;
   width:$content_width;
   h2 { line-height:120%;}
+  .category {
+    @include clearfix;
+    margin-bottom:5px;
+    div { @include float(left);}
+  }
   .picture {
     text-align:center; margin:10px;
     img { max-width:600px;}
@@ -462,89 +475,95 @@ div.post {
     @include content-section;
     @include has_posts_grid;
   }
-  div.new_comment {
-    @include content-section;
-    margin-top:10px;
-    h3 { @include replace-text-with-dimensions("t/News_NewComment.gif", 123, 18);}
-    form {
-      margin-top:6px;
-      textarea { padding:5px; width:630px; height:100px;}
-      .buttons { text-align:right; margin-top:5px;}
-      input.button { 
-        background:url("t/News_PostComment.gif") no-repeat; width:62px; height:30px; border:none; padding:0; margin:0;
-        color:transparent; text-index:-9999em; text-transform:capitalize; 
-        cursor:pointer;
+}
+
+
+
+
+/* POSTS */
+
+div.new_comment {
+  @include content-section;
+  margin-top:10px;
+  h3 { @include replace-text-with-dimensions("t/News_NewComment.gif", 123, 18);}
+  form {
+    margin-top:6px;
+    textarea { padding:5px; width:668px; height:100px;}
+    .buttons { text-align:right; margin-top:5px;}
+    input.button { 
+      background:url("t/News_PostComment.gif") no-repeat; width:62px; height:30px; border:none; padding:0; margin:0;
+      color:transparent; text-index:-9999em; text-transform:capitalize; 
+      cursor:pointer;
+    }
+  }
+}
+div.edit_comment {
+  form {
+    margin-top:6px;
+    text-align:right;
+    textarea { padding:5px; width:660px; height:100px;}
+    .buttons { text-align:right; margin-top:5px;}
+  }
+}
+.comments {
+  @include content-section;
+  margin-top:10px;
+  padding-bottom:50px;
+  h3 { @include replace-text-with-dimensions("t/News_Comments.gif", 97, 18);}
+  ul {
+    margin-top:8px;
+    li.comment {
+      @include clearfix;
+      padding:5px 0;
+      border-bottom:1px solid #aaa;
+      margin-bottom:10px;
+      .user {
+        @include float(left);
+        margin-right:15px;
+        img { width:64px; height:64px;}
       }
-    }
-  }
-  div.edit_comment {
-    form {
-      margin-top: 6px;
-      text-align: right;
-      textarea { padding:5px; width:625px; height:100px;}
-      .buttons { text-align:right; margin-top:5px;}
-    }
-  }
-  .comments {
-    @include content-section;
-    margin-top:10px;
-    padding-bottom:50px;
-    h3 { @include replace-text-with-dimensions("t/News_Comments.gif", 97, 18);}
-    ul {
-      margin-top: 8px;
-      li.comment {
-        @include clearfix;
-        padding: 5px 0;
-        border-bottom: 1px solid #aaa;
-        margin-bottom: 10px;
-        .user {
+      .body {
+        @include float(left);
+        width:596px;
+        .username {
           @include float(left);
-          margin-right: 15px;
-          img { width:64px; height:64px;}
+          em { color:$gray_base; font-size:14px;}
+          a { color:$gray_base; @include hover-link;}
         }
-        .body {
-          @include float(left);
-          width: 556px;
-          .username {
-            @include float(left);
-            em { color:#4d4d4d; font-size:14px;}
-            a { color:#4d4d4d; @include hover-link;}
-          }
-          .timestamp { @include float(right); color:#bfbfbf; font-weight:bold;}
-          .comment_body {
-            clear: both;
-            padding-top: 10px;
-            line-height: 150%;
-            color: #4d4d4d;
-          }
+        .timestamp { @include float(right); color:$gray_light; font-weight:bold;}
+        .comment_body {
+          clear:both;
+          padding-top:10px;
+          line-height:150%;
+          color:$gray_base;
         }
-        .comment_action { 
+      }
+      .comment_action { 
+        @include float(right);
+        margin-top:10px;
+        ul {
           @include float(right);
-          margin-top: 10px;
-          ul {
-            @include float(right);
-            @include toolbox;
-          }
+          @include toolbox;
         }
-        .status {
-          clear: both;
-          padding-top:5px;
-          .agreement { 
-            @include float(right);
-            .positive {
-              @include float(left);
-              margin-left:6px;
-              background: #597f94 url("/assets/i/Comment_Up.gif") no-repeat 5px 5px;
-              a { color:white; font-weight:bold;}
-            }
-            .negative { 
-              @include float(left);
-              margin-left:6px;
-              background: #bfbfbf url("/assets/i/Comment_Down.gif") no-repeat 5px 5px;
-              a { color:white; font-weight:bold;}
-            }
-            a { display:block; padding:3px 7px 3px 20px; text-decoration:none;}
+      }
+      .status {
+        clear:both;
+        padding-top:5px;
+        .agreement { 
+          @include float(right);
+          .positive {
+            @include float(left);
+            margin-left:6px;
+            background:#597f94 url("/assets/i/Comment_Up.gif") no-repeat 5px 5px;
+            a { color:white; font-weight:bold;}
           }
+          .negative { 
+            @include float(left);
+            margin-left:6px;
+            background:#bfbfbf url("/assets/i/Comment_Down.gif") no-repeat 5px 5px;
+            a { color:white; font-weight:bold;}
+          }
+          a { display:block; padding:3px 7px 3px 20px; text-decoration:none;}
         }
       }
     }
