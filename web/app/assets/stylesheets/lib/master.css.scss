@@ -1000,4 +1000,71 @@ ul.tags_form {
 
 
 
+/* EDITING */
+
+.editing_toolbox {
+  @include clearfix;
+  margin-bottom:6px;
+  .filters {
+    @include float(left);
+  }
+  .actions {
+    @include float(right);
+    li { margin-left:10px;}
+    a {
+      padding:3px 6px;
+      display:block;
+      &:hover {
+        background:#444;
+        color:#fff;
+        text-decoration:none;
+      }
+    }
+  }
+}
+
+table.editing {
+  width:100%;
+  margin-top:20px;
+  margin-bottom:50px;
+  th, td {
+    padding:6px 5px;
+    text-align:center;
+  }
+  th {
+    border-top:2px solid #999;
+    border-bottom:2px solid #999;
+    &.status { width:100px;}
+    &.timestamp { width:120px;}
+    &.action { width:80px;}
+    &.uid { width:50px;}
+  }
+  td {
+  }
+  .empty td {
+    padding:50px;
+    text-align:center;
+  }
+  a { @include hover-link;}
+}
+
+div.writer {
+  margin-top:25px;
+  .name { font-size:1.25em;}
+  table.info {
+    margin-top:10px;
+    td { padding:2px 10px 4px 5px; color:#333;}
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
 

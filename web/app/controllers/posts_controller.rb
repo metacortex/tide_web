@@ -4,14 +4,18 @@ class PostsController < ApplicationController
   
   
   def index
+    redirect_to "/tide" unless current_user.try(:writer?)
+    
     @posts = if current_user.try(:writer?)
-      Post.page(params[:page])
+      Post.order("id DESC").page(params[:page])
     else
-      Post.published.page(params[:page])
+      Post.published.order("id DESC").page(params[:page])
     end
   end
   
   def show
+    redirect_to "/tide" unless current_user.try(:writer?)
+
     @post = Post.includes(:comments).find(params[:id])
     
     unless @post.published? || current_user.try(:writer?)

@@ -1,0 +1,22 @@
+<%= render "editing/header" %>
+
+<table class="editing">
+  <thead>
+    <th class="">Writer</th>
+    <th class="">Email</th>
+    <th class="">#Posts</th>
+    <th class="">Weeks</th>
+    <th class="">Joined At</th>
+  </thead>
+  <tbody>
+    <% @users.each do |u| %>
+      <%= content_tag_for :tr, u do %>
+        <td><%= link_to "#{u.name} #{u.name_e}", "/editing/writer/#{u.id}" %></td>
+        <td><%= u.email %></td>
+        <td><%= u.posts_count %></td>
+        <td><%= ((Time.now - u.created_at) / (3600*24*7)).to_i %></td>
+        <td><%= l(u.created_at.to_date, :format => :long) %></td>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

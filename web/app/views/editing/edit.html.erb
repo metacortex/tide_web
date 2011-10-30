@@ -1,0 +1,21 @@
+
+<div class="content_title">
+  <h3>NEWS EDITING</h3>
+  <%= link_to "돌아가기", "/editing" %>
+</div>
+
+<div class="">
+  <%= semantic_form_for @post, :url => "/editing/update/#{@post.id}" do |f| %>
+    
+    <%= f.inputs do %>
+      <%= f.input :edit_status, :as => :select, :collection => [["Publish", "published"], ["Reject", "rejected"]], :include_blank => false %>
+      <%= f.input :edit_note %>
+    <% end %>
+    
+    
+    <%= f.buttons do %>
+      <%= f.commit_button "EDIT POST" %>
+    <% end %>
+    
+  <% end %>
+</div>

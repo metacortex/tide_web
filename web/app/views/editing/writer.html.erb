@@ -1,0 +1,56 @@
+<%= render "editing/header" %>
+
+<div class="writer">
+  <div class="name"><%= @user.name %> <%= @user.name_e %></div>
+  <table class="info">
+    <tr>
+      <td>Posts</td>
+      <td><%= @user.posts_count %></td>
+    </tr>
+    <tr>
+      <td>Accepted</td>
+      <td>
+        <%= @user.posts.published.count %>
+        <% if @user.posts_count %>
+          (<%= (@user.posts.published.count / @user.posts_count * 100).to_i %>%)
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>Rejected</td>
+      <td>
+        <%= @user.posts.not_published.count %>
+        <% if @user.posts_count %>
+          (<%= (@user.posts.not_published.count / @user.posts_count * 100).to_i %>%)
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>Posting Freq.</td>
+      <td><%= sprintf("%2.2f /week", @user.posts.published.count / ((Time.now - @user.created_at) / (3600*24*7))) %></td>
+    </tr>
+  </dl>
+</div>
+
+<table class="editing">
+  <thead>
+    <th class="uid">ID</th>
+    <th class="status">Status</th>
+    <th class="">Title</th>
+    <th class="timestamp">Posted At</th>
+    <th class="timestamp">Published</th>
+    <th class="status">Comments</th>
+  </thead>
+  <tbody>
+    <% @user.posts.select([:id, :title, :created_at, :published_at, :edit_status, :comments_count]).each do |post| %>
+      <tr>
+        <td><%= post.id %></td>
+        <td><%= display_edit_status(post.edit_status) %></td>
+        <td><%= link_to post.title, post, :target => "_blank" %></td>
+        <td><%= l(post.created_at.to_date, :format => :long) %></td>
+        <td><%= l(post.published_at.to_date, :format => :long) if post.published_at.present? %></td>
+        <td><%= post.comments_count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

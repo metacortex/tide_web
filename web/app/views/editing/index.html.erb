@@ -1,0 +1,26 @@
+<%= render "editing/header" %>
+
+<table class="editing">
+  <thead>
+    <th class="status">Status</th>
+    <th class="">Note</th>
+    <th class="action"></th>
+    <th class="">Title</th>
+    <th class="">Writer</th>
+    <th class="timestamp">Posted At</th>
+  </thead>
+  <tbody>
+    <% @posts.each do |post| %>
+      <%= content_tag_for :tr, post do %>
+        <td><%= display_edit_status(post.edit_status) %></td>
+        <td><%= truncate(post.edit_note, :length => 20) %></td>
+        <td><%= link_to "에디트", "/editing/edit/#{post.id}" %></td>
+        <td><%= link_to post.title, post, :target => "_blank" %></td>
+        <td><%= link_to post.user.name, "/editing/writer/#{post.user_id}" %></td>
+        <td><%= l(post.created_at, :format => :short) %></td>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @posts %>

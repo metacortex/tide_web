@@ -51,6 +51,9 @@ Web::Application.routes.draw do
     resources :comments
     resources :registrations
   end
+
+
+  match 'editing(/:action(/:id))', :controller => "editing", :action => "index"
   
 
   # Sample resource route with options:

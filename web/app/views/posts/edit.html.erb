@@ -3,7 +3,7 @@
 </div>
 
 <div class="edit_form">
-  <% if !@post.rejected? && current_user.writer? %>
+  <% if @post.rejected? && current_user.writer? %>
     <div class="edit_note">
       <div class="status">편집 상태 - <%= display_edit_status(@post.edit_status) %></div>
       <div class="caption">Editor Comment:</div>
@@ -12,6 +12,10 @@
   <% end %>
 
   <%= semantic_form_for @post do |f| %>
+
+    <% if @post.rejected? %>
+      <%= f.hidden_field :edit_status, :value => "waiting" %>
+    <% end %>
 
     <%= f.inputs do %>
       <%= f.input :category, :include_blank => false, :label => "카테고리" %>

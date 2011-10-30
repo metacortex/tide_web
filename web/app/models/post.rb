@@ -49,6 +49,7 @@ class Post < ActiveRecord::Base
   mount_uploader :picture_image, PictureUploader
 
   scope :published, where(:edit_status => "published")
+  scope :not_published, where("isNull(edit_status) OR edit_status != 'published'")
 
 
   def published?
