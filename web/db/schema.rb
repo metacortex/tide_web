@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111009090355) do
+ActiveRecord::Schema.define(:version => 20111028131320) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -169,9 +169,12 @@ ActiveRecord::Schema.define(:version => 20111009090355) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "picture_image"
+    t.string   "edit_status"
+    t.text     "edit_note"
   end
 
   add_index "posts", ["category_id"], :name => "index_posts_on_category_id"
+  add_index "posts", ["edit_status"], :name => "index_posts_on_edit_status"
   add_index "posts", ["published_at"], :name => "index_posts_on_published_at"
   add_index "posts", ["score"], :name => "index_posts_on_score"
   add_index "posts", ["user_id"], :name => "index_posts_on_user_id"

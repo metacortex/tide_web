@@ -1,33 +1,46 @@
+<div class="content_title">
+  <div class="title_news">TIDE News</div>
+</div>
+
 <div class="featured_posts">
-  Main Features / Data Visualization
+  <%= image_tag "Main_AppPlaceholder.jpg" %>
 </div>
 
 <ul class="posts">
   <% @posts.each do |post| %>
     <%= content_tag_for :li, post do %>
-      <div class="category">Category</div>
+      <div class="category">
+        <% if post.category %>
+          <%= content_tag :div, post.category.name, :class => post.category.name %>
+        <% else %>
+        <% end %>
+      </div>
       <div class="picture">
-        <div>Picture</div>
+        <%= link_to (image_tag post.picture_image), post %>
       </div>
       <div class="content">
-        <h3><%= link_to post.title, post %></h3>
+        <h4><%= link_to post.title, post %></h4>
         <div class="abbr"><%= truncate(post.body, :length => 150) %></div>
-        <div class="timestamp">posted <%= post.created_at.to_date.to_s %></div>
-        <div class="stats">comments <%= post.comments_count %></div>
+        <div class="stats">
+          &nbsp;
+          <div class="posted_at"><%= l(post.created_at.to_date, :format => :long) %></div>
+          <div class="comments"><%= post.comments_count %></div>
+        </div>
       </div>
     <% end %>
   <% end %>
   
   <%= paginate @posts %>
-  
 </ul>
 
 <div class="sidebar">
   
   <%= render "shared/side_app" %>
 
-  <div class="sb_action">
-    <div><%= link_to "POST NEW ARTICLE", new_post_path %></div>
-  </div>
+  <% if user_signed_in? && current_user.writer? %>
+    <div class="sb_action">
+      <div class="new_post"><%= link_to "POST NEW ARTICLE", new_post_path %></div>
+    </div>
+  <% end %>
   
 </div>

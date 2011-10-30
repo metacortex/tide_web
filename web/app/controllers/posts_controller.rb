@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   
   before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
   
+  
   def index
     @posts = Post.page(params[:page])
   end
@@ -16,10 +17,14 @@ class PostsController < ApplicationController
   end
   
   def new
+    return unless current_user.writer?
+
     @post = Post.new
   end
   
   def create
+    return unless current_user.writer?
+
     if params[:post][:picture_image]
       params[:post][:remote_picture_image_url] = nil
     end

@@ -1,19 +1,19 @@
 <div class="content_title">
-  <div class="title">NEWS</div>
+  <div class="title_news">NEWS</div>
 </div>
 
 <div class="post">
   <h2><%= @post.title %></h2>
+  <div class="author">
+    <span class="label">posted by</span>
+    <%= link_to "<em>#{@post.user.name_e}</em> #{@post.user.name}".html_safe %>
+    <span class="timestamp"><%= l(@post.created_at, :format => :long) %></span>
+  </div>
+
   <div class="picture">
     <%= image_tag @post.picture_image.url %>
   </div>
-  <div class="content">
-    <%= @post.body.gsub("\n","<br/>").html_safe %>
-  </div>
-  <div class="author">
-    <span class="label">posted by</span>
-    <%= link_to "<em>#{@post.user.name_e}</em><br/>#{@post.user.name}".html_safe %>
-  </div>
+
   <% unless @post.source_url.blank? %>
     <div class="source">
       <em>Source:</em> <%= link_to @post.source_url, @post.source_url, :target => "_blank" %>
@@ -22,6 +22,10 @@
   <div class="tags">
     <em>Tag:</em>
     <%= @post.tags.map{|t| link_to_function(t.name, "alert('not yet')") }.join(", ").html_safe %>
+  </div>
+
+  <div class="content">
+    <%= @post.body.gsub("\n","<br/>").html_safe %>
   </div>
   
   <% if @post.editable_to_user?(current_user) %>
@@ -33,25 +37,13 @@
     </div>
   <% end %>
   
-  <div class="like_this_post">
+  <div class="like_this_post" style="display:none">
     <div class="vote">
       <div>VOTE APP</div>
     </div>
     <div class="share">
       <div>FB LIKE</div>
     </div>
-  </div>
-
-  <div class="related_posts">
-    <h3>Related News</h3>
-    <ul>
-      <% 4.times do %>
-      <li>
-        <div class="thumb">Picture</div>
-        <div class="abbr"><%= link_to "Relative News Here! News text abbr here." %></div>
-      </li>
-      <% end %>
-    </ul>
   </div>
 
   <div id="comments_app">
@@ -86,7 +78,22 @@
 <div class="sidebar">
   <%= render "shared/side_app" %>
 
-  <div class="sb_action">
-    <div><%= link_to "POST NEW ARTICLE", new_post_path %></div>
+  <% if user_signed_in? && current_user.writer? %>
+    <div class="sb_action">
+      <div class="new_post"><%= link_to "POST NEW ARTICLE", new_post_path %></div>
+    </div>
+  <% end %>
+  
+  <div class="related_posts">
+    <h3>RELATED NEWS</h3>
+    <ul>
+      <% 4.times do %>
+      <li>
+        <div class="thumb"><%= image_tag @post.picture_image %></div>
+        <div class="abbr"><%= link_to @post.title, @post %></div>
+      </li>
+      <% end %>
+    </ul>
   </div>
+
 </div>

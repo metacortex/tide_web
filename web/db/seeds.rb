@@ -11,12 +11,11 @@
 
 
 Category.create([
-  { name: "IT", title: "IT", title_en: "IT" },
-  { name: "Culture", title: "Culture", title_en: "Culture" },
-  { name: "Economy", title: "Economy", title_en: "Economy" },
-  { name: "Science", title: "Science", title_en: "Science" },
+  { name: "design",       title: "디자인",     title_en: "Design" },
+  { name: "technology",   title: "기술",      title_en: "Technology" },
+  { name: "entrepreneur", title: "비즈니스",    title_en: "Entrepreneur" },
+  { name: "essay",        title: "에세이",     title_en: "Essay" },
 ])
-
 
 User.create([
   { email:"9ruvie@gmail.com", password:"1234", password_confirmation:"1234", name:"손정욱", name_e:"Son Jung Wook", 

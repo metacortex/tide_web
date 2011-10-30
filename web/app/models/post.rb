@@ -24,6 +24,8 @@
 #  created_at     :datetime
 #  updated_at     :datetime
 #  picture_image  :string(255)
+#  edit_status    :string(255)
+#  edit_note      :text
 #
 
 require 'author_editable'

@@ -101,7 +101,9 @@ class User < ActiveRecord::Base
     connection_requested.detect {|c| c.user_id == u.id }
   end
 
-
+  def writer?
+    role != nil
+  end
 
 
 

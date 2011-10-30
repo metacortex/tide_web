@@ -165,8 +165,11 @@ $sidebar_width: 250px;
     div { margin:0;}
   }
   .sb_action {
-    a { background:#666; color:#fff; display:block; padding:10px 15px; text-decoration:none;}
-    a:hover { background:#333;}
+    a { display:block; text-decoration:none;}
+    .new_post {
+      a { @include replace-text-with-dimensions("t/Button_PostNewArticle.gif", 290, 50);}
+      a:hover { @include replace-text-with-dimensions("t/Button_PostNewArticle_HL.gif", 290, 50);}
+    }
   }
 }
 
@@ -204,8 +207,12 @@ $sidebar_width: 250px;
 }
 
 .category {
-  .event { @include replace-text-with-dimensions("c/NewsCategory_PastEvent.gif",15,150);}
+  .event          { @include replace-text-with-dimensions("c/NewsCategory_PastEvent.gif",15,150);}
   .event_upcoming { @include replace-text-with-dimensions("c/NewsCategory_UpcomingEvent.gif",15,150);}
+  .design       { @include replace-text-with-dimensions("c/NewsCategory_Design.gif",15,150);}
+  .technology   { @include replace-text-with-dimensions("c/NewsCategory_Technology.gif",15,150);}
+  .entrepreneur { @include replace-text-with-dimensions("c/NewsCategory_Entrepreneur.gif",15,150);}
+  .essay        { @include replace-text-with-dimensions("c/NewsCategory_Essay.gif",15,150);}
   .banner_text { font-size:10px; padding:2px 4px;}
   .event { color:#fff; background-color:RGB(204,81,78);}
   .upcoming_event { color:#fff; background-color:RGB(204,81,78);}
@@ -277,9 +284,7 @@ $sidebar_width: 250px;
       p { padding:10px 0; line-height:120%; color:#333; font-family: Dotum, "돋움", arial, sans-serif;}
     }
     .with_top_border {
-      padding-top:15px;
       margin-top:5px;
-      background: url("b/DottedLine_short.gif") no-repeat left top;
     }
   }
 }
@@ -344,10 +349,7 @@ $sidebar_width: 250px;
 /* POSTS */
 
 .featured_posts {
-  text-align: center;
-  padding: 120px;
-  background: #eee;
-  border: 1px solid #ccc;
+  text-align:center;
 }
 
 @mixin has_posts_grid {
@@ -397,22 +399,30 @@ ul.posts {
   li.post {
     @include no-bullet;
     @include clearfix;
-    margin: 1em 0;
-    .category { border:1px solid #999; padding:5px; width:230px; margin-bottom:5px; line-height:150%;}
+    padding-bottom:10px; padding-top:10px;
+    .category {
+      @include float(left); margin-right:1px;
+    }
     .picture { 
-      @include float(left); 
-      width:240px;
-      border:1px solid #999;
-      margin-right: 15px;
-      div { padding:60px 0px; text-align:center;}
+      @include float(left); margin-right:5px;
+      img { width:250px; height:150px;}
     }
     .content { 
-      @include float(left);
-      width:350px;
-      h3 { line-height:150%;}
-      .abbr { color:#666; margin-bottom:10px; line-height:150%;}
+      @include float(right); width:400px;
+      h4 {
+        a { @include hover-link; color:#333; font-size:18px; line-height:120%;}
+      }
+      .abbr { line-height:130%; margin:5px 0 0 0; color:$gray_base;}
       .timestamp { @include float(left); line-height:150%; font-style:italic; font-size:0.9em;}
-      .stats { @include float(right); line-height:150%;}
+      .stats {
+        position:relative; padding-bottom:5px;
+        .posted_at { color:$gray_base;}
+        .comments {
+          position:absolute; top:0; right:0; color:#597f94; font-weight:bold; font-size:16px;
+          background:url("i/Icon_Comment.gif") no-repeat left 2px;
+          padding-left:22px;
+        }
+      }
     }
   }
 }
@@ -423,36 +433,34 @@ div.post {
   h2 { line-height:120%;}
   .category {
     @include clearfix;
-    margin-bottom:5px;
     div { @include float(left);}
   }
+  .author { 
+    line-height:150%;
+    em { text-align:left; color:#4d4d4d;}
+    span { color:$gray_light; font-weight:bold;}
+    a { @include hover-link; margin-left:4px; margin-right:6px; color:$gray_base;}
+  }
   .picture {
-    text-align:center; margin:10px;
+    text-align:center; margin:20px 10px;
     img { max-width:600px;}
   }
   .picture_left {
     margin:10px 0;
     img { max-width:600px;}
   }
-  .content { line-height:150%;}
+  .source { 
+    margin:1em 0;
+    a { @include hover-link; line-height:125%;}
+  }
+  .tags { margin:1em 0;}
+  .content { line-height:150%; margin:1em 0;}
   .register_event {
     margin:10px 0;
     a { display:block; @include replace-text-with-dimensions("t/registerEvent.gif", 236, 45);}
   }
-  .author { 
-    line-height:150%;
-    text-align:right; padding-right:10px;
-    em { text-align:left; color:#4d4d4d;}
-    span { color:#bfbfbf; font-size:0.9em; font-weight:bold;}
-    a { text-align:left; display:block; @include hover-link; @include float(right); margin-left:6px;}
-  }
   .posted_at { line-height:150%; text-align:right; padding-right:10px; color:#bfbfbf; font-size:0.9em; font-weight:bold;}
   .sharebox { padding:5px 0 15px;}
-  .source { 
-    margin:1em 0;
-    a { @include hover-link;}
-  }
-  .tags { margin:1em 0;}
   .edit_post {
     @include clearfix;
     ul.actions {
@@ -471,14 +479,10 @@ div.post {
       margin:1em 0; width:170px; border:1px solid #ccc; padding:40px 0; text-align:center;
     }
   }
-  .related_posts {
-    @include content-section;
-    @include has_posts_grid;
-  }
   div.new_comment {
     @include content-section;
     margin-top:10px;
-    h3 { @include replace-text-with-dimensions("t/News_NewComment.gif", 123, 18);}
+    h3 { @include replace-text-with-dimensions("t/AddNewComment.gif", 166, 21);}
     form {
       margin-top:6px;
       textarea { padding:5px; width:668px; height:100px;}
@@ -559,6 +563,28 @@ div.post {
             a { display:block; padding:3px 7px 3px 20px; text-decoration:none;}
           }
         }
+      }
+    }
+  }
+}
+
+.related_posts {
+  margin-top:20px;
+  h3 { color:#597f94; font-weight:bold; line-height:150%; font-size:15px; border-bottom:1px solid #ccc;}
+  ul {
+    margin:6px 0;
+    li {
+      @include clearfix;
+      padding:3px 0;
+      .thumb {
+        @include float(left);
+        img { width:125px; height:75px;}
+      }
+      .abbr {
+        @include float(right);
+        margin-top:2px;
+        width:120px;
+        a { @include hover-link; color:$gray_base;}
       }
     }
   }
