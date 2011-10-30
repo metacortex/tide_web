@@ -1,29 +1,19 @@
 <div class="content_title">
-  <div class="title">POST NEW ARTICLE</div>
+  <div class="title">EDIT POST ARTICLE</div>
 </div>
 
-<div class="set_post_type">
-  <div class="type">
-    <a href="#compose" onclick="$('.set_post_type').hide();$('.edit_form').show();return setPostFormAs('compose');">
-      <div>I am writing this article. I have copyright of the article.</div>
-      <div>직접 작성한 글로, 저작권이 회원에게 있는 문서</div>
-    </a>
-  </div>
-  <div class="type">
-    <a href="#link" onclick="$('.set_post_type').hide();$('.edit_form').show();return setPostFormAs('link');">
-      <div>Someone else wrote this article. I do not have copyright of the article.</div>
-      <div>타인 혹은 타 매체가 작성한 글로, 저작권이 회원에게 있지 않은 문서</div>
-    </a>
-  </div>
-</div>
+<div class="edit_form">
+  <% if !@post.rejected? && current_user.writer? %>
+    <div class="edit_note">
+      <div class="status">편집 상태 - <%= display_edit_status(@post.edit_status) %></div>
+      <div class="caption">Editor Comment:</div>
+      <%= @post.edit_note || "없음." %>
+    </div>
+  <% end %>
 
-
-<div class="edit_form" style="display:none">
   <%= semantic_form_for @post do |f| %>
 
     <%= f.inputs do %>
-      <%= f.input :kind, :as => :radio, :collection => [["Copyright resolved","compose"],["Copyright unresolved","link"]], 
-        :onclick => "setPostFormAs(this.value)" %>
       <%= f.input :category, :include_blank => false, :label => "카테고리" %>
 
       <%= f.input :source_url, :size => 80, :input_html => { :onchange => "updateRemotePictureList(this)" } %>
@@ -50,8 +40,6 @@
     <%= f.buttons :class => "right_buttons" do %>
       <%= f.commit_button "DONE" %>
     <% end %>
-    
-    <%= f.hidden_field :user_id, :value => current_user.try(:id) %>
     
   <% end %>
 </div>

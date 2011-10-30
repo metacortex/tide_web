@@ -146,7 +146,7 @@ $sidebar_width: 250px;
 
 @mixin content_title { 
   position:relative;
-  font-weight:bold; font-size:1.75em; color:#555;
+  font-weight:bold; font-size:1.5em; color:#333;
 }
 
 .content_title {
@@ -156,6 +156,7 @@ $sidebar_width: 250px;
   .title_people { @include content_title; @include replace-text-with-dimensions("t/PageCategory_People.gif", 134, 30);}
   .title_news   { @include content_title; @include replace-text-with-dimensions("t/PageCategory_News.gif", 81, 20);}
   .title_events { @include content_title; @include replace-text-with-dimensions("t/PageCategory_TideEvents.gif", 282, 20);}
+  .title { @include content_title; line-height:125%;}
 }
 
 .sidebar {
@@ -573,7 +574,7 @@ div.post {
 }
 
 .edit_status {
-  color:red;
+  color:green;
 }
 
 .related_posts {
@@ -595,6 +596,16 @@ div.post {
         a { @include hover-link; color:$gray_base;}
       }
     }
+  }
+}
+
+.edit_form {
+  .edit_note {
+    margin:10px 0 20px;
+    border:1px dotted #ccc;
+    padding:15px 20px;
+    .status { line-height:2em;}
+    .caption { line-height:2em; margin-bottom:5px;}
   }
 }
 

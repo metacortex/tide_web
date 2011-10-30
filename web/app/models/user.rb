@@ -104,6 +104,10 @@ class User < ActiveRecord::Base
   def writer?
     role != nil
   end
+  
+  def editor?
+    role == "editor"
+  end
 
 
 

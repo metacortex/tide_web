@@ -52,11 +52,27 @@ class PostsController < ApplicationController
   end
   
   def update
+    if params[:post][:picture_image]
+      params[:post][:remote_picture_image_url] = nil
+    end
+
+    @post = Post.find(params[:id])
+    has_permission?(@post, current_user)
     
+    if @post.update_attributes(params[:post])
+      redirect_to @post
+    else
+      render :action => "edit"
+    end
   end
   
   def destroy
+    @post = Post.find(params[:id])
+    has_permission?(@post, current_user)
     
+    @post.destroy
+    
+    redirect_to :action => "index"
   end
 
 end

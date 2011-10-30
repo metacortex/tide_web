@@ -9,7 +9,9 @@ class ApplicationController < ActionController::Base
   end
   
   def has_permission?(content, user)
-    raise PermissionException unless content.editable_to_user?(user)
+    unless user.editor?
+      raise PermissionException unless content.editable_to_user?(user)
+    end
   end
   
 
