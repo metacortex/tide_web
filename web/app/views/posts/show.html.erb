@@ -3,7 +3,19 @@
 </div>
 
 <div class="post">
-  <h2><%= @post.title %></h2>
+  <h2>
+    <%= display_edit_status(@post.edit_status) %>
+    <%= @post.title %>
+  </h2>
+
+  <% if @post.rejected? && current_user.try(:writer?) %>
+    <div class="edit_note">
+      <div class="caption">Editor Comment</div>
+      안녕하세요. 글씨가 너무 작습니다.
+      <%= @post.edit_note %>
+    </div>
+  <% end %>
+
   <div class="author">
     <span class="label">posted by</span>
     <%= link_to "<em>#{@post.user.name_e}</em> #{@post.user.name}".html_safe %>

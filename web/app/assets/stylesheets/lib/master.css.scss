@@ -435,6 +435,10 @@ div.post {
     @include clearfix;
     div { @include float(left);}
   }
+  .edit_note {
+    margin:10px 0 20px; padding:15px 20px; background:#eee; border:1px solid red;
+    .caption { font-weight:bold; color:red; margin-bottom:10px;}
+  }
   .author { 
     line-height:150%;
     em { text-align:left; color:#4d4d4d;}
@@ -566,6 +570,10 @@ div.post {
       }
     }
   }
+}
+
+.edit_status {
+  color:red;
 }
 
 .related_posts {

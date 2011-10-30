@@ -48,8 +48,16 @@ class Post < ActiveRecord::Base
 
   mount_uploader :picture_image, PictureUploader
 
+  scope :published, where(:edit_status => "published")
 
 
+  def published?
+    edit_status == "published"
+  end
+
+  def rejected?
+    edit_status == "rejected"
+  end
 
 
 

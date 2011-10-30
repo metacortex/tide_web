@@ -4,11 +4,20 @@ class PostsController < ApplicationController
   
   
   def index
-    @posts = Post.page(params[:page])
+    @posts = if current_user.try(:writer?)
+      Post.page(params[:page])
+    else
+      Post.published.page(params[:page])
+    end
   end
   
   def show
     @post = Post.includes(:comments).find(params[:id])
+    
+    unless @post.published? || current_user.try(:writer?)
+      redirect_to :action => "index"
+    end
+    
     @agreements = if user_signed_in?
       current_user.agreements.where(:post_id => params[:id])
     else

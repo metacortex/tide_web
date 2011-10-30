@@ -13,13 +13,17 @@
         <% if post.category %>
           <%= content_tag :div, post.category.name, :class => post.category.name %>
         <% else %>
+          <%= content_tag :div, "essay", :class => "essay" %>
         <% end %>
       </div>
       <div class="picture">
         <%= link_to (image_tag post.picture_image), post %>
       </div>
       <div class="content">
-        <h4><%= link_to post.title, post %></h4>
+        <h4>
+          <%= display_edit_status(post.edit_status) %>
+          <%= link_to post.title, post %>
+        </h4>
         <div class="abbr"><%= truncate(post.body, :length => 150) %></div>
         <div class="stats">
           &nbsp;
