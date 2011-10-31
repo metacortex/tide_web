@@ -406,7 +406,9 @@ ul.posts {
     }
     .picture { 
       @include float(left); margin-right:5px;
-      img { width:250px; height:150px;}
+      height:150px;
+      overflow:hidden;
+      img { width:250px;}
     }
     .content { 
       @include float(right); width:400px;
@@ -587,7 +589,9 @@ div.post {
       padding:3px 0;
       .thumb {
         @include float(left);
-        img { width:125px; height:75px;}
+        height:75px;
+        overflow:hidden;
+        img { width:125px;}
       }
       .abbr {
         @include float(right);

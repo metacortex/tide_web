@@ -11,7 +11,6 @@
   <% if @post.rejected? && current_user.try(:writer?) %>
     <div class="edit_note">
       <div class="caption">Editor Comment</div>
-      안녕하세요. 글씨가 너무 작습니다.
       <%= @post.edit_note %>
     </div>
   <% end %>
@@ -23,7 +22,7 @@
   </div>
 
   <div class="picture">
-    <%= image_tag @post.picture_image.url %>
+    <%= link_to (image_tag @post.picture_image.url), @post.source_url, :target => "_blank" %>
   </div>
 
   <% unless @post.source_url.blank? %>
@@ -96,16 +95,5 @@
     </div>
   <% end %>
   
-  <div class="related_posts">
-    <h3>RELATED NEWS</h3>
-    <ul>
-      <% 4.times do %>
-      <li>
-        <div class="thumb"><%= image_tag @post.picture_image %></div>
-        <div class="abbr"><%= link_to @post.title, @post %></div>
-      </li>
-      <% end %>
-    </ul>
-  </div>
-
+  <%= render "shared/related_news", :post => @post %>
 </div>
