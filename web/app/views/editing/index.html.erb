@@ -14,7 +14,7 @@
       <%= content_tag_for :tr, post do %>
         <td><%= display_edit_status(post.edit_status) %></td>
         <td><%= truncate(post.edit_note, :length => 20) %></td>
-        <td><%= link_to "에디트", "/editing/edit/#{post.id}" %></td>
+        <td><%= link_to "(에디트)", "/editing/edit/#{post.id}" if current_user.editor? %></td>
         <td><%= link_to post.title, post, :target => "_blank" %></td>
         <td><%= link_to post.user.name, "/editing/writer/#{post.user_id}" %></td>
         <td><%= l(post.created_at, :format => :short) %></td>
