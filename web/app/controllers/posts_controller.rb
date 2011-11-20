@@ -4,8 +4,7 @@ class PostsController < ApplicationController
   
   
   def index
-    redirect_to "/tide" unless current_user.try(:writer?)
-    
+    # redirect_to "/tide" unless current_user.try(:writer?)
     @posts = if current_user.try(:writer?)
       Post.order("id DESC").page(params[:page])
     else
