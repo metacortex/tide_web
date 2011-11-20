@@ -6,6 +6,7 @@ module PostsHelper
     when nil
       "대기중"
     when "published"
+      "완료"
     when "rejected"
       "거절"
     when "waiting"

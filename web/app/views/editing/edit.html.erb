@@ -7,11 +7,36 @@
 <div class="">
   <%= semantic_form_for @post, :url => "/editing/update/#{@post.id}" do |f| %>
     
-    <%= f.inputs do %>
+    <%= f.inputs "Editing Status" do %>
       <%= f.input :edit_status, :as => :select, :collection => [["Publish", "published"], ["Reject", "rejected"]], :include_blank => false %>
-      <%= f.input :edit_note %>
+      <%= f.input :edit_note, :input_html => { :size => "80x6" } %>
     <% end %>
     
+    <%= f.inputs "Post Data" do %>
+      <%= f.input :kind, :as => :radio, :collection => [["Copyright resolved","compose"],["Copyright unresolved","link"]], 
+        :onclick => "setPostFormAs(this.value)" %>
+      <%= f.input :category, :include_blank => false, :label => "카테고리" %>
+
+      <%= f.input :source_url, :size => 80, :input_html => { :onchange => "updateRemotePictureList(this)" } %>
+      <%= f.input :title, :size => 80 %>
+      <%= f.input :picture_image, :as => :file, :label => "Main Image" %>
+      <li id="remote_image_selector">
+        <label>&nbsp;</label>
+        <div class="input_group">
+          <%= f.hidden_field :remote_picture_image_url %>
+          <p class="message">or<br/>Select from images in source page</p>
+          <ul id="remote_picture_images"><li class="message">(no data)</li></ul>
+        </div>
+      </li>
+      
+      <%= f.input :body, :label => "Content" %>
+      <li>
+        <label>TAG</label>
+        <div class="input_group">
+          <%= render "shared/tags_form", :form => f %>
+        </div>
+      </li>
+    <% end %>
     
     <%= f.buttons do %>
       <%= f.commit_button "EDIT POST" %>

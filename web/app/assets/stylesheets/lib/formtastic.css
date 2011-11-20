@@ -64,6 +64,14 @@ This stylesheet forms part of the Formtastic Rails Plugin
   color:#000;
 }
 
+.formtastic legend span {
+  font-size:1.25em;
+  font-weight:bold;
+  line-height:2em;
+  display:block;
+  text-decoration:underline;
+}
+
 
 /* SEMANTIC ERRORS
 --------------------------------------------------------------------------------------------------*/

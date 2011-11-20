@@ -21,7 +21,9 @@
       </div>
       <div class="content">
         <h4>
-          <%= display_edit_status(post.edit_status) %>
+          <% if current_user.try(:writer?) %>
+            <%= display_edit_status(post.edit_status) %>
+          <% end %>
           <%= link_to post.title, post %>
         </h4>
         <div class="abbr"><%= truncate(post.body, :length => 150) %></div>
