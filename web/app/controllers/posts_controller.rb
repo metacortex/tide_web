@@ -13,8 +13,7 @@ class PostsController < ApplicationController
   end
   
   def show
-    redirect_to "/tide" unless current_user.try(:writer?)
-
+    # redirect_to "/tide" unless current_user.try(:writer?)
     @post = Post.includes(:comments).find(params[:id])
     
     unless @post.published? || current_user.try(:writer?)
