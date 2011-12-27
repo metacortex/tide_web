@@ -1,14 +1,10 @@
-<div class="content_title">
-  <div class="title">PEOPLE</div>
-  <div class="more"><%= link_to "Show All >>", all_users_path %></div>
-</div>
+<%= render "shared/splash" %>
 
 <%= render "users/search" %>
 
-
 <div class="people">
   <div class="title">
-    <h3>Recently Joined Members</h3>
+    <h3 class="new_members">New Members</h3>
     <div class="more"><%= link_to "more >>", all_users_path %></div>
   </div>
   <ul class="people">
@@ -17,19 +13,6 @@
     <% end %>
   </ul>
 </div>
-
-<div class="people">
-  <div class="title">
-    <h3>Active Members of the Week</h3>
-    <div class="more"><%= link_to "more >>", all_users_path %></div>
-  </div>
-  <ul class="people">
-    <% @weekly_users.each do |user| %>
-      <li><%= render "users/thumb", :user => user, :connect_button => true %></li>
-    <% end %>
-  </ul>
-</div>
-
 
 <div class="sidebar">
   <%= render "shared/side_app" %>

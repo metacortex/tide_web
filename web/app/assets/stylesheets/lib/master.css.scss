@@ -729,7 +729,7 @@ div.post {
 @mixin connect_button {
   a {
     display:block;
-    @include sprite_replace_text($icon,People_Connect);
+    @include sprite_replace_text_anchor($icon,People_Connect);
   }
   span.connected { padding:2px 3px 2px 6px; color:#fff; background:#999; font-size:0.8em;}
   span.requested { padding:2px 3px 2px 6px; color:#fff; background:#999; font-size:0.8em;}
@@ -768,14 +768,21 @@ div.post {
   @include clearfix;
   @include content_section;
   @include has_people_grid;
+  .title {
+    h3.new_members { @include sprite_replace_text($typo,People_NewMemebers);}
+    border-bottom:1px solid $border_color;
+    padding-bottom:5px;
+    margin-bottom:5px;
+    .more a { @include sprite_replace_text_anchor($icon,ShowAllButton); display:block; margin-bottom:4px;}
+  }
 }
 
 .people_profile {
   @include float(left);
-  padding-top: 20px;
+  padding-top:20px;
   .portrait {
     @include float(left);
-    position: relative;
+    position:relative;
     .category {
       position:absolute; bottom:5px; left:5px;
       img { width:18px;height:18px;}
