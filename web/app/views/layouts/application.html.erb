@@ -3,43 +3,29 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <%= csrf_meta_tag %>
-
-  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
-       Remove this if you use the .htaccess -->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-  <title>TIDE Institute</title>
+  <title><%= content_for?(:title) ? yield(:title) : "TIDE Institute" %></title>
   <meta name="description" content="">
   <meta name="author" content="TIDE Institute">
   <meta property="og:image" content="http://www.tideinstitute.org/assets/main_logo.gif" />
 
-  <!-- Mobile viewport optimized: j.mp/bplateviewport -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
-
-  <!-- CSS: implied media="all" -->
-  <%= stylesheet_link_tag "application" %>
-
-  <!-- More ideas for your <head> here: h5bp.com/docs/#head-Tips -->
+  <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
-
+  <%= csrf_meta_tags %>
 </head>
 <body>
 <div class="wrapper">
   <div id="h">
     <h1><%= link_to "TIDE", root_path %></h1>
     <ul class="account_nav">
-			<% if user_signed_in? %>
+			<% if logged_in? %>
 			  <% if current_user.writer? %>
           <li><em><%= link_to "EDITING", "/editing" %></em></li>
         <% end %>
         <li><span class="current_user"><%= link_to current_user.email, edit_profile_users_path %></span></li>
-        <li><%= link_to "Log Out", destroy_user_session_path %></li>
+        <li><%= link_to "Log Out", logout_path %></li>
       <% else %>
-        <li><%= link_to "Log In", "#login_popup", :class => "ajax-link modal", :data => { :url => new_user_session_path, :dom => "#login_popup" } %></li>
-        <li><%= link_to "Sign Up", "#signup_popup", :class => "ajax-link modal", :data => { :url => new_user_registration_path, :dom => "#signup_popup" } %></li>
+        <li><%= link_to "Log In", "#login_popup", :class => "ajax-link modal", :data => { :url => login_path, :dom => "#login_popup" } %></li>
+        <li><%= link_to "Sign Up", "#signup_popup", :class => "ajax-link modal", :data => { :url => signup_path, :dom => "#signup_popup" } %></li>
 			<% end %>
     </ul>
     
@@ -58,12 +44,14 @@
     <div id="gnb">
       <%= navigation_tag :class => "top_nav" do |m| %>
         <%= m.item "NEWS", posts_path, :current => current_controller?(["posts"]), :html => { :class => "go_news" } %>
-        <%= m.item "PEOPLE", users_path, :current => current_controller?(["users"]), :html => { :class => "go_people comming_soon" } %>
+        <%= m.item "PEOPLE", users_path, :current => current_controller?(["users"]), :html => { :class => "go_people" } %>
         <%= m.item "TIDE", "/tide", :current => current_controller?(["main","events"]), :html => { :class => "go_tide" } %>
-        <%= m.item "BROWN BAG TALK", "/brownbagtalk", :current => current_controller?(["brown"]), :html => { :class => "go_brownbagtalk comming_soon" } %>
+        <%= m.item "ARCHIVE", "/archives", :current => current_controller?(["archives"]), :html => { :class => "go_archive" } %>
+        <%= m.item "FORUM", "/forums", :current => current_controller?(["forums"]), :html => { :class => "go_forum" } %>
       <% end %>
 
       <ul id="ssn">
+        <li class="follow">Follow TIDE On</li>
         <li class="fb"><%= link_to "Facebook", "https://www.facebook.com/tideinstitute", :target => "_blank" %></li>
         <li class="tw"><%= link_to "Twitter", "http://twitter.com/#!/tideinst", :target => "_blank" %></li>
       </ul>
@@ -86,11 +74,11 @@
 
 
 <div id="login_popup" style="display:none">
-  <%= render "users/sessions/form" %>
+  <%= render "sessions/form" %>
 </div>
 
 <div id="signup_popup" style="display:none">
-  <%= render "users/registrations/form" %>
+  <%= render "users/form" %>
 </div>
 
 

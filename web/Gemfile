@@ -11,63 +11,41 @@ gem 'mysql2'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
+  gem 'sass-rails', "  ~> 3.1.4"
   gem 'coffee-rails', "~> 3.1.1"
   gem 'uglifier', '>= 1.0.3'
   gem 'compass', '~> 0.12.alpha.0'
 end
-gem 'sass-rails', "  ~> 3.1.4"
 
-# JavasScript libs
 gem 'jquery-rails'
-# gem 'modernizr-rails'
 
-
-# Ajax request CoffeeScript support
-# gem 'coffeebeans'
-
-# Heroku deployment requirements
-group :production do
-#   gem 'therubyracer-heroku'
-#   gem 'pg'
-  gem 'therubyracer'
-end
-
-
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
 
 
 # Authentication
-gem 'devise'
+# gem 'devise'
+gem 'sorcery'
 
 
 # File Attachment
 gem 'carrierwave'
-gem 'remotipart'
+gem 'remotipart', '~> 0.4'
+gem 'mini_magick'
 
 
 # helper: Model
-# gem 'decent_exposure'
+gem 'simple_form'
+gem 'kaminari'
+gem 'ransack'
 
 
 # helper: View
-# gem "meta_search", '>= 1.1.1'
-# gem "inherited_resources", "1.2.2"
-# gem 'formtastic'
-gem 'activeadmin'
+# gem 'activeadmin'
 
 
-# data processing
-# gem 'image_science', git: "git://github.com/asynchrony/image_science.git"
-gem 'mini_magick'
-# gem 'nokogiri'
 
+group :production do
+  gem 'therubyracer'
+end
 
 group :development do
   gem 'rails-dev-tweaks', '~> 0.5.0'
@@ -77,4 +55,6 @@ end
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
+  gem 'machinist', '>= 2.0.0.beta2'
+  gem 'minitest'
 end

@@ -1,0 +1,5 @@
+<%= navigation_tag :class => "nav", :spacer => "<li class=\"spacer\"></li>".html_safe do |m| %>
+  <%= m.item "PHOTOS", "/archives", :current => current_action?(["index","photos"]), :html => { :class => "go_photos" } %>
+  <%= m.item "VIDEOS", "/archives/videos", :current => current_action?(["videos"]), :html => { :class => "go_videos" } %>
+  <%= m.item "DOCUMENTS", "/archives/documents", :current => current_action?(["documents"]), :html => { :class => "go_documents" } %>
+<% end %>

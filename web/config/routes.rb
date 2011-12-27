@@ -1,38 +1,15 @@
 Web::Application.routes.draw do
 
-  ActiveAdmin.routes(self)
-  devise_for :admin_users, ActiveAdmin::Devise.config
+  get "logout" => "sessions#destroy", :as => :logout
+  get "login" => "sessions#new", :as => :login
+  post "login" => "sessions#create"
 
+  match "oauth/callback" => "oauths#callback"
+  match "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
 
-  devise_for :users, 
-  :controllers => { sessions:'users/sessions', registrations:'users/registrations', passwords:'users/passwords' }, 
-  :skip => [:sessions, :registrations] do
-    get 'login' => 'users/sessions#new', :as => :new_user_session
-    post 'login' => 'users/sessions#create', :as => :user_session
-    get 'logout' => 'users/sessions#destroy', :as => :destroy_user_session
-    get 'signup' => 'users/registrations#new', :as => :new_user_registration
-    post 'signup' => 'users/registrations#create', :as => :user_registration
-  end
+  get "signup" => "users#new", :as => :signup
+  get "welcome" => "main#welcome", :as => :welcome
 
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
-
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-  resources :posts do
-    resources :comments
-  end
-
-  resources :agreements
-  
   resources :users do
     collection do
       get 'search'
@@ -43,55 +20,25 @@ Web::Application.routes.draw do
     end
     resources :connections
   end
-  
+
+  resources :posts do
+    resources :comments
+  end
+
+  resources :agreements
   resources :invitations
   
-  match '/tide' => "main#index"
   resources :events do
     resources :comments
     resources :registrations
   end
 
+  get "/archives(/:action)", :controller => "archives", :action => "index"
+
 
   match 'editing(/:action(/:id))', :controller => "editing", :action => "index"
   
-
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  # root :to => redirect("/posts")
+  match '/tide' => "main#index"
   root :to => "main#index"
 
   # See how all your routes lay out with "rake routes"

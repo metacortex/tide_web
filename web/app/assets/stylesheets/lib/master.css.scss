@@ -1,19 +1,18 @@
-@import "compass";
-@import "compass/reset";
+@import "common";
 
 
 /* TYPOGRAPHY */
 
 body {
   font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:13px;
-  background: url("b/background_tile.gif");
+  background:url("/assets/bg/background_tile.gif");
 }
 p { font-family:"Times New Roman", serif;}
 
 @mixin heading { font-family:Arial; font-weight:bold;}
-h2 { @include heading; font-size:1.8em; }
-h3 { @include heading; font-size:1.4em; }
-h4 { @include heading; font-size:1.2em; }
+h2 { @include heading;font-size:1.8em; }
+h3 { @include heading;font-size:1.4em; }
+h4 { @include heading;font-size:1.2em; }
 
 a { color:#597f94;}
 a:hover, a:visited, a:active { color:#597f94;}
@@ -23,16 +22,26 @@ em { font-weight:bold;}
 $gray_base:#4d4d4d;
 $gray_light:#bbb;
 
+$border_color:#ddd;
+
+
+
+/* SPRITE */
+
+//$bg: sprite-map('bg/*.png');
+$typo: sprite-map('typo/*.png');
+$icon: sprite-map('icons/*.png');
+//$form: sprite-map('f/*.png');
+
 
 
 /* GLOBAL LAYOUT */
 
 .wrapper { 
-  width:946px; 
-  position:relative; 
+  width:946px;
+  position:relative;
   margin:25px auto 25px;
-  padding:20px 25px; 
-  background:white;
+  padding:20px 25px;
 }
 
 #h {
@@ -40,7 +49,7 @@ $gray_light:#bbb;
   padding-bottom:5px; border-bottom:1px solid #ddd;
   h1 a {
     display:block;
-    @include replace-text-with-dimensions("main_logo.gif", 90, 32);
+    @include sprite_replace_text($icon,logo);
   }
   ul.account_nav {
     position:absolute; top:28px; right:250px;
@@ -71,35 +80,38 @@ $gray_light:#bbb;
       @include float(left);
       li {
         @include float(left);
-        margin-right: 20px; font-size: 1.2em;
+        margin-right:13px; font-size:13px;
         a { @include float(left); text-decoration:none;}
         &.go_tide {
-          a { @include replace-text-with-dimensions("t/MenuButton_Tide.gif", 33, 20);}
-          a:hover, &.current a { @include replace-text-with-dimensions("t/MenuButton_Tide_HL.gif", 33, 20);}
+          a { @include sprite_replace_text($typo, MenuButton_Tide);}
+          a:hover, &.current a { @include sprite_replace_text($typo, MenuButton_Tide_HL);}
         }
         &.go_news {
-          a { @include replace-text-with-dimensions("t/MenuButton_News.gif", 42, 20);}
-          a:hover, &.current a { @include replace-text-with-dimensions("t/MenuButton_News_HL.gif", 42, 20);}
+          a { @include sprite_replace_text($typo, MenuButton_News);}
+          a:hover, &.current a { @include sprite_replace_text($typo, MenuButton_News_HL);}
         }
         &.go_people {
-          a { @include replace-text-with-dimensions("t/MenuButton_People.gif", 55, 20);}
-          a:hover, &.current a { @include replace-text-with-dimensions("t/MenuButton_People_HL.gif", 55, 20);}
+          a { @include sprite_replace_text($typo, MenuButton_People);}
+          a:hover, &.current a { @include sprite_replace_text($typo, MenuButton_People_HL);}
         }
-        &.go_brownbagtalk {
-          a { @include replace-text-with-dimensions("t/MenuButton_BrownBagTalk.gif", 125, 20);}
-          a:hover, &.current a { @include replace-text-with-dimensions("t/MenuButton_BrownBagTalk_HL.gif", 125, 20);}
+        &.go_archive {
+          a { @include sprite_replace_text($typo, MenuButton_Archive);}
+          a:hover, &.current a { @include sprite_replace_text($typo, MenuButton_Archive_HL);}
+        }
+        &.go_forum {
+          a { @include sprite_replace_text($typo, MenuButton_Forum);}
+          a:hover, &.current a { @include sprite_replace_text($typo, MenuButton_Forum_HL);}
         }
       }
     }
   }
   #ssn {
     @include float(right);
-    padding-left:120px;
-    background:url('t/Main_SSN_follow.gif') no-repeat left;
     a { @include float(left); text-decoration:none; margin-left:5px;}
     li { @include float(left);}
-    .tw a { @include replace-text-with-dimensions("t/Main_SSN_TW.gif", 20, 20);}
-    .fb a { @include replace-text-with-dimensions("t/Main_SSN_FB.gif", 20, 20);}
+    .follow { @include sprite_replace_text($typo, Main_SSN_follow); margin-top:3px;}
+    .tw a { @include sprite_replace_text($icon, Main_SSN_TW);}
+    .fb a { @include sprite_replace_text($icon, Main_SSN_FB);}
   }
 }
 
@@ -152,10 +164,10 @@ $sidebar_width: 250px;
 .content_title {
   @include has_more_link;
   padding:5px 0 10px;
-  .title_tide   { @include content_title; @include replace-text-with-dimensions("t/PageCategory_Tide.gif", 65, 20);}
-  .title_people { @include content_title; @include replace-text-with-dimensions("t/PageCategory_People.gif", 134, 30);}
-  .title_news   { @include content_title; @include replace-text-with-dimensions("t/PageCategory_News.gif", 81, 20);}
-  .title_events { @include content_title; @include replace-text-with-dimensions("t/PageCategory_TideEvents.gif", 282, 20);}
+//  .title_tide   { @include content_title; @include replace-text-with-dimensions("t/PageCategory_Tide.gif", 65, 20);}
+//  .title_people { @include content_title; @include replace-text-with-dimensions("t/PageCategory_People.gif", 134, 30);}
+//  .title_news   { @include content_title; @include replace-text-with-dimensions("t/PageCategory_News.gif", 81, 20);}
+//  .title_events { @include content_title; @include replace-text-with-dimensions("t/PageCategory_TideEvents.gif", 282, 20);}
   .title { @include content_title; line-height:125%;}
 }
 
@@ -166,18 +178,22 @@ $sidebar_width: 250px;
     div { margin:0;}
   }
   .sb_action {
+    margin-top:10px;
     a { display:block; text-decoration:none;}
     .new_post {
       a { @include replace-text-with-dimensions("t/Button_PostNewArticle.gif", 290, 50);}
       a:hover { @include replace-text-with-dimensions("t/Button_PostNewArticle_HL.gif", 290, 50);}
     }
+    .invite {
+      a { @include sprite_replace_text_anchor($icon,People_InviteButton);}
+    }
   }
 }
 
 .pagenav {
-  margin: 15px 0;
-  padding-bottom: 30px;
-  position: relative;
+  margin:15px 0;
+  padding-bottom:30px;
+  position:relative;
   .prev {}
   .next {
     position:absolute; top:0; right:0;
@@ -192,8 +208,16 @@ $sidebar_width: 250px;
   }
 }
 
-@mixin content-section {
-  h3 { color:#4d4d4d;}
+@mixin content_section {
+  .title {
+    position:relative;
+    h3 { color:#4d4d4d;}
+    .more {
+      position:absolute;
+      right:0px;bottom:1px;
+      a { font-size:11px; @include hover-link;}
+    }
+  }
   width: $content_width;
   .message { padding:20px 0; color:#666; line-height:150%;}
 }
@@ -219,11 +243,27 @@ $sidebar_width: 250px;
   .upcoming_event { color:#fff; background-color:RGB(204,81,78);}
 }
 
+.splash {
+}
+
+
+
 
 
 /* ABOUT */
 
-.splash {
+@mixin sub_nav_style {
+  @include clearfix;
+  margin-top:5px;
+  background: sprite($typo,AboutButton_Dots) no-repeat;
+  padding-left:20px;
+  padding-bottom:8px;
+  border-bottom:1px solid #ddd;
+  li {
+    @include float(left); margin-right:0px;
+    a { display:block; text-decoration:none;}
+  }
+  li.spacer { @include sprite_replace_text($typo,AboutButton_Slash); margin:0 3px;}
 }
 
 .about_us {
@@ -231,33 +271,25 @@ $sidebar_width: 250px;
   @include float(left);
   margin-top:10px;
   ul.nav {
-    @include clearfix;
-    margin-top:5px;
-    background:url("t/AboutButton_Dots.gif") no-repeat left top;
-    padding-left:20px;
-    padding-bottom:8px;
-    border-bottom:1px solid #ddd;
+    @include sub_nav_style;
     li {
-      @include float(left); margin-right:0px;
-      a { display:block; text-decoration:none;}
       &.go_events {
-        a { @include replace-text-with-dimensions("t/AboutButton_Events.gif", 198, 19);}
-        a:hover, &.current a { @include replace-text-with-dimensions("t/AboutButton_Events_HL.gif", 198, 19);}
+        a { @include sprite_replace_text($typo,AboutButton_Events);}
+        a:hover, &.current a { @include sprite_replace_text($typo, AboutButton_Events_HL);}
       }
       &.go_about {
-        a { @include replace-text-with-dimensions("t/AboutButton_About.gif", 114, 19);}
-        a:hover, &.current a { @include replace-text-with-dimensions("t/AboutButton_About_HL.gif", 114, 19);}
+        a { @include sprite_replace_text($typo,AboutButton_About);}
+        a:hover, &.current a { @include sprite_replace_text($typo, AboutButton_About_HL);}
       }
       &.go_staff {
-        a { @include replace-text-with-dimensions("t/AboutButton_Crew.gif", 105, 19);}
-        a:hover, &.current a { @include replace-text-with-dimensions("t/AboutButton_Crew_HL.gif", 105, 19);}
+        a { @include sprite_replace_text($typo,AboutButton_Crew);}
+        a:hover, &.current a { @include sprite_replace_text($typo, AboutButton_Crew_HL);}
       }
       &.go_contact {
-        a { @include replace-text-with-dimensions("t/AboutButton_Contact.gif", 85, 19);}
-        a:hover, &.current a { @include replace-text-with-dimensions("t/AboutButton_Contact_HL.gif", 85, 19);}
+        a { @include sprite_replace_text($typo,AboutButton_Contact);}
+        a:hover, &.current a { @include sprite_replace_text($typo, AboutButton_Contact_HL);}
       }
     }
-    li.spacer { @include replace-text-with-dimensions("b/AboutButton_Slash.gif", 12, 19); margin:0 3px;}
   }
   h4 {}
   ul.staffs {
@@ -293,6 +325,35 @@ $sidebar_width: 250px;
 
 
 
+/* ARCHIVE */
+
+.archive {
+  @include content-section;
+  @include float(left);
+  margin-top:10px;
+  ul.nav {
+    @include sub_nav_style;
+    li {
+      &.go_photos {
+        a { @include sprite_replace_text($typo,ArchiveButton_Image);}
+        a:hover, &.current a { @include sprite_replace_text($typo, ArchiveButton_Image_HL);}
+      }
+      &.go_videos {
+        a { @include sprite_replace_text($typo,ArchiveButton_Video);}
+        a:hover, &.current a { @include sprite_replace_text($typo, ArchiveButton_Video_HL);}
+      }
+      &.go_documents {
+        a { @include sprite_replace_text($typo,ArchiveButton_Document);}
+        a:hover, &.current a { @include sprite_replace_text($typo, ArchiveButton_Document_HL);}
+      }
+    }
+  }
+  
+}
+
+
+
+
 /* EVENTS */
 
 .events {
@@ -309,6 +370,7 @@ $sidebar_width: 250px;
     li {
       @include clearfix;
       padding-bottom:10px; padding-top:10px;
+      border-bottom:1px solid $border_color;
       .category {
         @include float(left); margin-right:1px;
       }
@@ -665,8 +727,10 @@ div.post {
 }
 
 @mixin connect_button {
-  a { padding:2px 3px 2px 6px; color:#fff; background:#666; font-size:0.8em; text-decoration:none;}
-  a:hover { background:#333;}
+  a {
+    display:block;
+    @include sprite_replace_text($icon,People_Connect);
+  }
   span.connected { padding:2px 3px 2px 6px; color:#fff; background:#999; font-size:0.8em;}
   span.requested { padding:2px 3px 2px 6px; color:#fff; background:#999; font-size:0.8em;}
 }
@@ -701,9 +765,9 @@ div.post {
 
 .people {
   @include float(left);
-  @include content-section;
+  @include clearfix;
+  @include content_section;
   @include has_people_grid;
-  h3 { @include has_more_link;}
 }
 
 .people_profile {

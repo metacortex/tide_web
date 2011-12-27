@@ -5,7 +5,7 @@
   <%= form_for [parent, Comment.new], :remote => true do |f| %>
     <%= f.hidden_field :"#{parent.class.to_s.downcase}_id", :value => parent.id %>
 
-    <% if user_signed_in? %>
+    <% if logged_in? %>
       <%= f.hidden_field :user_id, :value => current_user.try(:id) %>
       <%= f.text_area :body %>
     <% else %>

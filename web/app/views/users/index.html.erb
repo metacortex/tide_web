@@ -7,10 +7,10 @@
 
 
 <div class="people">
-  <h3>
-    <div class="title">Recently Joined Members</div>
+  <div class="title">
+    <h3>Recently Joined Members</h3>
     <div class="more"><%= link_to "more >>", all_users_path %></div>
-  </h3>
+  </div>
   <ul class="people">
     <% @recent_users.each do |user| %>
       <li><%= render "users/thumb", :user => user, :connect_button => true %></li>
@@ -19,10 +19,10 @@
 </div>
 
 <div class="people">
-  <h3>
-    <div class="title">Active Members of the Week</div>
+  <div class="title">
+    <h3>Active Members of the Week</h3>
     <div class="more"><%= link_to "more >>", all_users_path %></div>
-  </h3>
+  </div>
   <ul class="people">
     <% @weekly_users.each do |user| %>
       <li><%= render "users/thumb", :user => user, :connect_button => true %></li>
@@ -35,6 +35,6 @@
   <%= render "shared/side_app" %>
 
   <div class="sb_action">
-    <div><%= link_to "INVITE FRIENDS TO TIDE", invite_users_path %></div>
+    <div class="invite"><%= link_to "INVITE FRIENDS TO TIDE", invite_users_path %></div>
   </div>
 </div>

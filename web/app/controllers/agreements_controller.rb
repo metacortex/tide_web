@@ -5,7 +5,7 @@ class AgreementsController < ApplicationController
 
 
   def index
-    @agreements = if user_signed_in?
+    @agreements = if logged_in?
       current_user.agreements.where(:post_id => params[:post_id])
     else
       []

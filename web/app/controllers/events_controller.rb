@@ -7,7 +7,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @registration = @event.registrations.new
-    @agreements = if user_signed_in?
+    @agreements = if logged_in?
       current_user.agreements.where(:event_id => params[:id])
     else
       []

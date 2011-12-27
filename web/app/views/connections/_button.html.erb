@@ -1,7 +1,7 @@
 <%= content_tag :div, :id => dom_id(user, :connect), :class => "connect" do %>
 
 
-  <% if user_signed_in? %>
+  <% if logged_in? %>
     
     <% if current_user == user %>
       

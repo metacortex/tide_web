@@ -89,7 +89,7 @@
 <div class="sidebar">
   <%= render "shared/side_app" %>
 
-  <% if user_signed_in? && current_user.writer? %>
+  <% if logged_in? && current_user.writer? %>
     <div class="sb_action">
       <div class="new_post"><%= link_to "POST NEW ARTICLE", new_post_path %></div>
     </div>

@@ -6,3 +6,6 @@ public/uploads/**/*
 public/assets/*
 tmp/
 .sass-cache/
+
+app/assets/images/*-s??????????.png
+

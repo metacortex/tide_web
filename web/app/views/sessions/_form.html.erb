@@ -1,0 +1,41 @@
+<div class="auth_container">
+
+  <div class="simple_auth">
+    <h2>Log in</h2>
+
+    <div class="login_form">
+      <%= form_tag "/login" do %>
+
+        <% if flash.now[:alert] %>
+          <div class="error"><%= flash.now[:alert] %></div>
+        <% end %>
+
+        <div class="field">
+          <%= label_tag :email %>
+          <%= text_field_tag :email, params[:email] %>
+        </div>
+
+        <div class="field">
+          <%= label_tag :password %>
+          <%= password_field_tag :password %>
+        </div>
+
+        <div class="checkbox">
+          <%= check_box_tag :remember_me, 1, params[:remember_me] %>
+          <%= label_tag :remember_me %>
+        </div>
+
+        <div class="actions"><%= submit_tag "Log in" %></div>
+
+      <% end %>
+    </div>
+
+  </div>
+  
+  <div class="oauth">
+    <h2>Facebook Connect</h2>
+    <p>Facebook 회원이신가요?<br />Facebook 계정을 이용해서 회원가입하실수 있습니다.</p>
+    <%= link_to "Facebook Connect", auth_at_provider_path(:provider => "facebook"), :class => "facebook" %>
+  </div>
+
+</div>

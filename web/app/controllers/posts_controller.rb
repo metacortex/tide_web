@@ -20,7 +20,7 @@ class PostsController < ApplicationController
       redirect_to :action => "index"
     end
     
-    @agreements = if user_signed_in?
+    @agreements = if logged_in?
       current_user.agreements.where(:post_id => params[:id])
     else
       []

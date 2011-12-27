@@ -1,0 +1,44 @@
+@import "compass";
+@import "compass/reset";
+
+
+
+/* MIXIN - SPRITE */
+
+@mixin sprite_replace_text($sprite, $img-name){
+  @include hide-text;
+  background: sprite($sprite, $img-name) no-repeat;
+  width: image-width(sprite-file($sprite, $img-name));
+  height: image-height(sprite-file($sprite, $img-name));
+}
+
+@mixin sprite_replace_text_anchor($sprite, $img-name){
+  @include sprite_replace_text($sprite, $img-name);
+  &:hover {
+    background: sprite($sprite, $img-name + "_hover") no-repeat;
+  }
+}
+
+
+
+/* MIXIN - LAYOUT */
+
+@mixin center_container {
+  width:800px;
+  margin:40px auto 60px;
+}
+
+
+
+
+
+/* MIXIN - TAG ELEMENT */
+
+@mixin default_anchor_style($color:$gray_1,$hover_color:$hover_color) {
+  color:$color;
+  &:hover {
+    color:$hover_color;
+  }
+}
+
+

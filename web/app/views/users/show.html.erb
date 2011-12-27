@@ -23,7 +23,7 @@
       <dt>EMAIL</dt>
       <dd>
         <div class="connect_wrapper">
-          <% if user_signed_in? %>
+          <% if logged_in? %>
             <% if current_user == @user || current_user.connected_to?(@user) %>
               <%= @user.email %>
             <% else %>
@@ -144,14 +144,14 @@
 </div>
 
 
-<% unless user_signed_in? && (current_user == @user) %>
+<% unless logged_in? && (current_user == @user) %>
 
 <div class="user_commons">
   <h3>
     <div class="title">People Who You and <%= @user.name_e %> Know In Common</div>
     <div class="more"><%= link_to "More >>" %></div>
   </h3>
-  <% if user_signed_in? %>
+  <% if logged_in? %>
     
     <% common_ids = @user.connections.map(&:target_id) & current_user.connections.map(&:target_id) %>
     <% common_users = User.where(:id => common_ids).limit(5) %>
