@@ -3,6 +3,12 @@ class CreateEvents < ActiveRecord::Migration
     create_table :events do |t|
       t.string :name
       t.text :body
+      t.text :abbr
+      
+      t.string :poster_image
+      t.string :thumb_image
+      t.string :picture_image
+      
       
       t.string :category
       t.string :status
@@ -14,10 +20,9 @@ class CreateEvents < ActiveRecord::Migration
       t.timestamps
     end
 
+    add_index :events, :name
     add_index :events, :category
-
-    # table: comments
-    add_column :comments, :event_id, :integer
-    add_index :comments, :event_id
+    add_index :events, :opened_at
+    add_index :events, :closed_at
   end
 end

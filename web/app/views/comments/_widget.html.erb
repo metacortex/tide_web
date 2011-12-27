@@ -1,0 +1,21 @@
+<%
+  content = content
+  comments_per_page = 10
+  class_name = class_name || "event_comments"
+%>
+
+<%= render "comments/new", :content => content %>
+
+<%= content_tag :div, :class => "comments_wrapper #{class_name}" do %>
+
+  <h3>COMMENTS</h3>
+
+  <ul id="<%= dom_id(content,:comments) %>" class="comments">
+    <%= render content.comments.includes(:user).order("id DESC").limit(comments_per_page) %>
+  </ul>
+  
+  <% if content.comments.count > comments_per_page %>
+    <%= pagination_link "more", comments_path(:page => 2, :per => comments_per_page, :content_type => content.class.to_s, :content_id => content.id) %>
+  <% end %>
+
+<% end %>

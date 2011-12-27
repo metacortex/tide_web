@@ -1,6 +1,6 @@
-<div class="content_title">
-  <div class="title">PEOPLE</div>
-</div>
+<%= render "shared/splash" %>
+
+<%= render "users/search" %>
 
 <div class="people_profile">
   <div class="portrait">
@@ -10,43 +10,21 @@
   <div class="profile">
     <div class="username">
       <% unless @user.name_e.blank? %>
-        <span class="name_e"><%= @user.name_e %></span>
+        <div class="name_e"><%= @user.name_e %></div>
       <% end %>
       <%= @user.name %>
     </div>
-    <div class="location"><%= @user.location %></div>
-    <div class="category"><%= display_user_category(@user) %></div>
-    
-    <dl class="information">
-      <dt>TAG</dt>
-      <dd class="tags"><%= @user.tags.map{|t| link_to_function(t.name, "alert('not yet')") }.join(", ").html_safe %></dd>
-      <dt>EMAIL</dt>
-      <dd>
-        <div class="connect_wrapper">
-          <% if logged_in? %>
-            <% if current_user == @user || current_user.connected_to?(@user) %>
-              <%= @user.email %>
-            <% else %>
-              <%= render "connections/button", :user => @user %> <span class="caption">TO SEE EMAIL INFO</span>
-            <% end %>
-          <% else %>
-            <%= render "connections/button", :user => @user %> <span class="caption">TO SEE EMAIL INFO</span>
-          <% end %>
-        </div>
-      </dd>
-      <% unless @user.website.blank? %>
-        <dt>WEBSITE</dt>
-        <dd><%= @user.website.split("\n").select{|t| !t.blank? }.map{|t| link_to(t,t,target:"_blank")}.join("<br/>").html_safe %></dd>
+    <div class="connect_wrapper">
+      <% if logged_in? %>
+        <% if current_user == @user || current_user.connected_to?(@user) %>
+          <%= @user.email %>
+        <% else %>
+          <%= render "connections/button", :user => @user %> <span class="caption">TO SEE EMAIL INFO</span>
+        <% end %>
+      <% else %>
+        <%= render "connections/button", :user => @user %> <span class="caption">TO SEE EMAIL INFO</span>
       <% end %>
-      <% unless @user.work.blank? %>
-        <dt>WORK</dt>
-        <dd><%= @user.work %></dd>
-      <% end %>
-      <% unless @user.interest.blank? %>
-        <dt>INTEREST</dt>
-        <dd><%= @user.interest %></dd>
-      <% end %>
-    </dl>
+    </div>
     
     <ul class="stats">
       <li>
@@ -55,74 +33,57 @@
       </li>
       <li>
         <div class="value"><%= @user.posts_count %></div>
-        <div class="caption">POSTED</div>
+        <div class="caption">POST</div>
       </li>
       <li>
         <div class="value"><%= @user.comments_count %></div>
-        <div class="caption">COMMENTED</div>
+        <div class="caption">COMMENT</div>
       </li>
     </ul>
+    
+    <dl class="information">
+      <dt>TAG</dt>
+      <dd class="tags">
+        <%= @user.tags.map{|t| link_to_function(t.name, "alert('not yet')") }.join(", ").html_safe %>
+      </dd>
+      <dt>WORK HISTORY</dt>
+      <dd><%= @user.work %></dd>
+      <dt>SKILLS</dt>
+      <dd>
+        ...
+      </dd>
+      <dt>VISION</dt>
+      <dd>
+        ...
+      </dd>
+    </dl>
   </div>
 </div>
 
-
-<div class="user_recommendations">
-  <h3>
-    <div class="title">Recommendation on <%= @user.name_e %></div>
-    <div class="more"><%= link_to "More >>" %></div>
-  </h3>
-  <ul>
-    <% @user.recommendations.has_remark.limit(3).each do |c| %>
-      <li>
-        <div class="saying"><%= c.remark %></div>
-        <div class="recommender">from <%= link_to "<em>#{c.user.name_e}</em> #{c.user.name}".html_safe %></div>
-      </li>
-    <% end %>
-  </ul>
-</div>
-
-
-<div class="user_recommended">
-  <h3>
-    <div class="title"><%= @user.name_e %> recommended</div>
-    <div class="more"><%= link_to "More >>" %></div>
-  </h3>
-  <ul>
-    <% @user.connections.has_remark.limit(3).each do |c| %>
-      <li>
-        <div class="recommended"><%= link_to "<em>#{c.target.name_e}</em> #{c.target.name}".html_safe %></div>
-        <div class="saying"><%= c.remark %></div>
-      </li>
-    <% end %>
-  </ul>
-</div>
-
-
 <div class="user_connections">
-  <h3>
-    <div class="title"><%= @user.name_e %>'s Connection</div>
-    <div class="more"><%= link_to "More >>" %></div>
-  </h3>
+  <div class="title no_border">
+    <h3 class="connection">Connection</h3>
+  </div>
 
   <ul class="connection_type">
-    <li class="current"><%= link_to_function "ALL", "simpleTab(this, 0)" %></li>
+    <li class="all current"><%= link_to_function "ALL", "simpleTab(this, 0)" %></li>
     <li class="spacer">/</li>
-    <li><%= link_to_function "CO-WORKER", "simpleTab(this, 1)" %></li>
+    <li class="coworker"><%= link_to_function "CO-WORKER", "simpleTab(this, 1)" %></li>
     <li class="spacer">/</li>
-    <li><%= link_to_function "CLASSMATE", "simpleTab(this, 2)" %></li>
+    <li class="classmate"><%= link_to_function "CLASSMATE", "simpleTab(this, 2)" %></li>
     <li class="spacer">/</li>
-    <li><%= link_to_function "FRIEND", "simpleTab(this, 3)" %></li>
+    <li class="friend"><%= link_to_function "FRIEND", "simpleTab(this, 3)" %></li>
     <li class="spacer">/</li>
-    <li><%= link_to_function "ETC", "simpleTab(this, 4)" %></li>
+    <li class="etc"><%= link_to_function "ETC", "simpleTab(this, 4)" %></li>
   </ul>
   
   <script>
-  function simpleTab(element, num) {
-    $(element.parentNode).siblings().removeClass("current");
-    $(element.parentNode).addClass("current");
-    $("#connections_" + num).siblings().hide();
-    $("#connections_" + num).show();
-  }
+    function simpleTab(element, num) {
+      $(element.parentNode).siblings().removeClass("current");
+      $(element.parentNode).addClass("current");
+      $("#connections_" + num).siblings().hide();
+      $("#connections_" + num).show();
+    }
   </script>
   
   <div class="tab_content">
@@ -138,6 +99,9 @@
         <% cons.each do |c| %>
           <li><%= render "users/thumb", :user => c.target, :connect_button => true %></li>
         <% end %>
+        <% if cons.empty? %>
+          <li class="empty">EMPTY</li>
+        <% end %>
       <% end %>
     <% end %>
   </div>
@@ -147,10 +111,11 @@
 <% unless logged_in? && (current_user == @user) %>
 
 <div class="user_commons">
-  <h3>
-    <div class="title">People Who You and <%= @user.name_e %> Know In Common</div>
+  <div class="title common">
+    <h3 class="common">IN COMMON</h3>
     <div class="more"><%= link_to "More >>" %></div>
-  </h3>
+  </div>
+
   <% if logged_in? %>
     
     <% common_ids = @user.connections.map(&:target_id) & current_user.connections.map(&:target_id) %>
@@ -167,7 +132,7 @@
     <% end %>
     
   <% else %>
-    <p class="message">Log-In이 필요합니다.</p>
+    <p class="empty">Log-In이 필요합니다.</p>
   <% end %>
 </div>
 
@@ -175,35 +140,35 @@
 
 
 <div class="user_posts">
-  <h3>
-    <div class="title"><%= @user.name_e %>'s Posts</div>
+  <div class="title">
+    <h3>POST</h3>
     <div class="more"><%= link_to "More >>" %></div>
-  </h3>
+  </div>
   <ul>
     <% @user.posts.limit(4).each do |post| %>
     <li>
-      <div class="thumb">Picture</div>
+      <div class="thumb"><%= image_tag post.picture_image.url(:thumb) %></div>
       <div class="abbr"><%= link_to post.title, post %></div>
     </li>
     <% end %>
   </ul>
 </div>
 
-
 <div class="user_comments">
-  <h3>
-    <div class="title"><%= @user.name_e %>'s Comments</div>
+  <div class="title">
+    <h3>COMMENT</h3>
     <div class="more"><%= link_to "More >>" %></div>
-  </h3>
-  <ul>
-    <% @user.comments.limit(5).each do |c| %>
-      <li>
-        <div class="content"><%= c.body %></div>
-        <div class="comment_post"><%= link_to "\"#{c.post.title}\"", c.post %></div>
-        <div class="timestamp"><%= l(c.created_at, :format => :long) %></div>
-      </li>
-    <% end %>
-  </ul>
+  </div>
+  <table>
+    <tbody>
+      <% @user.comments.limit(5).each do |c| %>
+        <tr>
+          <td class="content"><%= link_to c.body, c.content %></td>
+          <td class="timestamp"><%= l(c.created_at.to_date, :format => :long) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 
 
@@ -213,6 +178,6 @@
   <%= render "shared/side_app" %>
 
   <div class="sb_action">
-    <div><%= link_to "INVITE FRIENDS TO TIDE", invite_users_path %></div>
+    <div class="invite"><%= link_to "INVITE FRIENDS TO TIDE", invite_users_path %></div>
   </div>
 </div>

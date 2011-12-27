@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  before_filter :authenticate_user!, :only => [:edit_profile, :update_profile, :invite]
+  before_filter :require_login, :only => [:edit, :update, :destroy, :invite]
 
   
   def index
@@ -24,11 +24,26 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
   
-  def edit_profile
+  def new
+    @user = User.new
+    @user.email = ""
+  end
+
+  def create
+    @user = User.new(params[:user])
+
+    if @user.save
+      redirect_to root_url, :notice => "Signed up!"
+    else
+      render :new
+    end
+  end
+
+  def edit
     @user = current_user
   end
   
-  def update_profile
+  def update
     @user = current_user
     
     if @user.update_attributes(params[:user])

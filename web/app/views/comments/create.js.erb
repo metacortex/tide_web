@@ -1,0 +1,14 @@
+<% if @comment.errors.empty? %>
+
+  <% if @comment.root? %>
+    $("#<%= dom_id(@content,:new_comment) %>")[0].reset();
+    $("#<%= dom_id(@content,:comments) %>").prepend('<%=j render "comments/comment", :comment => @comment %>');
+  <% else %>
+    $("#<%= dom_id(@comment.parent, :new) %>")[0].reset();
+    $("#<%= dom_id(@comment.parent, :sub_comments) %>").append('<%=j render "comments/comment", :comment => @comment, :parent => @comment.parent %>');
+  <% end %>
+
+
+<% else %>
+	flash_message('error', '<%= @comment.errors.full_messages.join("<br>") %>');
+<% end %>

@@ -18,8 +18,7 @@ require 'author_editable'
 class Comment < ActiveRecord::Base
   
   belongs_to :user, :counter_cache => true
-  belongs_to :post, :counter_cache => true
-  belongs_to :event, :counter_cache => true
+  belongs_to :content, :polymorphic => true, :counter_cache => :comments_count
   
   has_many :agreements, :dependent => :destroy
   

@@ -1,30 +1,28 @@
-<div class="user">
-  <img src="${user.profile_image.thumb.url}" />
-</div>
 
-<div class="body">
-  <div class="username"><%= link_to "<em>${user.name_e}</em> ${user.name}".html_safe, "/users/${user_id}" %></div>
-  <div class="timestamp">${ created_at }</div>
-  <div class="comment_body">{{html body.replace(new RegExp("\n","g"), "<br/>") }}</div>
+<%= content_tag_for :li, comment do %>
 
-  {{if user_id == window._userID }}
-    <div class="comment_action">
-      <ul class="actions">
-        <li><%= link_to "MODIFY", "#edit", :class => "edit_button" %></li>
-        <li><%= link_to "DELETE", "#destroy", :class => "destroy_button" %></li>
-      </ul>
-    </div>
-  {{/if}}
-
-  <div class="status">
-    <div class="agreement">
-      <div class="positive">
-        <%= link_to "${ positive_agreements_count }", "#agree_positive", :class => "agree_positive" %>
-      </div>
-      <div class="negative">
-        <%= link_to "${ negative_agreements_count }", "#agree_negative", :class => "agree_negative" %>
-      </div>
-    </div>
+  <div class="user">
+    <%= image_tag "placeholder.png" %>
   </div>
 
-</div>
+  <div class="body">
+    <div class="comment_info">
+      <% u = comment.user %>
+      <div class="username"><%= link_to "<em>#{u.name_e}</em> #{u.name}".html_safe, u %></div>
+      <div class="timestamp"><%= time_ago_in_words(comment.created_at) %> ago</div>
+
+      <% if logged_in? %>
+        <% if comment.removable? && (current_user.id == comment.user_id) %>
+          <div class="action"><%= link_to "Delete", comment, :method => :delete, :confirm => "정말 삭제하시겠습니까?", :remote => true %></div>
+        <% end %>
+        <% if comment.root? %>
+          <div class="action"><%= link_to_function "Reply", "$('##{dom_id(comment, :new_sub_comment)}').toggle()" %></div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="comment_body"><%= simple_format comment.body %></div>
+
+  </div>
+
+<% end %>

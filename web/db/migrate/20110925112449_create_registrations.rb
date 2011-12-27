@@ -13,6 +13,7 @@ class CreateRegistrations < ActiveRecord::Migration
       t.string :reg_type
       
       t.string :attachment
+      t.string :asset
       
       t.timestamps
     end

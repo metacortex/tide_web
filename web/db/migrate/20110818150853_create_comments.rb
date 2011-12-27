@@ -2,7 +2,8 @@ class CreateComments < ActiveRecord::Migration
   def change
     create_table :comments do |t|
       t.belongs_to :user
-      t.belongs_to :post
+      t.string :content_type
+      t.integer :content_id
       
       t.text :body
       
@@ -14,6 +15,6 @@ class CreateComments < ActiveRecord::Migration
     end
     
     add_index :comments, :user_id
-    add_index :comments, :post_id
+    add_index :comments, [:content_type, :content_id]
   end
 end

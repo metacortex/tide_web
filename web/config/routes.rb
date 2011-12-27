@@ -14,27 +14,25 @@ Web::Application.routes.draw do
     collection do
       get 'search'
       get 'all'
-      get 'edit_profile'
-      put 'update_profile'
       get 'invite'
     end
     resources :connections
   end
 
+
   resources :posts do
-    resources :comments
   end
 
-  resources :agreements
-  resources :invitations
-  
   resources :events do
-    resources :comments
     resources :registrations
   end
 
-  get "/archives(/:action)", :controller => "archives", :action => "index"
+  resources :comments
+  resources :agreements
+  resources :invitations
+  
 
+  get "/archives(/:action)", :controller => "archives", :action => "index"
 
   match 'editing(/:action(/:id))', :controller => "editing", :action => "index"
   

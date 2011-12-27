@@ -1,9 +1,26 @@
-<% parent = parent %>
+<%
+  content = content
+%>
+
+<%
+  old_comment = comment = comment
+  new_comment = comment.nil?
+  parent = parent
+  
+  if comment.nil? || comment.errors.empty?
+    comment = Comment.new
+  end
+%>
+
 
 <div class="new_comment">
   <h3>New Comment</h3>
-  <%= form_for [parent, Comment.new], :remote => true do |f| %>
-    <%= f.hidden_field :"#{parent.class.to_s.downcase}_id", :value => parent.id %>
+
+	<%= form_for comment, :html => { :id => (parent ? dom_id(parent, :new) : dom_id(content,:new_comment)) }, :remote => true do |f| %>
+
+	  <%= f.hidden_field :content_type, :value => content.class.to_s %>
+	  <%= f.hidden_field :content_id, :value => content.id %>
+
 
     <% if logged_in? %>
       <%= f.hidden_field :user_id, :value => current_user.try(:id) %>

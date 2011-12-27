@@ -39,7 +39,40 @@
 #
 
 class User < ActiveRecord::Base
+  authenticates_with_sorcery! do |config|
+    config.authentications_class = Authentication
+  end
+  has_many :authentications, :dependent => :destroy
+  accepts_nested_attributes_for :authentications
+
+  validates_confirmation_of :password
+  validates_presence_of :password, :on => :create
+  validates_presence_of :email
+  validates_uniqueness_of :email
+  validates_presence_of :name, :name_e
+
+
+  def admin?
+    role == "admin"
+  end
   
+  def age
+    if birthday.present?
+      Time.now.year - birthday.year
+    else
+      nil
+    end
+  end
+  
+  def profile_image_url
+    if auth = authentications.first
+      "http://graph.facebook.com/#{auth.uid}/picture"
+    else
+      "/assets/placeholder.png"
+    end
+  end
+  
+
   has_many :taggings, :dependent => :destroy
   has_many :tags, :through => :taggings, :uniq => true, :foreign_key => :tag_id
 
@@ -56,27 +89,8 @@ class User < ActiveRecord::Base
   has_many :recommendations, :conditions => '!isNull(connections.accepted_at)', :class_name => "Connection", :foreign_key => :target_id
   
 
-  # def connections
-  #   Connection.where("connections.target_id = ? OR connections.user_id = ?", id, id).where("!isNull(connections.accepted_at)")
-  # end
-  
   mount_uploader :profile_image, ProfileUploader
 
-
-
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-  # devise :database_authenticatable, :registerable,
-  #        :recoverable, :rememberable, :trackable, :validatable
-
-  # Setup accessible (or protected) attributes for your model
-  # attr_accessible :email, :password, :password_confirmation, :remember_me
-  
-  has_many :authentications, :dependent => :destroy
-  accepts_nested_attributes_for :authentications
-
-
-  validates_presence_of :name, :name_e
 
 
   def self.categories

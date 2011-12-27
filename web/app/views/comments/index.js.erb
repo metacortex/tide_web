@@ -1,0 +1,17 @@
+
+<% @comments.each do |c| %>
+  
+  $("#<%= dom_id(@content,:comments) %>").append("<%=j render :partial => "comments/comment", :locals => { comment: c } %>");
+  
+<% end %>
+
+
+<% if @comments.size < params[:per].to_i %>
+
+  $("#pagination").html("");
+
+<% else %>
+
+  $("#pagination").html("<%=j pagination_link "more", comments_path(:page => params[:page].to_i + 1, :per => params[:per], :content_type => params[:content_type], :content_id => params[:content_id]) %>");
+
+<% end %>

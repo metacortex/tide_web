@@ -17,7 +17,7 @@
 
   <div class="author">
     <span class="label">posted by</span>
-    <%= link_to "<em>#{@post.user.name_e}</em> #{@post.user.name}".html_safe %>
+    <%= link_to "<em>#{@post.user.name_e}</em> #{@post.user.name}".html_safe, @post.user %>
     <span class="timestamp"><%= l(@post.created_at, :format => :long) %></span>
   </div>
 
@@ -57,32 +57,7 @@
     </div>
   </div>
 
-  <div id="comments_app">
-
-    <%= render "comments/new", :parent => @post %>
-
-    <div class="comments">
-      <h3>Comments</h3>
-      <ul id="comments"></ul>
-    </div>
-    
-    <script>
-    var _CommentApp = true;
-    var _parentType = "posts";
-    var _parentID = <%= @post.id.to_json.html_safe %>;
-    var _userID = <%= current_user.try(:id).to_json.html_safe %>;
-    var _userName = <%= current_user.try(:name).to_json.html_safe %>;
-    var _commentsData = <%= @post.comments.to_json(:include => :user).html_safe %>;
-    var _agreementsData = <%= @agreements.to_json.html_safe %>;
-    </script>
-
-    <script type="text/x-jquery-tmpl" id="comment_template">
-      <%= render "comments/comment" %>
-    </script>
-    <script type="text/x-jquery-tmpl" id="comment_edit_template">
-      <%= render "comments/edit" %>
-    </script>
-  </div>
+  <%= render "comments/widget", :content => @post %>
   
 </div>
 

@@ -11,6 +11,9 @@ class CreatePosts < ActiveRecord::Migration
       t.string :source_url
       t.string :kind
 
+      t.string :picture_image
+
+
       t.integer :assets_count, :default => 0
       t.integer :taggings_count, :default => 0
       

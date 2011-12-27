@@ -5,19 +5,21 @@ class AddRankingDataToUsers < ActiveRecord::Migration
       t.integer :comments_count, :default => 0
       t.integer :agreements_count, :default => 0
       t.integer :votes_count, :default => 0
-      t.integer :score_all, :default => 0
-      t.integer :score_total, :default => 0
+
+      t.integer :rank, :default => 0
+      t.integer :ranking, :default => 0
+      
+      t.integer :score, :default => 0
       t.integer :score_week, :default => 0
-      t.text :score
-      t.integer :ranking_all, :default => 0
-      t.integer :ranking_total, :default => 0
-      t.integer :ranking_week, :default => 0
+      t.integer :score_month, :default => 0
+      t.integer :score_year, :default => 0
     end
-    add_index :users, :ranking_all
-    add_index :users, :ranking_total
-    add_index :users, :ranking_week
-    add_index :users, :score_all
-    add_index :users, :score_total
+
+    add_index :users, :rank
+    add_index :users, :ranking
+    add_index :users, :score
     add_index :users, :score_week
+    add_index :users, :score_month
+    add_index :users, :score_year
   end
 end

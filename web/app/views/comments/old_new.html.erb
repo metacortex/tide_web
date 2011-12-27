@@ -1,0 +1,17 @@
+<% parent = parent %>
+
+<div class="new_comment">
+  <h3>New Comment</h3>
+  <%= form_for [parent, Comment.new], :remote => true do |f| %>
+    <%= f.hidden_field :"#{parent.class.to_s.downcase}_id", :value => parent.id %>
+
+    <% if logged_in? %>
+      <%= f.hidden_field :user_id, :value => current_user.try(:id) %>
+      <%= f.text_area :body %>
+    <% else %>
+      <%= f.text_area :body, :value => "log-in required", :disabled => true %>
+    <% end %>
+
+    <div class="buttons"><%= image_submit_tag "t/News_PostComment.gif" %></div>
+  <% end %>
+</div>

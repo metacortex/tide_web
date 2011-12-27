@@ -20,6 +20,7 @@ a:hover, a:visited, a:active { color:#597f94;}
 em { font-weight:bold;}
 
 $gray_base:#4d4d4d;
+$gray_normal:#969696;
 $gray_light:#bbb;
 
 $border_color:#ddd;
@@ -149,8 +150,7 @@ $sidebar_width: 250px;
   margin-top:10px;
   li {
     @include clearfix;
-    padding: 6px 0 3px;
-    border-bottom: 1px dotted #999;
+    padding:6px 0 3px;
     font-size:0.9em;
     a { @include hover-link;}
   }
@@ -214,8 +214,17 @@ $sidebar_width: 250px;
     h3 { color:#4d4d4d;}
     .more {
       position:absolute;
-      right:0px;bottom:1px;
-      a { font-size:11px; @include hover-link;}
+      right:0px;bottom:8px;
+      a { @include sprite_replace_text_anchor($icon,ShowAllButton); display:block;}
+    }
+    border-bottom:1px solid $border_color;
+    padding-bottom:8px;
+    margin-bottom:8px;
+    &.no_border {
+      border-bottom:none;
+      padding-bottom:0;
+      .more { bottom:1px;}
+      margin-bottom:8px;
     }
   }
   width: $content_width;
@@ -418,16 +427,16 @@ $sidebar_width: 250px;
 @mixin has_posts_grid {
   ul {
     @include horizontal-list;
-    margin-top: 10px;
+    margin-top:10px;
     li {
-      width: 140px;
-      margin-right: 10px;
+      width:140px;
+      margin-right:10px;
       .thumb { 
-        width:138px;
-        border: 1px solid #ccc;
-        padding: 40px 0;
-        text-align: center;
-        margin-bottom: 6px;
+        margin-bottom:6px;
+        img {
+          display:block;
+          width:138px;
+        }
       }
       .abbr { 
         width: 130px;
@@ -571,8 +580,8 @@ div.post {
       .buttons { text-align:right; margin-top:5px;}
     }
   }
-  .comments {
-    @include content-section;
+  .comments_wrapper {
+    @include content_section;
     margin-top:10px;
     padding-bottom:50px;
     h3 { @include replace-text-with-dimensions("t/News_Comments.gif", 97, 18);}
@@ -581,7 +590,7 @@ div.post {
       li.comment {
         @include clearfix;
         padding:5px 0;
-        border-bottom:1px solid #aaa;
+        border-bottom:1px solid $border_color;
         margin-bottom:10px;
         .user {
           @include float(left);
@@ -731,8 +740,14 @@ div.post {
     display:block;
     @include sprite_replace_text_anchor($icon,People_Connect);
   }
-  span.connected { padding:2px 3px 2px 6px; color:#fff; background:#999; font-size:0.8em;}
-  span.requested { padding:2px 3px 2px 6px; color:#fff; background:#999; font-size:0.8em;}
+  span.connected {
+    display:block;
+    @include sprite_replace_text($icon,People_Connected);
+  }
+  span.requested {
+    display:block;
+    @include sprite_replace_text($icon,People_Pending);
+  }
 }
 
 @mixin has_people_grid {
@@ -755,9 +770,9 @@ div.post {
       .username { padding:3px;}
       .username_e { padding:3px; font-weight:bold;}
       .connect {
-        padding: 3px; 
-        text-align: right;
-        @include connect-button;
+        padding:3px; 
+        text-align:right;
+        @include connect_button;
       }
     }
   }
@@ -770,16 +785,12 @@ div.post {
   @include has_people_grid;
   .title {
     h3.new_members { @include sprite_replace_text($typo,People_NewMemebers);}
-    border-bottom:1px solid $border_color;
-    padding-bottom:5px;
-    margin-bottom:5px;
-    .more a { @include sprite_replace_text_anchor($icon,ShowAllButton); display:block; margin-bottom:4px;}
   }
 }
 
 .people_profile {
   @include float(left);
-  padding-top:20px;
+  margin-top:10px;
   .portrait {
     @include float(left);
     position:relative;
@@ -787,44 +798,124 @@ div.post {
       position:absolute; bottom:5px; left:5px;
       img { width:18px;height:18px;}
     }
-    img { width:125px;height:125px;}
+    img { width:100px;height:100px;}
     text-align: center;
-    margin-right: 25px;
   }
   .profile {
-    @include float(left);
-    .username { 
+    margin-left:115px;
+    div.username { 
       font-size:1.2em;
       line-height:150%;
-      span { font-weight:bold; padding-right:6px;}
+      .name_e { font-weight:bold;}
     }
-    .location { font-weight:bold; line-height:150%;}
-    .category { font-size:0.9em; font-weight:bold; line-height:150%;}
-    dl.information {
+    div.connect_wrapper { 
       @include clearfix;
-      padding: 15px 0;
-      font-size: 0.9em;
-      line-height: 150%;
-      dt { @include float(left); clear:left; color:#777; padding:2px 0; }
-      dd { @include float(left); padding:2px 0; margin-left:15px;}
-      .connect_wrapper { 
-        @include clearfix;
-        .connect { @include connect-button; @include float(left);}
-        span.caption { @include float(left); color:#666; font-size:0.9em; margin-left:5px;}
-      }
+      margin-top:10px;
+      .connect { @include connect_button; @include float(left);}
+      span.caption { @include float(left); color:#666; font-size:0.9em; margin-left:8px; margin-top:4px;}
     }
     ul.stats {
-      @include horizontal-list;
+      @include clearfix;
+      margin-top:10px;
       li {
-        background-color: #aaa;
-        @include border-radius(5px);
-        margin-right: 10px;
-        padding: 0;
-        div { cursor:pointer;}
-        .value { color:#fff; font-family:Arial; font-weight:bold; font-size:1.75em; text-align:center; padding-top:8px;}
-        .caption { font-size:0.75em; text-align:center; padding:5px 10px 8px;}
+        @include float(left);
+        border:1px solid #587e93;
+        margin-right:5px;
+        div {
+          font-family:Arial;
+          font-weight:bold;
+          font-size:11px;
+          text-align:center;
+          padding:2px 7px;
+          @include float(left);
+        }
+        .value {
+          background:#587e93;
+          color:#fff;
+        }
+        .caption {
+          color:#587e93;
+        }
       }
-      li:hover { background-color:#888;}
+    }
+    dl.information {
+      padding:15px 0;
+      font-size:0.9em;
+      line-height:150%;
+      dt {
+        color:$gray_normal;
+        padding-top:10px;
+        font-weight:bold;
+      }
+      dd {
+      }
+    }
+  }
+}
+
+.user_connections, .user_commons {
+  @include float(left);
+  @include content_section;
+  @include has_people_grid;
+  padding-top:15px;
+  h3.connection { @include sprite_replace_text($typo,People_Connection);}
+  h3.common { @include sprite_replace_text($typo,People_InCommon);}
+  ul.connection_type {
+    @include sub_nav_style;
+    margin-top:10px;
+    li {
+      &.all {
+        a { @include sprite_replace_text($typo,People_Connection_All);}
+        a:hover, &.current a { @include sprite_replace_text($typo, People_Connection_All_HL);}
+      }
+      &.coworker {
+        a { @include sprite_replace_text($typo,People_Connection_Coworker);}
+        a:hover, &.current a { @include sprite_replace_text($typo, People_Connection_Coworker_HL);}
+      }
+      &.classmate {
+        a { @include sprite_replace_text($typo,People_Connection_Classmate);}
+        a:hover, &.current a { @include sprite_replace_text($typo, People_Connection_Classmate_HL);}
+      }
+      &.friend {
+        a { @include sprite_replace_text($typo,People_Connection_Friend);}
+        a:hover, &.current a { @include sprite_replace_text($typo, People_Connection_Friend_HL);}
+      }
+      &.etc {
+        a { @include sprite_replace_text($typo,People_Connection_Etc);}
+        a:hover, &.current a { @include sprite_replace_text($typo, People_Connection_Etc_HL);}
+      }
+    }
+  }
+  .empty { padding:20px; color:$gray_normal; font-family:Arial;}
+}
+
+.user_posts {
+  @include float(left);
+  @include content_section;
+  padding-top:20px;
+  @include has_posts_grid;
+  h3 { @include sprite_replace_text($typo,People_Post);}
+}
+
+.user_comments {
+  @include float(left);
+  @include content-section;
+  padding-top:20px;
+  h3 { @include sprite_replace_text($typo,People_Comment);}
+  table {
+    width:100%;
+    td {
+      padding:5px 0;
+      a {
+        @include hover_link;
+      }
+      &.timestamp {
+        text-align:right;
+        font-size:12px;
+        font-style:italic;
+        color:$gray_normal;
+        width:120px;
+      }
     }
   }
 }
@@ -859,46 +950,6 @@ div.post {
   }
 }
 
-.user_connections, .user_commons {
-  @include float(left);
-  @include content-section;
-  @include has_people_grid;
-  padding-top: 15px;
-  h3 { @include has_more_link;}
-  ul.connection_type {
-    @include horizontal-list;
-    padding-top: 8px;
-    a { @include hover-link; color:#bbb; font-weight:bold;}
-    a:hover { color:#777;}
-    .current {
-      a { color:#555;}
-    }
-    li { padding:0;}
-    li.spacer { color:#666; padding:0 3px;}
-  }
-}
-
-.user_posts {
-  @include float(left);
-  @include content-section;
-  padding-top: 15px;
-  h3 { @include has_more_link;}
-  @include has_posts_grid;
-}
-
-.user_comments {
-  @include float(left);
-  @include content-section;
-  padding-top: 15px;
-  h3 { @include has_more_link;}
-  ul {
-    @include board_style;
-    li { padding: 12px 0 6px;}
-    .content {}
-    .comment_post { text-align:right; margin-top:5px;}
-    .timestamp { text-align:right; font-style:italic; color:#666; margin-right:5px; margin-top:5px;}
-  }
-}
 
 
 
