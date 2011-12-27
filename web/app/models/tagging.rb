@@ -2,13 +2,13 @@
 #
 # Table name: taggings
 #
-#  id         :integer(4)      not null, primary key
-#  tag_id     :integer(4)
-#  user_id    :integer(4)
-#  post_id    :integer(4)
-#  name       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  id           :integer(4)      not null, primary key
+#  content_type :string(255)
+#  content_id   :integer(4)
+#  name         :string(255)
+#  category     :string(255)
+#  created_at   :datetime
+#  updated_at   :datetime
 #
 
 class Tagging < ActiveRecord::Base

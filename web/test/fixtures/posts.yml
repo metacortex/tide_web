@@ -11,6 +11,7 @@
 #  body_en        :text
 #  source_url     :string(255)
 #  kind           :string(255)
+#  picture_image  :string(255)
 #  assets_count   :integer(4)      default(0)
 #  taggings_count :integer(4)      default(0)
 #  comments_count :integer(4)      default(0)
@@ -23,7 +24,6 @@
 #  published_at   :datetime
 #  created_at     :datetime
 #  updated_at     :datetime
-#  picture_image  :string(255)
 #  edit_status    :string(255)
 #  edit_note      :text
 #
