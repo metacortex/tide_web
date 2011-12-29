@@ -8,7 +8,7 @@
     <%= @post.title %>
   </h2>
 
-  <% if @post.rejected? && current_user.try(:writer?) %>
+  <% if @post.rejected? && current_user.try(:editor?) %>
     <div class="edit_note">
       <div class="caption">Editor Comment</div>
       <%= @post.edit_note %>
@@ -64,7 +64,7 @@
 <div class="sidebar">
   <%= render "shared/side_app" %>
 
-  <% if logged_in? && current_user.writer? %>
+  <% if logged_in? && current_user.editor? %>
     <div class="sb_action">
       <div class="new_post"><%= link_to "POST NEW ARTICLE", new_post_path %></div>
     </div>

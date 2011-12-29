@@ -18,9 +18,6 @@
     <h1><%= link_to "TIDE", root_path %></h1>
     <ul class="account_nav">
 			<% if logged_in? %>
-			  <% if current_user.writer? %>
-          <li><em><%= link_to "EDITING", "/editing" %></em></li>
-        <% end %>
         <li><span class="current_user"><%= link_to current_user.email, edit_profile_users_path %></span></li>
         <li><%= link_to "Log Out", logout_path %></li>
       <% else %>
@@ -45,9 +42,9 @@
       <%= navigation_tag :class => "top_nav" do |m| %>
         <%= m.item "NEWS", posts_path, :current => current_controller?(["posts"]), :html => { :class => "go_news" } %>
         <%= m.item "PEOPLE", users_path, :current => current_controller?(["users"]), :html => { :class => "go_people" } %>
-        <%= m.item "TIDE", "/tide", :current => current_controller?(["main","events"]), :html => { :class => "go_tide" } %>
-        <%= m.item "ARCHIVE", "/archives", :current => current_controller?(["archives"]), :html => { :class => "go_archive" } %>
         <%= m.item "FORUM", "/forums", :current => current_controller?(["forums"]), :html => { :class => "go_forum" } %>
+        <%= m.item "ARCHIVE", "/archives", :current => current_controller?(["archives"]), :html => { :class => "go_archive" } %>
+        <%= m.item "TIDE", "/tide", :current => current_controller?(["main","events"]), :html => { :class => "go_tide" } %>
       <% end %>
 
       <ul id="ssn">

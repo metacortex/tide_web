@@ -3,7 +3,7 @@
 </div>
 
 <div class="edit_form">
-  <% if @post.rejected? && current_user.writer? %>
+  <% if @post.rejected? && current_user.editor? %>
     <div class="edit_note">
       <div class="status">편집 상태 - <%= display_edit_status(@post.edit_status) %></div>
       <div class="caption">Editor Comment:</div>

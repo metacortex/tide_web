@@ -1,0 +1,28 @@
+<%= simple_form_for [:admin,@event] do |f| %>
+
+  <%= f.input :name %>
+  
+  <%= f.input :abbr, :hint => "리스트에서 보여지는 간단설명", :input_html => { :size => "80x5" } %>
+  <%= f.input :body, :hint => "상세 페이지에 나오는 내용", :input_html => { :size => "80x20" } %>
+
+  <%= f.input :status, :as => :select, :include_blank => false, :collection => [["종료","ended"],["진행중","run"],["예약완료","closed"],["삭제","remove"]] %>
+
+  <%= f.input :opened_at %>
+  <%= f.input :closed_at %>
+
+  <%= f.input :poster_image, :hint => "메인 커버 이미지 (950x400)" %>
+  <%= image_preview_form(f,@event,:poster_image) %>
+
+  <%= f.input :thumb_image, :hint => "리스트 썸네일 이미지 (250x150)" %>
+  <%= image_preview_form(f,@event,:thumb_image) %>
+
+  <%= f.input :picture_image, :hint => "상세페이지에서 보여지는 이미지 max width 640px" %>
+  <%= image_preview_form(f,@event,:picture_image) %>
+  
+
+  <%= f.submit %>
+  <div class="cancel">
+    or <%= link_to "cancel and return", return_url(admin_events_path) %>
+  </div>
+
+<% end %>

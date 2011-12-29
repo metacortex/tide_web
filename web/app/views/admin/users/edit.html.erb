@@ -1,0 +1,35 @@
+<h2>Edit User</h2>
+
+
+<%= simple_form_for [:admin, @user] do |f| %>
+
+  <%= f.input :role, :as => :select, :collection => ["admin", "editor", "staff"] %>
+
+  <%= f.input :name %>
+  <%= f.input :name_e %>
+  <%= f.input :email %>
+
+  <%= f.input :work, :input_html => { :size => "80x5" } %>
+  <%= f.input :vision, :input_html => { :size => "80x5" } %>
+  <%= f.input :skills, :input_html => { :size => "80x5" } %>
+  
+  <%= f.input :website %>
+  <%= f.input :facebook %>
+  <%= f.input :twitter %>
+  <%= f.input :googleplus %>
+  <%= f.input :linkedin %>
+  
+  <%= f.input :profile_image %>
+  <%= image_preview_form(f,@user,:profile_image) %>
+
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
+
+
+  <br />
+  <%= f.submit %>
+  <div class="cancel">
+    or <%= link_to "cancel and return", return_url(admin_users_path) %>
+  </div>
+
+<% end %>

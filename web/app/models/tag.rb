@@ -2,10 +2,11 @@
 #
 # Table name: tags
 #
-#  id         :integer(4)      not null, primary key
-#  name       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  id          :integer(4)      not null, primary key
+#  name        :string(255)
+#  category_id :integer(4)
+#  created_at  :datetime
+#  updated_at  :datetime
 #
 
 class Tag < ActiveRecord::Base
@@ -13,6 +14,8 @@ class Tag < ActiveRecord::Base
   has_many :taggings, :dependent => :destroy
   has_many :posts, :through => :taggings, :foreign_key => :post_id
   has_many :users, :through => :taggings, :foreign_key => :user_id
+  
+  belongs_to :category
   
   validates_presence_of :name
   validates_length_of :name, :minimum => 1

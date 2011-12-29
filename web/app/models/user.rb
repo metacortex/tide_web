@@ -3,7 +3,7 @@
 # Table name: users
 #
 #  id                              :integer(4)      not null, primary key
-#  email                           :string(255)     default("0")
+#  email                           :string(255)
 #  crypted_password                :string(255)
 #  salt                            :string(255)
 #  remember_me_token               :string(255)
@@ -52,18 +52,25 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
   validates_presence_of :name, :name_e
 
-
   def admin?
     role == "admin"
   end
-  
-  def age
-    if birthday.present?
-      Time.now.year - birthday.year
-    else
-      nil
-    end
+
+  def editor?
+    role == "editor"
   end
+  
+  def staff?
+    (role == "editor") || (role == "staff")
+  end
+  
+  include ScopeSearchable
+  scope :as_admin,  where(:role => "admin")
+  scope :as_editor, where(:role => "editor")
+  scope :as_staff,  where(:role => "staff")
+
+
+  mount_uploader :profile_image, ProfileUploader
   
   def profile_image_url
     if auth = authentications.first
@@ -74,7 +81,7 @@ class User < ActiveRecord::Base
   end
   
 
-  has_many :taggings, :dependent => :destroy
+  has_many :taggings, :dependent => :destroy, :as => :content
   has_many :tags, :through => :taggings, :uniq => true, :foreign_key => :tag_id
 
   accepts_nested_attributes_for :taggings, :allow_destroy => true, :reject_if => lambda {|a| a[:name].blank? }
@@ -88,9 +95,6 @@ class User < ActiveRecord::Base
   has_many :connection_requested, :dependent => :destroy, :class_name => "Connection", :foreign_key => :target_id, :conditions => "isNull(connections.accepted_at)"
   
   has_many :recommendations, :conditions => '!isNull(connections.accepted_at)', :class_name => "Connection", :foreign_key => :target_id
-  
-
-  mount_uploader :profile_image, ProfileUploader
 
 
 
@@ -119,13 +123,6 @@ class User < ActiveRecord::Base
     connection_requested.detect {|c| c.user_id == u.id }
   end
 
-  def writer?
-    role != nil
-  end
-  
-  def editor?
-    role == "editor"
-  end
 
 
 

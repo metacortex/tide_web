@@ -1,13 +1,9 @@
-<div class="content_title">
-  <div class="title_events">TIDE EVENTS</div>
-</div>
-
 <div class="post">
   <div class="category">
     <% if @event.upcoming? %>
-      <div class="upcoming_event banner_text">UPCOMING EVENT</div>
+      <div class="upcoming_text banner_text">UPCOMING EVENT</div>
     <% else %>
-      <div class="event banner_text">TIDE EVENT</div>
+      <div class="past_text banner_text">TIDE EVENT</div>
     <% end %>
   </div>
   
@@ -17,7 +13,7 @@
   </div>
 
   <div class="content">
-    <%= @event.body.gsub("\n","<br/>").html_safe %>
+    <%= simple_format @event.body %>
   </div>
   
   <% if "NEVER TRUE" == @event.accept_registration? %>
@@ -44,35 +40,10 @@
 
     <div class="fb-like" data-send="true" data-width="450" data-show-faces="true"></div>
   </div>
-
-  <div id="comments_app">
-
-    <%= render "comments/new", :parent => @event %>
-
-    <div class="comments">
-      <h3>Comments</h3>
-      <ul id="comments"></ul>
-    </div>
-    
-    <script>
-    var _CommentApp = true;
-    var _parentType = "events";
-    var _parentID = <%= @event.id.to_json.html_safe %>;
-    var _userID = <%= current_user.try(:id).to_json.html_safe %>;
-    var _userName = <%= current_user.try(:name).to_json.html_safe %>;
-    var _commentsData = <%= @event.comments.to_json(:include => :user).html_safe %>;
-    var _agreementsData = <%= @agreements.to_json.html_safe %>;
-    </script>
-
-    <script type="text/x-jquery-tmpl" id="comment_template">
-      <%= render "comments/comment" %>
-    </script>
-    <script type="text/x-jquery-tmpl" id="comment_edit_template">
-      <%= render "comments/edit" %>
-    </script>
-  </div>
   
-</div>
+  
+  <%= render "comments/widget", :content => @event %>
+
 
 <div class="sidebar">
   <%= render "shared/side_app" %>

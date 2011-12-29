@@ -1,33 +1,16 @@
 class AgreementsController < ApplicationController
   
-  before_filter :authenticate_user!, :except => [:index]
+  before_filter :require_login, :except => [:index]
   before_filter :find_comment, :except => [:index]
 
 
-  def index
-    @agreements = if logged_in?
-      current_user.agreements.where(:post_id => params[:post_id])
-    else
-      []
-    end
-    render :json => @agreements
-  end
-
   def create
-    @agreement = Agreement.new(params[:agreement])
-    
-    if @agreement.save
-      render :json => @agreement
+    if @agreement = @comment.agreements.find_by_user_id(current_user.id)
+      @agreement.update_attributes(params[:agreement])
     else
-    end
-  end
-
-  def update
-    @agreement = Agreement.find(params[:id])
-    
-    if @agreement.update_attributes(params[:agreement])
-      render :json => @agreement
-    else
+      @agreement = Agreement.new(params[:agreement])
+      @agreement.user_id = current_user.id
+      @agreement.save
     end
   end
 

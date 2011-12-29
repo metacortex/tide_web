@@ -1,0 +1,226 @@
+@import "lib/common";
+
+
+
+/* TYPOGRAPHY */
+
+body, p, div, a, ul, li {
+  font-family: Helvetica, Arial, sans-serif, dotum, Malgun Gothic, AppleGothic;
+  font-size:12px;
+  line-height:150%;
+}
+
+
+@mixin heading { font-family: "Lucida Grande", Verdana, Arial; font-weight:bold; line-height:150%;}
+h1 { @include heading; font-size:24px;}
+h2 { @include heading; font-size:17px;}
+h3 { @include heading; font-size:14px;}
+h4 { @include heading; font-size:13px;}
+
+a { color:#48c; @include hover-link;}
+em { font-weight:bold;}
+
+
+
+/* GLOBAL LAYOUT */
+
+$global_width: 960px;
+
+body {}
+
+#h {
+  width: $global_width;
+  margin: 0 auto;
+  background:#444;
+  a { color:#fff;}
+  .logo { 
+    @include float(left);
+    margin-left:10px;
+    a { display:block; font-size:18px; font-weight:bold;}
+  }
+  .account_nav {
+    @include float(right);
+    margin-top:5px;
+    a { margin-right:20px;}
+    img { width:16px; vertical-align:middle;}
+  }
+  ul.top_nav {
+    clear:both;
+    @include clearfix;
+    padding-top:3px;
+    li {
+      @include float(left);
+      margin-left:8px;
+      a {
+        padding:3px 8px 1px;
+        display:block;
+      }
+    }
+    li.current {
+      background:white;
+      a { color:#000;}
+    }
+  }
+}
+
+#c {
+  width: $global_width;
+  margin: 10px auto 50px;
+}
+
+
+
+
+/* COMMON */
+
+@mixin center_container {
+  width:800px;
+  margin:30px auto 60px;
+}
+
+ul.tabnav {
+  @include clearfix;
+  padding-bottom:20px;
+  li {
+    @include float(left);
+    border-right:1px solid #ccc;
+    padding:0 20px;
+    a { font-size:13px; color:#aaa; display:block; line-height:1em;}
+    a:hover { color:#777;}
+  }
+  li.first { padding-left:0px;}
+  li.last { border-right:none;}
+  li.current a { color:#000;}
+}
+
+ul.subnav {
+  @include clearfix;
+  li {
+    @include float(left);
+    border-right:1px solid #ccc;
+    padding:0 10px;
+    a { color:#666; display:block; line-height:1em;}
+  }
+  li.first { padding-left:0px;}
+  li.last { border-right:none;}
+  li.current a { color:#f52;}
+}
+
+.section {
+  margin-bottom:15px;
+  h4 { font-weight:normal; text-decoration:underline;}
+  
+}
+
+
+
+
+
+
+
+
+
+
+/* TABLE */
+
+.browser {
+  @include clearfix;
+  padding-bottom:10px;
+  .filter {
+    @include float(left);
+    .breadcrumb {
+      a { color:#333;}
+    }
+    ul.subnav { padding:5px 0 2px 5px;}
+    form {
+      margin-top:10px;
+    }
+  }
+  .actions {
+    @include float(right);
+    .button {
+      text-align:right;
+    }
+  }
+}
+
+.toolbox {
+  @include clearfix;
+  padding-bottom:10px;
+}
+
+.button {
+  a { padding:2px 6px; font-size:13px;}
+  a:hover { color:#fff; background:#48c; text-decoration:none;}
+}
+
+@mixin column_width {
+  th {
+    &.uid       { width:35px;}
+    &.status    { width:100px;}
+    &.timestamp { width:160px;}
+    &.string1   { width:100px;}
+    &.string2   { width:200px;}
+    &.string3   { width:300px;}
+  }
+  td.actions {
+    a { margin:0 3px; text-decoration:underline;}
+    a:hover { text-decoration:none; color:#fff; background:#48c;}
+  }
+  td.video_preview {
+    iframe { width:100px;height:75px;}
+  }
+  td.photo {
+    img { width:100px;}
+  }
+}
+
+table.stats {
+  @include column_width;
+  width:100%;
+  border-bottom:2px solid #999;
+  th,td {
+  }
+  th {
+    border-top:2px solid #999;
+    border-bottom:1px solid #999;
+    padding:5px 6px 3px;
+    font-weight:bold;
+  }
+  td {
+    padding:5px 6px;
+  }
+}
+
+.status {
+  .run    { }
+  .draft  { color:#999;}
+  .remove { color:#d99;}
+}
+
+table.collection {
+  @include column_width;
+  th,td {
+  }
+  th { border-bottom:1px solid #ccc; padding:5px 6px 3px;}
+  td { padding:5px 6px;}
+}
+
+
+
+
+/* PAGINATION */
+
+.pagination {
+  text-align:center;
+  margin:10px;
+  span {
+    font-size:13px;
+    .current { font-weight:bold;}
+    a { font-size:13px;}
+  }
+  
+}
+
+
+

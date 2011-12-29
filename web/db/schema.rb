@@ -186,14 +186,16 @@ ActiveRecord::Schema.define(:version => 20111028131320) do
 
   create_table "tags", :force => true do |t|
     t.string   "name"
+    t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "tags", ["category_id"], :name => "index_tags_on_category_id"
   add_index "tags", ["name"], :name => "index_tags_on_name", :unique => true
 
   create_table "users", :force => true do |t|
-    t.string   "email",                           :default => "0"
+    t.string   "email"
     t.string   "crypted_password"
     t.string   "salt"
     t.string   "remember_me_token"

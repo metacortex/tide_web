@@ -26,16 +26,14 @@ class UsersController < ApplicationController
   
   def new
     @user = User.new
-    @user.email = ""
+    render :layout => false
   end
 
   def create
     @user = User.new(params[:user])
-
+    
     if @user.save
-      redirect_to root_url, :notice => "Signed up!"
-    else
-      render :new
+      render :js => "alert('Sign Up Success');close_modal('#signup_popup');"
     end
   end
 

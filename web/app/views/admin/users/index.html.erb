@@ -1,0 +1,48 @@
+<div class="browser">
+  <div class="filter">
+    <%= navigation_tag :class => "subnav" do |m| %>
+      <%= m.item "All", merge_params(:scope => nil), :current => current_param?(:scope, nil) %>
+      <%= m.item "Editor", merge_params(:scope => "as_editor"), :current => current_param?(:scope, "as_editor") %>
+      <%= m.item "Staff", merge_params(:scope => "as_staff"), :current => current_param?(:scope, "as_staff") %>
+      <%= m.item "Admin", merge_params(:scope => "as_admin"), :current => current_param?(:scope, "as_admin") %>
+    <% end %>
+    <%= search_form_for [:admin,@q] do |f| %>
+      <%= f.text_field :name_or_name_e_or_email_cont %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+  <div class="actions">
+  </div>
+</div>
+
+<div class="toolbox">
+</div>
+
+<table class="stats">
+  <thead>
+    <tr>
+      <th class="">Role</th>
+      <th class="">이름</th>
+      <th class="">이름(ENG.)</th>
+      <th class="">이메일</th>
+      <th class="">Facebook</th>
+      <th class="timestamp">등록일</th>
+      <th class=""></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |d| %>
+      <%= content_tag_for :tr, d do %>
+        <td><%= d.role %></td>
+        <td><%= d.name %></td>
+        <td><%= d.name_e %></td>
+        <td><%= d.email %></td>
+        <td><%= d.authentications.count %></td>
+        <td><%= l(d.created_at) %></td>
+        <td><%= link_to "Edit", edit_admin_user_path(d) %></td>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @users %>

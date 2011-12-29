@@ -1,7 +1,7 @@
 class EditingController < ApplicationController
   
-  before_filter :authenticate_user!
-  before_filter :check_writer!
+  before_filter :require_login
+  before_filter :check_editor!
   
   
   def index
@@ -46,8 +46,8 @@ class EditingController < ApplicationController
   
   protected
   
-    def check_writer!
-      current_user.writer?
+    def check_editor!
+      current_user.editor?
     end
 
 

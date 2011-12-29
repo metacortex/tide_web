@@ -1,5 +1,8 @@
 class SessionsController < ApplicationController
 
+  layout false
+
+
   def new
     store_location
   end
@@ -7,10 +10,9 @@ class SessionsController < ApplicationController
   def create
     user = login(params[:email], params[:password], params[:remember_me])
     if user
-      redirect_to return_url(root_url), :notice => "Logged in!"
+      render :js => "window.location.reload();"
     else
-      flash.now.alert = "Email or password was invalid."
-      render :new
+      render :js => "alert('Email or password was invalid.');"
     end
   end
 

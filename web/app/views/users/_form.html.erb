@@ -1,1 +1,41 @@
-signup
+<%
+  user = user
+  user = User.new if user.nil?
+%>
+
+<div class="popup_wrapper">
+
+	<div class="clearfix">
+		<div class="title">
+		  <h3><%= image_tag("f/signup_signup.gif") %></h3>
+      <div class="fb_connect">
+        <%= link_to "Facebook Connect", auth_at_provider_path(:provider => "facebook"), :class => "facebook" %>
+      </div>
+		</div>
+		<div class="close">
+			<a href="#" onclick="close_modal('#signup_popup');return false"><%= image_tag("f/register_close.gif") %></a>
+		</div>
+		<div style="clear:both"></div>
+	</div>
+
+  <%= form_for user, :method => :post, :remote => true do |f| %>
+    <%= f.label :name_e, image_tag("f/signup_name_eng.gif") %>
+    <%= f.text_field :name_e %>
+
+    <%= f.label :name, image_tag("f/signup_name_kor.gif") %>
+    <%= f.text_field :name %>
+
+    <%= f.label :email, image_tag("f/signup_email.gif") %>
+    <%= f.text_field :email %>
+
+    <%= f.label :password, image_tag("f/signup_password.gif") %>
+    <%= f.password_field :password %>
+
+    <%= f.label :password_confirmation, image_tag("f/signup_password2.gif") %>
+    <%= f.password_field :password_confirmation %>
+
+
+    <div class="buttons"><%= image_submit_tag "f/signup_button.gif" %></div>
+  <% end %>
+
+</div>

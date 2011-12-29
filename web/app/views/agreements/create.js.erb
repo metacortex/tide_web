@@ -1,4 +1,6 @@
 
-$("#<%= dom_id(@comment, :positive) %>").html("+ <%= @comment.positive_agreements_count %>");
-$("#<%= dom_id(@comment, :negative) %>").html("- <%= @comment.negative_agreements_count %>");
+<% @comment.reload %>
+
+$("#<%= dom_id(@comment, :positive) %>").html("<%= @comment.positive_agreements_count %>");
+$("#<%= dom_id(@comment, :negative) %>").html("<%= @comment.negative_agreements_count %>");
 

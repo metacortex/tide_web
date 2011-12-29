@@ -1,0 +1,122 @@
+@import "compass";
+
+
+
+$simple_form_label:100px;
+
+
+
+/* GENERAL */
+
+.simple_form {
+  div.input {
+    margin:10px 0;
+    label {
+      @include float(left);
+      width: $simple_form_label;
+      text-align:right;
+      margin:2px 10px;
+    }
+    input.check_boxes, input.radio {
+      margin-left:2px;
+      vertical-align:-3px;
+    }
+    label.collection_check_boxes {
+      float:none;
+      margin:0;
+      vertical-align:-2px;
+      margin-left:2px;
+      margin-right:10px;
+    }
+    label.collection_radio {
+      float:none;
+      margin:0 10px 0 2px;
+      vertical-align:-2px;
+    }
+    textarea {
+//      height:60px;
+    }
+  }
+  div.boolean {
+    margin-left: $simple_form_label + 20px;
+    label {
+      float:none;
+      margin:0;
+    }
+  }
+  input[type='submit'] {
+    margin-left: $simple_form_label + 20px;
+    font-size:16px;
+  }
+  div.cancel {
+    margin-top:5px;
+    margin-left: $simple_form_label + 20px;
+    a { margin-left:4px; color:red; text-decoration:underline;}
+    a:hover { color:#fff; background-color:red; text-decoration:none;}
+  }
+  .field_with_errors {
+//    background-color:#ff3333;
+  }
+  .error {
+    clear:left;
+    color:#ff3333;
+    display:block;
+    margin-left: $simple_form_label + 20px;
+    font-size:12px;
+  }
+  .hint {
+    clear:left;
+    margin-left: $simple_form_label + 20px;
+    font-size:12px;
+    color:#888;
+    display:block;
+  }
+  .chzn-select {
+    width:200px;
+  }
+}
+
+.attachment_preview {
+  img {
+    margin-left: $simple_form_label + 20px;
+  }
+}
+
+
+
+/* LOGIN */
+
+.login_form {
+  .error {
+    margin:5px 20px 5px 10px;
+    padding:3px 10px;
+    width:220px;
+    background:#fdd;
+    color:#f77;
+  }
+  .field {
+    margin:3px 0;
+    label {
+      @include float(left);
+      width: $simple_form_label;
+      text-align:right;
+      margin:2px 10px;
+    }
+  }
+  .checkbox { margin-left:$simple_form_label + 20px;}
+  input[type='submit'] {
+    margin-top:10px;
+    margin-left: $simple_form_label + 20px;
+    font-size:16px;
+  }
+}
+
+
+
+
+
+
+
+
+
+

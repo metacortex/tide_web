@@ -1,0 +1,14 @@
+<%= simple_form_for [:admin,@category] do |f| %>
+
+  <%= f.input :name %>
+  <%= f.input :title %>
+  <%= f.input :title_en %>
+
+  <%= f.input :tags_text, :as => :text, :hint => "관련 TAG를 1줄에 1개씩 입력해주세요." %>
+
+  <%= f.submit %>
+  <div class="cancel">
+    or <%= link_to "cancel and return", return_url(admin_categories_path) %>
+  </div>
+
+<% end %>

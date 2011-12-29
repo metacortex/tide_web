@@ -1,41 +1,46 @@
-<div class="auth_container">
+<div class="popup_wrapper">
 
-  <div class="simple_auth">
-    <h2>Log in</h2>
+	<div class="clearfix">
+		<div class="title">
+		  <h3><%= image_tag("f/login_login.gif") %></h3>
+      <div class="fb_connect">
+        <%= link_to "Facebook Connect", auth_at_provider_path(:provider => "facebook"), :class => "facebook" %>
+      </div>
+		</div>
+		<div class="close">
+			<a href="#" onclick="close_modal('#login_popup');return false"><%= image_tag("f/register_close.gif") %></a>
+		</div>
+		<div style="clear:both"></div>
+	</div>
 
-    <div class="login_form">
-      <%= form_tag "/login" do %>
+  <%= form_tag "/login", :remote => true do %>
+    <%= label_tag :email, image_tag("f/login_email.gif") %>
+    <%= text_field_tag :email, params[:email] %>
 
-        <% if flash.now[:alert] %>
-          <div class="error"><%= flash.now[:alert] %></div>
-        <% end %>
+    <%= label_tag :password, image_tag("f/login_password.gif") %>
+    <%= password_field_tag :password %>
 
-        <div class="field">
-          <%= label_tag :email %>
-          <%= text_field_tag :email, params[:email] %>
-        </div>
-
-        <div class="field">
-          <%= label_tag :password %>
-          <%= password_field_tag :password %>
-        </div>
-
-        <div class="checkbox">
-          <%= check_box_tag :remember_me, 1, params[:remember_me] %>
-          <%= label_tag :remember_me %>
-        </div>
-
-        <div class="actions"><%= submit_tag "Log in" %></div>
-
-      <% end %>
+    <div class="cb">
+      <%= check_box_tag :remember_me, 1, params[:remember_me] %>
+      <%= label_tag :remember_me, image_tag("f/login_rememberme.gif") %>
     </div>
 
-  </div>
-  
-  <div class="oauth">
-    <h2>Facebook Connect</h2>
-    <p>Facebook 회원이신가요?<br />Facebook 계정을 이용해서 회원가입하실수 있습니다.</p>
-    <%= link_to "Facebook Connect", auth_at_provider_path(:provider => "facebook"), :class => "facebook" %>
+    <div class="buttons"><%= image_submit_tag "f/login_button.gif" %></div>
+  <% end %>
+
+
+  <div class="forgot_password">
+
+    <%= form_tag password_resets_path, :method => :post, :remote => true do %>
+
+      <label><%= image_tag "f/login_forgot.gif" %></label>
+
+      <%= label_tag :email, image_tag("f/login_email.gif"), :for => "password_email" %>
+      <%= text_field_tag :email, nil, :id => "password_email" %>
+
+      <div class="buttons"><%= image_submit_tag "f/login_sendbutton.gif" %></div>
+    <% end %>
+
   </div>
 
 </div>

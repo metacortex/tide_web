@@ -13,11 +13,11 @@
       </div>
       <div class="content">
         <h4><%= link_to ev.name.html_safe, ev %></h4>
-        <div class="abbr"><%= truncate(ev.abbr, :length => 250) %></div>
+        <div class="abbr"><%= ev.abbr %></div>
         <div class="stats">
           &nbsp;
           <div class="posted_at" style="display:none"><%= l(ev.opened_at.to_date, :format => :long) %> ~ <%= l(ev.closed_at.to_date, :format => :long) %></div>
-          <div class="comments"><%= ev.comments_count %></div>
+          <div class="comments"><%= link_to ev.comments_count, ev %></div>
         </div>
       </div>
     <% end %>

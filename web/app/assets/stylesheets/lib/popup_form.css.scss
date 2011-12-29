@@ -14,7 +14,12 @@
  .title {
 		float: left;
 	}
-	
+
+  .fb_connect {
+    margin-left:3px;
+    margin-top:20px;
+  }
+  
 	h3 {
 		@include indent;
 	}
@@ -38,7 +43,7 @@
 .popup_wrapper form {
 	clear: both;
 	width: 438px;
-	margin-top: 20px;
+	margin-top: 10px;
 	background: url("f/register_line.gif") no-repeat 0 top;
 	
 	label {

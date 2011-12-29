@@ -1,7 +1,7 @@
 class SorceryCore < ActiveRecord::Migration
   def self.up
     create_table :users do |t|
-      t.string :email,            :default => false
+      t.string :email
       t.string :crypted_password, :default => nil
       t.string :salt,             :default => nil
 

@@ -1,0 +1,39 @@
+<div class="browser">
+  <div class="filter">
+    <%= search_form_for [:admin,@q] do |f| %>
+      <%= f.text_field :name_cont %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+  <div class="actions">
+    <div class="button"><%= link_to "+Create Event", new_admin_event_path %></div>
+  </div>
+</div>
+
+<div class="toolbox">
+</div>
+
+<table class="stats">
+  <thead>
+    <tr>
+      <th class="status">Status</th>
+      <th class="">이름</th>
+      <th class="timestamp">시작</th>
+      <th class="timestamp">종료</th>
+      <th class=""></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @events.each do |d| %>
+      <%= content_tag_for :tr, d do %>
+        <td><%= d.status %></td>
+        <td><%= d.name %> <%= link_to "(site)", d, :target => "_blank" %></td>
+        <td><%= l(d.opened_at) %></td>
+        <td><%= l(d.closed_at) %></td>
+        <td><%= link_to "Edit", edit_admin_event_path(d) %></td>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @events %>

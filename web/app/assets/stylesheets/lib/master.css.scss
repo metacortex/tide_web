@@ -4,15 +4,15 @@
 /* TYPOGRAPHY */
 
 body {
-  font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:13px;
+  font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:12px;
   background:url("/assets/bg/background_tile.gif");
 }
 p { font-family:"Times New Roman", serif;}
 
 @mixin heading { font-family:Arial; font-weight:bold;}
-h2 { @include heading;font-size:1.8em; }
-h3 { @include heading;font-size:1.4em; }
-h4 { @include heading;font-size:1.2em; }
+h2 { @include heading;font-size:1.8em;}
+h3 { @include heading;font-size:1.4em;}
+h4 { @include heading;font-size:1.2em;}
 
 a { color:#597f94;}
 a:hover, a:visited, a:active { color:#597f94;}
@@ -47,7 +47,7 @@ $icon: sprite-map('icons/*.png');
 
 #h {
   @include clearfix;
-  padding-bottom:5px; border-bottom:1px solid #ddd;
+  padding-bottom:2px; border-bottom:1px solid #ddd; margin-bottom:7px;
   h1 a {
     display:block;
     @include sprite_replace_text($icon,logo);
@@ -55,8 +55,8 @@ $icon: sprite-map('icons/*.png');
   ul.account_nav {
     position:absolute; top:28px; right:250px;
     @include inline-list;
-    font-size: 0.9em;
-    li { margin-left:25px;}
+    font-size:11px;
+    li { margin-left:15px;}
     a { @include hover-link; color:$gray_light;}
   }
   #globalsearch {
@@ -69,10 +69,11 @@ $icon: sprite-map('icons/*.png');
       width:100%; height:19px; padding:2px 18px 1px 2px; background-image:none;
       @include box-sizing(border-box);
       -webkit-tap-highlight-color:rgba(0,0,0,0);
+      border:1px solid $gray_light;
     }
     .sp-magnify { position:absolute; top:3px; right:3px; width:15px; height:14px; }
-    .sp-magnify * { position:absolute; opacity:0; width:15px; height:14px; background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAOCAQAAABedl5ZAAAAzklEQVQYlWNgAIP%2F9v%2FrwVCfARn85%2F%2B%2F%2Fz8CzEeS%2BnMQJPL0%2Ba37796DJfsZ4EYBwar9DBkMCQwFR86DJeXBUo%2F6QToYHCAKtaO%2Bf%2F%2F%2F%2F3kmmHNm%2Fv%2F%2FD27CTee4c%2Ff%2F%2F2vT4VKfXiM5CQg2t4M5lckQd%2F3nB0n8vQji5HhCFEpArP73AeGF35dACkEgYPtxmODXnxueg2igbqikh3l%2F1%2FpV%2B7vWyzUwxHatB%2BvcBLNfgMEA6AEDBg4g26Br%2FffvqeUMWIEBULcEdikGkG4AzGOfgUQC7TUAAAAASUVORK5CYII%3D') no-repeat 0 0; }
-    .sp-magnify .magnify { opacity:1; background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAYAAABy6%2BR8AAAAlElEQVR42oWQQRHEIAxF10ElVAISVgo3bCABCUhYCZWAhEpAQpoD6bzJhNnDO0DyyA8fEXkppXyVCpLViDUfyqVIQN9JFMY637hrlCySFauL21E7KVWbAIGx56rnSLqc5KPXSLo3kySalPhTygFhRDtFC09EIsMeZJSGBj7Qveh3OJW89syImiH%2BIO2BOJX0XwA2%2BQEL4pAhSX4aBQAAAABJRU5ErkJggg%3D%3D') no-repeat 0 0; }
+    .sp-magnify * { position:absolute; opacity:0; width:15px; height:14px; background:sprite($icon,search);}
+    .sp-magnify .magnify { opacity:1; background:sprite($icon,search);}
   }
   #gnb {
     @include clearfix;
@@ -88,8 +89,8 @@ $icon: sprite-map('icons/*.png');
           a:hover, &.current a { @include sprite_replace_text($typo, MenuButton_Tide_HL);}
         }
         &.go_news {
-          a { @include sprite_replace_text($typo, MenuButton_News);}
-          a:hover, &.current a { @include sprite_replace_text($typo, MenuButton_News_HL);}
+          a { @include sprite_replace_text($typo, MenuButton_Trend);}
+          a:hover, &.current a { @include sprite_replace_text($typo, MenuButton_Trend_HL);}
         }
         &.go_people {
           a { @include sprite_replace_text($typo, MenuButton_People);}
@@ -110,7 +111,7 @@ $icon: sprite-map('icons/*.png');
     @include float(right);
     a { @include float(left); text-decoration:none; margin-left:5px;}
     li { @include float(left);}
-    .follow { @include sprite_replace_text($typo, Main_SSN_follow); margin-top:3px;}
+    .follow { @include sprite_replace_text($typo, Main_SSN_follow); margin-top:1px;}
     .tw a { @include sprite_replace_text($icon, Main_SSN_TW);}
     .fb a { @include sprite_replace_text($icon, Main_SSN_FB);}
   }
@@ -248,8 +249,8 @@ $sidebar_width: 250px;
   .entrepreneur { @include replace-text-with-dimensions("c/NewsCategory_Entrepreneur.gif",15,150);}
   .essay        { @include replace-text-with-dimensions("c/NewsCategory_Essay.gif",15,150);}
   .banner_text { font-size:10px; padding:2px 4px;}
-  .event { color:#fff; background-color:RGB(204,81,78);}
-  .upcoming_event { color:#fff; background-color:RGB(204,81,78);}
+  .past_text { color:#fff; background-color:RGB(204,81,78);}
+  .upcoming_text { color:#fff; background-color:RGB(204,81,78);}
 }
 
 .splash {
@@ -263,10 +264,10 @@ $sidebar_width: 250px;
 
 @mixin sub_nav_style {
   @include clearfix;
-  margin-top:5px;
-  background: sprite($typo,AboutButton_Dots) no-repeat;
+  margin-top:10px;
+  background:sprite($typo,AboutButton_Dots) no-repeat;
   padding-left:20px;
-  padding-bottom:8px;
+  padding-bottom:3px;
   border-bottom:1px solid #ddd;
   li {
     @include float(left); margin-right:0px;
@@ -278,7 +279,6 @@ $sidebar_width: 250px;
 .about_us {
   @include content-section;
   @include float(left);
-  margin-top:10px;
   ul.nav {
     @include sub_nav_style;
     li {
@@ -322,7 +322,7 @@ $sidebar_width: 250px;
   .nav_content_container {
     clear:both;
     .nav_content {
-      padding: 5px 0 45px;
+      padding:5px 0 45px;
       p { padding:10px 0; line-height:120%; color:#333; font-family: Dotum, "돋움", arial, sans-serif;}
     }
     .with_top_border {
@@ -373,12 +373,16 @@ $sidebar_width: 250px;
   .more {
     @include clearfix;
     padding-top:10px; padding-right:5px;
-    a { @include float(right); display:block; @include replace-text-with-dimensions("t/Button_ShowMore.gif", 95, 13);}
+    a {
+      @include float(right);
+      display:block;
+      @include sprite_replace_text_anchor($icon,ShowMoreButton);
+    }
   }
   ul {
     li {
       @include clearfix;
-      padding-bottom:10px; padding-top:10px;
+      padding:5px 0;
       border-bottom:1px solid $border_color;
       .category {
         @include float(left); margin-right:1px;
@@ -388,18 +392,33 @@ $sidebar_width: 250px;
         img { width:250px; height:150px;}
       }
       .content {
-        @include float(right); width:400px;
+        margin-left:280px;
+        position:relative;
+        padding-bottom:6px;
         h4 {
-          a { @include hover-link; color:#333; font-size:18px; line-height:120%;}
+          margin:2px 0;
+          a { @include hover-link; color:#333; font-size:16px; line-height:130%;}
         }
-        .abbr { line-height:130%; margin:5px 0 0 0; color:$gray_base;}
+        .abbr {
+          color:$gray_base;
+          line-height:140%;
+          margin:3px 0 4px 0;
+          max-height:96px;
+          overflow:hidden;
+        }
         .stats {
-          position:relative; padding-bottom:5px;
           .posted_at { color:$gray_base;}
           .comments {
-            position:absolute; top:0; right:0; color:#597f94; font-weight:bold; font-size:16px;
+            position:absolute;
+            bottom:0;
+            right:8px;
+            color:#597f94;
+            font-weight:bold;
+            font-size:16px;
+            text-align:right;
             background:url("i/Icon_Comment.gif") no-repeat left 2px;
             padding-left:22px;
+            a { @include hover_link;}
           }
         }
       }
@@ -502,11 +521,11 @@ ul.posts {
 }
 
 div.post {
-  @include float(left);
-  width:$content_width;
-  h2 { line-height:120%;}
+  @include content_section;
+  margin-top:10px;
   .category {
     @include clearfix;
+    margin-bottom:5px;
     div { @include float(left);}
   }
   .edit_note {
@@ -602,10 +621,10 @@ div.post {
           width:596px;
           .username {
             @include float(left);
-            em { color:$gray_base; font-size:14px;}
+            em { color:$gray_base; font-size:13px; margin-right:3px;}
             a { color:$gray_base; @include hover-link;}
           }
-          .timestamp { @include float(right); color:$gray_light; font-weight:bold;}
+          .timestamp { @include float(right); color:$gray_light; font-weight:bold; font-size:11px;}
           .comment_body {
             clear:both;
             padding-top:10px;
@@ -615,7 +634,7 @@ div.post {
         }
         .comment_action { 
           @include float(right);
-          margin-top:10px;
+          margin-bottom:4px;
           ul {
             @include float(right);
             @include toolbox;
@@ -1189,6 +1208,14 @@ div.writer {
 
 
 
+/* MISC */
+
+.fb_connect {
+  a {
+    @include inline_block;
+    @include sprite_replace_text($icon,facebook-login-button);
+  }
+}
 
 
 

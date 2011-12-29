@@ -2,7 +2,7 @@
 
 class InvitationsController < ApplicationController
 
-  before_filter :authenticate_user!, :except => [:show]
+  before_filter :require_login, :except => [:show]
 
 
   def show

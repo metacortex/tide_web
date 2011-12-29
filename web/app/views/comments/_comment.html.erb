@@ -1,27 +1,42 @@
 
 <%= content_tag_for :li, comment do %>
 
+  <% u = comment.user %>
+
   <div class="user">
-    <%= image_tag "placeholder.png" %>
+    <%= image_tag u.profile_image_url %>
   </div>
 
   <div class="body">
     <div class="comment_info">
-      <% u = comment.user %>
       <div class="username"><%= link_to "<em>#{u.name_e}</em> #{u.name}".html_safe, u %></div>
       <div class="timestamp"><%= time_ago_in_words(comment.created_at) %> ago</div>
-
-      <% if logged_in? %>
-        <% if comment.removable? && (current_user.id == comment.user_id) %>
-          <div class="action"><%= link_to "Delete", comment, :method => :delete, :confirm => "정말 삭제하시겠습니까?", :remote => true %></div>
-        <% end %>
-        <% if comment.root? %>
-          <div class="action"><%= link_to_function "Reply", "$('##{dom_id(comment, :new_sub_comment)}').toggle()" %></div>
-        <% end %>
-      <% end %>
     </div>
 
     <div class="comment_body"><%= simple_format comment.body %></div>
+
+    <% if logged_in? %>
+      <div class="comment_action">
+        <ul>
+          <% if current_user.id == comment.user_id %>
+            <li class="action"><%= link_to "DELETE", comment, :method => :delete, :confirm => "정말 삭제하시겠습니까?", :remote => true %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="status">
+      <div class="agreement">
+        <div class="positive">
+          <%= link_to comment.positive_agreements_count, agreements_path(:comment_id => comment, :agreement => { :comment_id => comment, :direction => 1 }),
+            :class => "agree_positive", :id => dom_id(comment, :positive), :method => :post, :remote => true %>
+        </div>
+        <div class="negative">
+          <%= link_to comment.negative_agreements_count, agreements_path(:comment_id => comment, :agreement => { :comment_id => comment, :direction => -1 }),
+            :class => "agree_negative", :id => dom_id(comment, :negative), :method => :post, :remote => true %>
+        </div>
+      </div>
+    </div>
 
   </div>
 

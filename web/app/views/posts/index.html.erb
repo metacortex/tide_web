@@ -21,7 +21,7 @@
       </div>
       <div class="content">
         <h4>
-          <% if current_user.try(:writer?) %>
+          <% if current_user.try(:editor?) %>
             <%= display_edit_status(post.edit_status) %>
           <% end %>
           <%= link_to post.title, post %>
@@ -43,7 +43,7 @@
   
   <%= render "shared/side_app" %>
 
-  <% if logged_in? && current_user.writer? %>
+  <% if logged_in? && current_user.editor? %>
     <div class="sb_action">
       <div class="new_post"><%= link_to "POST NEW ARTICLE", new_post_path %></div>
     </div>

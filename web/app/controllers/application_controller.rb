@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
   # admin
   def require_admin
     unless admin_logged_in?
-      self.send(Config.not_authenticated_action)
+      self.send(:not_authorized_action)
     end
   end
 

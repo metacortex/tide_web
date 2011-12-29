@@ -32,4 +32,15 @@ class Comment < ActiveRecord::Base
     user.profile_image.url(:thumb)
   end
   
+
+  scope :as_root, where(:parent_id => nil)
+
+  def removable?
+    true
+  end
+  
+  def root?
+    true
+  end
+  
 end

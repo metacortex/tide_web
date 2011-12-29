@@ -1,11 +1,10 @@
 class PostsController < ApplicationController
   
-  before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
+  before_filter :require_login, :only => [:new, :create, :edit, :update, :destroy]
   
   
   def index
-    # redirect_to "/tide" unless current_user.try(:writer?)
-    @posts = if current_user.try(:writer?)
+    @posts = if current_user && current_user.editor?
       Post.order("id DESC").page(params[:page])
     else
       Post.published.order("id DESC").page(params[:page])
@@ -13,10 +12,9 @@ class PostsController < ApplicationController
   end
   
   def show
-    # redirect_to "/tide" unless current_user.try(:writer?)
     @post = Post.includes(:comments).find(params[:id])
     
-    unless @post.published? || current_user.try(:writer?)
+    unless @post.published? || current_user.try(:editor?)
       redirect_to :action => "index"
     end
     
@@ -28,13 +26,12 @@ class PostsController < ApplicationController
   end
   
   def new
-    return unless current_user.writer?
-
+    return unless current_user.editor?
     @post = Post.new
   end
   
   def create
-    return unless current_user.writer?
+    return unless current_user.editor?
 
     if params[:post][:picture_image]
       params[:post][:remote_picture_image_url] = nil

@@ -1,10 +1,37 @@
 # encoding: UTF-8
 module ApplicationHelper
 
+  #
+  # Layout Helpers
+  #
+  
+  def title(page_title)
+    content_for(:title, page_title.to_s)  
+  end
+  
+  def javascript(*args)
+    content_for(:javascripts) { javascript_include_tag(*args) }
+  end
+
+
 
   #
   # Current Path Helpers
   #
+  
+  def current_path?(rhs)
+    if rhs
+      if rhs.is_a?(Array)
+        rhs.include?(request.path)
+      elsif rhs.is_a?(Regexp)
+        rhs.match(request.path) != nil
+      else
+        rhs == request.path
+      end
+    else
+      false
+    end
+  end
 
   def current_controller?(rhs)
     if rhs
@@ -34,15 +61,6 @@ module ApplicationHelper
     end
   end
 
-  def current_param?(param_name, rhs)
-    v = params[param_name]
-    
-    if rhs.is_a?(Array)
-      rhs.include?(v)
-    else
-      rhs == v
-    end
-  end
 
 
   #
@@ -118,5 +136,121 @@ module ApplicationHelper
     txt.to_s.gsub("\n","<br/>").html_safe
   end
   
+  def display_image(item, options)
+    item_image = (item.class.to_s.downcase == "company")? item.logo_image : item.profile_image
+    size = options[:size] || "profile_medium"
+    
+    src = if item && item_image && item_image.image
+            item_image.image.url(size)
+          else
+            # ToDo: replace default image  
+            "/assets/placeholder.png"
+          end
+    image_tag src, options
+  end
+  
+  
+  #
+  # search/sort helper
+  #
+  
+  def search_params(h)
+    params[:q] ||= {}
+    params.deep_merge({:q => h})
+  end
+  
+  def current_search?(name, rhs)
+    return false unless params[:q]
+
+    v = params[:q][name]
+    
+    if rhs.is_a?(Array)
+      rhs.include?(v)
+    elsif rhs.is_a?(TrueClass)
+      !v.blank?
+    else
+      rhs.to_s == v.to_s
+    end
+  end
+  
+  def merge_params(h)
+    params.deep_merge({:q => params[:q]}.merge(h))
+  end
+  
+  def current_param?(param_name, rhs)
+    v = params[param_name]
+    
+    if rhs.is_a?(Array)
+      rhs.include?(v)
+    else
+      rhs == v
+    end
+  end
+
+  
+  #
+  # Pagination
+  #
+  
+  def pagination_link(name, path)
+    a = link_to(name, path, :remote => true)
+    content_tag :div, a, :id => "pagination"
+  end
+
+
+  #
+  # Tags
+  #
+  
+  def display_tags(tags)
+    tags.collect {|t| link_to(t.name) }.join(", ").html_safe
+  end
+  
+  
+  #
+  # Nested Form
+  #
+  def link_to_remove_fields(name, f)
+    f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)")
+  end
+  
+  def link_to_add_fields(name, f, association)
+    new_object = f.object.class.reflect_on_association(association).klass.new
+    fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |builder|
+      render(association.to_s.singularize + "_fields", :f => builder).html_safe
+    end
+    link_to_function(name, h("add_fields(this, '#{association}', '#{escape_javascript(fields)}')".html_safe))
+  end
+  
+  
+  #
+  # Image Upload Preview Form
+  #
+  def image_preview_form(f,c,image)
+    if c.send(:"#{image.to_s}?")
+      content_tag :div, :class => "attachment_preview" do
+        image_tag(c.send(image).url) +
+        f.input(:"remove_#{image.to_s}", :as => :boolean, :label => "이미지 삭제")
+      end
+    end
+    
+  end
+  
+  
+  
+  #
+  # JS Scrollbar
+  #
+  def section_with_scrollbar(tag_name, options = {}, &block)
+    content_tag tag_name, :class => "#{options[:class]} has_scrollbar" do
+      concat('<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>'.html_safe)
+      concat('<div class="viewport"><div class="overview">'.html_safe)
+      yield block
+      concat('</div></div>'.html_safe)
+    end
+  end
+
+
+
 
 end
