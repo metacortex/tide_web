@@ -50,6 +50,10 @@ class Post < ActiveRecord::Base
 
   scope :published, where("isNull(edit_status) OR edit_status = 'published'")
   scope :not_published, where(:edit_status => ["rejected","waiting","draft"])
+  include ScopeSearchable
+  scope :rejected,  where(:edit_status => "rejected")
+  scope :waiting,   where(:edit_status => "waiting")
+  scope :draft,     where(:edit_status => "draft")
 
 
   def published?

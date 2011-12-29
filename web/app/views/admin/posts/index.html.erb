@@ -1,2 +1,50 @@
-<h1>Admin::Posts#index</h1>
-<p>Find me in app/views/admin/posts/index.html.erb</p>
+<div class="browser">
+  <div class="filter">
+    <%= navigation_tag :class => "subnav" do |m| %>
+      <%= m.item "All", merge_params(:scope => nil), :current => current_param?(:scope, nil) %>
+      <%= m.item "Published", merge_params(:scope => "published"), :current => current_param?(:scope, "published") %>
+      <%= m.item "Rejected", merge_params(:scope => "rejected"), :current => current_param?(:scope, "rejected") %>
+      <%= m.item "Waiting", merge_params(:scope => "waiting"), :current => current_param?(:scope, "waiting") %>
+      <%= m.item "Draft", merge_params(:scope => "draft"), :current => current_param?(:scope, "draft") %>
+    <% end %>
+    <%= search_form_for [:admin,@q] do |f| %>
+      <%= f.text_field :title_cont %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+  <div class="actions">
+  </div>
+</div>
+
+<div class="toolbox">
+</div>
+
+<table class="stats">
+  <thead>
+    <tr>
+      <th class="status">Status</th>
+      <th class="">이름</th>
+      <th class="">카테고리</th>
+      <th class="timestamp">작성일</th>
+      <th class="timestamp">최종수정일</th>
+      <th class=""></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @posts.each do |d| %>
+      <%= content_tag_for :tr, d do %>
+        <td><%= d.edit_status %></td>
+        <td><%= d.title %> <%= link_to "(site)", d, :target => "_blank" %></td>
+        <td><%= d.category.title %></td>
+        <td><%= l(d.created_at) %></td>
+        <td><%= l(d.updated_at) %></td>
+        <td class="actions">
+          <%= link_to "Edit", edit_admin_post_path(d) %>
+          <%= link_to "Delete", admin_post_path(d), :method => :delete, :confirm => "Are you sure?" %>
+        </td>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @posts %>
