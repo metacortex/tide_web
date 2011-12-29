@@ -174,6 +174,7 @@ ActiveRecord::Schema.define(:version => 20111028131320) do
   create_table "taggings", :force => true do |t|
     t.string   "content_type"
     t.integer  "content_id"
+    t.integer  "tag_id"
     t.string   "name"
     t.string   "category"
     t.datetime "created_at"
@@ -183,6 +184,7 @@ ActiveRecord::Schema.define(:version => 20111028131320) do
   add_index "taggings", ["category"], :name => "index_taggings_on_category"
   add_index "taggings", ["content_type", "content_id"], :name => "index_taggings_on_content_type_and_content_id"
   add_index "taggings", ["name"], :name => "index_taggings_on_name"
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
 
   create_table "tags", :force => true do |t|
     t.string   "name"

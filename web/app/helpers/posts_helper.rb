@@ -3,19 +3,23 @@ module PostsHelper
   
   def display_edit_status(s)
     msg = case s
-    when nil
-      "대기중"
     when "published"
       "완료"
     when "rejected"
       "거절"
     when "waiting"
       "재요청"
+    when "draft"
+      "DRAFT"
     else
-      s
+      nil
     end
     
-    content_tag :span, "[#{msg}]", :class => "edit_status"
+    if msg
+      content_tag :span, "[#{msg}]", :class => "edit_status"
+    else
+      ""
+    end
   end
   
 end

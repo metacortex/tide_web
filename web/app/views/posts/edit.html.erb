@@ -11,39 +11,42 @@
     </div>
   <% end %>
 
-  <%= semantic_form_for @post do |f| %>
+  <%= simple_form_for @post do |f| %>
 
     <% if @post.rejected? %>
       <%= f.hidden_field :edit_status, :value => "waiting" %>
     <% end %>
 
-    <%= f.inputs do %>
-      <%= f.input :category, :include_blank => false, :label => "카테고리" %>
+    <%= f.association :category, :include_blank => false, :label => "카테고리" %>
 
-      <%= f.input :source_url, :size => 80, :input_html => { :onchange => "updateRemotePictureList(this)" } %>
-      <%= f.input :title, :size => 80 %>
-      <%= f.input :picture_image, :as => :file, :label => "Main Image" %>
-      <li id="remote_image_selector">
-        <label>&nbsp;</label>
-        <div class="input_group">
-          <%= f.hidden_field :remote_picture_image_url %>
-          <p class="message">or<br/>Select from images in source page</p>
-          <ul id="remote_picture_images"><li class="message">(no data)</li></ul>
-        </div>
-      </li>
-      
-      <%= f.input :body, :label => "Content" %>
-      <li>
-        <label>TAG</label>
-        <div class="input_group">
-          <%= render "shared/tags_form", :form => f %>
-        </div>
-      </li>
-    <% end %>
+    <%= f.input :title, :size => 80 %>
+    <%= f.input :source_url, :size => 80 %>
+
+    <%= f.input :picture_image, :as => :file, :label => "Main Image" %>
+    <div class="input" id="remote_image_selector" style="<%= (@post.kind == "compose") ? "display:none" : nil  %>">
+      <label>&nbsp;</label>
+      <div class="input_group">
+        <%= f.hidden_field :remote_picture_image_url %>
+        <p class="message">
+          or<br/>
+          <%= link_to_function "GET IMAGE FROM SOURCE URL", "updateRemotePictureList('#post_source_url')" %><br/>
+          And select from images in source page</p>
+        <ul id="remote_picture_images"><li class="message">(no data)</li></ul>
+      </div>
+    </div>
     
-    <%= f.buttons :class => "right_buttons" do %>
-      <%= f.commit_button "DONE" %>
-    <% end %>
+    <%= f.input :body, :label => "Content", :input_html => { :size => "60x15" } %>
+
+    <div class="input">
+      <label>TAG</label>
+      <div class="input_group">
+        <%= render "shared/tags_form", :form => f %>
+      </div>
+    </div>
+    
+    <div class="buttons update_button">
+      <%= f.submit "UPDATE" %>
+    </div>
     
   <% end %>
 </div>

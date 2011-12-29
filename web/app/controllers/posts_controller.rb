@@ -41,13 +41,12 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to @post
     else
-      render :action => "new"
+      render "new"
     end
   end
   
   def edit
-    @post = Post.find(params[:id])
-    has_permission?(@post, current_user)
+    @post = check_permission Post.find(params[:id])
   end
   
   def update
@@ -55,8 +54,7 @@ class PostsController < ApplicationController
       params[:post][:remote_picture_image_url] = nil
     end
 
-    @post = Post.find(params[:id])
-    has_permission?(@post, current_user)
+    @post = check_permission Post.find(params[:id])
     
     if @post.update_attributes(params[:post])
       redirect_to @post
@@ -66,9 +64,7 @@ class PostsController < ApplicationController
   end
   
   def destroy
-    @post = Post.find(params[:id])
-    has_permission?(@post, current_user)
-    
+    @post = check_permission Post.find(params[:id])
     @post.destroy
     
     redirect_to :action => "index"

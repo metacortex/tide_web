@@ -1,16 +1,5 @@
 <% scope_name = form.object.class.to_s.downcase %>
 
-<div class="tag_insert_form">
-  <div class="exist_tag">
-    <%= select_tag :exist_tag, options_from_collection_for_select(Tag.order("name"), :name, :name) %>
-    <%= link_to_function "+add", "addNewTag($('#exist_tag').val())" %>
-  </div>
-  <div class="new_tag">
-    <label for="new_tag">or Type:</label>
-    <%= text_field_tag :new_tag, nil, :autocomplete => "off" %>
-    <%= link_to_function "+add", "addNewTag()" %>
-  </div>
-</div>
 <ul id="tags" class="tags_form">
   <%= form.fields_for :taggings, :id => false do |tag_form| %>
     <li class="tag">
@@ -20,6 +9,26 @@
     </li>
   <% end %>
 </ul>
+
+<div class="tag_insert_form">
+  <div class="exist_tag">
+    <label>SELECT FROM LIST</label>
+    <div class="options">
+      <% [Category.first, Category.first, Category.first, Category.first].each do |c| %>
+        <%= select_tag :exist_tag,
+          options_for_select(c.tags.order("name").map {|t| [t.name, t.name]}.insert(0, ["== #{c.name} ==", "0"])),
+          :onchange => "addNewTag($(this).val()); $(this).val(0);"
+        %>
+      <% end %>
+    </div>
+    <% link_to_function "+add", "addNewTag($('#exist_tag').val())" %>
+  </div>
+  <div class="new_tag">
+    <label for="new_tag">OR TYPE IN</label>
+    <%= text_field_tag :new_tag, nil, :autocomplete => "off" %>
+    <%= link_to_function "+add", "addNewTag()" %>
+  </div>
+</div>
 
 
 <script>
@@ -34,7 +43,6 @@ function addNewTag(val) {
   var tag = val;
   if (!tag) tag = $("#new_tag").val();
   if (tag.length <= 1) {
-    alert("내용이 없습니다.");
     return;
   }
   var random_id = new Date().getTime();

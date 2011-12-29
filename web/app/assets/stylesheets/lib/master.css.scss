@@ -182,8 +182,7 @@ $sidebar_width: 250px;
     margin-top:10px;
     a { display:block; text-decoration:none;}
     .new_post {
-      a { @include replace-text-with-dimensions("t/Button_PostNewArticle.gif", 290, 50);}
-      a:hover { @include replace-text-with-dimensions("t/Button_PostNewArticle_HL.gif", 290, 50);}
+      a { @include sprite_replace_text_anchor($icon,PostNewArticleButton);}
     }
     .invite {
       a { @include sprite_replace_text_anchor($icon,People_InviteButton);}
@@ -486,34 +485,52 @@ ul.posts {
   @include float(left);
   width:$content_width;
   padding:0;
-  margin:0;
+  margin:5px 0 0;
   li.post {
-    @include no-bullet;
     @include clearfix;
-    padding-bottom:10px; padding-top:10px;
+    padding:5px 0;
+    border-bottom:1px solid $border_color;
     .category {
       @include float(left); margin-right:1px;
     }
     .picture { 
       @include float(left); margin-right:5px;
       height:150px;
+      width:250px;
       overflow:hidden;
       img { width:250px;}
     }
-    .content { 
-      @include float(right); width:400px;
+    .content {
+      margin-left:280px;
+      position:relative;
+      padding-bottom:6px;
       h4 {
-        a { @include hover-link; color:#333; font-size:18px; line-height:120%;}
+        margin:2px 0;
+        a { @include hover-link; color:#333; font-size:16px; line-height:130%;}
       }
-      .abbr { line-height:130%; margin:5px 0 0 0; color:$gray_base;}
-      .timestamp { @include float(left); line-height:150%; font-style:italic; font-size:0.9em;}
+      .abbr {
+        color:$gray_base;
+        line-height:140%;
+        margin:3px 0 4px 0;
+        max-height:96px;
+        overflow:hidden;
+      }
       .stats {
-        position:relative; padding-bottom:5px;
-        .posted_at { color:$gray_base;}
+        .posted_at {
+          color:$gray_base;
+          padding-top:10px;
+        }
         .comments {
-          position:absolute; top:0; right:0; color:#597f94; font-weight:bold; font-size:16px;
+          position:absolute;
+          bottom:0;
+          right:8px;
+          color:#597f94;
+          font-weight:bold;
+          font-size:16px;
+          text-align:right;
           background:url("i/Icon_Comment.gif") no-repeat left 2px;
           padding-left:22px;
+          a { @include hover_link;}
         }
       }
     }
@@ -522,6 +539,7 @@ ul.posts {
 
 div.post {
   @include content_section;
+  @include float(left);
   margin-top:10px;
   .category {
     @include clearfix;
@@ -567,13 +585,13 @@ div.post {
   }
   .like_this_post {
     @include clearfix;
+    margin:5px 0 10px;
     .vote { 
       @include float(left); 
       margin:1em 0; width:450px; border:1px solid #ccc; padding:40px 0; text-align:center;
     }
     .share {
-      @include float(right);
-      margin:1em 0; width:170px; border:1px solid #ccc; padding:40px 0; text-align:center;
+      @include float(left);
     }
   }
   div.new_comment {
@@ -1014,91 +1032,48 @@ div.post {
 
 
 
-/* FORM - SEMANTIC */
+/* FORM */
 
-$label_width:100px;
-
-.formtastic {
-  fieldset { padding:5px 15px 15px;}
-  fieldset.inputs {
-    ol li {
-      padding:7px 0;
-      label {
-        @include float(left);
-        width:$label_width;
-        margin-right:10px;
-        text-align:right;
-        padding:2px 0;
-      }
-    }
-    input, textarea { padding:2px; }
-    p.inline-hints { margin-left:$label_width + 10px; margin-top:3px; color:#666; font-size:0.9em; }
-    p.inline-errors { margin-left:$label_width + 10px; margin-top:3px; font-size:0.9em; }
-    fieldset {
-      padding: 7px 0;
-      margin: 0;
-      legend { @include float(left); width:$label_width; margin-right:10px; text-align:right; padding:2px 0;}
-      ol li {
-        padding:0; margin:0;
-        label { width:160px; text-align:left; padding:2px 0;}
-      }
-    }
-  }
-  fieldset.buttons {
-    padding-left:$label_width + 10px + 15px;
-    input {
-      padding:5px 10px;
-    }
-    li.commit {
-      input {}
-    }
-  }
-  fieldset.right_buttons {
-    text-align:right;
-    margin-right:150px;
-    input { 
-      border: none;
-      padding:15px 20px;
-      background: #393;
-      color: #fff;
-      font-size: 1.2em;
-    }
-  }
-  .input_group { margin-left:$label_width + 10px;}
-  .image_uploader {
-    padding-bottom:5px;
-    .preview_image {
-      margin-bottom:5px;
-      img { width:100px; height:100px;}
-    }
-    label.remove { 
-      float:none; display:block; width:300px; font-size:0.9em; text-align:left;
-      input { margin-right:5px;}
-    }
-  }
-}
-
-input.button {
-  padding:5px 10px;
-}
-
-.notice {
-  margin-top: 10px;
-  div {
-    padding:8px 8px;
-    color:green;
-    display:inline;
-  }
+@mixin image_submit_button {
+  border:none;
+  color:transparent;
+  text-index:-9999em;
+  cursor:pointer;
 }
 
 .edit_form {
   margin: 10px 0;
+  .buttons {
+    margin-top:20px;
+  }
+  .post_button {
+    input {
+      @include image_submit_button;
+      background:sprite($icon,News_PostButton) no-repeat;
+      width:84px;
+      height:25px;
+    }
+    input:hover {
+      background:sprite($icon,News_PostButton_hover) no-repeat;
+    }
+  }
+  .update_button {
+    input {
+      @include image_submit_button;
+      background:sprite($icon,Settings_UpdateButton) no-repeat;
+      width:84px;
+      height:25px;
+    }
+    input:hover {
+      background:sprite($icon,Settings_UpdateButton_hover) no-repeat;
+    }
+  }
 }
 
 #remote_image_selector {
   p.message { line-height:120%; color:#555;}
   ul {
-    @include horizontal-list;
+    @include horizontal_list;
     li {
       margin: 10px 0;
       border: 5px solid #fff;
@@ -1116,9 +1091,21 @@ input.button {
 
 .tag_insert_form {
   @include clearfix;
-  .formtastic fieldset.inputs ol li & label { margin:0 5px 0 10px; width:auto;}
+  .simple_form div.input & label {
+    @include reset_float(block);
+    font-size:11px;
+    font-weight:bold;
+    color:$gray_normal;
+    width:auto;
+    text-align:left;
+    margin:0 0 5px 3px;
+  }
   .exist_tag {
     @include float(left);
+    .options {
+      width:260px;
+      select { margin-right:3px; margin-bottom:3px; width:120px;}
+    }
   }
   .new_tag {
     @include float(left);
@@ -1126,13 +1113,14 @@ input.button {
 }
 
 ul.tags_form {
-  @include clearfix;
-  margin-top: 10px;
+  margin-bottom:10px;
+  width:550px;
   li.tag {
-    @include float(left);
-    margin-right: 10px;
-    div { @include border-radius(4px); border:1px solid #999; padding:0 5px 0 10px; line-height:150%;}
-    a { text-decoration:none; margin-left: 15px;}
+    @include inline_block;
+    margin-right:6px;
+    margin-bottom:6px;
+    div { @include border-radius(4px); border:1px solid #999; padding:0 5px 0 5px; line-height:140%; font-size:11px;}
+    a { text-decoration:none; margin-left:10px;}
   }
 }
 

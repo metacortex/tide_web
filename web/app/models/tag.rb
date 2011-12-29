@@ -12,13 +12,10 @@
 class Tag < ActiveRecord::Base
   
   has_many :taggings, :dependent => :destroy
-  has_many :posts, :through => :taggings, :foreign_key => :post_id
-  has_many :users, :through => :taggings, :foreign_key => :user_id
-  
   belongs_to :category
   
   validates_presence_of :name
-  validates_length_of :name, :minimum => 1
+  validates_length_of :name, :minimum => 2
   validates_uniqueness_of :name
 
   

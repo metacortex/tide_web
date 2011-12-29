@@ -36,6 +36,9 @@ $simple_form_label:100px;
     textarea {
 //      height:60px;
     }
+    .input_group {
+      margin-left: $simple_form_label + 20px;
+    }
   }
   div.boolean {
     margin-left: $simple_form_label + 20px;
@@ -55,7 +58,6 @@ $simple_form_label:100px;
     a:hover { color:#fff; background-color:red; text-decoration:none;}
   }
   .field_with_errors {
-//    background-color:#ff3333;
   }
   .error {
     clear:left;

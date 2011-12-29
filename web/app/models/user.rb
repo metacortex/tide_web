@@ -57,11 +57,11 @@ class User < ActiveRecord::Base
   end
 
   def editor?
-    role == "editor"
+    ["editor","admin"].include? role
   end
   
   def staff?
-    (role == "editor") || (role == "staff")
+    ["staff","editor","admin"].include? role
   end
   
   include ScopeSearchable

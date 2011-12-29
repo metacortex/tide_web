@@ -1,9 +1,5 @@
-<div class="content_title">
-  <div class="title_news">TIDE News</div>
-</div>
-
 <div class="featured_posts">
-  <%= image_tag "Main_AppPlaceholder.jpg" %>
+  <%= image_tag "/assets/bg/TideBG.gif" %>
 </div>
 
 <ul class="posts">
@@ -26,9 +22,8 @@
           <% end %>
           <%= link_to post.title, post %>
         </h4>
-        <div class="abbr"><%= truncate(post.body, :length => 150) %></div>
+        <div class="abbr"><%= strip_tags post.body %></div>
         <div class="stats">
-          &nbsp;
           <div class="posted_at"><%= l(post.created_at.to_date, :format => :long) %></div>
           <div class="comments"><%= post.comments_count %></div>
         </div>
@@ -43,7 +38,7 @@
   
   <%= render "shared/side_app" %>
 
-  <% if logged_in? && current_user.editor? %>
+  <% if logged_in? && current_user.editor?  %>
     <div class="sb_action">
       <div class="new_post"><%= link_to "POST NEW ARTICLE", new_post_path %></div>
     </div>

@@ -44,6 +44,8 @@ function setPostFormAs(mode) {
 
 function updateRemotePictureList(element) {
   var url = $(element).val();
+  if (url.length == 0) return;
+  
   $.ajax({
     url: url,
     type: 'GET',

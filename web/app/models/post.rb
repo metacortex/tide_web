@@ -36,7 +36,7 @@ class Post < ActiveRecord::Base
   
   has_many :comments, :dependent => :destroy, :as => :content
 
-  has_many :taggings, :dependent => :destroy
+  has_many :taggings, :dependent => :destroy, :as => :content
   has_many :tags, :through => :taggings, :uniq => true, :foreign_key => :tag_id
 
   accepts_nested_attributes_for :taggings, :allow_destroy => true, :reject_if => lambda {|a| a[:name].blank? }
@@ -48,8 +48,8 @@ class Post < ActiveRecord::Base
 
   mount_uploader :picture_image, PictureUploader
 
-  scope :published, where(:edit_status => "published")
-  scope :not_published, where("isNull(edit_status) OR edit_status != 'published'")
+  scope :published, where("isNull(edit_status) OR edit_status = 'published'")
+  scope :not_published, where(:edit_status => ["rejected","waiting","draft"])
 
 
   def published?
