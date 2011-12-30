@@ -138,42 +138,11 @@ $icon: sprite-map('icons/*.png');
 $content_width: 680px;
 $sidebar_width: 250px;
 
-@mixin has_more_link {
-  position:relative;
-  .title { position:absolute; top:0; line-height:150%;}
-  .more {
-    position:absolute; right:0; top:6px; font-size:11px; font-weight:normal; font-family:Arial;
-    a { @include hover-link;}
-  }
-}
-
-@mixin board_style {
-  margin-top:10px;
-  li {
-    @include clearfix;
-    padding:6px 0 3px;
-    font-size:0.9em;
-    a { @include hover-link;}
-  }
-}
-
-@mixin content_title { 
-  position:relative;
-  font-weight:bold; font-size:1.5em; color:#333;
-}
-
-.content_title {
-  @include has_more_link;
-  padding:5px 0 10px;
-//  .title_tide   { @include content_title; @include replace-text-with-dimensions("t/PageCategory_Tide.gif", 65, 20);}
-//  .title_people { @include content_title; @include replace-text-with-dimensions("t/PageCategory_People.gif", 134, 30);}
-//  .title_news   { @include content_title; @include replace-text-with-dimensions("t/PageCategory_News.gif", 81, 20);}
-//  .title_events { @include content_title; @include replace-text-with-dimensions("t/PageCategory_TideEvents.gif", 282, 20);}
-  .title { @include content_title; line-height:125%;}
-}
 
 .sidebar {
-  width:$sidebar_width; position:absolute; right:25px;
+  width:$sidebar_width;
+  position:absolute;
+  right:25px;
   margin-top:6px;
   .sb_element {
     div { margin:0;}
@@ -214,16 +183,16 @@ $sidebar_width: 250px;
     h3 { color:#4d4d4d;}
     .more {
       position:absolute;
-      right:0px;bottom:8px;
+      right:0px;bottom:3px;
       a { @include sprite_replace_text_anchor($icon,ShowAllButton); display:block;}
     }
+    padding-bottom:3px;
     border-bottom:1px solid $border_color;
-    padding-bottom:8px;
-    margin-bottom:8px;
+    margin-bottom:2px;
     &.no_border {
       border-bottom:none;
       padding-bottom:0;
-      .more { bottom:1px;}
+      .more { bottom:3px;}
       margin-bottom:8px;
     }
   }
@@ -338,7 +307,6 @@ $sidebar_width: 250px;
 .archive {
   @include content-section;
   @include float(left);
-  margin-top:10px;
   ul.nav {
     @include sub_nav_style;
     li {
@@ -451,6 +419,8 @@ $sidebar_width: 250px;
       margin-right:10px;
       .thumb { 
         margin-bottom:6px;
+        height:100px;
+        overflow:hidden;
         img {
           display:block;
           width:138px;
@@ -742,10 +712,11 @@ div.post {
       width:100%; height:19px; padding:2px 18px 1px 2px; background-image:none;
       @include box-sizing(border-box);
       -webkit-tap-highlight-color:rgba(0,0,0,0);
+      border:1px solid $gray_light;
     }
     .sp-magnify { position:absolute; top:3px; right:3px; width:15px; height:14px; }
-    .sp-magnify * { position:absolute; opacity:0; width:15px; height:14px; background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAOCAQAAABedl5ZAAAAzklEQVQYlWNgAIP%2F9v%2FrwVCfARn85%2F%2B%2F%2Fz8CzEeS%2BnMQJPL0%2Ba37796DJfsZ4EYBwar9DBkMCQwFR86DJeXBUo%2F6QToYHCAKtaO%2Bf%2F%2F%2F%2F3kmmHNm%2Fv%2F%2FD27CTee4c%2Ff%2F%2F2vT4VKfXiM5CQg2t4M5lckQd%2F3nB0n8vQji5HhCFEpArP73AeGF35dACkEgYPtxmODXnxueg2igbqikh3l%2F1%2FpV%2B7vWyzUwxHatB%2BvcBLNfgMEA6AEDBg4g26Br%2FffvqeUMWIEBULcEdikGkG4AzGOfgUQC7TUAAAAASUVORK5CYII%3D') no-repeat 0 0; }
-    .sp-magnify .magnify { opacity:1; background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAYAAABy6%2BR8AAAAlElEQVR42oWQQRHEIAxF10ElVAISVgo3bCABCUhYCZWAhEpAQpoD6bzJhNnDO0DyyA8fEXkppXyVCpLViDUfyqVIQN9JFMY637hrlCySFauL21E7KVWbAIGx56rnSLqc5KPXSLo3kySalPhTygFhRDtFC09EIsMeZJSGBj7Qveh3OJW89syImiH%2BIO2BOJX0XwA2%2BQEL4pAhSX4aBQAAAABJRU5ErkJggg%3D%3D') no-repeat 0 0; }
+    .sp-magnify * { position:absolute; opacity:0; width:15px; height:14px; background:sprite($icon,search);}
+    .sp-magnify .magnify { opacity:1; background:sprite($icon,search);}
   }
   ul.search_history {
     @include float(left);
@@ -753,9 +724,9 @@ div.post {
     margin-left: 12px;
     li {
       .block {
-        border: 1px solid #999;
-        line-height: 80%;
-        padding: 2px 2px 3px;
+        border:1px solid #999;
+        line-height:90%;
+        padding:2px 2px 3px;
       }
       a { font-size:11px; padding:0 5px;text-decoration:none;}
       a.remove { margin-left:2px;}
@@ -792,17 +763,11 @@ div.post {
     @include clearfix;
     li {
       @include float(left);
-      margin: 10px 25px 20px 0;
-      position: relative;
-      .category { 
-        position:absolute; top:78px; left:4px;
-        img { width:18px;}
-      }
+      margin:10px 25px 20px 0;
       .profile {
         text-align:center; margin-bottom:3px;
         img { width:100px; height:100px;}
       }
-      div { font-size:0.9em;}
       a { @include hover-link;}
       .username { padding:3px;}
       .username_e { padding:3px; font-weight:bold;}
@@ -954,36 +919,6 @@ div.post {
         width:120px;
       }
     }
-  }
-}
-
-.user_recommendations {
-  @include float(left);
-  @include content-section;
-  padding-top: 15px;
-  h3 { @include has_more_link;}
-  ul {
-    @include board_style;
-    .saying { @include float(left);}
-    .recommender { 
-      @include float(right);
-      color: #666;
-    }
-  }
-}
-
-.user_recommended {
-  @include float(left);
-  @include content-section;
-  padding-top: 15px;
-  h3 { @include has_more_link;}
-  ul {
-    @include board_style;
-    .recommended { 
-      @include float(left);
-      color: #666;
-    }
-    .saying { @include float(right);}
   }
 }
 

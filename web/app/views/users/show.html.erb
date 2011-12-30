@@ -62,19 +62,22 @@
 <div class="user_connections">
   <div class="title no_border">
     <h3 class="connection">Connection</h3>
+
+    <ul class="connection_type">
+      <li class="all current"><%= link_to_function "ALL", "simpleTab(this, 0)" %></li>
+      <li class="spacer">/</li>
+      <li class="coworker"><%= link_to_function "CO-WORKER", "simpleTab(this, 1)" %></li>
+      <li class="spacer">/</li>
+      <li class="classmate"><%= link_to_function "CLASSMATE", "simpleTab(this, 2)" %></li>
+      <li class="spacer">/</li>
+      <li class="friend"><%= link_to_function "FRIEND", "simpleTab(this, 3)" %></li>
+      <li class="spacer">/</li>
+      <li class="etc"><%= link_to_function "ETC", "simpleTab(this, 4)" %></li>
+    </ul>
+
+    <div class="more"><%= link_to "More >>" %></div>
   </div>
 
-  <ul class="connection_type">
-    <li class="all current"><%= link_to_function "ALL", "simpleTab(this, 0)" %></li>
-    <li class="spacer">/</li>
-    <li class="coworker"><%= link_to_function "CO-WORKER", "simpleTab(this, 1)" %></li>
-    <li class="spacer">/</li>
-    <li class="classmate"><%= link_to_function "CLASSMATE", "simpleTab(this, 2)" %></li>
-    <li class="spacer">/</li>
-    <li class="friend"><%= link_to_function "FRIEND", "simpleTab(this, 3)" %></li>
-    <li class="spacer">/</li>
-    <li class="etc"><%= link_to_function "ETC", "simpleTab(this, 4)" %></li>
-  </ul>
   
   <script>
     function simpleTab(element, num) {
