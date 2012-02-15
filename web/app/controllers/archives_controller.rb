@@ -8,9 +8,11 @@ class ArchivesController < ApplicationController
   end
 
   def documents
+    @assets = Asset.page(params[:page])
   end
 
   def videos
+    @videos = Video.page(params[:page])
   end
 
 end

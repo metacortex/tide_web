@@ -3,6 +3,12 @@
 <div class="archive">
   <%= render "archives/nav" %>
 
-  <h1>VIDEOS HERE</h1>
+  <ul class="videos">
+    <% @videos.each do |v| %>
+      <li>
+        <%= embed_video(v) %>
+      </li>
+    <% end %>
+  </ul>
 
 </div>

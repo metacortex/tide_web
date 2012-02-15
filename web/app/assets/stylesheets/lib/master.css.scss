@@ -343,6 +343,29 @@ $sidebar_width: 250px;
       }
     }
   }
+  ul.videos {
+    li {
+      @include inline_block;
+      margin-right:20px;
+      margin-bottom:20px;
+      a {
+        display:block;
+      }
+    }
+  }
+  table.docs {
+    width:100%;
+    td {
+      padding:4px 5px;
+      &.name {
+        
+      }
+      &.timestamp {
+        width:150px;
+        text-align:right;
+      }
+    }
+  }
 }
 
 

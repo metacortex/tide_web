@@ -3,6 +3,15 @@
 <div class="archive">
   <%= render "archives/nav" %>
 
-  <h1>DOCS HERE</h1>
+  <table class="docs">
+    <tbody>
+      <% @assets.each do |d| %>
+        <tr>
+          <td class="name"><%= link_to d.name, d.attachment.url %></td>
+          <td class="timestamp"><%= l(d.created_at.to_date) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
 </div>
