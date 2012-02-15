@@ -13,6 +13,7 @@ class AddRankingDataToUsers < ActiveRecord::Migration
       t.integer :score_week, :default => 0
       t.integer :score_month, :default => 0
       t.integer :score_year, :default => 0
+      t.text :points
     end
 
     add_index :users, :rank

@@ -42,7 +42,7 @@
       <%= navigation_tag :class => "top_nav" do |m| %>
         <%= m.item "NEWS", posts_path, :current => current_controller?(["posts"]), :html => { :class => "go_news" } %>
         <%= m.item "PEOPLE", users_path, :current => current_controller?(["users"]), :html => { :class => "go_people" } %>
-        <%= m.item "FORUM", "/forums", :current => current_controller?(["forums"]), :html => { :class => "go_forum" } %>
+        <%= m.item "FORUM", boards_path, :current => current_controller?(["boards"]), :html => { :class => "go_forum" } %>
         <%= m.item "ARCHIVE", "/archives", :current => current_controller?(["archives"]), :html => { :class => "go_archive" } %>
         <%= m.item "TIDE", "/tide", :current => current_controller?(["main","events"]), :html => { :class => "go_tide" } %>
       <% end %>

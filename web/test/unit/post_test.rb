@@ -13,17 +13,13 @@
 #  kind           :string(255)
 #  picture_image  :string(255)
 #  assets_count   :integer(4)      default(0)
-#  taggings_count :integer(4)      default(0)
 #  comments_count :integer(4)      default(0)
 #  votes_count    :integer(4)      default(0)
-#  t_votes_count  :integer(4)      default(0)
-#  d_votes_count  :integer(4)      default(0)
-#  e_votes_count  :integer(4)      default(0)
-#  visits_count   :integer(4)      default(0)
+#  pv_count       :integer(4)      default(0)
 #  score          :integer(4)      default(0)
 #  published_at   :datetime
-#  created_at     :datetime
-#  updated_at     :datetime
+#  created_at     :datetime        not null
+#  updated_at     :datetime        not null
 #  edit_status    :string(255)
 #  edit_note      :text
 #

@@ -18,7 +18,7 @@ Rails.application.config.sorcery.configure do |config|
                                                                       # and send him there after login, using
                                                                       # 'redirect_back_or_to'.
 
-  # config.cookie_domain = nil                                        # set domain option for cookies
+  config.cookie_domain = nil                                        # set domain option for cookies
                                                                       # Useful for remember_me submodule
 
   # -- session timeout --
@@ -53,7 +53,8 @@ Rails.application.config.sorcery.configure do |config|
   config.facebook.key = "109730392441561"
   config.facebook.secret = "7eaca54f303a6c5a14a33179b93ca923"
   config.facebook.callback_url = "http://localhost:3000/oauth/callback?provider=facebook"
-  config.facebook.user_info_mapping = { :email => "email", :name => "name", :name_e => "name" }
+  config.facebook.user_info_mapping = { :email => "email", :name => "name", :url_facebook => "link" }
+  # config.facebook.scope = "email,offline_access,user_birthday"
 
   
   # config.github.key = ""

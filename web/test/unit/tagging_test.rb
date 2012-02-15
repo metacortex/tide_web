@@ -8,8 +8,8 @@
 #  tag_id       :integer(4)
 #  name         :string(255)
 #  category     :string(255)
-#  created_at   :datetime
-#  updated_at   :datetime
+#  created_at   :datetime        not null
+#  updated_at   :datetime        not null
 #
 
 require 'test_helper'

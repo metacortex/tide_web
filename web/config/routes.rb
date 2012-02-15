@@ -1,5 +1,11 @@
 Web::Application.routes.draw do
 
+  get "boards/index"
+
+  get "boards/new"
+
+  get "boards/edit"
+
   get "logout" => "sessions#destroy", :as => :logout
   get "login" => "sessions#new", :as => :login
   post "login" => "sessions#create"
@@ -18,6 +24,10 @@ Web::Application.routes.draw do
       get 'edit_profile'
       put 'update_profile'
       get 'invite'
+      get 'edit_connections'
+      put 'update_connections'
+      get 'edit_password'
+      put 'update_password'
     end
     resources :connections
   end
@@ -25,10 +35,10 @@ Web::Application.routes.draw do
 
   resources :posts do
   end
-
   resources :events do
     resources :registrations
   end
+  resources :boards
 
   resources :comments
   resources :agreements

@@ -4,6 +4,7 @@
 #
 #  id             :integer(4)      not null, primary key
 #  name           :string(255)
+#  name_en        :string(255)
 #  body           :text
 #  abbr           :text
 #  poster_image   :string(255)
@@ -14,8 +15,8 @@
 #  comments_count :integer(4)      default(0)
 #  opened_at      :datetime
 #  closed_at      :datetime
-#  created_at     :datetime
-#  updated_at     :datetime
+#  created_at     :datetime        not null
+#  updated_at     :datetime        not null
 #
 
 class Event < ActiveRecord::Base

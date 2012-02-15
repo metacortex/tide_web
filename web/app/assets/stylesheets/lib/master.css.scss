@@ -221,6 +221,14 @@ $sidebar_width: 250px;
   .upcoming_text { color:#fff; background-color:RGB(204,81,78);}
 }
 
+.content_title {
+  margin-bottom:5px;
+  .title {
+    font-size:16px;
+    font-weight:bold;
+  }
+}
+
 .splash {
 }
 
@@ -921,6 +929,121 @@ div.post {
     }
   }
 }
+
+
+
+
+
+
+
+/* USER PROFILE */
+
+ul.edit_profile_nav {
+  @include sub_nav_style;
+  margin-top:5px;
+  padding-bottom:10px;
+  li {
+    &.my_profile {
+      a { @include sprite_replace_text($typo,Settings_MyProfile);}
+      a:hover, &.current a { @include sprite_replace_text($typo, Settings_MyProfile_HL);}
+    }
+    &.connection {
+      a { @include sprite_replace_text($typo,Settings_MyConnection);}
+      a:hover, &.current a { @include sprite_replace_text($typo, Settings_MyConnection_HL);}
+    }
+    &.password {
+      a { @include sprite_replace_text($typo,Settings_Password);}
+      a:hover, &.current a { @include sprite_replace_text($typo, Settings_Password_HL);}
+    }
+  }
+}
+
+.edit_profile_form {
+  label {
+    @include inline_block;
+    font-size:14px;
+    font-weight:bold;
+    color:#597f94;
+    font-family:Helvetica;
+  }
+  .profile_image {
+    margin-left:120px;
+    img { width:120px;height:120px;}
+  }
+  .inline_hint {
+    input { @include inline_block;}
+    .hint {
+      @include inline_block;
+      font-weight:bold;
+      color:#999;
+      font-size:11px;
+      margin-left:5px;
+    }
+  }
+  .update_button {
+    input {
+      border:none;
+      color:transparent;
+      text-index:-9999em;
+      cursor:pointer;
+      background:sprite($icon,Settings_UpdateButton) no-repeat;
+      width:84px;
+      height:25px;
+    }
+    input:hover {
+      background:sprite($icon,Settings_UpdateButton_hover) no-repeat;
+    }
+  }
+}
+
+
+
+
+
+
+
+/* BOARDS */
+
+.forum {
+  @include content-section;
+  @include float(left);
+  position:relative;
+  table.boards {
+    width:100%;
+    margin-top:20px;
+    th {
+      padding:6px 5px 5px;
+      border-top:2px solid #ddd;
+      border-bottom:1px dotted #ccc;
+      text-align:center;
+      &.uid       { width:50px;}
+      &.author    { width:150px;}
+      &.number    { width:50px;}
+      &.timestamp { width:120px;}
+    }
+    td {
+      padding:6px 5px 5px;
+      border-bottom:1px dotted #ddd;
+      &.center { text-align:center;}
+    }
+    a { color:#333;}
+    .has_image {
+      @include inline_block;
+      margin-left:3px;
+      img { width:12px;}
+    }
+    a.comments_count {
+      @include inline_block;
+      margin-left:3px;
+      color:#666;
+      font-size:11px;
+    }
+  }
+  .board_toolbox {
+    
+  }
+}
+
 
 
 

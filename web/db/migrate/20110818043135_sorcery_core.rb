@@ -14,20 +14,20 @@ class SorceryCore < ActiveRecord::Migration
 
       #
       t.string :name
-      t.string :name_e
+      t.string :name_en
 
-      t.text :work
+      t.string :work
       t.text :vision
       t.text :skills
       t.text :desc
       
       t.string :profile_image
       
-      t.string :website
-      t.string :facebook
-      t.string :twitter
-      t.string :googleplus
-      t.string :linkedin
+      t.string :url_website
+      t.string :url_facebook
+      t.string :url_twitter
+      t.string :url_googleplus
+      t.string :url_linkedin
       
       t.string :role
       
@@ -36,7 +36,7 @@ class SorceryCore < ActiveRecord::Migration
 
     add_index :users, :email
     add_index :users, :name
-    add_index :users, :name_e
+    add_index :users, :name_en
 
     add_index :users, :remember_me_token
     add_index :users, :reset_password_token

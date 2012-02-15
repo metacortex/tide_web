@@ -1,0 +1,7 @@
+<div class="content_title">
+  <%= navigation_tag :class => "edit_profile_nav", :spacer => "<li class=\"spacer\">/</li>".html_safe do |m| %>
+    <%= m.item "My Profile", edit_profile_users_path, :current => current_action?(["edit_profile","update_profile"]), :html => { :class => "my_profile" } %>
+    <%= m.item "connection", edit_connections_users_path, :current => current_action?(["edit_connections","update_connections"]), :html => { :class => "connection" } %>
+    <%= m.item "password", edit_password_users_path, :current => current_action?(["edit_password","update_password"]), :html => { :class => "password" } %>
+  <% end %>
+</div>

@@ -91,7 +91,8 @@ module ApplicationHelper
     end
     
     def item(caption, path, options = {})
-      @items << [@template.link_to(caption, path), options]
+      anchor_option = options.delete(:anchor_option) || {}
+      @items << [@template.link_to(caption, path, anchor_option), options]
       nil
     end
     

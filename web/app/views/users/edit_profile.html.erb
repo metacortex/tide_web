@@ -1,47 +1,45 @@
-<div class="content_title">
-  <div class="title">EDIT PROFILE</div>
-</div>
+<%= render "users/edit_profile_nav" %>
 
-
-<div class="edit_form">
+<div class="edit_profile_form">
   <%= render_notice_message %>
   
-  <%= semantic_form_for @user, :url => update_profile_users_path, :method => :put do |f| %>
+  <%= simple_form_for @user, :url => update_profile_users_path, :method => :put do |f| %>
     
-    <%= f.inputs do %>
-      <li>
-        <label for="">Profile</label>
-        <div class="input_group">
-          <div class="image_uploader">
-            <div class="preview_image"><%= image_tag @user.profile_image.url %></div>
-            <%= f.file_field :profile_image %>
-            <%= f.hidden_field :profile_image_cache %>
-            <% if @user.profile_image? %>
-              <label class="remove" for="user_remove_profile_image"><%= f.check_box :remove_profile_image %>Remove current profile image</label>
-            <% end %>
-          </div>
-        </div>
-      </li>
-      <%= f.input :email %>
-      <%= f.input :name %>
-      <%= f.input :name_e, :label => "Name(En)", :hint => "영문 닉네임을 입력해주세요." %>
-      <%= f.input :location, :hint => "ex) Seoul, Korea" %>
-      <%= f.input :website, :input_html => { :size => "70x5" }, :hint => "1줄에 1개의 주소를 입력해주세요." %>
-      <%= f.input :work %>
-      <%= f.input :interest %>
+    <div class="input file optional">
+      <%= f.label :profile_image, "PICTURE" %>
+      <div class="profile_image">
+        <%= image_tag @user.profile_image.url %>
+        <br/>
+        <%= f.file_field :profile_image %>
+      </div>
+    </div>
+    <%= f.hidden_field :profile_image_cache %>
 
-      <%= f.input :category, :as => :select, :collection => User.categories.map(&:upcase), :include_blank => false %>
-      <li>
-        <label>TAG</label>
-        <div class="input_group">
-          <%= render "shared/tags_form", :form => f %>
-        </div>
-      </li>
-    <% end %>
+    <%= f.input :name, :label => "NAME", :hint => "[KOREAN]", :required => false, :wrapper_html => { :class => "inline_hint" } %>
+    <%= f.input :name_e, :label => "&nbsp;".html_safe, :hint => "[ENGLISH]", :required => false, :wrapper_html => { :class => "inline_hint" } %>
+    <%= f.input :email, :label => "EMAIL", :required => false %>
+    <%= f.input :website, :label => "WEBSITE" %>
 
-    <%= f.buttons do %>
-      <%= f.commit_button "Update Profile" %>
-    <% end %>
+    <%= f.input :facebook, :label => "FACEBOOK" %>
+    <%= f.input :twitter, :label => "TWITTER" %>
+    <%= f.input :googleplus, :label => "GOOGLE+" %>
+    <%= f.input :linkedin, :label => "LINKED-IN" %>
+
+    <div class="input">
+      <label>TAG</label>
+      <div class="input_group">
+        <%= render "shared/tags_form", :form => f %>
+      </div>
+    </div>
+
+    <%= f.input :work, :label => "WORK HISTORY", :input_html => { :size => "80x5" } %>
+    <%= f.input :vision, :label => "VISION", :input_html => { :size => "80x5" } %>
+    <%= f.input :skills, :label => "SKILLS", :input_html => { :size => "80x5" } %>
+
+
+    <div class="buttons update_button">
+      <%= f.submit "Update Profile" %>
+    </div>
     
   <% end %>
 </div>

@@ -7,8 +7,8 @@
 #  title       :string(255)
 #  title_en    :string(255)
 #  posts_count :integer(4)      default(0)
-#  created_at  :datetime
-#  updated_at  :datetime
+#  created_at  :datetime        not null
+#  updated_at  :datetime        not null
 #
 
 class Category < ActiveRecord::Base

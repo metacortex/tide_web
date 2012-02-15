@@ -6,8 +6,8 @@
 #  category   :string(255)
 #  event_id   :integer(4)
 #  body       :text
-#  created_at :datetime
-#  updated_at :datetime
+#  created_at :datetime        not null
+#  updated_at :datetime        not null
 #
 
 require 'test_helper'

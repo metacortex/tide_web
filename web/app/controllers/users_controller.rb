@@ -37,11 +37,11 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
+  def edit_profile
     @user = current_user
   end
   
-  def update
+  def update_profile
     @user = current_user
     
     if @user.update_attributes(params[:user])

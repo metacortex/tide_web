@@ -8,8 +8,8 @@
 #  connection_type :string(255)
 #  remark          :string(255)
 #  accepted_at     :datetime
-#  created_at      :datetime
-#  updated_at      :datetime
+#  created_at      :datetime        not null
+#  updated_at      :datetime        not null
 #
 
 require 'test_helper'

@@ -2,6 +2,7 @@ class CreateEvents < ActiveRecord::Migration
   def change
     create_table :events do |t|
       t.string :name
+      t.string :name_en
       t.text :body
       t.text :abbr
       
@@ -22,6 +23,7 @@ class CreateEvents < ActiveRecord::Migration
 
     add_index :events, :name
     add_index :events, :category
+    add_index :events, :status
     add_index :events, :opened_at
     add_index :events, :closed_at
   end
