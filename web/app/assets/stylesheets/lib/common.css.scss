@@ -5,15 +5,15 @@
 
 /* MIXIN - SPRITE */
 
-@mixin sprite_replace_text($sprite, $img-name){
+@mixin sprite_replace_text($img-name, $sprite:$typo){
   @include hide-text;
   background: sprite($sprite, $img-name) no-repeat;
   width: image-width(sprite-file($sprite, $img-name));
   height: image-height(sprite-file($sprite, $img-name));
 }
 
-@mixin sprite_replace_text_anchor($sprite, $img-name){
-  @include sprite_replace_text($sprite, $img-name);
+@mixin sprite_replace_text_anchor($img-name, $sprite:$typo){
+  @include sprite_replace_text($img-name, $sprite:$typo);
   &:hover {
     background: sprite($sprite, $img-name + "_hover") no-repeat;
   }
