@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120107133904) do
+ActiveRecord::Schema.define(:version => 20120215111200) do
 
   create_table "agreements", :force => true do |t|
     t.integer  "post_id"
@@ -27,6 +27,17 @@ ActiveRecord::Schema.define(:version => 20120107133904) do
   add_index "agreements", ["event_id"], :name => "index_agreements_on_event_id"
   add_index "agreements", ["post_id"], :name => "index_agreements_on_post_id"
   add_index "agreements", ["user_id"], :name => "index_agreements_on_user_id"
+
+  create_table "assets", :force => true do |t|
+    t.string   "name"
+    t.string   "source"
+    t.string   "attachment"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "assets", ["name"], :name => "index_assets_on_name"
+  add_index "assets", ["source"], :name => "index_assets_on_source"
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -272,5 +283,17 @@ ActiveRecord::Schema.define(:version => 20120107133904) do
   add_index "users", ["score_month"], :name => "index_users_on_score_month"
   add_index "users", ["score_week"], :name => "index_users_on_score_week"
   add_index "users", ["score_year"], :name => "index_users_on_score_year"
+
+  create_table "videos", :force => true do |t|
+    t.string   "title"
+    t.text     "desc"
+    t.string   "vimeo_uid"
+    t.integer  "duration"
+    t.string   "thumb_large"
+    t.string   "thumb_medium"
+    t.string   "thumb_small"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
 end

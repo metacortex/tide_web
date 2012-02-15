@@ -55,6 +55,8 @@ Web::Application.routes.draw do
     resources :events
     resources :categories
     resources :posts
+    resources :videos
+    resources :assets
   end
 
 

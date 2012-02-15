@@ -1,0 +1,14 @@
+<%= simple_form_for [:admin,@video] do |f| %>
+
+  <%= f.input :vimeo_uid, :hint => "VIMEO 비디오 ID를 넣어주세요." %>
+
+  <% unless @video.new_record? %>
+    <%= f.input :created_at %>
+  <% end %>
+
+  <%= f.submit %>
+  <div class="cancel">
+    or <%= link_to "cancel and return", return_url(admin_videos_path) %>
+  </div>
+
+<% end %>

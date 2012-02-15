@@ -1,0 +1,17 @@
+<%= simple_form_for [:admin,@asset] do |f| %>
+
+  <%= f.input :name %>
+
+  <%= f.input :attachment %>
+
+  <% unless @asset.new_record? %>
+    <%= f.input :created_at %>
+  <% end %>
+
+
+  <%= f.submit %>
+  <div class="cancel">
+    or <%= link_to "cancel and return", return_url(admin_assets_path) %>
+  </div>
+
+<% end %>

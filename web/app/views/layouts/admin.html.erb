@@ -26,6 +26,8 @@
   </div>
   <%= navigation_tag :class => "top_nav" do |m| %>
     <%= m.item "EVENTS", admin_events_path, :current => current_controller?("admin/events") %>
+    <%= m.item "VIDEOS", admin_videos_path, :current => current_controller?(["admin/videos"]) %>
+    <%= m.item "DOCUMENTS", admin_assets_path, :current => current_controller?(["admin/assets"]) %>
     <%= m.item "POSTS", admin_posts_path, :current => current_controller?(["admin/posts"]) %>
     <%= m.item "USERS", admin_users_path, :current => current_controller?("admin/users") %>
     <%= m.item "CATEGORIES", admin_categories_path, :current => current_controller?("admin/categories") %>

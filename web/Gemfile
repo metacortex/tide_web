@@ -43,6 +43,8 @@ gem 'remotipart', '~> 0.4'
 gem 'mini_magick'
 
 
+gem 'vimeo'
+
 
 
 group :production do

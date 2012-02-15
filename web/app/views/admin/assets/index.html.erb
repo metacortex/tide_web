@@ -1,0 +1,33 @@
+<div class="browser">
+  <div class="actions">
+    <div class="button"><%= link_to "+Create Document", new_admin_asset_path %></div>
+  </div>
+</div>
+
+<div class="toolbox">
+  
+</div>
+
+<table class="stats">
+  <thead>
+    <tr>
+      <th class="">Name</th>
+      <th class="string2">Attachment</th>
+      <th class="timestamp">Created At</th>
+      <th class="actions">Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @assets.each do |c| %>
+      <%= content_tag_for :tr, c do %>
+        <td><%= c.name %></td>
+        <td><%= link_to "download", c.attachment.url %></td>
+        <td><%= l(c.created_at, :format => :long ) %></td>
+        <td class="actions">
+          <%= link_to "EDIT", edit_admin_asset_path(c) %>
+          <%= link_to "DELETE", admin_asset_path(c), :method => :delete, :confirm => "Sure?" %>
+        </td>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
