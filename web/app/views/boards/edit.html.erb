@@ -1,2 +1,9 @@
-<h1>Boards#edit</h1>
-<p>Find me in app/views/boards/edit.html.erb</p>
+<div class="breadcrumb">
+  <%= link_to "HOME >", root_path %>
+  <%= link_to "FORUM", boards_path %>
+</div>
+
+<div class="board_content">
+  <h2>수정하기</h2>
+  <%= render "boards/form" %>
+</div>

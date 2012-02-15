@@ -7,7 +7,7 @@
       <%= m.item "Admin", merge_params(:scope => "as_admin"), :current => current_param?(:scope, "as_admin") %>
     <% end %>
     <%= search_form_for [:admin,@q] do |f| %>
-      <%= f.text_field :name_or_name_e_or_email_cont %>
+      <%= f.text_field :name_or_name_en_or_email_cont %>
       <%= f.submit %>
     <% end %>
   </div>
@@ -35,7 +35,7 @@
       <%= content_tag_for :tr, d do %>
         <td><%= d.role %></td>
         <td><%= d.name %></td>
-        <td><%= d.name_e %></td>
+        <td><%= d.name_en %></td>
         <td><%= d.email %></td>
         <td><%= d.authentications.count %></td>
         <td><%= l(d.created_at) %></td>

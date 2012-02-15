@@ -29,10 +29,9 @@ $border_color:#ddd;
 
 /* SPRITE */
 
-//$bg: sprite-map('bg/*.png');
 $typo: sprite-map('typo/*.png');
 $icon: sprite-map('icons/*.png');
-//$form: sprite-map('f/*.png');
+$form: sprite-map('form/*.png');
 
 
 
@@ -1037,6 +1036,106 @@ ul.edit_profile_nav {
       margin-left:3px;
       color:#666;
       font-size:11px;
+    }
+  }
+  .board_toolbox {
+    margin-top:20px;
+    @include clearfix;
+    ul.actions {
+      @include float(right);
+    }
+  }
+}
+
+.board_toolbox {
+  ul.actions {
+    li {
+      @include inline_block;
+      a {
+        display:block;
+      }
+      &.new_post a { @include sprite_replace_text_anchor($form,board_write);}
+      &.edit_post a { @include sprite_replace_text_anchor($form,board_edit);}
+      &.delete_post a { @include sprite_replace_text_anchor($form,board_delete);}
+      &.list_post a { @include sprite_replace_text_anchor($form,board_list);}
+    }
+  }
+}
+
+.board_content {
+  .board_header {
+    margin:10px 0;
+  }
+  .board_content {
+    margin:10px 0;
+    .board_body {
+      margin:20px 0;
+    }
+  }
+  .new_comment {
+    h3 { @include replace-text-with-dimensions("t/News_Comments.gif", 97, 18);}
+  }
+  .comments_wrapper {
+    @include content_section;
+    margin-top:10px;
+    padding-bottom:50px;
+    ul {
+      margin-top:8px;
+      li.comment {
+        @include clearfix;
+        padding:5px 0;
+        border-bottom:1px solid $border_color;
+        margin-bottom:10px;
+        .user {
+          @include float(left);
+          margin-right:15px;
+          img { width:64px; height:64px;}
+        }
+        .body {
+          @include float(left);
+          width:596px;
+          .username {
+            @include float(left);
+            em { color:$gray_base; font-size:13px; margin-right:3px;}
+            a { color:$gray_base; @include hover-link;}
+          }
+          .timestamp { @include float(right); color:$gray_light; font-weight:bold; font-size:11px;}
+          .comment_body {
+            clear:both;
+            padding-top:10px;
+            line-height:150%;
+            color:$gray_base;
+          }
+        }
+        .comment_action { 
+          @include float(right);
+          margin-bottom:4px;
+          ul {
+            @include float(right);
+            @include toolbox;
+          }
+        }
+        .status {
+          clear:both;
+          padding-top:5px;
+          .agreement { 
+            @include float(right);
+            .positive {
+              @include float(left);
+              margin-left:6px;
+              background:#597f94 url("/assets/i/Comment_Up.gif") no-repeat 5px 5px;
+              a { color:white; font-weight:bold;}
+            }
+            .negative { 
+              @include float(left);
+              margin-left:6px;
+              background:#bfbfbf url("/assets/i/Comment_Down.gif") no-repeat 5px 5px;
+              a { color:white; font-weight:bold;}
+            }
+            a { display:block; padding:3px 7px 3px 20px; text-decoration:none;}
+          }
+        }
+      }
     }
   }
   .board_toolbox {

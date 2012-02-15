@@ -237,6 +237,7 @@ ActiveRecord::Schema.define(:version => 20120107133904) do
     t.text     "vision"
     t.text     "skills"
     t.text     "desc"
+    t.string   "location"
     t.string   "profile_image"
     t.string   "url_website"
     t.string   "url_facebook"

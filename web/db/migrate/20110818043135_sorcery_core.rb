@@ -20,6 +20,7 @@ class SorceryCore < ActiveRecord::Migration
       t.text :vision
       t.text :skills
       t.text :desc
+      t.string :location
       
       t.string :profile_image
       

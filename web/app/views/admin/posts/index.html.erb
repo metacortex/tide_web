@@ -35,7 +35,7 @@
       <%= content_tag_for :tr, d do %>
         <td><%= d.edit_status %></td>
         <td><%= d.title %> <%= link_to "(site)", d, :target => "_blank" %></td>
-        <td><%= d.category.title %></td>
+        <td><%= d.category.title if d.category %></td>
         <td><%= l(d.created_at) %></td>
         <td><%= l(d.updated_at) %></td>
         <td class="actions">

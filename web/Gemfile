@@ -23,15 +23,12 @@ gem 'jquery-rails'
 
 
 
+# elasticsearch
+gem 'tire', :git => 'git://github.com/karmi/tire.git'
+
 # Authentication
-# gem 'devise'
-gem 'sorcery'
-
-
-# File Attachment
-gem 'carrierwave'
-gem 'remotipart', '~> 0.4'
-gem 'mini_magick'
+gem 'sorcery', :git => 'https://github.com/NoamB/sorcery.git'
+gem 'bcrypt-ruby'
 
 
 # helper: Model
@@ -40,8 +37,11 @@ gem 'kaminari'
 gem 'ransack'
 
 
-# helper: View
-# gem 'activeadmin'
+# File Attachment
+gem 'carrierwave'
+gem 'remotipart', '~> 0.4'
+gem 'mini_magick'
+
 
 
 

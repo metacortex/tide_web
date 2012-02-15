@@ -14,14 +14,10 @@
         <%= content_tag_for :tr, c do %>
           <td class="center"><%= c.id %></td>
           <td><%= build_post_title(c) %></td>
-          <% unless @board.notice_category? %>
-            <td class="center"><%= link_to c.user_username, user_path(c.user_id) %></td>
-          <% end %>
+          <td class="center"><%= link_to c.user_username, user_path(c.user_id) %></td>
           <td class="center"><%= display_post_time(c.created_at) %></td>
           <td class="center"><%= c.pv_count %></td>
-          <% unless @board.notice_category? %>
-            <td class="center"><%= c.likes_count %></td>
-          <% end %>
+          <td class="center"><%=  %></td>
         <% end %>
       <% end %>
     </tbody>
@@ -30,7 +26,7 @@
   <div class="board_toolbox">
     <ul class="actions">
       <% if logged_in? %>
-        <li class=""><%= link_to "+글쓰기", new_board_path %></li>
+        <li class="new_post"><%= link_to "+글쓰기", new_board_path %></li>
       <% end %>
     </ul>
   </div>

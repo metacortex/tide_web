@@ -17,6 +17,7 @@
 #  vision                          :text
 #  skills                          :text
 #  desc                            :text
+#  location                        :string(255)
 #  profile_image                   :string(255)
 #  url_website                     :string(255)
 #  url_facebook                    :string(255)
@@ -47,11 +48,33 @@ class User < ActiveRecord::Base
   has_many :authentications, :dependent => :destroy
   accepts_nested_attributes_for :authentications
 
+  def has_facebook?
+    authentications.any?(&:facebook?)
+  end
+  
+  def facebook_accounts
+    authentications.where(:provider => "facebook")
+  end
+
+  def facebook_access_token
+    if auth = authentications.where(:provider => "facebook").first
+      auth.access_token
+    end
+  end
+
+  def facebook_access_token=(token)
+    if auth = authentications.where(:provider => "facebook").first
+      auth.update_attribute :access_token, token
+    end
+  end
+
+
+
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
   validates_presence_of :email
   validates_uniqueness_of :email
-  validates_presence_of :name, :name_e
+  validates_presence_of :name, :name_en
 
   def admin?
     role == "admin"
@@ -73,13 +96,39 @@ class User < ActiveRecord::Base
 
   mount_uploader :profile_image, ProfileUploader
   
-  def profile_image_url
-    if auth = authentications.first
-      "http://graph.facebook.com/#{auth.uid}/picture"
+  def profile_image_url(size = :square)
+    if profile_image?
+      profile_image.url(size)
     else
-      "/assets/placeholder.png"
+      if has_facebook?
+        facebook_profile_image(size)
+      else
+        User.default_profile_image_url
+      end
     end
   end
+  
+  def facebook_profile_image(size = :square)
+    if auth = authentications.select(&:facebook?).first
+      _type = case size
+      when :squre
+        ""
+      when :thumb
+        "?type=large"
+      when :normal
+        "?type=large"
+      else
+        ""
+      end
+      "http://graph.facebook.com/#{auth.uid}/picture#{_type}"
+    else
+      ""
+    end
+  end
+  
+	def self.default_profile_image_url
+		"thumb_user_180.png"
+	end
   
 
   has_many :taggings, :dependent => :destroy, :as => :content

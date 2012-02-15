@@ -1,0 +1,25 @@
+<%
+  content = content
+%>
+
+
+<% if content.has_image? %>
+
+<div class="attached_files">
+
+  <p class="info">클릭하면 큰이미지로 보실수 있습니다.</p>
+
+  <% [:image_1,:image_2,:image_3].each do |gm| %>
+    <% g = content.send(gm) %>
+    <% unless g.to_s.blank? %>
+      <div class="file_item">
+        <%= link_to g.url, :class => "fancybox", :rel => "group" do %>
+          <%= image_tag g.url(:thumb) %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+</div>
+
+<% end %>

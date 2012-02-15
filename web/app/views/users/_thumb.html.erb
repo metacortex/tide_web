@@ -2,8 +2,8 @@
 
 <div class="profile"><%= link_to (image_tag user.profile_image.url), user %></div>
 
-<% unless user.name_e.blank? %>
-  <div class="username_e"><%= link_to user.name_e, user %></div>
+<% unless user.name_en.blank? %>
+  <div class="username_e"><%= link_to user.name_en, user %></div>
 <% end %>
 
 <div class="username"><%= link_to user.name, user %></div>

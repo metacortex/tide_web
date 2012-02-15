@@ -17,6 +17,7 @@
 #  vision                          :text
 #  skills                          :text
 #  desc                            :text
+#  location                        :string(255)
 #  profile_image                   :string(255)
 #  url_website                     :string(255)
 #  url_facebook                    :string(255)

@@ -36,6 +36,14 @@ $simple_form_label:100px;
     textarea {
 //      height:60px;
     }
+    label.checkbox, label.radio {
+      @include reset_float(inline);
+      margin:0 10px 0 0;
+      input {
+        vertical-align:top;
+        margin-right:4px;
+      }
+    }
     .input_group {
       margin-left: $simple_form_label + 20px;
     }
