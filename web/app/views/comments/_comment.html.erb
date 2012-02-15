@@ -9,7 +9,7 @@
 
   <div class="body">
     <div class="comment_info">
-      <div class="username"><%= link_to "<em>#{u.name_e}</em> #{u.name}".html_safe, u %></div>
+      <div class="username"><%= link_to "<em>#{u.name_en}</em> #{u.name}".html_safe, u %></div>
       <div class="timestamp"><%= time_ago_in_words(comment.created_at) %> ago</div>
     </div>
 

@@ -11,4 +11,8 @@ module UsersHelper
     end
   end
   
+  def display_user_name(u)
+    link_to "<em>#{u.name_en}</em> #{u.name}".html_safe, u
+  end
+  
 end

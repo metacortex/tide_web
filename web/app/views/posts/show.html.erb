@@ -13,7 +13,7 @@
 
   <div class="author">
     <span class="label">posted by</span>
-    <%= link_to "<em>#{@post.user.name_e}</em> #{@post.user.name}".html_safe, @post.user %>
+    <%= display_user_name(@post.user) %>
     <span class="timestamp"><%= l(@post.created_at, :format => :long) %></span>
   </div>
 
@@ -21,18 +21,18 @@
     <%= link_to (image_tag @post.picture_image.url), @post.source_url, :target => "_blank" %>
   </div>
 
-  <% unless @post.source_url.blank? %>
+  <% if @post.source_url.present? %>
     <div class="source">
       <em>Source:</em> <%= link_to @post.source_url, @post.source_url, :target => "_blank" %>
     </div>
   <% end %>
   <div class="tags">
     <em>Tag:</em>
-    <%= @post.tags.map{|t| link_to_function(t.name, "alert('not yet')") }.join(", ").html_safe %>
+    <%= @post.tags.map{|t| link_to_function(t.name, "alert('coming soon')") }.join(", ").html_safe %>
   </div>
 
   <div class="content">
-    <%= @post.body.gsub("\n","<br/>").html_safe %>
+    <%= simple_format @post.body %>
   </div>
   
   <% if @post.editable_to_user?(current_user) %>
@@ -49,15 +49,6 @@
       <div>VOTE APP</div>
     </div>
     <div class="share">
-      <div id="fb-root"></div>
-      <script>(function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));</script>
-
       <div class="fb-like" data-send="true" data-width="450" data-show-faces="true"></div>
     </div>
   </div>

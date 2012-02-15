@@ -7,8 +7,41 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree ./lib
-//= require_tree ./coffeescripts
 
+
+$(function(){
+
+  var f = $("#invitations");
+  if (f.length > 0) {
+    moreFriendForm();  
+  }
+
+  // Under Construction!
+  $("a.comming_soon, .comming_soon a").bind("click", function(){ alert("Under Construction");return false;});
+
+  // LeanModal
+  $(".modal").leanModal();
+
+  // bxSlider
+  $('#banner_slider').bxSlider({
+    // ticker: true,
+    // tickerSpeed: 800,
+    auto: true,
+    speed: 400,
+    controls: false
+  });
+
+  // fancybox
+  $(".fancybox").fancybox({
+    openEffect: "elastic"
+  });
+
+});
+
+
+
+
+/* POPUP HANDLER */
 
 $(".ajax-link").live("click", function() {
 	var url = $(this).attr("data-url");

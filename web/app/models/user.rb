@@ -127,7 +127,7 @@ class User < ActiveRecord::Base
   end
   
 	def self.default_profile_image_url
-		"thumb_user_180.png"
+		"placeholder.png"
 	end
   
 
