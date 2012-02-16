@@ -1,1 +1,11 @@
-$("#<%= dom_id(@user, :connect) %>").replaceWith("<%= escape_javascript render(:partial => 'connections/button', :locals => { :user => @user }) %>");
+
+<% unless @connection.errors.empty? %>
+
+$(".connection_popup").replaceWith("<%= j render(:partial => 'connections/form') %>");
+
+<% else %>
+
+$("#<%= dom_id(@target,:connect) %>").replaceWith("<%= j render(:partial => 'connections/button', :locals => { :user => @target }) %>");
+$.colorbox.close();  
+
+<% end %>

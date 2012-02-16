@@ -13,13 +13,23 @@ class ConnectionsController < ApplicationController
     end
   end
 
+  def new
+    @target = User.find(params[:target_id])
+    @connection = Connection.new(:target_id => params[:target_id], :user_id => params[:user_id])
+    
+    render :partial => "form"
+  end
+
   def create
-    @connection = Connection.create(:user_id => params[:user_id], :target_id => params[:target_id])
+    @connection = Connection.new(params[:connection])
+    @target = @connection.target
+
+    @connection.save
   end
 
 
 
-  
+
   protected
   
     def find_user

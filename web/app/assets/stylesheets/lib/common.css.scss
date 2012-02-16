@@ -193,6 +193,7 @@
     @include clearfix;
     li {
       @include float(left);
+      height:160px;
       margin:10px 15px 20px 0;
       .profile {
         text-align:center; margin-bottom:3px;
@@ -214,7 +215,7 @@
 }
 
 @mixin table_form_style {
-  .string, .text, .file {
+  .string, .text, .file, .email, .url, .tags, .password, .select {
     label {
       @include inline_block;
       font-size:14px;

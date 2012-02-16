@@ -826,7 +826,7 @@ div.post {
 
 .user_comments {
   @include float(left);
-  @include content-section;
+  @include content_section;
   padding-top:20px;
   h3 { @include sprite_replace_text(People_Comment);}
   table {
@@ -845,6 +845,31 @@ div.post {
       }
     }
   }
+}
+
+.connection_popup {
+ 	background-color:#fff;
+ 	width:438px;
+ 	padding:15px 10px;
+ 	position:relative;
+ 	h3 {
+ 		color:#2968A5;
+ 		font-size:20px;
+ 		font-weight:bold;
+ 		font-family:"Helvetica Neue", Helvetica;
+ 		letter-spacing:-1px;
+ 	}
+ 	.close {
+ 		position:absolute;
+ 		top:15px;
+ 		right:15px;
+ 		a { text-decoration:none;}
+ 	}
+ 	.title {
+ 	  padding-bottom:20px;
+ 	  background:url("/assets/typo/signup_line.gif") no-repeat left bottom;
+ 	}
+ 	@include table_form_style;
 }
 
 

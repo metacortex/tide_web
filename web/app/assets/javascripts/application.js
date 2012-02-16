@@ -21,6 +21,7 @@ $(function(){
 
   // LeanModal
   $(".modal").leanModal();
+  $('.colorbox').colorbox();
 
   // bxSlider
   $('#banner_slider').bxSlider({

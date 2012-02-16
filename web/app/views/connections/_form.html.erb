@@ -1,0 +1,23 @@
+<div class="connection_popup">
+
+	<div class="title">
+	  <h3>CONNECTION REQUEST</h3>
+  	<div class="close">
+  		<a href="#" onclick="$.colorbox.close();return false"><%= image_tag("f/register_close.gif") %></a>
+  	</div>
+	</div>
+
+  <%= simple_form_for [@user,@connection], :remote => true do |f| %>
+
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :target_id %>
+
+    <%= f.input :connection_type, :as => :select, :label => "TYPE", :collection => ["co-worker","friend","classmate","etc"], :include_blank => false %>
+    <%= f.input :remark, :as => :text, :label => "MESSAGE", :input_html => { :size => "40x3" } %>
+
+    <div class="buttons">
+      <%= f.submit "Connect", :class => "post" %>
+    </div>
+  <% end %>
+
+</div>

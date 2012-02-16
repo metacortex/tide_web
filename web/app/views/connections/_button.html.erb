@@ -12,12 +12,11 @@
     <% elsif current_user.connection_request_received_from?(user) %>
       <span class="requested">REQUESTED</span>
     <% else %>
-      <%= link_to "CONNECT", user_connections_path(current_user, :target_id => user.id), :method => :post, :remote => true %>
+      <%= link_to "CONNECT", new_user_connection_path(current_user, :target_id => user.id), :class => "colorbox" %>
     <% end %>
     
   <% else %>
     <%= link_to_function "CONNECT", "alert('Log-in required')" %>
   <% end %>
-
 
 <% end %>
