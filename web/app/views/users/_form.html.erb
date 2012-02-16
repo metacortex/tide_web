@@ -5,37 +5,34 @@
 
 <div class="popup_wrapper">
 
-	<div class="clearfix">
-		<div class="title">
-		  <h3><%= image_tag("f/signup_signup.gif") %></h3>
-      <div class="fb_connect">
-        <%= link_to "Facebook Connect", auth_at_provider_path(:provider => "facebook"), :class => "facebook" %>
-      </div>
-		</div>
+	<div class="title">
+	  <h3 class="signup">SIGNUP</h3>
+    <div class="fb_connect">
+      <%= link_to "Facebook Connect", auth_at_provider_path(:provider => "facebook"), :class => "facebook" %>
+    </div>
 		<div class="close">
-			<a href="#" onclick="close_modal('#signup_popup');return false"><%= image_tag("f/register_close.gif") %></a>
+		  <%= link_to_function "close", "close_modal('#signup_popup')" %>
 		</div>
-		<div style="clear:both"></div>
 	</div>
 
   <%= form_for user, :method => :post, :remote => true do |f| %>
-    <%= f.label :name_en, image_tag("f/signup_name_eng.gif") %>
+    <%= f.label :name_en, :class => "signup_name_en" %>
     <%= f.text_field :name_en %>
 
-    <%= f.label :name, image_tag("f/signup_name_kor.gif") %>
+    <%= f.label :name, :class => "signup_name_ko" %>
     <%= f.text_field :name %>
 
-    <%= f.label :email, image_tag("f/signup_email.gif") %>
+    <%= f.label :email, :class => "signup_email" %>
     <%= f.text_field :email %>
 
-    <%= f.label :password, image_tag("f/signup_password.gif") %>
+    <%= f.label :password, :class => "signup_password" %>
     <%= f.password_field :password %>
 
-    <%= f.label :password_confirmation, image_tag("f/signup_password2.gif") %>
+    <%= f.label :password, :class => "signup_password2" %>
     <%= f.password_field :password_confirmation %>
 
 
-    <div class="buttons"><%= image_submit_tag "f/signup_button.gif" %></div>
+    <div class="buttons"><%= f.submit "SignUp", :class => "signup" %></div>
   <% end %>
 
 </div>

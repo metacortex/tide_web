@@ -22,6 +22,8 @@ class UsersController < ApplicationController
   end
   
   def invite
+    @invitation = Invitation.new
+    render :partial => "users/invite"
   end
 
   def show

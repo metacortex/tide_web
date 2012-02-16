@@ -1,0 +1,33 @@
+<div class="popup_wrapper">
+
+	<div class="title">
+	  <h3 class="invite">INVITE FRIENDS TO TIDE</h3>
+		<div class="close">
+		  <%= link_to_function "close", "close_modal('#login_popup')" %>
+		</div>
+	</div>
+
+  <div class="invitations">
+    <%= form_for @invitation, :remote => true do |f| %>
+      
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      
+      <%= f.label :email, :class => "invitation_email" %>
+      <%= f.text_field :email %>
+      
+      <div class="select">
+        <%= f.label :kind, :class => "invitation_as" %>
+        <%= f.select :kind, options_for_select(["co-worker","friend","classmate","etc"]) %>
+      </div>
+
+      <%= f.label :message, :class => "invitation_message" %>
+      <%= f.text_area :message, :size => "96x4" %>
+    
+      <div class="buttons">
+        <%= f.submit "SEND INVITATION", :class => "invite" %>
+      </div>
+    
+    <% end %>
+  </div>
+
+</div>

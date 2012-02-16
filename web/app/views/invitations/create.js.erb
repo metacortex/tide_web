@@ -1,0 +1,10 @@
+<% if @invitation.errors.empty? %>
+
+  alert('invitation sent successfully');
+  $.colorbox.close();
+
+<% else %>
+
+  $(".popup_wrapper").replaceWith('<%= j ( render :partial => "users/invite" ) %>');
+
+<% end %>

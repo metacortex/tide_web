@@ -245,3 +245,114 @@
   }
 }
 
+@mixin popup_style_header {
+ 	background-color:#fff;
+ 	padding:20px 15px;
+ 	position:relative;
+ 	h3 {
+ 		color:#2968A5;
+ 		font-size:20px;
+ 		font-weight:bold;
+ 		font-family:"Helvetica Neue", Helvetica;
+ 		letter-spacing:-1px;
+ 		&.login { @include sprite_replace_text(login_login);}
+ 		&.signup { @include sprite_replace_text(signup_signup);}
+ 		&.invite { @include sprite_replace_text(Invite_Invite);}
+ 	}
+ 	.close {
+ 		position:absolute;
+ 		top:15px;
+ 		right:15px;
+ 		a {
+ 		  text-decoration:none;
+ 		  display:block;
+ 		  @include sprite_replace_text(Form_Close);
+ 		}
+ 	}
+ 	.title {
+ 	  padding-bottom:20px;
+ 	  background:url("/assets/typo/signup_line.gif") no-repeat left bottom;
+ 	}
+}
+
+@mixin popup_style {
+  @include popup_style_header;
+ 	form {
+ 	  label {
+      display:block;
+      margin-top:20px;
+ 	    &.login_email { @include sprite_replace_text(login_email);}
+ 	    &.login_password { @include sprite_replace_text(login_password);}
+ 	    &.login_rememberme { @include sprite_replace_text(login_rememberme);}
+ 	    &.login_forgot { @include sprite_replace_text(login_forgot);}
+ 	    &.signup_name_en { @include sprite_replace_text(signup_name_eng);}
+ 	    &.signup_name_ko { @include sprite_replace_text(signup_name_kor);}
+ 	    &.signup_email { @include sprite_replace_text(signup_email);}
+ 	    &.signup_password { @include sprite_replace_text(signup_password);}
+ 	    &.signup_password2 { @include sprite_replace_text(signup_password2);}
+ 	    &.invitation_email { @include sprite_replace_text(Invite_Email);}
+ 	    &.invitation_as { @include sprite_replace_text(Invite_As);}
+ 	    &.invitation_message { @include sprite_replace_text(Invite_Message);}
+ 	  }
+  	input[type="text"], input[type="file"], input[type="password"] {
+  		width:300px;
+  		height:20px;
+  		border-width:0 0 1px;
+  		border-style:solid;
+  		border-color:$hover_color;
+  		padding:3px 5px;
+  	}
+  	textarea {
+      margin-top:10px;
+      border-width:1px;
+  		border-color:$hover_color;
+      padding:3px 5px;
+      width:418px;
+      height:50px;
+  	}
+ 	  .checkbox {
+ 	    margin-top:10px;
+ 	    input { @include inline_block; margin-top:2px;}
+  	  label { @include inline_block; margin-top:0;}
+ 	  }
+ 	  .select {
+ 	    margin-top:10px;
+ 	    input { @include inline_block; margin-top:0px;}
+  	  label { @include inline_block; margin-top:0; margin-right:3px;}
+ 	  }
+ 	  .buttons {
+  		padding:0;
+  		margin-top:8px;
+  		input {
+  		  &.login { @include image_submit(login_button,false);}
+  		  &.send { @include image_submit(login_sendbutton,false);}
+  		  &.signup { @include image_submit(signup_button,false);}
+  		  &.invite { @include image_submit(Invite_button,false);}
+  		}
+  	}
+ 	}
+	.input_group {
+	  margin-top:25px;
+	  padding-top:1px;
+	  background:url("/assets/typo/signup_line.gif") no-repeat left top;
+	}
+	.field_with_errors {
+		padding:0px;
+		background-color:transparent;
+		label {
+//      background:url("f/register_error.gif") no-repeat right 13px;
+//      padding-right:20px;
+		}
+		input, textarea {
+			border-color:#aa2929;
+		}
+	}
+}
+
+
+
+
+
+
+
+

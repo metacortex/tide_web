@@ -55,6 +55,7 @@ $(".ajax-link").live("click", function() {
 var close_modal = function(id) {
 	$("#lean_overlay").fadeOut(200);
 	$(id).css({"display":"none"});
+	$.colorbox.close();
 }
 
 

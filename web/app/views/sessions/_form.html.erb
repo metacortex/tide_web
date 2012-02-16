@@ -1,44 +1,41 @@
 <div class="popup_wrapper">
 
-	<div class="clearfix">
-		<div class="title">
-		  <h3><%= image_tag("f/login_login.gif") %></h3>
-      <div class="fb_connect">
-        <%= link_to "Facebook Connect", auth_at_provider_path(:provider => "facebook"), :class => "facebook" %>
-      </div>
-		</div>
+	<div class="title">
+	  <h3 class="login">LOGIN</h3>
+    <div class="fb_connect">
+      <%= link_to "Facebook Connect", auth_at_provider_path(:provider => "facebook"), :class => "facebook" %>
+    </div>
 		<div class="close">
-			<a href="#" onclick="close_modal('#login_popup');return false"><%= image_tag("f/register_close.gif") %></a>
+		  <%= link_to_function "close", "close_modal('#login_popup')" %>
 		</div>
-		<div style="clear:both"></div>
 	</div>
 
   <%= form_tag "/login", :remote => true do %>
-    <%= label_tag :email, image_tag("f/login_email.gif") %>
+    <%= label_tag :email, "email", :class => "login_email" %>
     <%= text_field_tag :email, params[:email] %>
 
-    <%= label_tag :password, image_tag("f/login_password.gif") %>
+    <%= label_tag :password, "password", :class => "login_password" %>
     <%= password_field_tag :password %>
 
-    <div class="cb">
+    <div class="checkbox">
       <%= check_box_tag :remember_me, 1, params[:remember_me] %>
-      <%= label_tag :remember_me, image_tag("f/login_rememberme.gif") %>
+      <%= label_tag :remember_me, "remember me", :class => "login_rememberme" %>
     </div>
 
-    <div class="buttons"><%= image_submit_tag "f/login_button.gif" %></div>
+    <div class="buttons"><%= submit_tag "login", :class => "login" %></div>
   <% end %>
 
 
-  <div class="forgot_password">
+  <div class="input_group">
 
     <%= form_tag password_resets_path, :method => :post, :remote => true do %>
 
-      <label><%= image_tag "f/login_forgot.gif" %></label>
+      <label class="login_forgot">login forgot</label>
 
-      <%= label_tag :email, image_tag("f/login_email.gif"), :for => "password_email" %>
+      <%= label_tag :email, "email", :class => "login_email", :for => "password_email" %>
       <%= text_field_tag :email, nil, :id => "password_email" %>
 
-      <div class="buttons"><%= image_submit_tag "f/login_sendbutton.gif" %></div>
+      <div class="buttons"><%= submit_tag "login_send", :class => "send" %></div>
     <% end %>
 
   </div>

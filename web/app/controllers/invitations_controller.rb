@@ -16,8 +16,12 @@ class InvitationsController < ApplicationController
     end
   end
 
-
   def create
+    @invitation = Invitation.new(params[:invitation])
+    @invitation.save
+  end
+
+  def create_multiple
     h = params[:invitation].values
     users = User.where(:email => h.map {|t| t["email"]}).map(&:email)
     

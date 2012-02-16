@@ -848,27 +848,8 @@ div.post {
 }
 
 .connection_popup {
- 	background-color:#fff;
+ 	@include popup_style;
  	width:438px;
- 	padding:15px 10px;
- 	position:relative;
- 	h3 {
- 		color:#2968A5;
- 		font-size:20px;
- 		font-weight:bold;
- 		font-family:"Helvetica Neue", Helvetica;
- 		letter-spacing:-1px;
- 	}
- 	.close {
- 		position:absolute;
- 		top:15px;
- 		right:15px;
- 		a { text-decoration:none;}
- 	}
- 	.title {
- 	  padding-bottom:20px;
- 	  background:url("/assets/typo/signup_line.gif") no-repeat left bottom;
- 	}
  	@include table_form_style;
 }
 
@@ -1316,6 +1297,40 @@ ul.tags_form {
     color:$hover_color2;
   }
 }
+
+
+.popup_wrapper {
+  @include popup_style;
+	width: 438px;
+  .fb_connect {
+    margin-left:3px;
+    margin-top:20px;
+  }
+	.desc {
+		margin-left:8px;
+		padding-top:5px;
+		color:$hover_color;
+		line-height:120%;
+		font-size:14px;
+	}
+  .form_message {
+    padding:60px 15px 45px;
+    text-align:center;
+		color:$hover_color;
+  	line-height:120%;
+  	font-size:16px;
+  	font-weight:bold;
+  }
+  .forgot_password {
+  }
+}
+
+
+
+
+
+
+
 
 
 
