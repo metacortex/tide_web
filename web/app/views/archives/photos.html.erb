@@ -15,19 +15,6 @@ $(function(){
 
 var photos = [];
 var current_page = 1;
-var sigs = [
-  "a2a6286d87ab9ef284b5bfd91b976138",
-  "6ef017f81bb39b142238d89929aaba04",
-  "23e551cfb153a80ab1c825ddc42911a5",
-  "5c30c28218ae0ffc014b300c0fc4dd61",
-  "9a4aa0679a6eddc64947a999e591fb04",
-
-  "4a892ad37e842283c11829c3709633b9",
-  "fd16f842ce7dc13f949001f0867c6474",
-  "9d4d46e9e66986c0e28137a4f8986d19",
-  "71879198b8ba9487bf034781971cd24f",
-  "d044c9ffd4698b31091dde65c460f318"
-];
 
 function jsonFlickrApi(r) {
   var ps = r.photos
@@ -35,7 +22,8 @@ function jsonFlickrApi(r) {
   var c = $("ul.photos");
 
   $.each(ps.photo,function(k,v){
-    var h = "<li><a href='" + v.url_l + "' rel='group' class='fancybox'><img src='" + v.url_sq + "'/></a></li>";
+    var cn = (k % 6 == 5) ? "row_end" : "";
+    var h = "<li class='" + cn + "'><a href='" + v.url_l + "' rel='group' class='fancybox'><img src='" + v.url_sq + "'/></a></li>";
     c.append(h);
   });
   
@@ -47,8 +35,7 @@ function jsonFlickrApi(r) {
 }
 
 function queryPhotos() {
-  var r = $.ajax({url:
-"http://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=4ca0536686a59fdf7982dd3414fa55ea&user_id=68179057%40N06&extras=url_l%2C+url_z%2C+url_t%2C+url_sq%2C+url_s%2C+views&per_page=100&page=" + current_page + "&format=json&auth_token=72157629326838519-d10d289742a17619&api_sig=" + sigs[current_page - 1],
+  var r = $.ajax({url: "http://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=da88ab3b7da911e98c4fd4ebee635623&user_id=68179057%40N06&extras=url_l%2C+url_z%2C+url_t%2C+url_sq%2C+url_s%2C+views&per_page=100&page=" + current_page + "&format=json",
     async:true,
     success:function(data){
       eval(data);

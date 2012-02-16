@@ -1,9 +1,8 @@
-<div class="breadcrumb">
-  <%= link_to "HOME >", root_path %>
-  <%= link_to "FORUM", boards_path %>
-</div>
-
 <div class="board_content">
-  <h2>새글 작성하기</h2>
-  <%= render "boards/form" %>
+  <div class="board_header">
+    <h2 class="new_board">NEW POST</h2>
+  </div>
+  <div class="board_content">
+    <%= render "boards/form" %>
+  </div>
 </div>

@@ -3,31 +3,24 @@
   <%= f.hidden_field :user_id, :value => current_user.id %>
   <%= f.hidden_field :user_username, :value => current_user.name %>
 
-  <%= f.input :title, :label => "제목쓰기", :wrapper_html => { :class => "big_text" } %>
+  <%= f.input :title, :label => "TITLE", :wrapper_html => { :class => "big_text" } %>
 
   <div class="body_text">
-    <%= f.input :body, :label => "내용쓰기", :input_html => { :size => "" }, :wrapper_html => { :class => "editor" } %>
-    <div class="use_html">
-      <%= f.input :body_format, :as => :boolean, :label => "HTML 입력" %>
-    </div>
+    <%= f.input :body, :label => "BODY", :input_html => { :size => "96x24" }, :wrapper_html => { :class => "editor" } %>
   </div>
   
-  <%= f.input :image_1, :label => "사진첨부1", :hint => "* 첨부파일 이미지 1개당 1MB 미만 jpg, gif 지원" %>
+  <%= f.input :image_1, :label => "IMAGE 1", :hint => "* 첨부파일 이미지 1개당 1MB 미만 jpg, gif 지원" %>
   <%= image_preview_form(f,@board,:image_1) %>
 
-  <%= f.input :image_2, :label => "사진첨부2" %>
+  <%= f.input :image_2, :label => "IMAGE 2" %>
   <%= image_preview_form(f,@board,:image_2) %>
 
-  <%= f.input :image_3, :label => "사진첨부3" %>
+  <%= f.input :image_3, :label => "IMAGE 3" %>
   <%= image_preview_form(f,@board,:image_3) %>
 
 
-  <div class="submit">
-    <p class="warning">저작권 등 타인의 권리를 침해하거나 명예를 훼손하는 게시물은 이용야관 및 관련법률에 의해 제재를 받을 수 있습니다.</p>
-    <%= f.submit %>
-    <div class="cancel">
-      <%= link_to "취소하고 돌아가기", return_url(boards_path(@board)) %>
-    </div>
+  <div class="buttons">
+    <%= f.submit "save", :class => "post" %>
   </div>
 
 <% end %>

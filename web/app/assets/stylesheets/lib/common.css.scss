@@ -173,7 +173,6 @@
   }
 }
 
-
 @mixin connect_button {
   a {
     display:block;
@@ -213,3 +212,35 @@
     }
   }
 }
+
+@mixin table_form_style {
+  .string, .text, .file {
+    label {
+      @include inline_block;
+      font-size:14px;
+      font-weight:bold;
+      color:$hover_color;
+      font-family:Helvetica,"Helvetica Neue";
+    }
+  }
+  .profile_image {
+    margin-left:120px;
+    img { width:120px;height:120px;}
+  }
+  .inline_hint {
+    input { @include inline_block;}
+    .hint {
+      @include inline_block;
+      font-weight:bold;
+      color:#999;
+      font-size:11px;
+      margin-left:5px;
+    }
+  }
+  .buttons {
+    padding:10px 0;
+    input.post { @include image_submit(News_PostButton);}
+    input.update { @include image_submit(Settings_UpdateButton);}
+  }
+}
+

@@ -339,13 +339,16 @@ $sidebar_width: 250px;
   ul.photos {
     li {
       @include inline_block;
-      margin-right:20px;
-      margin-bottom:20px;
+      margin-right:15px;
+      margin-bottom:15px;
       a {
         display:block;
         img {
           width:100px;
         }
+      }
+      &.row_end {
+        margin-right:0;
       }
     }
   }
@@ -364,11 +367,16 @@ $sidebar_width: 250px;
     td {
       padding:4px 5px;
       &.name {
-        
+        a {
+          @include hover_link;
+          font-size:1.1em;
+          color:$hover_color2;
+        }
       }
       &.timestamp {
         width:150px;
         text-align:right;
+        color:$gray_normal;
       }
     }
   }
@@ -865,27 +873,7 @@ ul.edit_profile_nav {
 }
 
 .edit_profile_form {
-  label {
-    @include inline_block;
-    font-size:14px;
-    font-weight:bold;
-    color:$hover_color;
-    font-family:Helvetica;
-  }
-  .profile_image {
-    margin-left:120px;
-    img { width:120px;height:120px;}
-  }
-  .inline_hint {
-    input { @include inline_block;}
-    .hint {
-      @include inline_block;
-      font-weight:bold;
-      color:#999;
-      font-size:11px;
-      margin-left:5px;
-    }
-  }
+  @include table_form_style;
   .update_button {
     input {
       @include image_submit(Settings_UpdateButton);
@@ -1039,6 +1027,8 @@ ul.edit_profile_nav {
     margin:10px 0;
     h2 {
       margin-bottom:5px;
+      &.new_board {
+      }
     }
     .author {
       @include inline_block;
@@ -1093,6 +1083,10 @@ ul.edit_profile_nav {
   .comments_wrapper {
     padding-top:20px;
   }
+  form {
+    @include table_form_style;
+    margin-top:15px;
+  }
 }
 
 
@@ -1134,64 +1128,41 @@ ul.edit_profile_nav {
 //#invitations {
 //  
 //}
-//
-//
-//
-//
-//
-//
-//
-///* FORM */
-//
-//@mixin image_submit_button {
-//  border:none;
-//  color:transparent;
-//  text-index:-9999em;
-//  cursor:pointer;
-//}
-//
-//.edit_form {
-//  margin: 10px 0;
-//  .buttons {
-//    margin-top:20px;
-//  }
-//  .post_button {
-//    input {
-//      @include image_submit_button;
-//      background:sprite($typo,News_PostButton) no-repeat;
-//      width:84px;
-//      height:25px;
-//    }
-//    input:hover {
-//      background:sprite($typo,News_PostButton_hover) no-repeat;
-//    }
-//  }
-//  .update_button {
-//    input {
-//      @include image_submit_button;
-//      background:sprite($typo,Settings_UpdateButton) no-repeat;
-//      width:84px;
-//      height:25px;
-//    }
-//    input:hover {
-//      background:sprite($typo,Settings_UpdateButton_hover) no-repeat;
-//    }
-//  }
-//}
-//
-//#remote_image_selector {
-//  p.message { line-height:120%; color:#555;}
-//  ul {
-//    @include horizontal_list;
-//    li {
-//      margin: 10px 0;
-//      border: 5px solid #fff;
-//    }
-//    li.selected { border:5px solid #c93;}
-//    li.message { padding:20px; color:#777;}
-//    img { width:100px;}
-//  }
-//}
+
+
+
+
+
+
+
+/* FORM */
+
+.edit_form {
+  margin:10px 0;
+  .buttons {
+    margin-top:20px;
+  }
+  .post_button {
+    input { @include image_submit(News_PostButton);}
+  }
+  .update_button {
+    input { @include image_submit(Settings_UpdateButton);}
+  }
+}
+
+#remote_image_selector {
+  p.message { line-height:120%; color:#555;}
+  ul {
+    @include horizontal_list;
+    li {
+      margin: 10px 0;
+      border: 5px solid #fff;
+    }
+    li.selected { border:5px solid #c93;}
+    li.message { padding:20px; color:#777;}
+    img { width:100px;}
+  }
+}
 
 
 
