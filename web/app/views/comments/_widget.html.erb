@@ -4,9 +4,9 @@
   class_name = class_name || "event_comments"
 %>
 
-<%= render "comments/new", :content => content %>
-
 <%= content_tag :div, :class => "comments_wrapper #{class_name}" do %>
+
+  <%= render "comments/new", :content => content %>
 
   <h3>COMMENTS</h3>
 

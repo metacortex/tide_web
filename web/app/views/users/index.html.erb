@@ -8,8 +8,10 @@
     <div class="more"><%= link_to "more >>", all_users_path %></div>
   </div>
   <ul class="people">
-    <% @recent_users.each do |user| %>
-      <li><%= render "users/thumb", :user => user, :connect_button => true %></li>
+    <% @recent_users.each_with_index do |user,idx| %>
+      <li class="<%= "row_end" if idx % 6 == 5 %>">
+        <%= render "users/thumb", :user => user, :connect_button => true %>
+      </li>
     <% end %>
   </ul>
 </div>

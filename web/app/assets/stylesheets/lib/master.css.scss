@@ -14,16 +14,22 @@ h2 { @include heading;font-size:1.8em;}
 h3 { @include heading;font-size:1.4em;}
 h4 { @include heading;font-size:1.2em;}
 
-a { color:#597f94;}
-a:hover, a:visited, a:active { color:#597f94;}
 
-em { font-weight:bold;}
 
 $gray_base:#4d4d4d;
-$gray_normal:#969696;
+$gray_normal:#828282;
 $gray_light:#bbb;
 
 $border_color:#ddd;
+
+$hover_color:#2968A5;
+$hover_color2:#21527A;
+
+
+a { color:$hover_color;}
+a:hover, a:visited, a:active { color:$hover_color2;}
+
+em { font-weight:bold;}
 
 
 
@@ -206,17 +212,17 @@ $sidebar_width: 250px;
   }
 }
 
-//.category {
-//  .event          { @include replace-text-with-dimensions("c/NewsCategory_PastEvent.gif",15,150);}
-//  .event_upcoming { @include replace-text-with-dimensions("c/NewsCategory_UpcomingEvent.gif",15,150);}
-//  .design       { @include replace-text-with-dimensions("c/NewsCategory_Design.gif",15,150);}
-//  .technology   { @include replace-text-with-dimensions("c/NewsCategory_Technology.gif",15,150);}
-//  .entrepreneur { @include replace-text-with-dimensions("c/NewsCategory_Entrepreneur.gif",15,150);}
-//  .essay        { @include replace-text-with-dimensions("c/NewsCategory_Essay.gif",15,150);}
-//  .banner_text { font-size:10px; padding:2px 4px;}
-//  .past_text { color:#fff; background-color:RGB(204,81,78);}
-//  .upcoming_text { color:#fff; background-color:RGB(204,81,78);}
-//}
+.category {
+  .event          { @include sprite_replace_text(NewsCategory_PastEvent);}
+  .event_upcoming { @include sprite_replace_text(NewsCategory_UpcomingEvent);}
+  .design       { @include sprite_replace_text(NewsCategory_Design);}
+  .technology   { @include sprite_replace_text(NewsCategory_Technology);}
+  .entrepreneur { @include sprite_replace_text(NewsCategory_Entrepreneur);}
+  .essay        { @include sprite_replace_text(NewsCategory_Essay);}
+  .banner_text { font-size:10px; padding:2px 4px;}
+  .past_text { color:#fff; background-color:RGB(204,81,78);}
+  .upcoming_text { color:#fff; background-color:RGB(204,81,78);}
+}
 
 .content_title {
   margin-bottom:5px;
@@ -371,816 +377,728 @@ $sidebar_width: 250px;
 
 
 
-///* EVENTS */
-//
-//.events {
-//  @include content-section;
-//  @include float(left);
-//  position:relative;
-//  h3 { @include replace-text-with-dimensions("t/AboutTitle_EventActivities.gif", 376, 25);}
-//  .more {
-//    @include clearfix;
-//    padding-top:10px; padding-right:5px;
-//    a {
-//      @include float(right);
-//      display:block;
-//      @include sprite_replace_text_anchor(ShowMoreButton);
-//    }
-//  }
-//  ul {
-//    li {
-//      @include clearfix;
-//      padding:5px 0;
-//      border-bottom:1px solid $border_color;
-//      .category {
-//        @include float(left); margin-right:1px;
-//      }
-//      .picture {
-//        @include float(left); margin-right:5px;
-//        img { width:250px; height:150px;}
-//      }
-//      .content {
-//        margin-left:280px;
-//        position:relative;
-//        padding-bottom:6px;
-//        h4 {
-//          margin:2px 0;
-//          a { @include hover-link; color:#333; font-size:16px; line-height:130%;}
-//        }
-//        .abbr {
-//          color:$gray_base;
-//          line-height:140%;
-//          margin:3px 0 4px 0;
-//          max-height:96px;
-//          overflow:hidden;
-//        }
-//        .stats {
-//          .posted_at { color:$gray_base;}
-//          .comments {
-//            position:absolute;
-//            bottom:0;
-//            right:8px;
-//            color:#597f94;
-//            font-weight:bold;
-//            font-size:16px;
-//            text-align:right;
-//            background:url("i/Icon_Comment.gif") no-repeat left 2px;
-//            padding-left:22px;
-//            a { @include hover_link;}
-//          }
-//        }
-//      }
-//    }
-//  }
-//  &.no_first_border {
-//    ul {
-//      li:first-child, li.first_child {
-//        background-image:none; padding-top:5px;
-//      }
-//    }
-//  }
-//}
-//
-//
-//
-//
-//
-///* POSTS */
-//
-//.featured_posts {
-//  text-align:center;
-//}
-//
-//@mixin has_posts_grid {
-//  ul {
-//    @include horizontal-list;
-//    margin-top:10px;
-//    li {
-//      width:140px;
-//      margin-right:10px;
-//      .thumb { 
-//        margin-bottom:6px;
-//        height:100px;
-//        overflow:hidden;
-//        img {
-//          display:block;
-//          width:138px;
-//        }
-//      }
-//      .abbr { 
-//        width: 130px;
-//        white-space: normal;
-//        padding: 5px;
-//        a { @include hover-link;}
-//      }
-//    }
-//  }
-//}
-//
-//.set_post_type {
-//  .type {
-//    margin:10px 10px 30px 70px;
-//    a {
-//      text-decoration:none; color:#fff; display:block; width:500px;
-//      font-family:serif;
-//      padding:5px; background:#666;
-//      div { padding:0 10px; line-height:150%;}
-//    }
-//    a:hover, a:active {
-//      background:#333;
-//    }
-//  }
-//}
-//
-//ul.posts {
-//  @include float(left);
-//  width:$content_width;
-//  padding:0;
-//  margin:5px 0 0;
-//  li.post {
-//    @include clearfix;
-//    padding:5px 0;
-//    border-bottom:1px solid $border_color;
-//    .category {
-//      @include float(left); margin-right:1px;
-//    }
-//    .picture { 
-//      @include float(left); margin-right:5px;
-//      height:150px;
-//      width:250px;
-//      overflow:hidden;
-//      img { width:250px;}
-//    }
-//    .content {
-//      margin-left:280px;
-//      position:relative;
-//      padding-bottom:6px;
-//      h4 {
-//        margin:2px 0;
-//        a { @include hover-link; color:#333; font-size:16px; line-height:130%;}
-//      }
-//      .abbr {
-//        color:$gray_base;
-//        line-height:140%;
-//        margin:3px 0 4px 0;
-//        max-height:96px;
-//        overflow:hidden;
-//      }
-//      .stats {
-//        .posted_at {
-//          color:$gray_base;
-//          padding-top:10px;
-//        }
-//        .comments {
-//          position:absolute;
-//          bottom:0;
-//          right:8px;
-//          color:#597f94;
-//          font-weight:bold;
-//          font-size:16px;
-//          text-align:right;
-//          background:url("i/Icon_Comment.gif") no-repeat left 2px;
-//          padding-left:22px;
-//          a { @include hover_link;}
-//        }
-//      }
-//    }
-//  }
-//}
-//
-//div.post {
-//  @include content_section;
-//  @include float(left);
-//  margin-top:10px;
-//  .category {
-//    @include clearfix;
-//    margin-bottom:5px;
-//    div { @include float(left);}
-//  }
-//  .edit_note {
-//    margin:10px 0 20px; padding:15px 20px; background:#eee; border:1px solid red;
-//    .caption { font-weight:bold; color:red; margin-bottom:10px;}
-//  }
-//  .author { 
-//    line-height:150%;
-//    em { text-align:left; color:#4d4d4d;}
-//    span { color:$gray_light; font-weight:bold;}
-//    a { @include hover-link; margin-left:4px; margin-right:6px; color:$gray_base;}
-//  }
-//  .picture {
-//    text-align:center; margin:20px 10px;
-//    img { max-width:600px;}
-//  }
-//  .picture_left {
-//    margin:10px 0;
-//    img { max-width:600px;}
-//  }
-//  .source { 
-//    margin:1em 0;
-//    a { @include hover-link; line-height:125%;}
-//  }
-//  .tags { margin:1em 0;}
-//  .content { line-height:150%; margin:1em 0;}
-//  .register_event {
-//    margin:10px 0;
-//    a { display:block; @include replace-text-with-dimensions("t/registerEvent.gif", 236, 45);}
-//  }
-//  .posted_at { line-height:150%; text-align:right; padding-right:10px; color:#bfbfbf; font-size:0.9em; font-weight:bold;}
-//  .sharebox { padding:5px 0 15px;}
-//  .edit_post {
-//    @include clearfix;
-//    ul.actions {
-//      @include float(right);
-//      @include toolbox;
-//    }
-//  }
-//  .like_this_post {
-//    @include clearfix;
-//    margin:5px 0 10px;
-//    .vote { 
-//      @include float(left); 
-//      margin:1em 0; width:450px; border:1px solid #ccc; padding:40px 0; text-align:center;
-//    }
-//    .share {
-//      @include float(left);
-//    }
-//  }
-//  div.new_comment {
-//    @include content-section;
-//    margin-top:10px;
-//    h3 { @include replace-text-with-dimensions("t/AddNewComment.gif", 166, 21);}
-//    form {
-//      margin-top:6px;
-//      textarea { padding:5px; width:668px; height:100px;}
-//      .buttons { text-align:right; margin-top:5px;}
-//      input.button { 
-//        background:url("t/News_PostComment.gif") no-repeat; width:62px; height:30px; border:none; padding:0; margin:0;
-//        color:transparent; text-index:-9999em; text-transform:capitalize; 
-//        cursor:pointer;
-//      }
-//    }
-//  }
-//  div.edit_comment {
-//    form {
-//      margin-top:6px;
-//      text-align:right;
-//      textarea { padding:5px; width:660px; height:100px;}
-//      .buttons { text-align:right; margin-top:5px;}
-//    }
-//  }
-//  .comments_wrapper {
-//    @include content_section;
-//    margin-top:10px;
-//    padding-bottom:50px;
-//    h3 { @include replace-text-with-dimensions("t/News_Comments.gif", 97, 18);}
-//    ul {
-//      margin-top:8px;
-//      li.comment {
-//        @include clearfix;
-//        padding:5px 0;
-//        border-bottom:1px solid $border_color;
-//        margin-bottom:10px;
-//        .user {
-//          @include float(left);
-//          margin-right:15px;
-//          img { width:64px; height:64px;}
-//        }
-//        .body {
-//          @include float(left);
-//          width:596px;
-//          .username {
-//            @include float(left);
-//            em { color:$gray_base; font-size:13px; margin-right:3px;}
-//            a { color:$gray_base; @include hover-link;}
-//          }
-//          .timestamp { @include float(right); color:$gray_light; font-weight:bold; font-size:11px;}
-//          .comment_body {
-//            clear:both;
-//            padding-top:10px;
-//            line-height:150%;
-//            color:$gray_base;
-//          }
-//        }
-//        .comment_action { 
-//          @include float(right);
-//          margin-bottom:4px;
-//          ul {
-//            @include float(right);
-//            @include toolbox;
-//          }
-//        }
-//        .status {
-//          clear:both;
-//          padding-top:5px;
-//          .agreement { 
-//            @include float(right);
-//            .positive {
-//              @include float(left);
-//              margin-left:6px;
-//              background:#597f94 url("/assets/i/Comment_Up.gif") no-repeat 5px 5px;
-//              a { color:white; font-weight:bold;}
-//            }
-//            .negative { 
-//              @include float(left);
-//              margin-left:6px;
-//              background:#bfbfbf url("/assets/i/Comment_Down.gif") no-repeat 5px 5px;
-//              a { color:white; font-weight:bold;}
-//            }
-//            a { display:block; padding:3px 7px 3px 20px; text-decoration:none;}
-//          }
-//        }
-//      }
-//    }
-//  }
-//}
-//
-//.edit_status {
-//  color:green;
-//}
-//
-//.related_posts {
-//  margin-top:20px;
-//  h3 { color:#597f94; font-weight:bold; line-height:150%; font-size:15px; border-bottom:1px solid #ccc;}
-//  ul {
-//    margin:6px 0;
-//    li {
-//      @include clearfix;
-//      padding:3px 0;
-//      .thumb {
-//        @include float(left);
-//        height:75px;
-//        overflow:hidden;
-//        img { width:125px;}
-//      }
-//      .abbr {
-//        @include float(right);
-//        margin-top:2px;
-//        width:120px;
-//        a { @include hover-link; color:$gray_base;}
-//      }
-//    }
-//  }
-//}
-//
-//.edit_form {
-//  .edit_note {
-//    margin:10px 0 20px;
-//    border:1px dotted #ccc;
-//    padding:15px 20px;
-//    .status { line-height:2em;}
-//    .caption { line-height:2em; margin-bottom:5px;}
-//  }
-//}
-//
-//
-//
-//
-///* PEOPLE */
-//
-//.people_search {
-//  @include clearfix;
-//  margin-top: 10px;
-//  margin-bottom: 10px;
-//  .search_form {
-//    @include float(left);
-//    position: relative;
-//    width: 200px;
-//    #people-search {
-//      position:relative; padding:0; width:100%; height:auto; background-image:none; background-color:rgba(255,255,255,.1);
-//      @include box-shadow(rgba(255, 255, 255, 0.2) 0 1px 0, rgba(0,0,0,0.6) 0 2px 1px inset);
-//    }
-//    #sp-peoplesearch { 
-//      width:100%; height:19px; padding:2px 18px 1px 2px; background-image:none;
-//      @include box-sizing(border-box);
-//      -webkit-tap-highlight-color:rgba(0,0,0,0);
-//      border:1px solid $gray_light;
-//    }
-//    .sp-magnify { position:absolute; top:3px; right:3px; width:15px; height:14px; }
-//    .sp-magnify * { position:absolute; opacity:0; width:15px; height:14px; background:sprite($typo,search);}
-//    .sp-magnify .magnify { opacity:1; background:sprite($typo,search);}
-//  }
-//  ul.search_history {
-//    @include float(left);
-//    @include horizontal-list;
-//    margin-left: 12px;
-//    li {
-//      .block {
-//        border:1px solid #999;
-//        line-height:90%;
-//        padding:2px 2px 3px;
-//      }
-//      a { font-size:11px; padding:0 5px;text-decoration:none;}
-//      a.remove { margin-left:2px;}
-//    }
-//  }
-//}
-//
-//.people_nav {
-//  margin-top: 20px;
-//  ul {
-//    @include inline-list;
-//    a { text-decoration:none; padding:0 3px;}
-//    a:hover { background:#359; color:#fff;}
-//  }
-//}
-//
-//@mixin connect_button {
-//  a {
-//    display:block;
-//    @include sprite_replace_text_anchor(People_Connect);
-//  }
-//  span.connected {
-//    display:block;
-//    @include sprite_replace_text(People_Connected);
-//  }
-//  span.requested {
-//    display:block;
-//    @include sprite_replace_text(People_Pending);
-//  }
-//}
-//
-//@mixin has_people_grid {
-//  ul.people {
-//    @include clearfix;
-//    li {
-//      @include float(left);
-//      margin:10px 25px 20px 0;
-//      .profile {
-//        text-align:center; margin-bottom:3px;
-//        img { width:100px; height:100px;}
-//      }
-//      a { @include hover-link;}
-//      .username { padding:3px;}
-//      .username_e { padding:3px; font-weight:bold;}
-//      .connect {
-//        padding:3px; 
-//        text-align:right;
-//        @include connect_button;
-//      }
-//    }
-//  }
-//}
-//
-//.people {
-//  @include float(left);
-//  @include clearfix;
-//  @include content_section;
-//  @include has_people_grid;
-//  .title {
-//    h3.new_members { @include sprite_replace_text(People_NewMemebers);}
-//  }
-//}
-//
-//.people_profile {
-//  @include float(left);
-//  margin-top:10px;
-//  .portrait {
-//    @include float(left);
-//    position:relative;
-//    .category {
-//      position:absolute; bottom:5px; left:5px;
-//      img { width:18px;height:18px;}
-//    }
-//    img { width:100px;height:100px;}
-//    text-align: center;
-//  }
-//  .profile {
-//    margin-left:115px;
-//    div.username { 
-//      font-size:1.2em;
-//      line-height:150%;
-//      .name_e { font-weight:bold;}
-//    }
-//    div.connect_wrapper { 
-//      @include clearfix;
-//      margin-top:10px;
-//      .connect { @include connect_button; @include float(left);}
-//      span.caption { @include float(left); color:#666; font-size:0.9em; margin-left:8px; margin-top:4px;}
-//    }
-//    ul.stats {
-//      @include clearfix;
-//      margin-top:10px;
-//      li {
-//        @include float(left);
-//        border:1px solid #587e93;
-//        margin-right:5px;
-//        div {
-//          font-family:Arial;
-//          font-weight:bold;
-//          font-size:11px;
-//          text-align:center;
-//          padding:2px 7px;
-//          @include float(left);
-//        }
-//        .value {
-//          background:#587e93;
-//          color:#fff;
-//        }
-//        .caption {
-//          color:#587e93;
-//        }
-//      }
-//    }
-//    dl.information {
-//      padding:15px 0;
-//      font-size:0.9em;
-//      line-height:150%;
-//      dt {
-//        color:$gray_normal;
-//        padding-top:10px;
-//        font-weight:bold;
-//      }
-//      dd {
-//      }
-//    }
-//  }
-//}
-//
-//.user_connections, .user_commons {
-//  @include float(left);
-//  @include content_section;
-//  @include has_people_grid;
-//  padding-top:15px;
-//  h3.connection { @include sprite_replace_text(People_Connection);}
-//  h3.common { @include sprite_replace_text(People_InCommon);}
-//  ul.connection_type {
-//    @include sub_nav_style;
-//    margin-top:10px;
-//    li {
-//      &.all {
-//        a { @include sprite_replace_text(People_Connection_All);}
-//        a:hover, &.current a { @include sprite_replace_text( People_Connection_All_HL);}
-//      }
-//      &.coworker {
-//        a { @include sprite_replace_text(People_Connection_Coworker);}
-//        a:hover, &.current a { @include sprite_replace_text( People_Connection_Coworker_HL);}
-//      }
-//      &.classmate {
-//        a { @include sprite_replace_text(People_Connection_Classmate);}
-//        a:hover, &.current a { @include sprite_replace_text( People_Connection_Classmate_HL);}
-//      }
-//      &.friend {
-//        a { @include sprite_replace_text(People_Connection_Friend);}
-//        a:hover, &.current a { @include sprite_replace_text( People_Connection_Friend_HL);}
-//      }
-//      &.etc {
-//        a { @include sprite_replace_text(People_Connection_Etc);}
-//        a:hover, &.current a { @include sprite_replace_text( People_Connection_Etc_HL);}
-//      }
-//    }
-//  }
-//  .empty { padding:20px; color:$gray_normal; font-family:Arial;}
-//}
-//
-//.user_posts {
-//  @include float(left);
-//  @include content_section;
-//  padding-top:20px;
-//  @include has_posts_grid;
-//  h3 { @include sprite_replace_text(People_Post);}
-//}
-//
-//.user_comments {
-//  @include float(left);
-//  @include content-section;
-//  padding-top:20px;
-//  h3 { @include sprite_replace_text(People_Comment);}
-//  table {
-//    width:100%;
-//    td {
-//      padding:5px 0;
-//      a {
-//        @include hover_link;
-//      }
-//      &.timestamp {
-//        text-align:right;
-//        font-size:12px;
-//        font-style:italic;
-//        color:$gray_normal;
-//        width:120px;
-//      }
-//    }
-//  }
-//}
-//
-//
-//
-//
-//
-//
-//
-///* USER PROFILE */
-//
-//ul.edit_profile_nav {
-//  @include sub_nav_style;
-//  margin-top:5px;
-//  padding-bottom:10px;
-//  li {
-//    &.my_profile {
-//      a { @include sprite_replace_text(Settings_MyProfile);}
-//      a:hover, &.current a { @include sprite_replace_text( Settings_MyProfile_HL);}
-//    }
-//    &.connection {
-//      a { @include sprite_replace_text(Settings_MyConnection);}
-//      a:hover, &.current a { @include sprite_replace_text( Settings_MyConnection_HL);}
-//    }
-//    &.password {
-//      a { @include sprite_replace_text(Settings_Password);}
-//      a:hover, &.current a { @include sprite_replace_text( Settings_Password_HL);}
-//    }
-//  }
-//}
-//
-//.edit_profile_form {
-//  label {
-//    @include inline_block;
-//    font-size:14px;
-//    font-weight:bold;
-//    color:#597f94;
-//    font-family:Helvetica;
-//  }
-//  .profile_image {
-//    margin-left:120px;
-//    img { width:120px;height:120px;}
-//  }
-//  .inline_hint {
-//    input { @include inline_block;}
-//    .hint {
-//      @include inline_block;
-//      font-weight:bold;
-//      color:#999;
-//      font-size:11px;
-//      margin-left:5px;
-//    }
-//  }
-//  .update_button {
-//    input {
-//      border:none;
-//      color:transparent;
-//      text-index:-9999em;
-//      cursor:pointer;
-//      background:sprite($typo,Settings_UpdateButton) no-repeat;
-//      width:84px;
-//      height:25px;
-//    }
-//    input:hover {
-//      background:sprite($typo,Settings_UpdateButton_hover) no-repeat;
-//    }
-//  }
-//}
-//
-//
-//
-//
-//
-//
-//
-///* BOARDS */
-//
-//.forum {
-//  @include content-section;
-//  @include float(left);
-//  position:relative;
-//  table.boards {
-//    width:100%;
-//    margin-top:20px;
-//    th {
-//      padding:6px 5px 5px;
-//      border-top:2px solid #ddd;
-//      border-bottom:1px dotted #ccc;
-//      text-align:center;
-//      &.uid       { width:50px;}
-//      &.author    { width:150px;}
-//      &.number    { width:50px;}
-//      &.timestamp { width:120px;}
-//    }
-//    td {
-//      padding:6px 5px 5px;
-//      border-bottom:1px dotted #ddd;
-//      &.center { text-align:center;}
-//    }
-//    a { color:#333;}
-//    .has_image {
-//      @include inline_block;
-//      margin-left:3px;
-//      img { width:12px;}
-//    }
-//    a.comments_count {
-//      @include inline_block;
-//      margin-left:3px;
-//      color:#666;
-//      font-size:11px;
-//    }
-//  }
-//  .board_toolbox {
-//    margin-top:20px;
-//    @include clearfix;
-//    ul.actions {
-//      @include float(right);
-//    }
-//  }
-//}
-//
-//.board_toolbox {
-//  ul.actions {
-//    li {
-//      @include inline_block;
-//      a {
-//        display:block;
-//      }
-//      &.new_post a { @include sprite_replace_text_anchor($form,board_write);}
-//      &.edit_post a { @include sprite_replace_text_anchor($form,board_edit);}
-//      &.delete_post a { @include sprite_replace_text_anchor($form,board_delete);}
-//      &.list_post a { @include sprite_replace_text_anchor($form,board_list);}
-//    }
-//  }
-//}
-//
-//.board_content {
-//  .board_header {
-//    margin:10px 0;
-//  }
-//  .board_content {
-//    margin:10px 0;
-//    .board_body {
-//      margin:20px 0;
-//    }
-//  }
-//  .new_comment {
-//    h3 { @include replace-text-with-dimensions("t/News_Comments.gif", 97, 18);}
-//  }
-//  .comments_wrapper {
-//    @include content_section;
-//    margin-top:10px;
-//    padding-bottom:50px;
-//    ul {
-//      margin-top:8px;
-//      li.comment {
-//        @include clearfix;
-//        padding:5px 0;
-//        border-bottom:1px solid $border_color;
-//        margin-bottom:10px;
-//        .user {
-//          @include float(left);
-//          margin-right:15px;
-//          img { width:64px; height:64px;}
-//        }
-//        .body {
-//          @include float(left);
-//          width:596px;
-//          .username {
-//            @include float(left);
-//            em { color:$gray_base; font-size:13px; margin-right:3px;}
-//            a { color:$gray_base; @include hover-link;}
-//          }
-//          .timestamp { @include float(right); color:$gray_light; font-weight:bold; font-size:11px;}
-//          .comment_body {
-//            clear:both;
-//            padding-top:10px;
-//            line-height:150%;
-//            color:$gray_base;
-//          }
-//        }
-//        .comment_action { 
-//          @include float(right);
-//          margin-bottom:4px;
-//          ul {
-//            @include float(right);
-//            @include toolbox;
-//          }
-//        }
-//        .status {
-//          clear:both;
-//          padding-top:5px;
-//          .agreement { 
-//            @include float(right);
-//            .positive {
-//              @include float(left);
-//              margin-left:6px;
-//              background:#597f94 url("/assets/i/Comment_Up.gif") no-repeat 5px 5px;
-//              a { color:white; font-weight:bold;}
-//            }
-//            .negative { 
-//              @include float(left);
-//              margin-left:6px;
-//              background:#bfbfbf url("/assets/i/Comment_Down.gif") no-repeat 5px 5px;
-//              a { color:white; font-weight:bold;}
-//            }
-//            a { display:block; padding:3px 7px 3px 20px; text-decoration:none;}
-//          }
-//        }
-//      }
-//    }
-//  }
-//  .board_toolbox {
-//    
-//  }
-//}
-//
-//
-//
-//
-//
+/* EVENTS */
+
+.events {
+  @include content_section;
+  @include float(left);
+  position:relative;
+//  h3 { @include sprite_replace_text(AboutTitle_EventActivities);}
+  .more {
+    @include clearfix;
+    padding-top:10px; padding-right:5px;
+    a {
+      @include float(right);
+      display:block;
+      @include sprite_replace_text_anchor(ShowMoreButton);
+    }
+  }
+  ul {
+    li {
+      @include clearfix;
+      padding:5px 0;
+      border-bottom:1px solid $border_color;
+      .category {
+        @include float(left); margin-right:1px;
+      }
+      .picture {
+        @include float(left); margin-right:5px;
+        img { width:250px; height:150px;}
+      }
+      .content {
+        margin-left:280px;
+        position:relative;
+        padding-bottom:6px;
+        h4 {
+          margin:2px 0;
+          a { @include hover-link; color:#333; font-size:16px; line-height:130%;}
+        }
+        .abbr {
+          color:$gray_base;
+          line-height:140%;
+          margin:3px 0 4px 0;
+          max-height:96px;
+          overflow:hidden;
+        }
+        .stats {
+          @include has_stats_section;
+          .posted_at {}
+          .comments {
+            position:absolute;
+            bottom:0;
+            right:8px;
+          }
+        }
+      }
+    }
+  }
+  &.no_first_border {
+    ul {
+      li:first-child, li.first_child {
+        background-image:none; padding-top:5px;
+      }
+    }
+  }
+}
+
+
+
+
+
+/* POSTS */
+
+.featured_posts {
+  text-align:center;
+}
+
+@mixin has_posts_grid {
+  ul {
+    @include horizontal-list;
+    margin-top:10px;
+    li {
+      width:140px;
+      margin-right:10px;
+      .thumb { 
+        margin-bottom:6px;
+        height:100px;
+        overflow:hidden;
+        img {
+          display:block;
+          width:138px;
+        }
+      }
+      .abbr { 
+        width: 130px;
+        white-space: normal;
+        padding: 5px;
+        a { @include hover-link;}
+      }
+    }
+  }
+}
+
+.set_post_type {
+  .type {
+    margin:10px 10px 30px 70px;
+    a {
+      text-decoration:none; color:#fff; display:block; width:500px;
+      font-family:serif;
+      padding:5px; background:#666;
+      div { padding:0 10px; line-height:150%;}
+    }
+    a:hover, a:active {
+      background:#333;
+    }
+  }
+}
+
+ul.posts {
+  @include float(left);
+  width:$content_width;
+  padding:0;
+  margin:5px 0 0;
+  li.post {
+    @include clearfix;
+    padding:5px 0;
+    border-bottom:1px solid $border_color;
+    .category {
+      @include float(left); margin-right:1px;
+    }
+    .picture { 
+      @include float(left); margin-right:5px;
+      height:150px;
+      width:250px;
+      overflow:hidden;
+      img { width:250px;}
+    }
+    .content {
+      margin-left:280px;
+      position:relative;
+      padding-bottom:6px;
+      h4 {
+        margin:2px 0;
+        a { @include hover-link; color:#333; font-size:16px; line-height:130%;}
+      }
+      .abbr {
+        color:$gray_base;
+        line-height:140%;
+        margin:3px 0 4px 0;
+        max-height:96px;
+        overflow:hidden;
+      }
+      .stats {
+        @include has_stats_section;
+        .posted_at {
+          padding-top:10px;
+        }
+        .comments {
+          position:absolute;
+          bottom:0;
+          right:8px;
+        }
+      }
+    }
+  }
+}
+
+div.post {
+  @include content_section;
+  @include float(left);
+  margin-top:10px;
+  .category {
+    @include clearfix;
+    margin-bottom:5px;
+    div { @include float(left);}
+  }
+  .edit_note {
+    margin:10px 0 20px; padding:15px 20px; background:#eee; border:1px solid red;
+    .caption { font-weight:bold; color:red; margin-bottom:10px;}
+  }
+  .author { 
+    line-height:150%;
+    em { text-align:left; color:#4d4d4d;}
+    span { color:$gray_light; font-weight:bold;}
+    a { @include hover-link; margin-left:4px; margin-right:6px; color:$gray_base;}
+  }
+  .picture {
+    text-align:center; margin:20px 10px;
+    img { max-width:600px;}
+  }
+  .picture_left {
+    margin:10px 0;
+    img { max-width:600px;}
+  }
+  .source { 
+    margin:1em 0;
+    a { @include hover-link; line-height:125%;}
+  }
+  .tags { margin:1em 0;}
+  .content { line-height:150%; margin:1em 0;}
+  .register_event {
+    margin:10px 0;
+    a {
+      display:block;
+//      @include replace-text-with-dimensions("t/registerEvent.gif", 236, 45);
+    }
+  }
+  .posted_at { line-height:150%; text-align:right; padding-right:10px; color:#bfbfbf; font-size:0.9em; font-weight:bold;}
+  .sharebox { padding:5px 0 15px;}
+  .edit_post {
+    @include clearfix;
+    ul.actions {
+      @include float(right);
+      @include toolbox;
+    }
+  }
+  .like_this_post {
+    @include clearfix;
+    margin:5px 0 10px;
+    .vote { 
+      @include float(left); 
+      margin:1em 0; width:450px; border:1px solid #ccc; padding:40px 0; text-align:center;
+    }
+    .share {
+      @include float(left);
+    }
+  }
+  .comments_wrapper {
+    @include content_section;
+    @include has_comments_wrapper;
+  }
+}
+
+.edit_status {
+  color:green;
+}
+
+.related_posts {
+  margin-top:20px;
+  h3 { color:$hover_color; font-weight:bold; line-height:150%; font-size:15px; border-bottom:1px solid #ccc;}
+  ul {
+    margin:6px 0;
+    li {
+      @include clearfix;
+      padding:3px 0;
+      .thumb {
+        @include float(left);
+        height:75px;
+        overflow:hidden;
+        img { width:125px;}
+      }
+      .abbr {
+        @include float(right);
+        margin-top:2px;
+        width:120px;
+        a { @include hover-link; color:$gray_base;}
+      }
+    }
+  }
+}
+
+.edit_form {
+  .edit_note {
+    margin:10px 0 20px;
+    border:1px dotted #ccc;
+    padding:15px 20px;
+    .status { line-height:2em;}
+    .caption { line-height:2em; margin-bottom:5px;}
+  }
+}
+
+
+
+
+/* PEOPLE */
+
+.people_search {
+  @include clearfix;
+  margin-top:10px;
+  margin-bottom:10px;
+  .search_form {
+    @include float(left);
+    position: relative;
+    width: 200px;
+    #people-search {
+      position:relative; padding:0; width:100%; height:auto; background-image:none; background-color:rgba(255,255,255,.1);
+      @include box-shadow(rgba(255, 255, 255, 0.2) 0 1px 0, rgba(0,0,0,0.6) 0 2px 1px inset);
+    }
+    #sp-peoplesearch { 
+      width:100%; height:19px; padding:2px 18px 1px 2px; background-image:none;
+      @include box-sizing(border-box);
+      -webkit-tap-highlight-color:rgba(0,0,0,0);
+      border:1px solid $gray_light;
+    }
+    .sp-magnify { position:absolute; top:3px; right:3px; width:15px; height:14px; }
+    .sp-magnify * { position:absolute; opacity:0; width:15px; height:14px; background:sprite($typo,search);}
+    .sp-magnify .magnify { opacity:1; background:sprite($typo,search);}
+  }
+  ul.search_history {
+    @include float(left);
+    @include horizontal-list;
+    margin-left: 12px;
+    li {
+      .block {
+        border:1px solid #999;
+        line-height:90%;
+        padding:2px 2px 3px;
+      }
+      a { font-size:11px; padding:0 5px;text-decoration:none;}
+      a.remove { margin-left:2px;}
+    }
+  }
+}
+
+.people_nav {
+  margin-top: 20px;
+  ul {
+    @include inline_list;
+    a { text-decoration:none; padding:0 3px;}
+    a:hover { background:#359; color:#fff;}
+  }
+}
+
+.people {
+  @include float(left);
+  @include clearfix;
+  @include content_section;
+  @include has_people_grid;
+  .title {
+    h3.new_members { @include sprite_replace_text(People_NewMemebers);}
+  }
+}
+
+.people_profile {
+  @include float(left);
+  margin-top:10px;
+  .portrait {
+    @include float(left);
+    position:relative;
+    .category {
+      position:absolute; bottom:5px; left:5px;
+      img { width:18px;height:18px;}
+    }
+    img { width:100px;height:100px;}
+    text-align: center;
+  }
+  .profile {
+    margin-left:115px;
+    div.username { 
+      font-size:1.2em;
+      line-height:150%;
+      .name_e { font-weight:bold;}
+    }
+    div.connect_wrapper { 
+      @include clearfix;
+      margin-top:10px;
+      .connect { @include connect_button; @include float(left);}
+      span.caption { @include float(left); color:#666; font-size:0.9em; margin-left:8px; margin-top:4px;}
+    }
+    ul.stats {
+      @include clearfix;
+      margin-top:10px;
+      li {
+        @include float(left);
+        border:1px solid #587e93;
+        margin-right:5px;
+        div {
+          font-family:Arial;
+          font-weight:bold;
+          font-size:11px;
+          text-align:center;
+          padding:2px 7px;
+          @include float(left);
+        }
+        .value {
+          background:#587e93;
+          color:#fff;
+        }
+        .caption {
+          color:#587e93;
+        }
+      }
+    }
+    dl.information {
+      padding:15px 0;
+      font-size:0.9em;
+      line-height:150%;
+      dt {
+        color:$gray_normal;
+        padding-top:10px;
+        font-weight:bold;
+      }
+      dd {
+      }
+    }
+  }
+}
+
+.user_connections, .user_commons {
+  @include float(left);
+  @include content_section;
+  @include has_people_grid;
+  padding-top:15px;
+  h3.connection { @include sprite_replace_text(People_Connection);}
+  h3.common { @include sprite_replace_text(People_InCommon);}
+  ul.connection_type {
+    @include sub_nav_style;
+    margin-top:10px;
+    li {
+      &.all {
+        a { @include sprite_replace_text(People_Connection_All);}
+        a:hover, &.current a { @include sprite_replace_text( People_Connection_All_HL);}
+      }
+      &.coworker {
+        a { @include sprite_replace_text(People_Connection_Coworker);}
+        a:hover, &.current a { @include sprite_replace_text( People_Connection_Coworker_HL);}
+      }
+      &.classmate {
+        a { @include sprite_replace_text(People_Connection_Classmate);}
+        a:hover, &.current a { @include sprite_replace_text( People_Connection_Classmate_HL);}
+      }
+      &.friend {
+        a { @include sprite_replace_text(People_Connection_Friend);}
+        a:hover, &.current a { @include sprite_replace_text( People_Connection_Friend_HL);}
+      }
+      &.etc {
+        a { @include sprite_replace_text(People_Connection_Etc);}
+        a:hover, &.current a { @include sprite_replace_text( People_Connection_Etc_HL);}
+      }
+    }
+  }
+  .empty { padding:20px; color:$gray_normal; font-family:Arial;}
+}
+
+.user_posts {
+  @include float(left);
+  @include content_section;
+  padding-top:20px;
+  @include has_posts_grid;
+  h3 { @include sprite_replace_text(People_Post);}
+}
+
+.user_comments {
+  @include float(left);
+  @include content-section;
+  padding-top:20px;
+  h3 { @include sprite_replace_text(People_Comment);}
+  table {
+    width:100%;
+    td {
+      padding:5px 0;
+      a {
+        @include hover_link;
+      }
+      &.timestamp {
+        text-align:right;
+        font-size:12px;
+        font-style:italic;
+        color:$gray_normal;
+        width:120px;
+      }
+    }
+  }
+}
+
+
+
+
+/* USER PROFILE */
+
+ul.edit_profile_nav {
+  @include sub_nav_style;
+  margin-top:5px;
+  padding-bottom:10px;
+  li {
+    &.my_profile {
+      a { @include sprite_replace_text(Settings_MyProfile);}
+      a:hover, &.current a { @include sprite_replace_text(Settings_MyProfile_HL);}
+    }
+    &.connection {
+      a { @include sprite_replace_text(Settings_MyConnection);}
+      a:hover, &.current a { @include sprite_replace_text(Settings_MyConnection_HL);}
+    }
+    &.password {
+      a { @include sprite_replace_text(Settings_Password);}
+      a:hover, &.current a { @include sprite_replace_text(Settings_Password_HL);}
+    }
+  }
+}
+
+.edit_profile_form {
+  label {
+    @include inline_block;
+    font-size:14px;
+    font-weight:bold;
+    color:$hover_color;
+    font-family:Helvetica;
+  }
+  .profile_image {
+    margin-left:120px;
+    img { width:120px;height:120px;}
+  }
+  .inline_hint {
+    input { @include inline_block;}
+    .hint {
+      @include inline_block;
+      font-weight:bold;
+      color:#999;
+      font-size:11px;
+      margin-left:5px;
+    }
+  }
+  .update_button {
+    input {
+      @include image_submit(Settings_UpdateButton);
+    }
+  }
+}
+
+.edit_connection_requests {
+  .title {
+    h3 { @include sprite_replace_text(Settings_ConnectionRequests);}
+  }
+  ul.connections {
+    margin-top:10px;
+    li.request {
+      .profile {
+        @include float(left);
+        a, img { display:block;}
+        img { width:100px; height:100px;}
+      }
+      .message {
+        margin-left:110px;
+        .username {
+          a { display:block; @include hover_link; color:$hover_color;}
+          .name_en {
+            @include inline_block;
+            font-weight:bold;
+            font-size:1.2em;
+            line-height:150%;
+            font-weight:bold;
+          }
+          .name {
+            @include inline_block;
+            margin-left:4px;
+            margin-top:0.2em;
+          }
+          .type {
+            @include inline_block;
+            margin-left:4px;
+            margin-top:0.1em;
+            color:$gray_normal;
+            font-weight:bold;
+          }
+        }
+        .timestamp {
+          color:$gray_normal;
+          font-weight:bold;
+          margin:3px 0 5px;
+        }
+        .message_body {
+          padding-top:5px;
+          em {
+            font-weight:bold;
+            color:$hover_color;
+          }
+          p { color:$gray_base; margin:3px 0;}
+        }
+      }
+      .actions {
+        a {
+          @include inline_block;
+          margin-top:5px;
+          margin-right:3px;
+        }
+        .accept {
+          @include sprite_replace_text(Settings_AcceptButton);
+        }
+        .decline {
+          @include sprite_replace_text(Settings_DeclineButton);
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+/* BOARDS */
+
+.forum {
+  @include content_section;
+  @include float(left);
+  position:relative;
+  table.boards {
+    width:100%;
+    margin-top:20px;
+    th {
+      padding:0 5px 5px;
+      border-bottom:1px solid $border_color;
+      text-align:center;
+      color:$hover_color;
+      font-weight:bold;
+      &.uid       { width:50px;}
+      &.author    { width:150px;}
+      &.number    { width:50px;}
+      &.timestamp { width:120px;}
+      span.comment {
+        @include inline_block;
+        @include sprite_replace_text(Icon_Comment);
+      }
+    }
+    td {
+      padding:6px 5px 5px;
+      &.center { text-align:center;}
+      &.date {
+        color:$gray_normal;
+      }
+      &.author {
+        a { color:$gray_normal;}
+      }
+    }
+    a { color:$gray_base; @include hover_link;}
+    .has_image {
+      @include inline_block;
+      margin-left:3px;
+      img { width:12px;}
+    }
+    a.comments_count {
+      @include inline_block;
+      margin-left:3px;
+      color:#666;
+      font-size:11px;
+    }
+  }
+  .board_toolbox {
+    margin-top:20px;
+    @include clearfix;
+    ul.actions {
+      @include float(right);
+    }
+  }
+}
+
+.board_toolbox {
+  ul.actions {
+    margin-right:5px;
+    li {
+      @include inline_block;
+      a { display:block;}
+      &.new_post a { @include sprite_replace_text_anchor(Forum_PostButton);}
+      &.edit_post a { @include sprite_replace_text_anchor(Forum_ModifyButton);}
+      &.delete_post a { @include sprite_replace_text_anchor(Forum_DeleteButton);}
+      &.list_post a { @include sprite_replace_text_anchor(Forum_ListButton);}
+    }
+  }
+}
+
+.board_content {
+  .board_header {
+    margin:10px 0;
+    h2 {
+      margin-bottom:5px;
+    }
+    .author {
+      @include inline_block;
+      color:$gray_normal;
+      font-weight:bold;
+      a {
+        color:$gray_normal;
+        font-weight:bold;
+        @include hover_link;
+      }
+    }
+    .created_at {
+      @include inline_block;
+      margin-left:5px;
+      margin-top:2px;
+      color:$gray_light;
+    }
+    .post_stats {
+      @include inline_block;
+      margin-left:20px;
+      @include has_stats_section;
+      span {
+        @include inline_block;
+        &.comments {
+          font-size:12px;
+          font-weight:normal;
+        }
+      }
+    }
+  }
+  .board_content {
+    margin:10px 0;
+    .board_body {
+      margin:20px 0;
+      line-height:130%;
+    }
+  }
+  .comments_wrapper {
+    @include content_section;
+    @include has_comments_wrapper;
+  }
+  .attached_files {
+    margin:10px 0 20px;
+    .file_item {
+      @include inline_block;
+      margin-right:5px;
+    }
+  }
+  .board_toolbox {
+    margin-bottom:20px;
+  }
+  .comments_wrapper {
+    padding-top:20px;
+  }
+}
+
+
+
+
+
 ///* INVITATION */
 //
 //.invitations {
@@ -1274,56 +1192,56 @@ $sidebar_width: 250px;
 //    img { width:100px;}
 //  }
 //}
-//
-//
-//
-//
-///* TAGS */
-//
-//.tag_insert_form {
-//  @include clearfix;
-//  .simple_form div.input & label {
-//    @include reset_float(block);
-//    font-size:11px;
-//    font-weight:bold;
-//    color:$gray_normal;
-//    width:auto;
-//    text-align:left;
-//    margin:0 0 5px 3px;
-//  }
-//  .exist_tag {
-//    @include float(left);
-//    .options {
-//      width:260px;
-//      select { margin-right:3px; margin-bottom:3px; width:120px;}
-//    }
-//  }
-//  .new_tag {
-//    @include float(left);
-//  }
-//}
-//
-//ul.tags_form {
-//  margin-bottom:10px;
-//  width:550px;
-//  li.tag {
-//    @include inline_block;
-//    margin-right:6px;
-//    margin-bottom:6px;
-//    div { @include border-radius(4px); border:1px solid #999; padding:0 5px 0 5px; line-height:140%; font-size:11px;}
-//    a { text-decoration:none; margin-left:10px;}
-//  }
-//}
-//
-//.tags {
-//  a { margin-left:5px; @include hover-link;}
-//}
-//
-//
-//
-//
-//
-//
+
+
+
+
+/* TAGS */
+
+.tag_insert_form {
+  @include clearfix;
+  .simple_form div.input & label {
+    @include reset_float(block);
+    font-size:11px;
+    font-weight:bold;
+    color:$gray_normal;
+    width:auto;
+    text-align:left;
+    margin:0 0 5px 3px;
+  }
+  .exist_tag {
+    @include float(left);
+    .options {
+      width:260px;
+      select { margin-right:3px; margin-bottom:3px; width:120px;}
+    }
+  }
+  .new_tag {
+    @include float(left);
+  }
+}
+
+ul.tags_form {
+  margin-bottom:10px;
+  width:550px;
+  li.tag {
+    @include inline_block;
+    margin-right:6px;
+    margin-bottom:6px;
+    div { @include border_radius(4px); border:1px solid #999; padding:0 5px 0 5px; line-height:140%; font-size:11px;}
+    a { text-decoration:none; margin-left:10px;}
+  }
+}
+
+.tags {
+  a { margin-left:5px; @include hover_link;}
+}
+
+
+
+
+
+
 ///* EDITING */
 //
 //.editing_toolbox {
@@ -1380,23 +1298,29 @@ $sidebar_width: 250px;
 //    td { padding:2px 10px 4px 5px; color:#333;}
 //  }
 //}
-//
-//
-//
-//
-//
-//
-//
-///* MISC */
-//
-//.fb_connect {
-//  a {
-//    @include inline_block;
-//    @include sprite_replace_text(facebook-login-button);
-//  }
-//}
-//
-//
-//
-//
-//
+
+
+
+
+
+
+
+/* MISC */
+
+.fb_connect {
+  a {
+    @include inline_block;
+    @include sprite_replace_text(facebook-login-button);
+  }
+}
+
+.notice {
+  margin:10px 0;
+  div {
+    color:$hover_color2;
+  }
+}
+
+
+
+

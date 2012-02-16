@@ -2,22 +2,20 @@
 
   <table class="boards">
     <thead>
-      <th class="uid"></th>
-      <th class="">제목</th>
-      <th class="author">작성자</th>
-      <th class="timestamp">작성일</th>
-      <th class="number">조회</th>
-      <th class="number">추천</th>
+      <th class="uid">NO.</th>
+      <th class="">SUBJECT</th>
+      <th class="number"><span class="comment"></span></th>
+      <th class="author">POSTED_BY</th>
+      <th class="timestamp">DATE</th>
     </thead>
     <tbody>
       <% @boards.each do |c| %>
         <%= content_tag_for :tr, c do %>
           <td class="center"><%= c.id %></td>
           <td><%= build_post_title(c) %></td>
-          <td class="center"><%= link_to c.user_username, user_path(c.user_id) %></td>
-          <td class="center"><%= display_post_time(c.created_at) %></td>
-          <td class="center"><%= c.pv_count %></td>
-          <td class="center"><%=  %></td>
+          <td class="center date"><%= c.comments_count %></td>
+          <td class="center author"><%= link_to c.user_username, user_path(c.user_id) %></td>
+          <td class="center date"><%= display_post_time(c.created_at) %></td>
         <% end %>
       <% end %>
     </tbody>

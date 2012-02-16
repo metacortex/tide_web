@@ -11,10 +11,14 @@
 
 
 Category.create([
-  { name: "design",       title: "디자인",     title_en: "Design" },
-  { name: "technology",   title: "기술",      title_en: "Technology" },
-  { name: "entrepreneur", title: "비즈니스",    title_en: "Entrepreneur" },
-  { name: "essay",        title: "에세이",     title_en: "Essay" },
+  { name: "design",       title: "디자인",     title_en: "Design",
+    tags_text: "Cognitive Science\nContemporary\nMinimalism\nWeb\nInteraction Design\n" },
+  { name: "technology",   title: "기술",      title_en: "Technology",
+    tags_text: "Internet\nFull Duplex\nDemux\nFurniture\n" },
+  { name: "entrepreneur", title: "비즈니스",    title_en: "Entrepreneur",
+    tags_text: "Management\nMarketing\nIndustry\nFinancial\n" },
+  { name: "essay",        title: "에세이",     title_en: "Essay",
+    tags_text: "Books\nJournal\nDating\nMobile\nUniversity\n" },
 ])
 
 User.create([

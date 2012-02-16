@@ -16,14 +16,14 @@
     <%= f.hidden_field :profile_image_cache %>
 
     <%= f.input :name, :label => "NAME", :hint => "[KOREAN]", :required => false, :wrapper_html => { :class => "inline_hint" } %>
-    <%= f.input :name_e, :label => "&nbsp;".html_safe, :hint => "[ENGLISH]", :required => false, :wrapper_html => { :class => "inline_hint" } %>
+    <%= f.input :name_en, :label => "&nbsp;".html_safe, :hint => "[ENGLISH]", :required => false, :wrapper_html => { :class => "inline_hint" } %>
     <%= f.input :email, :label => "EMAIL", :required => false %>
-    <%= f.input :website, :label => "WEBSITE" %>
+    <%= f.input :url_website, :label => "WEBSITE" %>
 
-    <%= f.input :facebook, :label => "FACEBOOK" %>
-    <%= f.input :twitter, :label => "TWITTER" %>
-    <%= f.input :googleplus, :label => "GOOGLE+" %>
-    <%= f.input :linkedin, :label => "LINKED-IN" %>
+    <%= f.input :url_facebook, :label => "FACEBOOK" %>
+    <%= f.input :url_twitter, :label => "TWITTER" %>
+    <%= f.input :url_googleplus, :label => "GOOGLE+" %>
+    <%= f.input :url_linkedin, :label => "LINKED-IN" %>
 
     <div class="input">
       <label>TAG</label>

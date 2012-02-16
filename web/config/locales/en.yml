@@ -6,7 +6,7 @@ en:
     formats:
       default: "%Y.%m.%d %H:%M"
       short: "%d %b %H:%M"
-      long: "%Y.%m.%d. %A %-I%P"
+      long: "%Y/%m/%d %I:%M %P"
       event: "%Y.%m.%d %-I%P"
       time_only: "%-H:%M"
   date:

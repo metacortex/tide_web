@@ -14,7 +14,7 @@
   <div class="exist_tag">
     <label>SELECT FROM LIST</label>
     <div class="options">
-      <% [Category.first, Category.first, Category.first, Category.first].each do |c| %>
+      <% Category.all.each do |c| %>
         <%= select_tag :exist_tag,
           options_for_select(c.tags.order("name").map {|t| [t.name, t.name]}.insert(0, ["== #{c.name} ==", "0"])),
           :onchange => "addNewTag($(this).val()); $(this).val(0);"

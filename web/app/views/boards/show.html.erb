@@ -1,16 +1,15 @@
-<div class="breadcrumb">
-  <%= link_to "HOME >", root_path %>
-  <%= link_to "FORUM", boards_path %>
-</div>
-
 <div class="board_content">
   
   <div class="board_header">
     <h2><%= @board.title %></h2>
     <div class="author user_link">
-      <%= link_to @board.user_username, user_path(@board.user_id) %>
+      Posted by <%= link_to @board.user_username, user_path(@board.user_id) %>
     </div>
     <div class="created_at"><%= display_post_time(@board.created_at) %></div>
+    <div class="post_stats">
+      <span class="comments"><%= @board.comments_count %></span>
+    </div>
+    
   </div>
 
   <div class="board_content">
@@ -21,47 +20,18 @@
     
     <%= render "shared/attached_files", :content => @board %>
     
-    <div class="post_stats">
-      <span class="comments_count">덧글 <%= @board.comments_count %>개</span>
-      |
-      <span class="pv_count">조회수 <%= @board.pv_count %></span>
+    <div class="board_toolbox">
+      <ul class="actions">
+        <% if current_user == @board.user %>
+          <li class="edit_post"><%= link_to "수정", edit_board_path(@board) %></li>
+          <% if @board.removable? %>
+            <li class="delete_post"><%= link_to "삭제", board_path(@board), :method => :delete, :confirm => "Sure?" %></li>
+          <% end %>
+        <% end %>
+        <li class="list_post"><%= link_to "목록", boards_path %></li>
+      </ul>
     </div>
+
     <%= render "comments/widget", :content => @board, :class_name => "post_comments" %>
   </div>
-  
-  <div class="board_toolbox">
-    <ul class="actions">
-      <% if logged_in? %>
-        <li class="new_post"><%= link_to "+글쓰기", new_board_path %></li>
-      <% end %>
-      <% if current_user == @board.user %>
-        <li class="edit_post"><%= link_to "수정", edit_board_path(@board) %></li>
-        <% if @board.removable? %>
-          <li class="delete_post"><%= link_to "삭제", board_path(@board), :method => :delete, :confirm => "Sure?" %></li>
-        <% end %>
-      <% end %>
-      <li class="list_post"><%= link_to "목록", boards_path %></li>
-    </ul>
-  </div>
-  
-  <table class="related_posts">
-    <tbody>
-      <% @board.prev_post(1).each do |c| %>
-        <tr class="prev_post">
-          <td class="type">이전글</td>
-          <td class="title"><%= build_post_title(c) %></td>
-          <td class="author"><%= link_to c.user_username, c.user %></td>
-          <td class="created_at"><%= display_post_time(c.created_at) %></td>
-        </tr>
-      <% end %>
-      <% @board.next_post(1).each do |c| %>
-        <tr class="next_post">
-          <td class="type">다음글</td>
-          <td class="title"><%= build_post_title(c) %></td>
-          <td class="author"><%= link_to c.user_username, c.user %></td>
-          <td class="created_at"><%= display_post_time(c.created_at) %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
 </div>

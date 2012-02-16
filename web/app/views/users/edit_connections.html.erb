@@ -1,0 +1,47 @@
+<%= render "users/edit_profile_nav" %>
+
+<div class="edit_connection_requests">
+
+  <div class="title no_border">
+    <h3 class="connection_request">Connection Requests</h3>
+  </div>
+  
+  <ul class="connections">
+    <% @user.connection_requested.each do |c| %>
+      <%= content_tag_for :li, c, :class => "request" do %>
+        
+        <% user = c.user %>
+        
+        <div class="profile"><%= link_to (image_tag user.profile_image.url), user %></div>
+        
+        <div class="message">
+          <div class="username">
+            <% if user.name_en.present? %>
+              <div class="name_en"><%= link_to user.name_en, user %></div>
+            <% end %>
+            <div class="name"><%= link_to user.name, user %></div>
+            <% if c.connection_type.present? %>
+              <div class="type">requested connection as <%= c.connection_type.upcase %></div>
+            <% end %>
+          </div>
+          <div class="timestamp"><%= l(c.created_at, :format => :long) %></div>
+          <% if c.remark.present? %>
+            <div class="message_body">
+              <em>MESSAGE</em>
+              <p><%= c.remark %></p>
+            </div>
+          <% end %>
+          <div class="actions">
+            <%= link_to "accept", update_connections_users_path(:connection_id => c.id, :mode => "accept"), :method => :put, :class => "accept" %>
+            <%= link_to "decline", update_connections_users_path(:connection_id => c.id, :mode => "decline"), :method => :put, :class => "decline" %>
+          </div>
+        </div>
+        
+      <% end %>
+    <% end %>
+    <% if @user.connection_requested.empty? %>
+      <li class="empty">EMPTY</li>
+    <% end %>
+  </ul>
+
+</div>
