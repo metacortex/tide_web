@@ -13,7 +13,7 @@
   </div>
 
   <div class="content">
-    <%= @event.body.gsub("\n","<br/>") %>
+    <%= @event.body.gsub("\n","<br/>").html_safe %>
   </div>
   
   <% if "NEVER TRUE" == @event.accept_registration? %>
