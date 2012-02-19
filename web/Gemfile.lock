@@ -1,17 +1,6 @@
 GIT
-  remote: git://github.com/karmi/tire.git
-  revision: a7a62d6f26a307ea61f5076864637c2a2fc32165
-  specs:
-    tire (0.3.12)
-      activemodel (~> 3.0)
-      hashr (~> 0.0.16)
-      multi_json (~> 1.0)
-      rake
-      rest-client (~> 1.6.0)
-
-GIT
-  remote: https://github.com/NoamB/sorcery.git
-  revision: 2149718e940a00966b4b88ac6f40282cb36c46e3
+  remote: git://github.com/NoamB/sorcery.git
+  revision: ef541fb197e36e1fc3a36bfe121f2e7a1c14b736
   specs:
     sorcery (0.7.6)
       oauth (~> 0.4.4)
@@ -47,7 +36,7 @@ GEM
     activesupport (3.2.1)
       i18n (~> 0.6)
       multi_json (~> 1.0)
-    addressable (2.2.6)
+    addressable (2.2.7)
     annotate (2.4.0)
     ansi (1.4.2)
     arel (3.0.0)
@@ -77,7 +66,6 @@ GEM
       multipart-post (~> 1.1)
       rack (~> 1.1)
     fssm (0.2.8.1)
-    hashr (0.0.19)
     hike (1.2.1)
     httparty (0.8.1)
       multi_json
@@ -146,8 +134,6 @@ GEM
     rdoc (3.12)
       json (~> 1.4)
     remotipart (0.4.2)
-    rest-client (1.6.7)
-      mime-types (>= 1.16)
     sass (3.1.15)
     sass-rails (3.2.4)
       railties (~> 3.2.0)
@@ -205,7 +191,6 @@ DEPENDENCIES
   simple_form (~> 2.0.rc)
   sorcery!
   therubyracer
-  tire!
   turn
   uglifier (>= 1.0.3)
   vimeo

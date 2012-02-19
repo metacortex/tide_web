@@ -30,7 +30,7 @@ class Admin::EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     
-    if @event.update_attrbutes(params[:event])
+    if @event.update_attributes(params[:event])
       redirect_to admin_events_path
     else
       render :edit
