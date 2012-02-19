@@ -24,7 +24,7 @@ gem 'jquery-rails'
 
 
 # elasticsearch
-gem 'tire', :git => 'git://github.com/karmi/tire.git'
+#gem 'tire', :git => 'git://github.com/karmi/tire.git'
 
 # Authentication
 gem 'sorcery', :git => 'git://github.com/NoamB/sorcery.git'
