@@ -15,4 +15,9 @@ class Authentication < ActiveRecord::Base
 
   belongs_to :user
 
+
+  def facebook?
+    provider == "facebook"
+  end
+
 end

@@ -376,9 +376,12 @@ $sidebar_width: 250px;
   }
   ul.videos {
     li {
-      @include inline_block;
       margin-right:20px;
       margin-bottom:20px;
+      h3 {
+        color:$hover_color2;
+        margin-bottom:5px;
+      }
       a {
         display:block;
       }

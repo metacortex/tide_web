@@ -6,6 +6,7 @@
   <ul class="videos">
     <% @videos.each do |v| %>
       <li>
+        <h3><%= v.title %></h3>
         <%= embed_video(v) %>
       </li>
     <% end %>
