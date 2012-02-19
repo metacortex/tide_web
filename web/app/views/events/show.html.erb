@@ -13,7 +13,7 @@
   </div>
 
   <div class="content">
-    <%= simple_format @event.body %>
+    <%= @event.body.gsub("\n","<br/>") %>
   </div>
   
   <% if "NEVER TRUE" == @event.accept_registration? %>
