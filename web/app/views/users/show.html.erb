@@ -16,12 +16,25 @@
     <div class="connect_wrapper">
       <% if logged_in? %>
         <% if current_user == @user || current_user.connected_to?(@user) %>
-          <%= @user.email %>
+          <div class="email_link"><%= @user.email %></div>
         <% else %>
           <%= render "connections/button", :user => @user %> <span class="caption">TO SEE EMAIL INFO</span>
         <% end %>
       <% else %>
         <%= render "connections/button", :user => @user %> <span class="caption">TO SEE EMAIL INFO</span>
+      <% end %>
+      
+      <% [:website,:facebook,:twitter,:googleplus,:linkedin].each do |cc| %>
+        <% if (url = @user.send("url_#{cc.to_s}".to_sym)).present? %>
+          <div class="link link_<%= cc.to_s %>">
+            <em><%= cc.to_s.upcase %></em>
+            <% url.split(/[ ,\n]/).each do |u| %>
+              <% if u.present? %>
+                <%= link_to u, u, :target => "_blank" %>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
     </div>
     
@@ -41,20 +54,24 @@
     </ul>
     
     <dl class="information">
-      <dt>TAG</dt>
+      <dt>INTEREST</dt>
       <dd class="tags">
         <%= @user.tags.map{|t| link_to_function(t.name, "alert('not yet')") }.join(", ").html_safe %>
       </dd>
-      <dt>WORK HISTORY</dt>
+      <dt>WORK</dt>
       <dd><%= @user.work %></dd>
-      <dt>SKILLS</dt>
-      <dd>
-        ...
-      </dd>
-      <dt>VISION</dt>
-      <dd>
-        ...
-      </dd>
+      <% if @user.skills.present? %>
+        <dt>SKILLS</dt>
+        <dd>
+          <%= simple_format @user.skills %>
+        </dd>
+      <% end %>
+      <% if @user.vision.present? %>
+        <dt>VISION</dt>
+        <dd>
+          <%= simple_format @user.vision %>
+        </dd>
+      <% end %>
     </dl>
   </div>
 </div>

@@ -309,6 +309,10 @@ $sidebar_width: 250px;
       margin-top:5px;
     }
   }
+  .map_canvas {
+    border:3px solid #bbb;
+    @include box_shadow(#aaa 5px 5px 14px);
+  }
 }
 
 
@@ -753,11 +757,17 @@ div.post {
       line-height:150%;
       .name_e { font-weight:bold;}
     }
-    div.connect_wrapper { 
+    div.connect_wrapper {
       @include clearfix;
       margin-top:10px;
       .connect { @include connect_button; @include float(left);}
       span.caption { @include float(left); color:#666; font-size:0.9em; margin-left:8px; margin-top:4px;}
+      .email_link { padding-bottom:5px;}
+      .link {
+        margin:5px 0;
+        em { color:$gray_normal; font-size:0.9em; @include inline_block;}
+        a { @include inline_block; margin-left:10px; text-decoration:none;}
+      }
     }
     ul.stats {
       @include clearfix;

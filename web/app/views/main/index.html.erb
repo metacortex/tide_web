@@ -1,3 +1,5 @@
+<% javascript "http://maps.googleapis.com/maps/api/js?sensor=false&language=ko" %>
+
 <%= render "shared/splash" %>
 
 <div class="about_us">
@@ -8,7 +10,7 @@
     <li class="spacer"></li>
     <li id="nav_2" class="go_staff"><%= link_to_function "TIDE Staff", "setTabNav(2)" %></li>
     <li class="spacer"></li>
-    <li id="nav_3" class="go_contact"><%= link_to_function "Contact TIDE", "setTabNav(3)" %></li>
+    <li id="nav_3" class="go_contact"><%= link_to_function "Contact TIDE", "setTabNav(3);showMap();" %></li>
   </ul>
   
   <div class="nav_content_container">
@@ -176,6 +178,27 @@
         <br/>서울특별시 종로구 장사동 116-4 세운상가 554호
         <br/>Jangsadong 116-4, Sewoon Sang-ga #554
         <br/>Jong-Ro_Gu, Seoul, Korea</p>
+      <p style="padding-bottom:30px;"></p>
+
+      <script type="text/javascript">
+        function showMap() {
+          var g = new google.maps.Geocoder();
+          var r = { address: "서울특별시 종로구 장사동 116-4 세운상가" };
+          g.geocode(r, function(result,code){
+            var latlng = result[0].geometry.location;
+            var myOptions = {
+              zoom: 15,
+              center: latlng,
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+            var marker = new google.maps.Marker({ position: latlng, title: "Tide Institute" });
+            marker.setMap(map);  
+          });
+        }
+      </script>
+      <div id="map_canvas" style="width:580px;height:300px" class="map_canvas"></div>
+
       <p style="padding-bottom:250px;"></p>
     </div>
   </div>

@@ -11,6 +11,8 @@
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
+  <%= content_for?(:javascripts) ? yield(:javascripts) : "" %>
 </head>
 <body>
 <div id="fb-root"></div>

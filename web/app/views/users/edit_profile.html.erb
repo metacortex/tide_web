@@ -25,16 +25,16 @@
     <%= f.input :url_googleplus, :label => "GOOGLE+" %>
     <%= f.input :url_linkedin, :label => "LINKED-IN" %>
 
+    <%= f.input :work, :as => :text, :label => "WORK", :input_html => { :size => "80x3", :placeholder => "company, department, title" } %>
+    <%= f.input :vision, :label => "VISION", :input_html => { :size => "80x5" } %>
+    <%= f.input :skills, :label => "SKILLS", :input_html => { :size => "80x5" } %>
+
     <div class="input tags">
-      <label>TAG</label>
+      <label>INTEREST</label>
       <div class="input_group">
         <%= render "shared/tags_form", :form => f %>
       </div>
     </div>
-
-    <%= f.input :work, :label => "WORK HISTORY", :input_html => { :size => "80x5" } %>
-    <%= f.input :vision, :label => "VISION", :input_html => { :size => "80x5" } %>
-    <%= f.input :skills, :label => "SKILLS", :input_html => { :size => "80x5" } %>
 
 
     <div class="buttons update_button">
