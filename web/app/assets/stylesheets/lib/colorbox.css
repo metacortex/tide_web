@@ -18,17 +18,17 @@
     Change the following styles to modify the appearance of ColorBox.  They are
     ordered & tabbed in a way that represents the nesting of the generated HTML.
 */
-#cboxOverlay{background:#333;}
+#cboxOverlay{background:#fff;}
 #colorbox{}
     #cboxContent{margin-top:32px; overflow:visible;}
         .cboxIframe{background:#fff;}
         #cboxError{padding:50px; border:1px solid #ccc;}
         #cboxLoadedContent{background:#000; padding:1px;}
-        #cboxLoadingGraphic{background:url(loading.gif) no-repeat center center;}
+        #cboxLoadingGraphic{background:url("/assets/lib/loading.gif") no-repeat center center;}
         #cboxLoadingOverlay{background:#000;}
         #cboxTitle{position:absolute; top:-22px; left:0; color:#000;}
         #cboxCurrent{position:absolute; top:-22px; right:205px; text-indent:-9999px;}
-        #cboxSlideshow, #cboxPrevious, #cboxNext{text-indent:-9999px; width:20px; height:20px; position:absolute; top:-20px; background:url(controls.png) no-repeat 0 0;}
+        #cboxSlideshow, #cboxPrevious, #cboxNext{text-indent:-9999px; width:20px; height:20px; position:absolute; top:-20px; background:url("/assets/lib/controls.png") no-repeat 0 0;}
         #cboxPrevious{background-position:0px 0px; right:44px;}
         #cboxPrevious:hover{background-position:0px -25px;}
         #cboxNext{background-position:-25px 0px; right:22px;}
