@@ -25,9 +25,9 @@ class Board < ActiveRecord::Base
   
   validates_presence_of :title, :body
   
-  mount_uploader :image_1, PictureUploader
-  mount_uploader :image_2, PictureUploader
-  mount_uploader :image_3, PictureUploader
+  mount_uploader :image_1, AssetUploader
+  mount_uploader :image_2, AssetUploader
+  mount_uploader :image_3, AssetUploader
 
   has_many :comments, :as => :content, :dependent => :destroy
 

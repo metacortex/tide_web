@@ -5,19 +5,17 @@
 
 <% if content.has_image? %>
 
-<div class="attached_files">
+<ul class="attached_files">
 
   <% [:image_1,:image_2,:image_3].each do |gm| %>
     <% g = content.send(gm) %>
     <% unless g.to_s.blank? %>
-      <div class="file_item">
-        <%= link_to g.url, :class => "fancybox", :rel => "group" do %>
-          <%= image_tag g.url(:thumb) %>
-        <% end %>
-      </div>
+      <li class="">
+        <%= link_to g.to_s.split("/").last, g.url, :target => "_blank" %>
+      </li>
     <% end %>
   <% end %>
 
-</div>
+</ul>
 
 <% end %>
