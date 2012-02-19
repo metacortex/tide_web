@@ -27,7 +27,7 @@ gem 'jquery-rails'
 gem 'tire', :git => 'git://github.com/karmi/tire.git'
 
 # Authentication
-gem 'sorcery', :git => 'https://github.com/NoamB/sorcery.git'
+gem 'sorcery', :git => 'git://github.com/NoamB/sorcery.git'
 gem 'bcrypt-ruby'
 
 
