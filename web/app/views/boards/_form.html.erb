@@ -9,14 +9,9 @@
     <%= f.input :body, :label => "BODY", :input_html => { :size => "96x24" }, :wrapper_html => { :class => "editor" } %>
   </div>
   
-  <%= f.input :image_1, :label => "IMAGE 1", :hint => "* 첨부파일 이미지 1개당 1MB 미만 jpg, gif 지원" %>
-  <%= image_preview_form(f,@board,:image_1) %>
-
+  <%= f.input :image_1, :label => "IMAGE 1", :hint => "* 첨부파일 이미지 1개당 1MB 미만" %>
   <%= f.input :image_2, :label => "IMAGE 2" %>
-  <%= image_preview_form(f,@board,:image_2) %>
-
   <%= f.input :image_3, :label => "IMAGE 3" %>
-  <%= image_preview_form(f,@board,:image_3) %>
 
 
   <div class="buttons">
