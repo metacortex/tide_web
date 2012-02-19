@@ -336,19 +336,36 @@ $sidebar_width: 250px;
       }
     }
   }
-  ul.photos {
-    li {
-      @include inline_block;
-      margin-right:15px;
-      margin-bottom:15px;
-      a {
-        display:block;
-        img {
-          width:100px;
-        }
+  #photos {
+    .photos_wrapper {
+      margin-bottom:40px;
+      h3 {
+        color:$hover_color2;
+        font-size:16px;
+        line-height:150%;
+        @include inline_block;
       }
-      &.row_end {
-        margin-right:0;
+      a.more {
+        @include inline_block;
+        margin-left:20px;
+        @include sprite_replace_text_anchor(ShowMoreButton);
+      }
+      ul.photos {
+        margin-top:5px;
+        li {
+          @include inline_block;
+          margin-right:15px;
+          margin-bottom:15px;
+          a {
+            display:block;
+            img {
+              width:100px;
+            }
+          }
+          &.row_end {
+            margin-right:0;
+          }
+        }
       }
     }
   }

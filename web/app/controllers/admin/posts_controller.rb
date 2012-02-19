@@ -16,7 +16,7 @@ class Admin::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     
-    if @post.update_attrbutes(params[:post])
+    if @post.update_attributes(params[:post])
       redirect_to admin_posts_path
     else
       render :edit
