@@ -96,7 +96,7 @@ class User < ActiveRecord::Base
 
   mount_uploader :profile_image, ProfileUploader
   
-  def profile_image_url(size = :square)
+  def profile_image_url(size = :thumb)
     if profile_image?
       profile_image.url(size)
     else
@@ -108,7 +108,7 @@ class User < ActiveRecord::Base
     end
   end
   
-  def facebook_profile_image(size = :square)
+  def facebook_profile_image(size = :thumb)
     if auth = authentications.select(&:facebook?).first
       _type = case size
       when :squre
