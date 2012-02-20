@@ -14,8 +14,9 @@ class PostsController < ApplicationController
   def show
     @post = Post.includes(:comments).find(params[:id])
     
-    unless @post.published? || (current_user && current_user.editor?)
+    if @post.rejected?
       redirect_to posts_path
+      return
     end
     
     @agreements = if logged_in?
