@@ -42,6 +42,10 @@
     <div class="sb_action">
       <div class="new_post"><%= link_to "POST NEW ARTICLE", new_post_path %></div>
     </div>
+  <% else %>
+    <div class="sb_action">
+      <div class="new_post"><%= link_to_function "POST NEW ARTICLE", "alert('글쓰기 권한이 핼요합니다.')" %></div>
+    </div>
   <% end %>
   
 </div>

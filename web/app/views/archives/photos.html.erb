@@ -37,10 +37,10 @@ function queryPhotos(container,preview) {
   var set_id = $c.attr("data-setuid");
   
   if (preview) {
-    var r = $.ajax({url: "http://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=e6d25e03b758543d97305c4ba200ab03&photoset_id=" + set_id + "&extras=url_l%2Curl_z%2Curl_t%2Curl_sq%2Curl_s%2Cviews&per_page=" + preview_size + "&page=1&format=json&nojsoncallback=1",
+    var r = $.ajax({url: "http://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=da88ab3b7da911e98c4fd4ebee635623&photoset_id=" + set_id + "&extras=url_l%2Curl_z%2Curl_t%2Curl_sq%2Curl_s%2Cviews&per_page=" + preview_size + "&page=1&format=json&nojsoncallback=1",
       async:true,
       success:function(data){
-        var j = JSON.parse(data);
+        var j = eval(data);
         var c = $("#photoset_" + j.photoset.id);
         var photos = j.photoset.photo;
         
@@ -56,10 +56,10 @@ function queryPhotos(container,preview) {
     
   } else {
     
-    var r = $.ajax({url: "http://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=e6d25e03b758543d97305c4ba200ab03&photoset_id=" + set_id + "&extras=url_l%2Curl_z%2Curl_t%2Curl_sq%2Curl_s%2Cviews&format=json&nojsoncallback=1",
+    var r = $.ajax({url: "http://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=da88ab3b7da911e98c4fd4ebee635623&photoset_id=" + set_id + "&extras=url_l%2Curl_z%2Curl_t%2Curl_sq%2Curl_s%2Cviews&format=json&nojsoncallback=1",
       async:true,
       success:function(data){
-        var j = JSON.parse(data);
+        var j = eval(data);
         var c = $("#photoset_" + j.photoset.id);
         var photos = j.photoset.photo;
         
@@ -82,10 +82,10 @@ function queryPhotos(container,preview) {
 };
 
 function querySets() {
-  var r = $.ajax({url: "http://api.flickr.com/services/rest/?method=flickr.photosets.getList&api_key=e6d25e03b758543d97305c4ba200ab03&user_id=68179057%40N06&format=json&nojsoncallback=1",
+  var r = $.ajax({url: "http://api.flickr.com/services/rest/?method=flickr.photosets.getList&api_key=da88ab3b7da911e98c4fd4ebee635623&user_id=68179057%40N06&format=json&nojsoncallback=1",
     async:true,
     success:function(data){
-      var j = JSON.parse(data);
+      var j = eval(data);
       var sets = j.photosets.photoset;
       var c = $("#photos");
       
