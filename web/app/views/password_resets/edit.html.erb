@@ -1,2 +1,32 @@
-<h1>Choose a new password</h1>
-<%= render 'form' %>
+<div class="simple_container">
+  <h2>패스워드 재설정하기</h2>
+  
+  <%= form_for @user, :url => password_reset_path(@user), :html => { :method => :put } do |f| %>
+    
+    <% if flash.now[:alert] %>
+      <div class="error">비밀번호가 너무 짧거나 일치하지 않습니다.</div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :email, "메일주소" %>
+      <%= @user.email %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password, "비밀번호" %>
+      <%= f.password_field :password %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation, "비밀번호 확인" %>
+      <%= f.password_field :password_confirmation %>
+      <%= hidden_field_tag :token, @token %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "저장하기" %>
+    </div>
+
+  <% end %>
+
+</div>
