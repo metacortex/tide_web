@@ -4,7 +4,7 @@
 
 <div class="people_profile">
   <div class="portrait">
-    <%= image_tag @user.profile_image.url %>
+    <%= image_tag @user.profile_image_url %>
   </div>
   <div class="profile">
     <div class="username">
@@ -18,10 +18,10 @@
         <% if current_user == @user || current_user.connected_to?(@user) %>
           <div class="email_link"><%= @user.email %></div>
         <% else %>
-          <%= render "connections/button", :user => @user %> <span class="caption">TO SEE EMAIL INFO</span>
+          <%= render "connections/button", :user => @user %> <span class="caption">TO SEE EMAIL INFO</span><br/>
         <% end %>
       <% else %>
-        <%= render "connections/button", :user => @user %> <span class="caption">TO SEE EMAIL INFO</span>
+        <%= render "connections/button", :user => @user %> <span class="caption">TO SEE EMAIL INFO</span><br/>
       <% end %>
       
       <% [:website,:facebook,:twitter,:googleplus,:linkedin].each do |cc| %>
