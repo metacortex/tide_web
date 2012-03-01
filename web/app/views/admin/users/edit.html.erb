@@ -1,5 +1,6 @@
 <h2>Edit User</h2>
 
+<%= link_to "delete user", admin_user_path(@user), :method => :delete, :confirm => "Sure?" %>
 
 <%= simple_form_for [:admin, @user] do |f| %>
 
