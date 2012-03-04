@@ -624,7 +624,7 @@ div.post {
     }
   }
   .like_this_post {
-    @include clearfix;
+//    @include clearfix;
     margin:5px 0 10px;
     .vote { 
       @include float(left); 
