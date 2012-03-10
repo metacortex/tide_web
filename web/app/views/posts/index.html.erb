@@ -7,7 +7,7 @@
     <%= content_tag_for :li, post do %>
       <div class="category">
         <% if post.category %>
-          <%= content_tag :div, post.category.name, :class => post.category.name %>
+          <%= content_tag :div, post.category.name, :class => post.category.name.downcase %>
         <% else %>
           <%= content_tag :div, "essay", :class => "essay" %>
         <% end %>
