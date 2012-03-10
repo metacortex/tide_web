@@ -38,13 +38,13 @@
   
   <%= render "shared/side_app" %>
 
-  <% if logged_in? && current_user.editor?  %>
+  <% if logged_in?  %>
     <div class="sb_action">
       <div class="new_post"><%= link_to "POST NEW ARTICLE", new_post_path %></div>
     </div>
   <% else %>
     <div class="sb_action">
-      <div class="new_post"><%= link_to_function "POST NEW ARTICLE", "alert('글쓰기 권한이 필요합니다.')" %></div>
+      <div class="new_post"><%= link_to_function "POST NEW ARTICLE", "alert('로그인이 필요합니다.')" %></div>
     </div>
   <% end %>
   
