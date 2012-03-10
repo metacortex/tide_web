@@ -1,0 +1,11 @@
+<%= simple_form_for [:admin,@banner] do |f| %>
+
+  <%= f.association :event, :hint => "이벤트를 선택해주세요." %>
+  <%= f.input :category, :as => :select, :collection => ["side"], :hint => "side를 선택하면 side에 배너가 표시됩니다." %>
+
+  <%= f.submit %>
+  <div class="cancel">
+    or <%= link_to "cancel and return", return_url(admin_banners_path) %>
+  </div>
+
+<% end %>

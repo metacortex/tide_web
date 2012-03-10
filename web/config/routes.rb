@@ -1,11 +1,5 @@
 Web::Application.routes.draw do
 
-  get "boards/index"
-
-  get "boards/new"
-
-  get "boards/edit"
-
   get "logout" => "sessions#destroy", :as => :logout
   get "login" => "sessions#new", :as => :login
   post "login" => "sessions#create"
@@ -57,6 +51,7 @@ Web::Application.routes.draw do
     resources :posts
     resources :videos
     resources :assets
+    resources :banners
   end
 
 
