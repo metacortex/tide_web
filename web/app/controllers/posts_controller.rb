@@ -27,12 +27,12 @@ class PostsController < ApplicationController
   end
   
   def new
-    return unless current_user.editor?
+    # return unless current_user.editor?
     @post = Post.new
   end
   
   def create
-    return unless current_user.editor?
+    # return unless current_user.editor?
 
     if params[:post][:picture_image]
       params[:post][:remote_picture_image_url] = nil

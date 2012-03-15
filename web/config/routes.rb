@@ -59,7 +59,7 @@ Web::Application.routes.draw do
   match 'editing(/:action(/:id))', :controller => "editing", :action => "index"
   
   match '/tide' => "main#index"
-  root :to => "main#index"
+  root :to => "posts#index"
 
   # See how all your routes lay out with "rake routes"
 
