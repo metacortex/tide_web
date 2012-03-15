@@ -6,7 +6,7 @@
   <title><%= content_for?(:title) ? yield(:title) : "TIDE Institute" %></title>
   <meta name="description" content="">
   <meta name="author" content="TIDE Institute">
-  <meta property="og:image" content="http://www.tideinstitute.org/assets/main_logo.gif" />
+  <meta property="og:image" content="<%= content_for?(:og_image) ? "http://www.tideinstitute.org#{yield(:og_image)}" : "http://www.tideinstitute.org/assets/main_logo.gif" %>" />
 
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>

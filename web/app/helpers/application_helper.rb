@@ -8,6 +8,10 @@ module ApplicationHelper
   def title(page_title)
     content_for(:title, page_title.to_s)  
   end
+
+  def og_image(og_image)
+    content_for(:og_image, og_image.to_s)  
+  end
   
   def javascript(*args)
     content_for(:javascripts) { javascript_include_tag(*args) }
