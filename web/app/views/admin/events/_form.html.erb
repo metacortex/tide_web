@@ -10,7 +10,7 @@
   <%= f.input :opened_at %>
   <%= f.input :closed_at %>
 
-  <%= f.input :poster_image, :hint => "메인 커버 이미지 (950x400)" %>
+  <%= f.input :poster_image, :hint => "메인 커버 이미지 width 640px" %>
   <%= image_preview_form(f,@event,:poster_image) %>
 
   <%= f.input :thumb_image, :hint => "리스트 썸네일 이미지 (250x150)" %>

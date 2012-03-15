@@ -1,13 +1,23 @@
 <% @banners = Banner.where(:category => "side").includes(:event) %>
 
-<% if banner = @banners.first %>
+<% unless @banners.empty? %>
 
-<div class="sb_element">
-  <ul id="banner_slider">
-    <% @banners.each do |b| %>
-      <li><%= link_to image_tag(b.event.poster_image.url, :width => 250), b.event %></li>
-    <% end %>
-  </ul>
-</div>
+  <% if banner = @banners[rand(@banners.size)] %>
+
+    <div class="sb_element">
+      
+      <% if @banners.size == 1 %>
+        <%= link_to image_tag(banner.event.poster_image.url, :width => 250), banner.event %>
+      <% else %>
+        <ul id="banner_slider">
+          <% banners.each do |b| %>
+            <li><%= link_to image_tag(b.event.poster_image.url, :width => 250), b.event %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+    </div>
+
+  <% end %>
 
 <% end %>

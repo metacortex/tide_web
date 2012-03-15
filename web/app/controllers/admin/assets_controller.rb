@@ -34,7 +34,7 @@ class Admin::AssetsController < ApplicationController
   def update
     @asset = Asset.find(params[:id])
 
-    if @asset.update_attrbutes(params[:asset])
+    if @asset.update_attributes(params[:asset])
       redirect_to admin_assets_path
     else
       render :edit

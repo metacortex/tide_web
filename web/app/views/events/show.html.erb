@@ -9,7 +9,7 @@
   
   <h2><%= @event.name.html_safe %></h2>
   <div class="picture_left">
-    <%= link_to image_tag(@event.picture_image.url), @event.picture_image.url, :target => "_blank" %>
+    <!-- <%= link_to image_tag(@event.picture_image.url), @event.picture_image.url, :target => "_blank" %> -->
   </div>
 
   <div class="content">
@@ -43,7 +43,7 @@
   
   
   <%= render "comments/widget", :content => @event %>
-
+</div>
 
 <div class="sidebar">
   <%= render "shared/side_app" %>
