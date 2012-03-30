@@ -38,7 +38,7 @@ Web::Application.routes.draw do
   resources :agreements
   resources :invitations
   
-  get "/archives(/:action)", :controller => "archives", :action => "index"
+  get "/archives(/:action)", :controller => "archives", :action => "videos"
 
 
   #
