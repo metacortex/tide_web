@@ -37,10 +37,11 @@ function queryPhotos(container,preview) {
   var set_id = $c.attr("data-setuid");
   
   if (preview) {
-    var r = $.ajax({url: "http://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=da88ab3b7da911e98c4fd4ebee635623&photoset_id=" + set_id + "&extras=url_l%2Curl_z%2Curl_t%2Curl_sq%2Curl_s%2Cviews&per_page=" + preview_size + "&page=1&format=json&nojsoncallback=1",
-      async:true,
-      success:function(data){
-        var j = eval(data);
+    _xdr(
+      "http://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=da88ab3b7da911e98c4fd4ebee635623&photoset_id=" + set_id + "&extras=url_l%2Curl_z%2Curl_t%2Curl_sq%2Curl_s%2Cviews&per_page=" + preview_size + "&page=1&format=json&nojsoncallback=1",
+      function(data){
+        var j = $.parseJSON(data);
+        if (!j) j = data;
         var c = $("#photoset_" + j.photoset.id);
         var photos = j.photoset.photo;
         
@@ -52,14 +53,15 @@ function queryPhotos(container,preview) {
 
         c.find(".fancybox").fancybox({ openEffect: "elastic" });
       }
-    });
+    );
     
   } else {
     
-    var r = $.ajax({url: "http://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=da88ab3b7da911e98c4fd4ebee635623&photoset_id=" + set_id + "&extras=url_l%2Curl_z%2Curl_t%2Curl_sq%2Curl_s%2Cviews&format=json&nojsoncallback=1",
-      async:true,
-      success:function(data){
-        var j = eval(data);
+    _xdr(
+      "http://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=da88ab3b7da911e98c4fd4ebee635623&photoset_id=" + set_id + "&extras=url_l%2Curl_z%2Curl_t%2Curl_sq%2Curl_s%2Cviews&format=json&nojsoncallback=1",
+      function(data){
+        var j = $.parseJSON(data);
+        if (!j) j = data;
         var c = $("#photoset_" + j.photoset.id);
         var photos = j.photoset.photo;
         
@@ -76,30 +78,51 @@ function queryPhotos(container,preview) {
 
         c.find(".fancybox").fancybox({ openEffect: "elastic" });
       }
-    });
-    
+    );
+
   }
 };
 
 function querySets() {
-  var r = $.ajax({url: "http://api.flickr.com/services/rest/?method=flickr.photosets.getList&api_key=da88ab3b7da911e98c4fd4ebee635623&user_id=68179057%40N06&format=json&nojsoncallback=1",
-    async:true,
-    success:function(data){
-      var j = eval(data);
-      var sets = j.photosets.photoset;
-      var c = $("#photos");
-      
-      $.each(sets, function(k,v){
-        var i = "photoset_" + v.id;
-        var h = "<div class='photos_wrapper'><h3>" + v.title._content + "</h3><a href='#' data-setuid='" + v.id + "' class='more' onclick='queryPhotos(\"" + i + "\");return false;'>show more</a><ul class='photos' id='" + i + "' data-setuid='" + v.id + "'></ul></div>";
-        c.append(h);
-        
-        queryPhotos(i,20);
-      });
+  var url = "http://api.flickr.com/services/rest/?method=flickr.photosets.getList&api_key=da88ab3b7da911e98c4fd4ebee635623&user_id=68179057%40N06&format=json&nojsoncallback=1";
+  _xdr(url,function(data){
+    var j = $.parseJSON(data);
+    if (!j) j = data;
+    var sets = j.photosets.photoset;
+    var c = $("#photos");
 
-    }
+    $.each(sets, function(k,v){
+      var i = "photoset_" + v.id;
+      var h = "<div class='photos_wrapper'><h3>" + v.title._content + "</h3><a href='#' data-setuid='" + v.id + "' class='more' onclick='queryPhotos(\"" + i + "\");return false;'>show more</a><ul class='photos' id='" + i + "' data-setuid='" + v.id + "'></ul></div>";
+      c.append(h);
+        
+      queryPhotos(i,20);
+    });
   });
 };
+
+function _xdr(url,callback) {
+  if ($.browser.msie && window.XDomainRequest) {
+    // Use Microsoft XDR
+    var xdr = new XDomainRequest();
+    xdr.open("get", url);
+    xdr.onload = function() {
+      // XDomainRequest doesn't provide responseXml, so if you need it:
+      var dom = new ActiveXObject("Microsoft.XMLDOM");
+      dom.async = false;
+      dom.loadXML(xdr.responseText);
+      //
+      callback.call(this,xdr.responseText);
+    };
+    xdr.send();
+  }
+  else {
+    $.ajax({url: url,
+      async:true,
+      success:callback
+    });
+  }
+}
 
 
 </script>
