@@ -997,7 +997,8 @@ ul.edit_profile_nav {
   @include float(left);
   position:relative;
   table.boards {
-    width:100%;
+//    width:100%;
+    width:680px;
     margin-top:20px;
     th {
       padding:0 5px 5px;
